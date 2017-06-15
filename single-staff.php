@@ -1,20 +1,18 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <div class="u-box">
-	<a href="<?php echo home_url();?>/blog" style="display:block; padding-top:1em"> < All Posts</a>
-	<h2><?php the_title(); ?></h2>
+	<a href="<?php echo home_url();?>/team" style="display:block; padding-top:1em"> < All Team</a>
+	<h2>Single <?php the_title(); ?></h2>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Post Content</h3>
-				<p>Inc. share options</p>
+				<h3>Cover Photo</h3>
 			</section>
 		</div>
 	</div>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Related Posts</h3>
+				<h3>Staff Bio</h3>
 			</section>
 		</div>
 	</div>
@@ -27,6 +25,4 @@
 		</div>
 	</div>
 </div>
-<?php endwhile; ?>
-
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer' ) ); ?>

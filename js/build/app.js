@@ -1,6 +1,11 @@
 jQuery(document).ready(function($) {
 
-	// lazy images
+	//menu
+	$('.c-menu a').click(function() {
+		$('.c-menu').find('.is-active').removeClass('is-active');
+		$(this).addClass('is-active');
+	});
+	//lazy image
 	$('.element').each(function() {
     	var me = $(this);
     	var thumb_url = me.data('thumb-url');
@@ -40,35 +45,23 @@ jQuery(document).ready(function($) {
 	var FadeTransition = Barba.BaseTransition.extend({
 	  start: function() {
 	    $("html, body").animate({ scrollTop: 0 }, "slow");
-	    Promise
-	      .all([this.newContainerLoading, this.fadeOut()])
-	      .then(this.fadeIn.bind(this));
+	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
 	    $('.c-loader').show();
 	  },
-
 	  fadeOut: function() {
 	    return $(this.oldContainer).animate({ opacity: 0 }).promise();
 	  },
-
 	  fadeIn: function() {
 	    var _this = this;
 	    var $el = $(this.newContainer);
-
 	    $(this.oldContainer).hide();
-
-	    $el.css({
-	      visibility : 'visible',
-	      opacity : 0
-	    });
+	    $el.css({visibility : 'visible', opacity : 0});
+	    
 	    $('.c-loader').hide();
-	    $el.animate({ opacity: 1 }, 400, function() {
-	      _this.done();
-	    });
+	    $el.animate({ opacity: 1 }, 400, function() {_this.done();});
 	  }
 	});
 
-	Barba.Pjax.getTransition = function() {
-	  return FadeTransition;
-	};
+	Barba.Pjax.getTransition = function() {return FadeTransition;};
 });
 

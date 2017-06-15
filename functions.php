@@ -61,4 +61,25 @@
 	    remove_post_type_support('page', 'editor');
 	  }
 	}
+
+	function remove_menus(){
+	  global $menu;
+	  global $submenu;
+	  remove_menu_page( 'index.php' );                 
+	  // remove_menu_page( 'jetpack' ); 
+	  // remove_menu_page( 'edit.php' ); 
+	  // remove_menu_page( 'upload.php' );              
+	  // remove_menu_page( 'edit.php?post_type=page' );    
+	  remove_menu_page( 'edit-comments.php' );          
+	  //remove_menu_page( 'themes.php' );                
+	  //remove_menu_page( 'plugins.php' );         
+	  //remove_menu_page( 'users.php' );                
+	  remove_menu_page( 'tools.php' );
+	}
+	add_action( 'admin_menu', 'remove_menus' );
+
+	function admin_default_page() {
+	  return 'wp-admin/edit.php';
+	}
+	add_filter('login_redirect', 'admin_default_page');
 ?>

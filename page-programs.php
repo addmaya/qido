@@ -1,40 +1,54 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 <div class="u-box">
-	<h2>Home</h2>
+	<h2><?php the_title(); ?></h2>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Slider</h3>
+				<h3>Cover Photo</h3>
+				<p>Fancy Title<br/>Brief introduction</p>
+			</section>
+		</div>
+	</div>
+	<div class="o-section u-table">
+		<div class="u-cell">
+			<section class="o-section__content s--rahu">
+				<h3>Logos of all programs</h3>
 			</section>
 		</div>
 	</div>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Key RAHU Statistics</h3>
+				<h3>Program 1</h3>
+				<p>Logo, Title, Introduction</p>
+				<a href="<?php echo home_url();?>/programs/program">Learn more</a>
 			</section>
 		</div>
 	</div>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Featured Programs</h3>
+				<h3>Program 2</h3>
+				<p>Logo, Title, Introduction</p>
+				<a href="<?php echo home_url();?>/programs/program">Learn more</a>
 			</section>
 		</div>
 	</div>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>Featured Team Member</h3>
-				<p>Photo, Quote, Name, Title</p>
+				<h3>Program 3</h3>
+				<p>Logo, Title, Introduction</p>
+				<a href="<?php echo home_url();?>/programs/program">Learn more</a>
 			</section>
 		</div>
 	</div>
 	<div class="o-section u-table">
 		<div class="u-cell">
 			<section class="o-section__content">
-				<h3>It's Whats Happening</h3>
-				<p>Latest: blog posts, opportunities, news, announcements, upcoming events</p>
+				<h3>Program ..... n</h3>
+				<p>Logo, Title, Introduction</p>
+				<a href="<?php echo home_url();?>/programs/program">Learn more</a>
 			</section>
 		</div>
 	</div>

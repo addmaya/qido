@@ -4,9 +4,11 @@ Author: Arthur Nakkaka
 Author URI: http://addmaya.com/
 */
 
+/*imports*/
 @import 'reset';
 
 /*variables*/
+$browser-context: 16;
 
 /*functions*/
 @mixin image($image){background-image: url('images/'+$image)}
@@ -28,11 +30,37 @@ Author URI: http://addmaya.com/
         #{$prop}: #{$value};
   }
 }
+@mixin clear{&:after {content: ""; display: table; clear: both}}
+@mixin center{display: block; margin-left: auto; margin-right: auto}
+@mixin opensans{font-family: 'Open Sans', sans-serif}
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
 
+/*defaults*/
+html,body{width:100%; height:100%}
+body{@include opensans; color: grey; font-weight: 400}
+h2{font-size: 3em; padding-top: 0.5em; font-weight: 300}
+h3{color: grey}
+strong{font-weight: 600}
 /*utilities*/
-.clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}* html .clear{zoom:1}*:first-child+html .clear{zoom:1}
+.u-box{width: 50%; @include center;}
+.u-table{display: table; width: 100%;}
+.u-cell{display: cell; vertical-align: middle;}
 
 /*objects*/
-html,body{width:100%; height:100%}
+.o-section{border: solid 4px #d4d4d4; margin: em(48) 0}
+.o-section__content{padding: em(48); font-weight: bold; font-size: 1.5em; text-align: center;
+  a, p{font-size: 60%; padding-top: em(12); line-height: 1.6}
+  a{text-decoration: underline;}
+  p>a{font-size: 100%}
+}
+.s--rahu{color:#0095f3}
 
 /*components*/
+.c-menu{position: fixed; right: 0; top:0; border-left: solid 1px #e2e2e2; margin-top: em(24)}
+.c-menu__list{padding:em(24); padding-top: 0;}
+.c-menu__item{
+  >a{display: block; padding:em(9);}
+  .is-active{color: #FDC14D;}
+}

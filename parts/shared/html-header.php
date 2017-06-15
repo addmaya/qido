@@ -10,12 +10,10 @@
 	  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico"/>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/style.css" rel="stylesheet">
-		
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/vendors.js"></script>
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
-		
 		<?php wp_head(); ?>
 	</head>
 	<body>
-		<div class="c-loader"></div>
