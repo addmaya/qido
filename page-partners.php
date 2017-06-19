@@ -1,54 +1,115 @@
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<div class="u-box">
-	<h2><?php the_title(); ?></h2>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Cover Photo</h3>
-				<p>Fancy Title<br/>Brief introduction</p>
-			</section>
+<?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header', 'parts/shared/cover'));?>
+<section class="c-page__content">
+	<section class="o-page__section">
+		<div class="u-box">
+			<span class="o-title">Corporate Partners</span>
+			<span class="o-figure">Eight</span>
+			<p>Corporate parnters are how RAHU works in partnership with other organizations with similar mission, as well as communities to enhance synergies, sustainability and ownership of programs</p>
+			<ul class="o-partner__list">
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+			</ul>
+			<a href="#" class="o-button">
+				<span class="o-icon"></span>
+				<span class="o-button__title">Become a Corporate parnter</span>
+			</a>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content s--rahu">
-				<h3>Corporate Partners</h3>
-				<p>Introductory Text</p>
-				<p>Grid of all partners. For each partner: logo, website <a href="<?php echo home_url(); ?>/partner/partner">Partner details</a></p>
-				<br/>
-				<a href="">Become a Corporate Partner</a>
-			</section>
+	</section>
+	<section class="o-page__section">
+		<div class="u-box">
+			<span class="o-title">Strategic Partners</span>
+			<span class="o-figure">Eight</span>
+			<p>Corporate parnters are how RAHU works in partnership with other organizations with similar mission, as well as communities to enhance synergies, sustainability and ownership of programs</p>
+			<ul class="o-partner__list">
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+			</ul>
+			<a href="#" class="o-button">
+				<span class="o-icon"></span>
+				<span class="o-button__title">Become a Strategic parnter</span>
+			</a>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content s--rahu">
-				<h3>Strategic Partners</h3>
-				<p>Introductory Text</p>
-				<p>Grid of all partners. For each partner: logo, website <a href="<?php echo home_url(); ?>/partner/partner">Partner details</a></p>
-				<br/>
-				<a href="">Become a Strategic Partner</a>
-			</section>
+	</section>
+	<section class="o-page__section">
+		<div class="u-box">
+			<span class="o-title">Implementing Partners</span>
+			<span class="o-figure">Eight</span>
+			<p>Corporate parnters are how RAHU works in partnership with other organizations with similar mission, as well as communities to enhance synergies, sustainability and ownership of programs</p>
+			<ul class="o-partner__list">
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+				</li>
+			</ul>
+			<a href="#" class="o-button">
+				<span class="o-icon"></span>
+				<span class="o-button__title">Become an Implementing parnter</span>
+			</a>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content s--rahu">
-				<h3>Implementing Partners</h3>
-				<p>Introductory Text</p>
-				<p>Grid of all partners. For each partner: logo, website <a href="<?php echo home_url(); ?>/partner/partner">Partner details</a></p>
-				<br/>
-				<a href="">Become an Implementing Partner</a>
-			</section>
-		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Footer</h3>
-				<p>Share options, next page suggestions, contact info, search, newsletter signup</p>
-			</section>
-		</div>
-	</div>
-</div>
+	</section>
+</section>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer' ) ); ?>
