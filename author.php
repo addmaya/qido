@@ -37,4 +37,4 @@
 <h2>No posts to display for <?php echo get_the_author() ; ?></h2>	
 <?php endif; ?>
 
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer' ) ); ?>
+<?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

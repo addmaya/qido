@@ -36,31 +36,126 @@ $browser-context: 16;
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;
 }
+@mixin light{font-weight: 300}
+@mixin arial{font-family: 'Arial'; font-weight: bold}
+@mixin cover{-webkit-background-size: cover; background-size: cover; background-position: center; background-repeat: no-repeat;}
 
 /*defaults*/
 html,body{width:100%; height:100%}
-body{@include opensans; color: grey; font-weight: 400}
-h2{font-size: 3em; padding-top: 0.5em; font-weight: 300}
-h3{color: grey}
+body{@include opensans}
 strong{font-weight: 600}
+p{line-height: 1.6}
+h1{font-size: em(48); font-weight: 300; padding-bottom: em(16)}
+h2{font-size: em(20); font-weight: 300; padding-bottom: em(16);
+  .o-line{width: 70%; margin-top: em(12);}
+}
+a{color: inherit}
+
 /*utilities*/
-.u-box{width: 50%; @include center;}
-.u-table{display: table; width: 100%;}
-.u-cell{display: cell; vertical-align: middle;}
+.u-box{width: em(1124); @include center;
+  &.s--small{width: em(816)}
+}
+.u-table{display: table; width: 100%; height: 100%;}
+.u-cell{display: table-cell; vertical-align: middle;}
+.u-clear{@include clear}
+.u-half{width: 50%; float: left}
+.u-third{width: percentage(1/3); float: left}
+.u-full{width: 100%;}
+.u-canvas{width: 100%; height: 100%;}
+.u-wrap{padding:em(24); @include clear}
+.u-center{@include center}
+.u-bkg__lightBlue{background-color: #F0F6FA}
+.u-block{display: block;}
+.u-align__center{text-align: center}
+.u-pt-m{padding-top: 1.5em;}
+.u-30p{width: 30%; float: left;}
+.u-40p{width: 40%; float: left}
 
 /*objects*/
-.o-section{border: solid 4px #d4d4d4; margin: em(48) 0}
-.o-section__content{padding: em(48); font-weight: bold; font-size: 1.5em; text-align: center;
-  a, p{font-size: 60%; padding-top: em(12); line-height: 1.6}
-  a{text-decoration: underline;}
-  p>a{font-size: 100%}
+.o-networks{display: inline-block;
+  li{display: inline-block;}
+  a{display: block;}
+  &.t-dark{
+    .o-icon{background-color: #000; border-radius: 50%}
+  }
 }
-.s--rahu{color:#0095f3}
-
+.o-icon{width: em(26); height: em(26); display: inline-block; background-color: #000}
+.o-menu{
+  a{display: block; padding: em(9); font-size: em(16); @include light; color: #fff;}
+  span{position: relative;}
+}
+.o-menu-item__title{width: 100px; display: inline-block;}
+.o-menu-item__indicator{height: 2px; width: em(16); display: inline-block; background-color: #fff; top: -4px;}
+.o-menu-item__bullet{border: solid 2px #fff; width: em(10); height: em(10); display: inline-block; border-radius: 50%; top: 1px;}
+.o-submenu{display: none;}
+.o-button{display: inline-block; border:solid 2px #000; border-radius: 24px; padding: 0.5em 1em; background-color: transparent; font-size: 1em;
+  .o-icon{width: 1em; height: 1em; background-color: #000;}
+  .o-button__title{position: relative; top:-2px;}
+}
+.o-line{height: 1px; background-color: black; display: block;
+  &.s--break{margin:em(48) 0;}
+}
+.o-link{display: inline-block; padding: em(4) 0;
+  .o-icon{width: 1em; height: 1em;}
+  span{position: relative; top: -2px; display: inline-block; padding-left: em(6);}
+}
+.o-tabs__nav{
+  h2{display: inline-block; padding-right: 1em}
+}
+.o-input{
+  input, textarea{border-bottom: solid 1px black; width: 95%; margin-bottom: em(24); padding: em(12) 0 em(18);}
+}
+.o-subtitle{text-transform: uppercase; font-size: em(10); @include arial; display: block; letter-spacing: em(12)}
+.o-list{margin-bottom: em(24);
+  li{line-height: 1.6}
+}
+.o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
 /*components*/
-.c-menu{position: fixed; right: 0; top:0; border-left: solid 1px #e2e2e2; margin-top: em(24)}
-.c-menu__list{padding:em(24); padding-top: 0;}
-.c-menu__item{
-  >a{display: block; padding:em(9);}
-  .is-active{color: #FDC14D;}
+.c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
+  .o-networks{float: right; padding-top: em(6);}
+  .o-icon{background-color: #fff; border-radius: 50%}
 }
+.c-logo{display: block; width: em(176); height: em(36); background-color: #fff; float: left;}
+.c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
+.c-page-cover{background-color: #252525; height:65%; position: relative;
+  .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}
+}
+.c-page-cover__image{background-color: darken(#252525, 5%); height: 100%;}
+.c-page-cover__title{width: em(340); height: em(182); background-color: #fff; display: block; @include center}
+.c-page__title{overflow: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
+  span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
+}
+.c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; border-radius: 5px;
+  p{@include center; width: 80%}
+  .u-wrap{padding: 2em}
+}
+.c-page__content{position: relative; top:-5%}
+.c-page__actions{@include clear; margin-bottom: 2em;
+  .o-line{position: relative; top: em(30); margin: 2em 0;
+    &:after{content:""; position: absolute; height: em(30); width: 1px; background-color: #000; top: 0; left: 50%;};
+  }
+  .o-subtitle{margin-bottom: 2em;}
+}
+.c-button-next{display: block; background-color: grey; padding: 6em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
+  span{position: relative; z-index: 2}
+  figure{width: 100%; height: 100%; @include cover; background-color: #000; position: absolute; top: 0; left: 0; z-index: 1}
+  .o-icon{background-color: #fff;}
+}
+.c-page__footer{padding:4em 0; background-color: darken(#FCFCFC, 5%);
+  h2{margin-bottom: em(12);}
+  .o-networks{margin-bottom: em(24)}
+}
+.c-partners{margin-bottom: em(24);@include clear;
+  a{display: block; margin:em(12); margin-left: 0}
+  figure{background-color: #000; width: em(96);height: em(96);}
+}
+.c-form-newsletter{@include clear;
+  .o-button{float: right; width: 20%}
+  .o-input{float: left; width: 80%}
+}
+.c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.5;
+  ul{padding: 2em 0;}
+  li{display: inline-block;}
+  a{display: block; padding: 0.5em}
+}
+

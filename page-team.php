@@ -1,48 +1,63 @@
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<div class="u-box">
-	<h2><?php the_title(); ?></h2>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Cover Photo</h3>
-				<p>Fance Title<br/>Brief introduction</p>
-			</section>
+<?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header', 'parts/shared/cover'));?>
+<section class="c-page__content">
+	<section class="o-page__section">
+		<div class="u-box">
+			<ul class="c-team">
+				<li>
+					<figure>
+						<span class="o-bubble"></span>
+						<span class="o-bubble"></span>
+						<span class="o-bubble"></span>
+					</figure>
+					<span>Charlotte Nalumansi</span>
+					<span>Founder & CEO</span>
+				</li>
+			</ul>
+			<a href="#" class="o-button">
+				<span class="o-arrow"></span>
+				<span class="o-button__title">Join the Team</span>
+			</a>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Grid of all Staff</h3>
-				<p>For each: Photo, Name, Title, <span class="s--rahu">Bio, Social Handles.</span> <a href="<?php echo home_url(); ?>/staff/staff">Read Bio</a></p>
-				<a href="">Join Team</a>
-			</section>
+	</section>
+	<section class="o-page__section">
+		<div class="u-box">
+			<span>Board of Directors</span>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+			<div class="o-slider">
+				<ul>
+					<li>
+						<a href="#">
+							<span>Arthur Nakkaka</span>
+							<span>Chairman</span>
+							<figure></figure>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content s--rahu">
-				<h3>Carousel of all Board Members</h3>
-				<p>Introductory text</p>
-				<p>For each: Photo, Name, Title, Bio, Social Handles. <a href="<?php echo home_url(); ?>/director/director">Read Bio</a></p>
-			</section>
+	</section>
+	<section class="o-page__section">
+		<div class="u-box">
+			<div class="u-clear">
+				<div>
+					<span>24 Cultural icons</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
+				</div>
+				<div>
+					<ul>
+						<li class="u-third">
+							<a href="">
+								<figure></figure>
+								<span>Drake James</span>
+								<span>Artist/Actress</span>
+								<span class="o-bubble"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content s--rahu">
-				<h3>Grid of all Cultural Icons</h3>
-				<p>Introductory text</p>
-				<p>For each: Photo, Name, Title, Bio, Social Handles</p>
-			</section>
-		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Footer</h3>
-				<p>Share options, next page suggestions, contact info, search, newsletter signup</p>
-			</section>
-		</div>
-	</div>
-</div>
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer' ) ); ?>
+	</section>
+</section>
+<?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

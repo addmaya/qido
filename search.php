@@ -28,4 +28,4 @@
 <h2>No results found for '<?php echo get_search_query(); ?>'</h2>
 <?php endif; ?>
 
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer' ) ); ?>
+<?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>
