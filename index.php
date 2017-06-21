@@ -6,7 +6,7 @@
 				<h1><a href="#">Empowering young people in Uganda</a></h1>
 				<p>RAHU recognises that young people’s concerns can only be addressed by young people, thats the reason why our slogan is at is.</p>
 				<a href="#" class="o-button">
-					<span class="o-arrow"></span>
+					<i class="o-arrow"></i>
 					<span class="o-button__title">Explore our Programs</span>
 				</a>
 			</section>
@@ -27,16 +27,16 @@
 		<div class="o-slider">
 			<section class="o-statistic">
 				<div>
-					<span class="o-icon"></span>
+					<i class="o-icon"></i>
 					<span>70,000</span>
 				</div>
-				<p>Appeared on BBC for the peer educators summit held in Kigali. <span class="o-arrow"></span></p>
+				<p>Appeared on BBC for the peer educators summit held in Kigali. <i class="o-arrow"></i></p>
 			</section>
 			<a href="#" class="o-button s--back"></a>
 			<a href="#" class="o-button s--forward"></a>
 		</div>
 		<a href="#" class="o-button">
-			<span class="o-arrow"></span>
+			<i class="o-arrow"></i>
 			<span class="o-button__title">Discover Our Story</span>
 		</a>
 	</div>
@@ -44,7 +44,7 @@
 <section class="o-page__section">
 	<div class="u-box">
 		<header>
-			<h2><a href="">Our Programs <span class="o-arrow"></span></a></h2>
+			<h2><a href="">Our Programs <i class="o-arrow"></i></a></h2>
 			<span>Twelve</span>
 		</header>
 		<div class="o-slider">
@@ -56,12 +56,12 @@
 			</a>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text since 2015.</p>
 			<a href="#" class="o-button">
-				<span class="o-arrow"></span>
+				<i class="o-arrow"></i>
 				<span class="o-button__title">Learn More</span>
 			</a>
 		</div>
 		<a href="#" class="o-button">
-			<span class="o-arrow"></span>
+			<i class="o-arrow"></i>
 			<span class="o-button__title">See all Programs</span>
 		</a>
 	</div>
@@ -86,13 +86,13 @@
 		</div>
 		<a href="#">
 			<div class="o-button">
-				<span class="o-arrow"></span>
+				<i class="o-arrow"></i>
 				<span class="o-button__title">Meet the Team</span>
 			</div>
 		</a>
 		<a href="#">
 			<div class="o-button">
-				<span class="o-arrow"></span>
+				<i class="o-arrow"></i>
 				<span class="o-button__title">See our Board</span>
 			</div>
 		</a>
@@ -105,15 +105,15 @@
 				<li class="o-article">
 					<span class="o-bubble"></span>
 					<figure>
-						<span class="o-icon"></span>
+						<i class="o-icon"></i>
 						<span>5 days Ago</span>
 					</figure>
 					<a>How we rocked share 101 for the annual festival</a>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <span class="o-arrow"></span></p>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></p>
 				</li>
 			</ul>
 			<a href="#" class="o-button">
-				<span class="o-arrow"></span>
+				<i class="o-arrow"></i>
 				<span class="o-button__title">Load more posts</span>
 			</a>
 		</section>

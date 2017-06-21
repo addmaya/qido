@@ -1,141 +1,219 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header'));?>
-<div class="o-slider">
-	<section class="c-page-cover">
-		<figure class="c-page-cover__image"></figure>
-		<div class="c-page-cover__title"></div>
-		<div class="o-galaxy">
-			<span class="o-planet s--small"></span>
-			<span class="o-planet s--med"></span>
-			<span class="o-planet s--large"></span>
+<section class="c-page-cover">
+	<figure class="c-page-cover__image"></figure>
+	<div class="u-table">
+		<div class="u-cell">
+			<span class="c-page-cover__title"></span>
+			<div class="o-galaxy">
+				<span class="o-planet s--small"></span>
+				<span class="o-planet s--med"></span>
+				<span class="o-planet s--large"></span>
+			</div>
 		</div>
-		<span class="c-page__title">Page Title</span>
-	</section>
-</div>
-<div class="o-slider">
-	<section class="o-page__info">
-		<span class="o-title">Upcoming or Featured</span>
-		<h1>Fancy Title</h1>
-		<span>14 Days to go</span>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ullamcorper ligula at suscipit. Donec sollicitudin leo eget pulvinar tincidunt. Fusce id enim et lacus porta mattis. </p>
-	</section>
-</div>
+	</div>
+</section>
+<section class="c-page__info">
+	<div class="u-wrap">
+		<h1>Get Loud. Speak Out. Schools Camp 2017
+			<span class="o-subtitle">2 Months ago</span>
+		</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ullamcorper ligula at suscipit. Donec sollicitudin leo eget pulvinar tincidunt. Fusce id enim et lacus porta mattis. <a href="#" class="o-link"><i class="o-icon"></i><span>More</span></a></p>
+	</div>
+</section>
 <section class="c-page__content">
 	<section class="o-page__section">
+		<div class="o-section__tint"></div>
 		<div class="u-box">
-			<span class="o-title">Upcoming Events</span>
-			<span class="o-figure">Eight</span>
-			<div class="u-clear">
-				<div class="u-third">
-					<a href="#" class="o-ticket">
-						<figure class="o-ticket__cover"></figure>
-						<span class="o-ticket__counter">20 days to</span>
-						<section>
-							<div class="u-wrap u-clear">
-								<section class="u-half">
-									<span>Sep. 10. 2016</span>
-								</section>
-								<section class="u-half">
-									<span>King's College Buddo, Masaka Road</span>
-								</section>
+			<header class="a-center">
+				<span class="o-section__title">Upcoming Events</span>
+			</header>
+			<section>
+				<ul class="u-clear">
+					<li class="o-article u-third">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<div class="o-ticket">
+								<a href="#" class="o-ticket__figure">
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+									<figure></figure>
+								</a>
+								<div class="o-ticket__info">
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>Sept. 10. 2016</span>
+									</div>
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>King's College Budo, Masaka</span>
+									</div>
+								</div>
 							</div>
+							<a class="o-subheading" href="#">Inter-generational dialogue & summit 2017<i class="o-arrow"></i></a>
 						</section>
-					</a>
-					<a href="#"><span>Inter-generational Dialogue</span><span class="o-arrow"></span></a>
-				</div>
+					</li>
+					<li class="o-article u-third">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<div class="o-ticket">
+								<a href="#" class="o-ticket__figure">
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+									<figure></figure>
+								</a>
+								<div class="o-ticket__info">
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>Sept. 10. 2016</span>
+									</div>
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>King's College Budo, Masaka</span>
+									</div>
+								</div>
+							</div>
+							<a class="o-subheading" href="#">Inter-generational dialogue & summit 2017<i class="o-arrow"></i></a>
+						</section>
+					</li>
+					<li class="o-article u-third">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<div class="o-ticket">
+								<a href="#" class="o-ticket__figure">
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+									<figure></figure>
+								</a>
+								<div class="o-ticket__info">
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>Sept. 10. 2016</span>
+									</div>
+									<div class="u-half">
+										<i class="o-line"></i>
+										<span>King's College Budo, Masaka</span>
+									</div>
+								</div>
+							</div>
+							<a class="o-subheading" href="#">Inter-generational dialogue & summit 2017<i class="o-arrow"></i></a>
+						</section>
+					</li>
+				</ul>
+			</section>
+			<div class="a-center">
+				<a href="#" class="o-button">
+					<i class="o-arrow"></i>
+					<span class="o-button__title">Full Events Calendar</span>
+				</a>
 			</div>
 		</div>
 	</section>
 	<section class="o-page__section">
+		<div class="o-section__tint s--full"></div>
 		<div class="u-box">
-			<header>
-				<span class="o-title">Relieve Past Events</span>
-				<div class="o-select">
+			<header class="a-center u-clear">
+				<span class="o-section__title u-left">Relieve Past Events</span>
+				<div class="o-select u-right">
 					<select name="" id="">
-						<option value="">All Events</option>
+						<option value="">All Topics</option>
 						<option value="">Camp</option>
 						<option value="">HIV AIDS</option>
 					</select>
+					<i class="o-arrow"></i>
 				</div>
-				<div class="o-select">
+				<div class="o-select u-right">
 					<select name="" id="">
 						<option value="">All Years</option>
-						<option value="">Camp</option>
-						<option value="">HIV AIDS</option>
+						<option value="">2014</option>
+						<option value="">2013</option>
+						<option value="">2012</option>
+						<option value="">2011</option>
+						<option value="">2010</option>
 					</select>
+					<i class="o-arrow"></i>
 				</div>
 			</header>
-			<section class="o-articles">
-				<ul>
-					<li class="o-article">
-						<figure>
-							<span class="o-icon"></span>
-							<span>5 days Ago</span>
-						</figure>
-						<a>How we rocked share 101 for the annual festival</a>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <span class="o-arrow"></span></p>
-						<span class="o-bubble"></span>
+			<section class="u-wrap">
+				<ul class="u-clear">
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+							</section>
+						</section>
+					</li>
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a class="o-subheading">10 things you need for the camp this year.</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+							</section>
+						</section>
+					</li>
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+							</section>
+						</section>
+					</li>
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a class="o-subheading">10 things you need for the camp this year.</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+							</section>
+						</section>
 					</li>
 				</ul>
-				<a href="#" class="o-button">
-					<span class="o-arrow"></span>
-					<span class="o-button__title">Visit Events Archive</span>
-				</a>
+				<div class="a-center u-pt-l">
+					<span class="o-subtitle u-pb-m">8/125</span>
+					<a href="#" class="o-button">
+						<i class="o-arrow"></i>
+						<span class="o-button__title">Load more posts</span>
+					</a>
+				</div>
 			</section>
 		</div>
 	</section>
 	<section class="o-page__section">
 		<div class="u-box">
-			<div class="u-clear">
-				<div>
-					<span class="o-title">14 Annual Events</span>
-					<section>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
-					</section>
-				</div>
-				<div>
-					<div class="o-slider">
-						<section>
-							<ul>
-								<li class="o-program-card u-half">
-									<span class="o-bubble"></span>
-									<figure></figure>
-									<section>
-										<figure class="o-program__logo"></figure>
-										<section>
-											<h2>Young Achievers Awards</h2>
-											<a href="#">
-												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. </p>
-												<a href="#" class="o-button">
-													<span class="o-arrow"></span>
-													<span class="o-button__title">Learn More</span>
-												</a>
-											</a>
-										</section>
-									</section>
-								</li>
-								<li class="o-program-card u-half">
-									<span class="o-bubble"></span>
-									<figure></figure>
-									<section>
-										<figure class="o-program__logo"></figure>
-										<section>
-											<h2>Young Achievers Awards</h2>
-											<a href="#">
-												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. </p>
-												<a href="#" class="o-button">
-													<span class="o-arrow"></span>
-													<span class="o-button__title">Learn More</span>
-												</a>
-											</a>
-										</section>
-									</section>
-								</li>
-							</ul>
-						</section>
-					</div>
-				</div>
-			</div>
+			//MISSING SECTION
 		</div>
 	</section>
 </section>

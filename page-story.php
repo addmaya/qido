@@ -13,7 +13,7 @@
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
 					<a href="#" class="o-button">
-						<span class="o-arrow"></span>
+						<i class="o-arrow"></i>
 						<span class="o-button__title">Learn More</span>
 					</a>
 					<span class="o-line"></span>
@@ -28,10 +28,10 @@
 			<div class="o-slider">
 				<section class="o-statistic">
 					<div>
-						<span class="o-icon"></span>
+						<i class="o-icon"></i>
 						<span>70,000</span>
 					</div>
-					<p>Appeared on BBC for the peer educators summit held in Kigali. <span class="o-arrow"></span></p>
+					<p>Appeared on BBC for the peer educators summit held in Kigali. <i class="o-arrow"></i></p>
 				</section>
 				<a href="#" class="o-button s--back"></a>
 				<a href="#" class="o-button s--forward"></a>
@@ -47,7 +47,7 @@
 					<h3>Believe in young People</h3>
 					<figure>
 						<span class="o-bubble"></span>
-						<span class="o-arrow"></span>
+						<i class="o-arrow"></i>
 					</figure>
 				</li>
 			</ul>

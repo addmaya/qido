@@ -45,8 +45,10 @@ html,body{width:100%; height:100%}
 body{@include opensans}
 strong{font-weight: 600}
 p{line-height: 1.6}
-h1{font-size: em(48); font-weight: 300; padding-bottom: em(16)}
-h2{font-size: em(20); font-weight: 300; padding-bottom: em(16);
+h1{font-size: em(40); font-weight: 300; padding-bottom: em(16); line-height: 1.2;
+  .o-subtitle{font-size: 25%; letter-spacing: em(36); padding-top: em(20)}
+}
+h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
   .o-line{width: 70%; margin-top: em(12);}
 }
 a{color: inherit}
@@ -55,6 +57,8 @@ a{color: inherit}
 .u-box{width: em(1124); @include center;
   &.s--small{width: em(816)}
 }
+.u-left{float: left}
+.u-right{float: right}
 .u-table{display: table; width: 100%; height: 100%;}
 .u-cell{display: table-cell; vertical-align: middle;}
 .u-clear{@include clear}
@@ -68,8 +72,15 @@ a{color: inherit}
 .u-block{display: block;}
 .u-align__center{text-align: center}
 .u-pt-m{padding-top: 1.5em;}
+.u-pb-m{padding-bottom: 1.5em;}
+.u-pt-l{padding-top: 3em;}
 .u-30p{width: 30%; float: left;}
 .u-40p{width: 40%; float: left}
+.u-60p{width: 60%; float: left}
+.u-70p{width: 70%; float: left}
+.u-relative{position: relative;}
+.a-right{text-align: right}
+.a-center{text-align: center}
 
 /*objects*/
 .o-networks{display: inline-block;
@@ -79,25 +90,27 @@ a{color: inherit}
     .o-icon{background-color: #000; border-radius: 50%}
   }
 }
-.o-icon{width: em(26); height: em(26); display: inline-block; background-color: #000}
+.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red}
+.o-arrow{width: em(16); height: em(16); display: inline-block; background-color: red; position: relative; top: 2px;}
+
 .o-menu{
   a{display: block; padding: em(9); font-size: em(16); @include light; color: #fff;}
   span{position: relative;}
 }
-.o-menu-item__title{width: 100px; display: inline-block;}
-.o-menu-item__indicator{height: 2px; width: em(16); display: inline-block; background-color: #fff; top: -4px;}
+.o-menu-item__title{width: em(100); display: inline-block;}
+.o-menu-item__indicator{height: 2px; width: em(16); display: inline-block; background-color: #fff; top: em(-4);}
 .o-menu-item__bullet{border: solid 2px #fff; width: em(10); height: em(10); display: inline-block; border-radius: 50%; top: 1px;}
 .o-submenu{display: none;}
-.o-button{display: inline-block; border:solid 2px #000; border-radius: 24px; padding: 0.5em 1em; background-color: transparent; font-size: 1em;
-  .o-icon{width: 1em; height: 1em; background-color: #000;}
-  .o-button__title{position: relative; top:-2px;}
+.o-button{display: inline-block; border:solid 2px #000; border-radius: em(24); padding: em(9) em(24); background-color: transparent; font-size: 1em;
+  .o-icon{width: 1em; height: 1em}
+  .o-button__title{position: relative; top:-1px}
 }
 .o-line{height: 1px; background-color: black; display: block;
   &.s--break{margin:em(48) 0;}
 }
 .o-link{display: inline-block; padding: em(4) 0;
-  .o-icon{width: 1em; height: 1em;}
-  span{position: relative; top: -2px; display: inline-block; padding-left: em(6);}
+  .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
+  span{display: inline-block; padding-left: em(6);}
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
@@ -110,23 +123,101 @@ a{color: inherit}
   li{line-height: 1.6}
 }
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
+.o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.3;
+  .o-arrow{margin-left: 0.5em}
+}
+.o-select{display: inline-block; position: relative;
+  .o-arrow{position: absolute; top:em(10); right: 1em}
+  select{display: inline-block; border:solid 2px #000; border-radius: em(24); padding: 0.5em 4em 0.5em 1em; background-color: white; font-size: 1em;}
+}
+.o-bubble{position: absolute; border-radius: 50%; z-index: -1;
+  &.s--large{width: em(192); height: em(192); background-color: pink}
+  &.s--medium{width: em(48); height: em(48); background-color: purple}
+  &.s--small{width: em(24); height: em(24); background-color: blue}
+}
+.o-article{position: relative;
+  &.u-full{float: left;
+    .o-article__figure{height: 28em}
+    .o-article__brief{width: 70%;}
+    .o-article__time{left:-9%; top: 3em;}
+  }
+  &.u-third{
+    .u-wrap{padding: 1.5em}
+    .o-article__time{left:-25%; top: 8em;}
+  }
+  .u-wrap{padding: 1.5em 4em}
+  .o-subheading{padding-bottom: em(12)}
+  .o-bubble{top:0; left:0; height: 10em; width: 10em; background-color: blue}
+}
+.o-article__figure{position: relative; height: em(385); background-color: black; border-radius: em(5); margin-bottom: em(24);
+  .u-center{text-align: center; position: relative; z-index: 1; top: -1em}
+  .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%}
+}
+.o-article__time{display: inline-block; background-color: red; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative;}
+.o-page__section{padding:em(36) 0 em(72); position: relative;
+  &:last-child{padding-bottom:0;}
+}
+.o-section__header{@include center; width: 70%; text-align: center; padding-bottom:3em;
+  .o-section__title{margin-bottom: em(24);}
+  p{margin-top: 2.5em;}
+  &.s--left{text-align: left; margin: 0; width: 30%; float: left}
+}
+.o-section__footer{padding-top: 2em; text-align: center;}
+.o-section__title{display: inline-block; margin-bottom:4em; font-weight: 300; background-color:#0a0a0a; padding: 0.875em 2em; color: white; border-radius: 3em;
+  &.s--clear{margin-bottom: 0;}
+}
+.o-section__tint{background-color:#eaeaea; position: absolute; top: 3.5em; height: 50%; z-index: -1; width: 100%;
+  &.s--full{top:em(60); height: 95%}
+}
+.o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
+  a{display: block; width: 225px; height: 225px; background-color: red; @include center}
+  .o-subheading{padding:em(12) 0 em(6)}
+  &.u-third{width: percentage(1/3)}
+}
+.o-tag{display: inline-block; font-size: 2.2em; color: blue; padding:em(6); text-transform: lowercase; font-weight: 300;
+  span{vertical-align: super; font-size: 50%}
+}
+.o-ticket__figure{display: block; position: relative;
+  figure{background-color: #000; border-radius: 5px;  height: em(320); position: relative;
+    &:after{content:""; position: absolute; top: 0; left: 0; z-index: 100; border-right: #fff 7px solid; border-bottom: #fff 7px solid; border-radius: 0 0 20px 0}
+  }
+}
+.o-ticket__info{@include clear; background-color: grey; padding: em(12); border-radius: 5px; margin-bottom: 1.2em;
+  span{display: block; text-transform: uppercase; font-size: 0.75em; @include arial; padding:1.5em 1.5em 1.5em 0;}
+  .o-line{width: 30%; height: 2px}
+}
+.o-program{margin-bottom: 8em;
+  .o-program__figure{width: 75%; background-color: #848484; height:26em; border-radius: em(8); float: right}
+  .o-button{margin-top: 1.5em; border-color: #fff}
+  .o-bubble{
+    &.s--medium{width: 4em; height: 4em}
+    &.s--large{width: 9em; height: 9em}
+  }
+}
+.o-program__logo{width: em(156); height: em(156); background-color: #fff; border-radius: 5px; margin-bottom:em(12);}
+.o-program__info{width: 42%; overflow: hidden; position: absolute; top:3em;
+  section{color: white; background-color: #464646; padding: 1.5em; border-radius: 5px; position: relative}
+}
+.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.2}
+.o-program__summary{position: relative; z-index: 1}
+
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
   .o-networks{float: right; padding-top: em(6);}
-  .o-icon{background-color: #fff; border-radius: 50%}
+  .o-icon{background-color: red; border-radius: 50%}
 }
-.c-logo{display: block; width: em(176); height: em(36); background-color: #fff; float: left;}
+.c-logo{display: block; width: em(176); height: em(36); background-color: red; float: left;}
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
 .c-page-cover{background-color: #252525; height:65%; position: relative;
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}
 }
 .c-page-cover__image{background-color: darken(#252525, 5%); height: 100%;}
 .c-page-cover__title{width: em(340); height: em(182); background-color: #fff; display: block; @include center}
-.c-page__title{overflow: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
+.c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
 }
 .c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; border-radius: 5px;
-  p{@include center; width: 80%}
+  p{@include center; width: 80%; @include light}
   .u-wrap{padding: 2em}
 }
 .c-page__content{position: relative; top:-5%}
@@ -136,7 +227,7 @@ a{color: inherit}
   }
   .o-subtitle{margin-bottom: 2em;}
 }
-.c-button-next{display: block; background-color: grey; padding: 6em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
+.c-button-next{display: block; background-color: grey; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
   span{position: relative; z-index: 2}
   figure{width: 100%; height: 100%; @include cover; background-color: #000; position: absolute; top: 0; left: 0; z-index: 1}
   .o-icon{background-color: #fff;}
@@ -158,4 +249,13 @@ a{color: inherit}
   li{display: inline-block;}
   a{display: block; padding: 0.5em}
 }
-
+.c-team{text-align: center; @include clear; margin-bottom: em(24);
+  li{width: 25%; float: left;}
+  figure{width: em(192); height: em(360); background-color: black; @include center; margin-bottom: em(18); position: relative}
+  .o-bubble{background-color: grey;
+    &.s--large{bottom: 0; left: 0}
+    &.s--medium{top: 20%; left: 0}
+    &.s--small{top: 40%; right: em(-20)}
+  }
+  .o-subheading{padding-bottom: em(6);}
+}

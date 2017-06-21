@@ -9,7 +9,7 @@
 						<a href="#" class="u-block">
 							<p>Plot 11, Bugolobi, <br/>Kiswa, Kampala <br/>Uganda, East Africa</p>
 							<div class="o-button">
-								<span class="o-icon"></span>
+								<i class="o-icon"></i>
 								<span class="o-button__title">Locate on Map</span>
 							</div>
 						</a>
@@ -106,7 +106,7 @@
 										<textarea cols="30" rows="10" placeholder="Message"></textarea>
 									</div>
 									<button class="o-button">
-										<span class="o-icon"></span>
+										<i class="o-icon"></i>
 										<span class="o-button__title">Send Message</span>
 									</button>
 								</form>

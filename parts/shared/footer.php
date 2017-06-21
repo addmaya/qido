@@ -34,7 +34,7 @@
 		<a href="#" class="c-button-next">
 			<span class="o-subtitle">Next</span>
 			<span class="o-heading">Our Story</span>
-			<span class="o-icon"></span>
+			<i class="o-icon"></i>
 			<figure></figure>
 		</a>
 		<footer class="c-page__footer">
@@ -51,7 +51,7 @@
 							<li class="u-third"><a href="#"><figure></figure></a></li>
 						</ul>
 						<a href="#" class="o-button">
-							<span class="o-icon"></span>
+							<i class="o-icon"></i>
 							<span class="o-button__title">Become a Partner</span>
 						</a>
 					</section>
@@ -113,7 +113,7 @@
 								<span></span>
 							</div>
 							<button class="o-button">
-								<span class="o-icon"></span>
+								<i class="o-icon"></i>
 							</button>
 						</form>
 					</section>

@@ -5,58 +5,176 @@
 			<ul class="c-team">
 				<li>
 					<figure>
-						<span class="o-bubble"></span>
-						<span class="o-bubble"></span>
-						<span class="o-bubble"></span>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
 					</figure>
-					<span>Charlotte Nalumansi</span>
-					<span>Founder & CEO</span>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
 				</li>
 			</ul>
-			<a href="#" class="o-button">
-				<span class="o-arrow"></span>
-				<span class="o-button__title">Join the Team</span>
-			</a>
+			<footer class="o-section__footer">
+				<a href="#" class="o-button">
+					<i class="o-arrow"></i>
+					<span class="o-button__title">Join the Team</span>
+				</a>
+			</footer>
 		</div>
 	</section>
 	<section class="o-page__section">
+		<div class="o-section__tint"></div>
 		<div class="u-box">
-			<span>Board of Directors</span>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
-			<div class="o-slider">
-				<ul>
-					<li>
-						<a href="#">
-							<span>Arthur Nakkaka</span>
-							<span>Chairman</span>
-							<figure></figure>
-						</a>
-					</li>
-				</ul>
-			</div>
+			<header class="o-section__header">
+				<span class="o-section__title">Board of Directors</span>
+				<span class="o-subtitle">Eight</span>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+			</header>
+			<ul class="u-clear">
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+			</ul>
+			<footer class="o-section__footer">
+				<a href="#" class="o-button">
+					<i class="o-icon"></i>
+				</a>
+				<a href="#" class="o-button">
+					<i class="o-icon"></i>
+				</a>
+			</footer>
 		</div>
 	</section>
 	<section class="o-page__section">
-		<div class="u-box">
-			<div class="u-clear">
-				<div>
-					<span>24 Cultural icons</span>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
-				</div>
-				<div>
-					<ul>
-						<li class="u-third">
-							<a href="">
-								<figure></figure>
-								<span>Drake James</span>
-								<span>Artist/Actress</span>
-								<span class="o-bubble"></span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+		<div class="o-section__tint"></div>
+		<div class="u-box u-clear">
+			<header class="o-section__header s--left">
+				<span class="o-section__title">Board of Directors</span>
+				<span class="o-subtitle">Twenty Four</span>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
+			</header>
+			<ul class="u-70p">
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li class="o-partner u-third">
+					<a href="#">
+						<figure class="o-partner__logo"></figure>
+						<span></span>
+					</a>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+			</ul>
 		</div>
 	</section>
 </section>
