@@ -105,7 +105,7 @@
 					<span class="o-subtitle u-pb-m">8/125</span>
 					<a href="#" class="o-button">
 						<i class="o-arrow"></i>
-						<span class="o-button__title">Load more posts</span>
+						<span class="o-button__title">Show me More</span>
 					</a>
 				</div>
 			</section>

@@ -205,7 +205,7 @@
 					<span class="o-subtitle u-pb-m">8/125</span>
 					<a href="#" class="o-button">
 						<i class="o-arrow"></i>
-						<span class="o-button__title">Load more posts</span>
+						<span class="o-button__title">Show me More</span>
 					</a>
 				</div>
 			</section>
@@ -213,7 +213,54 @@
 	</section>
 	<section class="o-page__section">
 		<div class="u-box">
-			//MISSING SECTION
+			<ul class="u-clear">
+				<li class="o-program u-half">
+					<div class="u-clear u-relative">
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--large"></span>
+						<figure class="o-program__figure"></figure>
+						<section class="o-program__info">
+							<div class="u-clear">
+								<figure class="o-program__logo"></figure>
+							</div>
+							<section>
+								<span class="o-subheading">Young Achievers Awards</span>
+								<div class="o-program__summary">
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+									<a href="#" class="o-button">
+										<i class="o-arrow"></i>
+										<span class="o-button__title">Learn More</span>
+									</a>
+								</div>
+								<span class="o-progam__monogram">g</span>
+							</section>
+						</section>
+					</div>
+				</li>
+				<li class="o-program u-half">
+					<div class="u-clear u-relative">
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--large"></span>
+						<figure class="o-program__figure"></figure>
+						<section class="o-program__info">
+							<div class="u-clear">
+								<figure class="o-program__logo"></figure>
+							</div>
+							<section>
+								<span class="o-subheading">Young Achievers Awards</span>
+								<div class="o-program__summary">
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+									<a href="#" class="o-button">
+										<i class="o-arrow"></i>
+										<span class="o-button__title">Learn More</span>
+									</a>
+								</div>
+								<span class="o-progam__monogram">g</span>
+							</section>
+						</section>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</section>
 </section>

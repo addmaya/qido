@@ -36,9 +36,12 @@ $browser-context: 16;
 @function em($pixels, $context: $browser-context) {
   @return #{$pixels/$context}em;
 }
+@mixin sixcaps{font-family: 'Six Caps', sans-serif;}
 @mixin light{font-weight: 300}
 @mixin arial{font-family: 'Arial'; font-weight: bold}
 @mixin cover{-webkit-background-size: cover; background-size: cover; background-position: center; background-repeat: no-repeat;}
+@mixin roundedBorder-s{border-radius: 5px}
+@mixin roundedBorder-l{border-radius: 50%}
 
 /*defaults*/
 html,body{width:100%; height:100%}
@@ -52,6 +55,8 @@ h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
   .o-line{width: 70%; margin-top: em(12);}
 }
 a{color: inherit}
+blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative; quotes: "\201C""\201D""\2018""\2019";
+}
 
 /*utilities*/
 .u-box{width: em(1124); @include center;
@@ -71,9 +76,17 @@ a{color: inherit}
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
 .u-align__center{text-align: center}
-.u-pt-m{padding-top: 1.5em;}
+
+.u-pt-m{padding-top: 1.5em}
 .u-pb-m{padding-bottom: 1.5em;}
+.u-pb-l{padding-bottom: 3em;}
 .u-pt-l{padding-top: 3em;}
+.u-pt-xl{padding-top: 4.5em;}
+
+.u-mt-m{margin-top: 1.5em}
+.u-mt-l{margin-top: 3em}
+.u-mt-xl{margin-top: 4.5em}
+
 .u-30p{width: 30%; float: left;}
 .u-40p{width: 40%; float: left}
 .u-60p{width: 60%; float: left}
@@ -123,7 +136,7 @@ a{color: inherit}
   li{line-height: 1.6}
 }
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
-.o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.3;
+.o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4;
   .o-arrow{margin-left: 0.5em}
 }
 .o-select{display: inline-block; position: relative;
@@ -156,6 +169,8 @@ a{color: inherit}
 .o-article__time{display: inline-block; background-color: red; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative;}
 .o-page__section{padding:em(36) 0 em(72); position: relative;
   &:last-child{padding-bottom:0;}
+  &.u-pt-xl{padding-top: 4.5em}
+  &.u-pb-m{padding-bottom:3em}
 }
 .o-section__header{@include center; width: 70%; text-align: center; padding-bottom:3em;
   .o-section__title{margin-bottom: em(24);}
@@ -168,6 +183,9 @@ a{color: inherit}
 }
 .o-section__tint{background-color:#eaeaea; position: absolute; top: 3.5em; height: 50%; z-index: -1; width: 100%;
   &.s--full{top:em(60); height: 95%}
+  &.s--split{background-color: #67BDFC;
+    &:after{content:""; position: absolute; width: 50%; left:0; top:0; height: 100%; background-color: #49A6D8}
+  }
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
   a{display: block; width: 225px; height: 225px; background-color: red; @include center}
@@ -186,20 +204,82 @@ a{color: inherit}
   span{display: block; text-transform: uppercase; font-size: 0.75em; @include arial; padding:1.5em 1.5em 1.5em 0;}
   .o-line{width: 30%; height: 2px}
 }
-.o-program{margin-bottom: 8em;
+.o-program{margin-bottom: 8em; float: left;
   .o-program__figure{width: 75%; background-color: #848484; height:26em; border-radius: em(8); float: right}
   .o-button{margin-top: 1.5em; border-color: #fff}
   .o-bubble{
     &.s--medium{width: 4em; height: 4em}
     &.s--large{width: 9em; height: 9em}
   }
+  &.u-half{
+    .o-program__figure{float: left; height: 30em; width: 70%;}
+    .o-program__info{width: 90%; right: 2em; top: auto; bottom: -3em}
+  }
+  &.s--left{
+    .o-program__figure{float: left}
+    .o-program__info{right: 0;}
+    .o-program__logo{float: left;}
+  }
 }
-.o-program__logo{width: em(156); height: em(156); background-color: #fff; border-radius: 5px; margin-bottom:em(12);}
+.o-program__logo{width: em(156); height: em(156); background-color:red; border-radius: 5px; margin-bottom:em(12); float: right;}
 .o-program__info{width: 42%; overflow: hidden; position: absolute; top:3em;
   section{color: white; background-color: #464646; padding: 1.5em; border-radius: 5px; position: relative}
 }
 .o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.2}
 .o-program__summary{position: relative; z-index: 1}
+.o-milestone{width: 50%; float: left;
+  p{padding-bottom: 1.5em;
+    &:last-child{padding-bottom: 0;}
+  }
+  .o-subtitle{padding-bottom: em(12)}
+  .o-line{width: 50%; margin: em(84) 0 em(56); float: right; position: relative; right: -1.5em;}
+  &.u-right{float: right; padding-top: 8%;
+    .o-line{float: left; right: auto; left: -1.5em;}
+  }
+  &.u-full{width: 100%;background-color:#fff;
+    .u-wrap{padding: 0 1.5em}
+    .o-milestone__story{@include center; width: 60%}
+    .o-line{@include center; float: none; margin-bottom: 0}
+  }
+}
+.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: black; @include roundedBorder-s; margin-bottom: 1.5em;}
+.o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
+  figure{height: em(240); width: em(240); @include roundedBorder-l; background-color: pink; text-align: center;  margin-bottom:em(18); @include center}
+  p{padding: em(9)}
+  .o-icon{background-color: #000; height: em(56); width: em(56); margin-bottom: em(12);}
+  &.s--medium{
+    figure{font-size: 0.75em}
+  }
+  &.s--small{
+    figure{font-size: 0.5em}
+  }
+}
+.o-statistic__figure{display: block; font-size: 6em; @include sixcaps}
+.o-slide{height: 100%; overflow: hidden; position: relative;
+  .o-button{border-color: #fff; margin-top: 1.5em;}
+  .u-wrap{padding: 3em 1.5em 5em}
+}
+.o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 0; left: 0;
+  p{width:80%;}
+}
+.o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include roundedBorder-l; bottom: -60%; left: 35%; opacity: 0.5}
+.o-slide__figure{height: 100%;
+  figure{height: em(480); width: em(480); @include roundedBorder-l; background-color: red; @include center; position: relative; left: 6em; z-index: 2}
+  .o-bubble{z-index: 1}
+  .s--small{width: 2.5em; height: 2.5em;}
+  .s--medium{width: 4em; height: 4em; right: 0}
+  .s--large{width: 5em; height: 5em; bottom:0; background-color: transparent; border: solid 2px #fff; right: 0}
+}
+.o-card{color: white; margin-bottom: 1.5em;}
+.o-card__figure{width: 75%; height: em(360); background-color: red; @include roundedBorder-s; position: relative; @include center}
+.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include roundedBorder-s;}
+.o-card__info{width: 75%; @include center;
+  p{padding: em(24) 0}
+}
+.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color: purple;
+  .o-button{border-color: white; color: #fff}
+  .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em;}
+}
 
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
@@ -258,4 +338,26 @@ a{color: inherit}
     &.s--small{top: 40%; right: em(-20)}
   }
   .o-subheading{padding-bottom: em(6);}
+}
+.c-programs__nav{@include clear; padding:0 1.5em 3em; 
+  li{width: percentage(1/6); float: left;}
+  a{display: block; background-color: red; height:6em; margin:1em;}
+}
+.c-milestones__line{width: 1px; height: 104%; background-color: black; position: absolute; left: 50%; z-index: -1; top: -5em;}
+.c-values{@include clear; 
+  li{width: percentage(1/5); float: left;}
+  figure{background-color: red; padding-bottom: 150%;}
+  .o-subheading{height: em(72); padding-bottom: 0; padding-left:em(9)}
+}
+.c-splash{background-color: black; color: #fff; height:85%;
+  .u-box{height: 100%}
+}
+.c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em;
+  figure{position: relative; height: em(420)}
+  .o-bubble{z-index: 1}
+  .u-60p{height: 100%; position: relative;}
+  blockquote{padding-bottom: em(12)}
+  .o-subheading{padding-bottom: em(6)}
+  .o-subtitle{margin-bottom: em(72);}
+  .u-wrap{position: relative; top: em(72);}
 }

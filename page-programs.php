@@ -2,8 +2,14 @@
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">
-			Program icons. Click to scroll to program. Fixed at top
-			<ul>
+			<ul class="c-programs__nav">
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
 				<li><a href="#"></a></li>
 			</ul>
 		</div>
@@ -13,19 +19,19 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<ul class="u-clear">
-				<li class="o-program">
+				<li class="o-program u-full">
 					<div class="u-clear u-relative">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
 						<figure class="o-program__figure"></figure>
 						<section class="o-program__info">
 							<div class="u-clear">
-								<figure class="o-program__logo u-right"></figure>
+								<figure class="o-program__logo"></figure>
 							</div>
 							<section>
 								<span class="o-subheading">Young Achievers Awards</span>
 								<div class="o-program__summary">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.  Lorem Ipsum is simply dummy text of the printing. </p>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
 									<a href="#" class="o-button">
 										<i class="o-arrow"></i>
 										<span class="o-button__title">Learn More</span>
@@ -43,12 +49,58 @@
 						<figure class="o-program__figure"></figure>
 						<section class="o-program__info">
 							<div class="u-clear">
-								<figure class="o-program__logo u-right"></figure>
+								<figure class="o-program__logo"></figure>
 							</div>
 							<section>
 								<span class="o-subheading">Young Achievers Awards</span>
 								<div class="o-program__summary">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. </p>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+									<a href="#" class="o-button">
+										<i class="o-arrow"></i>
+										<span class="o-button__title">Learn More</span>
+									</a>
+								</div>
+								<span class="o-progam__monogram">g</span>
+							</section>
+						</section>
+					</div>
+				</li>
+				<li class="o-program u-half">
+					<div class="u-clear u-relative">
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--large"></span>
+						<figure class="o-program__figure"></figure>
+						<section class="o-program__info">
+							<div class="u-clear">
+								<figure class="o-program__logo"></figure>
+							</div>
+							<section>
+								<span class="o-subheading">Young Achievers Awards</span>
+								<div class="o-program__summary">
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+									<a href="#" class="o-button">
+										<i class="o-arrow"></i>
+										<span class="o-button__title">Learn More</span>
+									</a>
+								</div>
+								<span class="o-progam__monogram">g</span>
+							</section>
+						</section>
+					</div>
+				</li>
+				<li class="o-program u-full s--left">
+					<div class="u-clear u-relative">
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--large"></span>
+						<figure class="o-program__figure"></figure>
+						<section class="o-program__info">
+							<div class="u-clear">
+								<figure class="o-program__logo"></figure>
+							</div>
+							<section>
+								<span class="o-subheading">Young Achievers Awards</span>
+								<div class="o-program__summary">
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
 									<a href="#" class="o-button">
 										<i class="o-arrow"></i>
 										<span class="o-button__title">Learn More</span>
