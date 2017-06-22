@@ -183,8 +183,8 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 }
 .o-section__tint{background-color:#eaeaea; position: absolute; top: 3.5em; height: 50%; z-index: -1; width: 100%;
   &.s--full{top:em(60); height: 95%}
-  &.s--split{background-color: #67BDFC;
-    &:after{content:""; position: absolute; width: 50%; left:0; top:0; height: 100%; background-color: #49A6D8}
+  &.s--split{background-color: #ababab;
+    &:after{content:""; position: absolute; width: 50%; left:0; top:0; height: 100%; background-color: #929292}
   }
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
@@ -276,7 +276,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-card__info{width: 75%; @include center;
   p{padding: em(24) 0}
 }
-.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color: purple;
+.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color: #8a8a8a;
   .o-button{border-color: white; color: #fff}
   .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em;}
 }
