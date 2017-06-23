@@ -17,4 +17,4 @@
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
 		<?php wp_head(); ?>
 	</head>
-	<body>
+	<body class="t-neptune">

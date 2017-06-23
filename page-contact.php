@@ -7,25 +7,34 @@
 					<section class="u-third">
 						<h2>Address</h2>
 						<a href="#" class="u-block">
-							<p>Plot 11, Bugolobi, <br/>Kiswa, Kampala <br/>Uganda, East Africa</p>
+							<p class="u-pb-m">Plot 11, Bugolobi, <br/>Kiswa, Kampala <br/>Uganda, East Africa</p>
 							<div class="o-button">
-								<i class="o-icon"></i>
+								<div class="o-arrow">
+									<i class="o-arrow__stem"></i>
+									<i class="o-arrow__head"></i>
+								</div>
 								<span class="o-button__title">Locate on Map</span>
 							</div>
 						</a>
 					</section>
 					<section class="u-third">
 						<h2>Phone</h2>
-						<ul>
+						<ul class="o-list">
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>+256777564805</span>
 								</a>
 							</li>
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>+256777564805</span>
 								</a>
 							</li>
@@ -33,16 +42,22 @@
 					</section>
 					<section class="u-third">
 						<h2>Mail</h2>
-						<ul>
+						<ul class="o-list">
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>info@rahu.ug</span>
 								</a>
 							</li>
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>careers@rahu.ug</span>
 								</a>
 							</li>
@@ -53,9 +68,8 @@
 				<section>
 					<div class="u-clear">
 						<section class="u-half">
-							<h2>Plug into the Conversation</h2>
-							<ul class="o-networks t-dark">
-								<li><a href="#"><span class="o-icon s--search"></span></a></li>
+							<h2>Follow the conversation</h2>
+							<ul class="o-networks t-light">
 								<li><a href="#"><span class="o-icon s--fb"></span></a></li>
 								<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
 								<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
@@ -65,9 +79,9 @@
 						</section>
 						<section class="u-half">
 							<h2>Get Updates</h2>
-							<ul class="o-networks t-dark">
+							<ul class="o-networks t-light">
 								<li><a href="#"><span class="o-icon s--rss"></span></a></li>
-								<li><a href="#"><span class="o-icon s--newsletter"></span></a></li>
+								<li><a href="#"><span class="o-icon s--mail"></span></a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,7 +120,10 @@
 										<textarea cols="30" rows="10" placeholder="Message"></textarea>
 									</div>
 									<button class="o-button">
-										<i class="o-icon"></i>
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
 										<span class="o-button__title">Send Message</span>
 									</button>
 								</form>

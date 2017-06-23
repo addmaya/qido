@@ -5,26 +5,91 @@
 					<div class="u-half">
 						<section class="u-wrap">
 							<span class="o-subtitle">Share this Page</span>
-							<ul class="o-networks">
-								<li><a href="#"><span class="o-icon s--search"></span></a></li>
+							<ul class="o-networks t-light">
 								<li><a href="#"><span class="o-icon s--fb"></span></a></li>
 								<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-								<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-								<li><a href="#"><span class="o-icon s--youtube"></span></a></li>
-								<li><a href="#"><span class="o-icon s--soundcloud"></span></a></li>
+								<li><a href="#"><span class="o-icon s--googleplus"></span></a></li>
+								<li><a href="#"><span class="o-icon s--pinterest"></span></a></li>
+								<li><a href="#"><span class="o-icon s--whatsapp"></span></a></li>
 							</ul>
 						</section>
 					</div>
 					<div class="u-half">
 						<section class="u-wrap">
 							<span class="o-subtitle">More for you</span>
-							<ul class="o-list">
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
-								<li><a href="#" class="o-link"><i class="o-icon"></i><span>Recommendation 1</span></a></li>
+							<ul class="o-list u-pt-s">
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="o-link">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span>Recommendation 1</span>
+									</a>
+								</li>
 							</ul>
 						</section>
 					</div>
@@ -34,14 +99,17 @@
 		<a href="#" class="c-button-next">
 			<span class="o-subtitle">Next</span>
 			<span class="o-heading">Our Story</span>
-			<i class="o-icon"></i>
+			<div class="o-arrow">
+				<i class="o-arrow__stem"></i>
+				<i class="o-arrow__head"></i>
+			</div>
 			<figure></figure>
 		</a>
 		<footer class="c-page__footer">
 			<div class="u-box">
 				<section class="u-clear">
 					<section class="u-40p">
-						<h2>Our Partners <span class="o-line"></span></h2>
+						<h2>Some of our Partners <span class="o-line"></span></h2>
 						<ul class="c-partners">
 							<li class="u-third"><a href="#"><figure></figure></a></li>
 							<li class="u-third"><a href="#"><figure></figure></a></li>
@@ -51,22 +119,31 @@
 							<li class="u-third"><a href="#"><figure></figure></a></li>
 						</ul>
 						<a href="#" class="o-button">
-							<i class="o-icon"></i>
+							<div class="o-arrow">
+								<i class="o-arrow__stem"></i>
+								<i class="o-arrow__head"></i>
+							</div>
 							<span class="o-button__title">Become a Partner</span>
 						</a>
 					</section>
 					<section class="u-30p">
-						<h2>Get in Touch <span class="o-line"></span></h2>
+						<h2>Contact RAHU <span class="o-line"></span></h2>
 						<ul class="o-list">
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>+256777564805</span>
 								</a>
 							</li>
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>+256777564805</span>
 								</a>
 							</li>
@@ -74,13 +151,19 @@
 						<ul class="o-list">
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>info@rahu.ug</span>
 								</a>
 							</li>
 							<li>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>careers@rahu.ug</span>
 								</a>
 							</li>
@@ -88,10 +171,13 @@
 						<ul class="o-list">
 							<li>
 								<a href="#" class="u-block">
-									<p>Plot 11, Bugolobi, <br/>Kiswa, Kampala <br/>Uganda, East Africa</p>
+									<p class="u-pb-m">Plot 11, Bugolobi, <br/>Kiswa, Kampala <br/>Uganda, East Africa</p>
 								</a>
 								<a href="#" class="o-link">
-									<i class="o-icon"></i>
+									<div class="o-arrow">
+										<i class="o-arrow__stem"></i>
+										<i class="o-arrow__head"></i>
+									</div>
 									<span>Locate on Map</span>
 								</a>
 							</li>
@@ -99,8 +185,7 @@
 					</section>
 					<section class="u-30p">
 						<h2>Follow the Conversation <span class="o-line"></span></h2>
-						<ul class="o-networks">
-							<li><a href="#"><span class="o-icon s--search"></span></a></li>
+						<ul class="o-networks t-light">
 							<li><a href="#"><span class="o-icon s--fb"></span></a></li>
 							<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
 							<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
@@ -109,11 +194,14 @@
 						</ul>
 						<form action="<?php the_permalink(); ?>" class="c-form-newsletter">
 							<div class="o-input">
-								<input type="text" placeholder="Enter Your E-Mail for Newsletter"/>
-								<span></span>
+								<input type="text" placeholder="Your E-mail"/>
 							</div>
 							<button class="o-button">
-								<i class="o-icon"></i>
+								<div class="o-arrow">
+									<i class="o-arrow__stem"></i>
+									<i class="o-arrow__head"></i>
+								</div>
+								<span class="o-button__title">Subscribe</span>
 							</button>
 						</form>
 					</section>

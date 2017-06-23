@@ -1,13 +1,10 @@
 <section class="c-page-cover">
 	<figure class="c-page-cover__image"></figure>
 	<div class="u-table">
-		<div class="u-cell">
+		<div class="u-cell u-relative">
 			<span class="c-page-cover__title"></span>
-			<div class="o-galaxy">
-				<span class="o-planet s--small"></span>
-				<span class="o-planet s--med"></span>
-				<span class="o-planet s--large"></span>
-			</div>
+			<span class="o-bubble s--small"></span>
+			<span class="o-bubble s--medium"></span>
 		</div>
 	</div>
 </section>

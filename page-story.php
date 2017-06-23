@@ -261,6 +261,7 @@
 					</li>
 				</ul>
 				<section class="a-center">
+					<a href="" class="o-button">Donwload Annual Report 20016</a>
 					<a href="#" class="o-button"><i class="o-icon"></i></a>
 					<a href="#" class="o-button"><i class="o-icon"></i></a>
 				</section>

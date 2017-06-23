@@ -9,6 +9,7 @@ Author URI: http://addmaya.com/
 
 /*variables*/
 $browser-context: 16;
+$neptune: #0c3d8b;
 
 /*functions*/
 @mixin image($image){background-image: url('images/'+$image)}
@@ -40,12 +41,17 @@ $browser-context: 16;
 @mixin light{font-weight: 300}
 @mixin arial{font-family: 'Arial'; font-weight: bold}
 @mixin cover{-webkit-background-size: cover; background-size: cover; background-position: center; background-repeat: no-repeat;}
-@mixin roundedBorder-s{border-radius: 5px}
-@mixin roundedBorder-l{border-radius: 50%}
+@mixin border-radius-s{border-radius: 6px;}
+@mixin border-radius-l{border-radius: 50%}
+@mixin multiply{mix-blend-mode: multiply}
 
 /*defaults*/
 html,body{width:100%; height:100%}
-body{@include opensans}
+body{@include opensans; font-size: 0.95em; font-weight: 300;
+  &.t-neptune{color: #3E526E;
+    input,textarea{color: #3E526E}
+  }
+}
 strong{font-weight: 600}
 p{line-height: 1.6}
 h1{font-size: em(40); font-weight: 300; padding-bottom: em(16); line-height: 1.2;
@@ -53,6 +59,7 @@ h1{font-size: em(40); font-weight: 300; padding-bottom: em(16); line-height: 1.2
 }
 h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
   .o-line{width: 70%; margin-top: em(12);}
+  .t-neptune &{color: $neptune}
 }
 a{color: inherit}
 blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative; quotes: "\201C""\201D""\2018""\2019";
@@ -77,6 +84,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-block{display: block;}
 .u-align__center{text-align: center}
 
+.u-pt-s{padding-top: 1em}
 .u-pt-m{padding-top: 1.5em}
 .u-pb-m{padding-bottom: 1.5em;}
 .u-pb-l{padding-bottom: 3em;}
@@ -97,43 +105,82 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 
 /*objects*/
 .o-networks{display: inline-block;
-  li{display: inline-block;}
+  li{display: inline-block; margin-right: em(3);}
   a{display: block;}
-  &.t-dark{
-    .o-icon{background-color: #000; border-radius: 50%}
+  .o-icon{background-color: transparent;}
+}
+.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red; background-size: contain; background-repeat: no-repeat;
+  &.s--search{@include image('search__white.svg')}
+  &.s--fb{@include image('facebook_white.svg');
+    .t-light &{@include image('facebook_color.svg')}
+  }
+  &.s--twitter{@include image('twitter_white.svg');
+    .t-light &{@include image('twitter_color.svg')}
+  }
+  &.s--instagram{@include image('instagram_white.svg');
+    .t-light &{@include image('instagram_color.svg')}
+  }
+  &.s--youtube{@include image('youtube_white.svg');
+    .t-light &{@include image('youtube_color.svg')}
+  }
+  &.s--soundcloud{@include image('soundcloud_white.svg');
+    .t-light &{@include image('soundcloud_color.svg')}
+  }
+  &.s--whatsapp{@include image('whatsapp_color.svg');}
+  &.s--googleplus{@include image('googleplus_color.svg')}
+  &.s--pinterest{@include image('pinterest_color.svg')}
+  &.s--rss{@include image('rss.svg')}
+  &.s--mail{@include image('mail.svg')}
+}
+.o-arrow{position: relative; display: inline-block; color:black; float: left; top: 7px;
+  i{display: block}
+  .o-arrow__stem{width: 12px; height: 1px; background-color: black;}
+  .o-arrow__head{height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 3px; top: -5px}
+  .t-neptune &{
+    .o-arrow__stem{background-color:$neptune}
+    .o-arrow__head{border-color: $neptune}
+  }
+  .c-button-next &{float: none;
+    .o-arrow__stem{background-color: #fff}
+    .o-arrow__head{border-color: #fff}
   }
 }
-.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red}
-.o-arrow{width: em(16); height: em(16); display: inline-block; background-color: red; position: relative; top: 2px;}
 
 .o-menu{
   a{display: block; padding: em(9); font-size: em(16); @include light; color: #fff;}
   span{position: relative;}
 }
-.o-menu-item__title{width: em(100); display: inline-block;}
-.o-menu-item__indicator{height: 2px; width: em(16); display: inline-block; background-color: #fff; top: em(-4);}
+.o-menu-item__title{width: em(90); display: inline-block;}
+.o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: #fff; top: em(-4);}
 .o-menu-item__bullet{border: solid 2px #fff; width: em(10); height: em(10); display: inline-block; border-radius: 50%; top: 1px;}
 .o-submenu{display: none;}
-.o-button{display: inline-block; border:solid 2px #000; border-radius: em(24); padding: em(9) em(24); background-color: transparent; font-size: 1em;
+.o-button{display: inline-block; border:none; border-radius: em(24); padding: em(9) em(24); font-size: 1em; cursor: pointer; color: inherit;
   .o-icon{width: 1em; height: 1em}
   .o-button__title{position: relative; top:-1px}
+  .o-arrow{right: 12px}
+  .t-neptune &{background-color: #d7e5ef}
 }
-.o-line{height: 1px; background-color: black; display: block;
+.o-line{height: 1px; background-color:#d2e1ea; display: block;
   &.s--break{margin:em(48) 0;}
 }
 .o-link{display: inline-block; padding: em(4) 0;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
-  span{display: inline-block; padding-left: em(6);}
+  span{display: inline-block; padding-left: em(12);}
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
 }
 .o-input{
-  input, textarea{border-bottom: solid 1px black; width: 95%; margin-bottom: em(24); padding: em(12) 0 em(18);}
+  input, textarea{border-bottom: solid 1px #c7dae6; width: 95%; margin-bottom: em(24); padding: em(12) 0 em(18); font-weight: 300}
 }
+::-webkit-input-placeholder {color: #3E526E}
+::-moz-placeholder {color: #3E526E}
+:-ms-input-placeholder{color: #3E526E}
+:-moz-placeholder {color: #3E526E}
+
 .o-subtitle{text-transform: uppercase; font-size: em(10); @include arial; display: block; letter-spacing: em(12)}
 .o-list{margin-bottom: em(24);
-  li{line-height: 1.6}
+  li{padding-bottom: em(6)}
 }
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4;
@@ -188,7 +235,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   }
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
-  a{display: block; width: 225px; height: 225px; background-color: red; @include center}
+  a{display: block; width: em(225); height: em(225); background-color: red; @include center}
   .o-subheading{padding:em(12) 0 em(6)}
   &.u-third{width: percentage(1/3)}
 }
@@ -196,11 +243,11 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   span{vertical-align: super; font-size: 50%}
 }
 .o-ticket__figure{display: block; position: relative;
-  figure{background-color: #000; border-radius: 5px;  height: em(320); position: relative;
+  figure{background-color: #000; @include border-radius-s;  height: em(320); position: relative;
     &:after{content:""; position: absolute; top: 0; left: 0; z-index: 100; border-right: #fff 7px solid; border-bottom: #fff 7px solid; border-radius: 0 0 20px 0}
   }
 }
-.o-ticket__info{@include clear; background-color: grey; padding: em(12); border-radius: 5px; margin-bottom: 1.2em;
+.o-ticket__info{@include clear; background-color: grey; padding: em(12); @include border-radius-s; margin-bottom: 1.2em;
   span{display: block; text-transform: uppercase; font-size: 0.75em; @include arial; padding:1.5em 1.5em 1.5em 0;}
   .o-line{width: 30%; height: 2px}
 }
@@ -221,9 +268,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     .o-program__logo{float: left;}
   }
 }
-.o-program__logo{width: em(156); height: em(156); background-color:red; border-radius: 5px; margin-bottom:em(12); float: right;}
+.o-program__logo{width: em(156); height: em(156); background-color:red; @include border-radius-s; margin-bottom:em(12); float: right;}
 .o-program__info{width: 42%; overflow: hidden; position: absolute; top:3em;
-  section{color: white; background-color: #464646; padding: 1.5em; border-radius: 5px; position: relative}
+  section{color: white; background-color: #464646; padding: 1.5em; @include border-radius-s; position: relative}
 }
 .o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.2}
 .o-program__summary{position: relative; z-index: 1}
@@ -242,9 +289,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     .o-line{@include center; float: none; margin-bottom: 0}
   }
 }
-.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: black; @include roundedBorder-s; margin-bottom: 1.5em;}
+.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: black; @include border-radius-s; margin-bottom: 1.5em;}
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
-  figure{height: em(240); width: em(240); @include roundedBorder-l; background-color: pink; text-align: center;  margin-bottom:em(18); @include center}
+  figure{height: em(240); width: em(240); @include border-radius-l; background-color: pink; text-align: center;  margin-bottom:em(18); @include center}
   p{padding: em(9)}
   .o-icon{background-color: #000; height: em(56); width: em(56); margin-bottom: em(12);}
   &.s--medium{
@@ -262,17 +309,17 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 0; left: 0;
   p{width:80%;}
 }
-.o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include roundedBorder-l; bottom: -60%; left: 35%; opacity: 0.5}
+.o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.5}
 .o-slide__figure{height: 100%;
-  figure{height: em(480); width: em(480); @include roundedBorder-l; background-color: red; @include center; position: relative; left: 6em; z-index: 2}
+  figure{height: em(480); width: em(480); @include border-radius-l; background-color: red; @include center; position: relative; left: 6em; z-index: 2}
   .o-bubble{z-index: 1}
   .s--small{width: 2.5em; height: 2.5em;}
   .s--medium{width: 4em; height: 4em; right: 0}
   .s--large{width: 5em; height: 5em; bottom:0; background-color: transparent; border: solid 2px #fff; right: 0}
 }
 .o-card{color: white; margin-bottom: 1.5em;}
-.o-card__figure{width: 75%; height: em(360); background-color: red; @include roundedBorder-s; position: relative; @include center}
-.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include roundedBorder-s;}
+.o-card__figure{width: 75%; height: em(360); background-color: red; @include border-radius-s; position: relative; @include center}
+.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s;}
 .o-card__info{width: 75%; @include center;
   p{padding: em(24) 0}
 }
@@ -283,48 +330,67 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
-  .o-networks{float: right; padding-top: em(6);}
-  .o-icon{background-color: red; border-radius: 50%}
+  .o-networks{float: right; padding-top: em(8);}
 }
-.c-logo{display: block; width: em(176); height: em(36); background-color: red; float: left;}
+.c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center}
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
-.c-page-cover{background-color: #252525; height:65%; position: relative;
+.c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}
+  .t-neptune &{background-color: darken($neptune, 5%)}        
+  .s--small{background-color: #FDC14D; animation-duration: 40s; animation-name: bubbleOrbitReverse}
+  .s--medium{background-color: #53BE80; animation-duration:100s; animation-name: bubbleOrbit}
+  .o-bubble{top:50%; animation-timing-function:linear; animation-iteration-count: infinite}
 }
-.c-page-cover__image{background-color: darken(#252525, 5%); height: 100%;}
-.c-page-cover__title{width: em(340); height: em(182); background-color: #fff; display: block; @include center}
+@keyframes bubbleOrbit {
+    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+@keyframes bubbleOrbitReverse {
+    from   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+    to { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+}
+
+.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply}
+.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('sequences/talk.png'); background-position: left center; @include prefix((animation: coverTitle 6s steps(63) forwards)); top:-3em; position: relative;}
+@keyframes coverTitle {
+   100% { background-position: -22050px}
+}
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
 }
-.c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; border-radius: 5px;
-  p{@include center; width: 80%; @include light}
+.c-page__info{width: em(720); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-s;
+  p{@include center; width: 90%; @include light}
   .u-wrap{padding: 2em}
+  .t-neptune &{background-color:#0c3d8b}
 }
 .c-page__content{position: relative; top:-5%}
 .c-page__actions{@include clear; margin-bottom: 2em;
   .o-line{position: relative; top: em(30); margin: 2em 0;
-    &:after{content:""; position: absolute; height: em(30); width: 1px; background-color: #000; top: 0; left: 50%;};
+    &:after{content:""; position: absolute; height: em(30); width: 1px; background-color: inherit; top: 0; left: 50%;};
   }
   .o-subtitle{margin-bottom: 2em;}
 }
 .c-button-next{display: block; background-color: grey; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
   span{position: relative; z-index: 2}
-  figure{width: 100%; height: 100%; @include cover; background-color: #000; position: absolute; top: 0; left: 0; z-index: 1}
+  figure{width: 100%; height: 100%; @include cover; @include cover; @include image('dummy/cover.jpg'); position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
   .o-icon{background-color: #fff;}
+  .t-neptune &{background-color: $neptune}
 }
 .c-page__footer{padding:4em 0; background-color: darken(#FCFCFC, 5%);
   h2{margin-bottom: em(12);}
-  .o-networks{margin-bottom: em(24)}
+  .o-networks{margin-bottom: em(48)}
 }
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
   figure{background-color: #000; width: em(96);height: em(96);}
 }
 .c-form-newsletter{@include clear;
-  .o-button{float: right; width: 20%}
-  .o-input{float: left; width: 80%}
+  .o-button{float: right; width: 42%}
+  .o-input{float: left; width: 58%; margin-bottom: 0;
+    input{border: solid 1px $neptune; border-radius: 10em; padding: em(7) em(18); width: 78%;}
+  }
 }
-.c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.5;
+.c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.7;
   ul{padding: 2em 0;}
   li{display: inline-block;}
   a{display: block; padding: 0.5em}
