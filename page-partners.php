@@ -60,8 +60,11 @@
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
-					<i class="o-icon"></i>
-					<span class="o-button__title">Become a Corporate parnter</span>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Become a Corporate Partner</span>
 				</a>
 			</footer>
 			
@@ -127,8 +130,11 @@
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
-					<i class="o-icon"></i>
-					<span class="o-button__title">Become a Corporate parnter</span>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Become a Corporate Partner</span>
 				</a>
 			</footer>
 			
@@ -194,8 +200,11 @@
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
-					<i class="o-icon"></i>
-					<span class="o-button__title">Become a Corporate parnter</span>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Become a Corporate Partner</span>
 				</a>
 			</footer>
 			

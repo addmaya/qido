@@ -12,9 +12,15 @@ jQuery(document).ready(function($) {
     	me.css('background-image', 'url(' + thumb_url + ')');
     });
 
-    //random classes
-    var classes = ["ah1", "ah2", "ah3","ah4"];
-	$(".element").each(function(){
+    //bubbles
+    var classes = ['t-cool', 't-warm', 't-passion', 't-romance'];
+	$('.o-bubble').each(function(){
+        $(this).addClass(classes[~~(Math.random()*classes.length)]);
+    });
+
+    //statistics
+    var classes = ['t-banana', 't-berry', 't-ivy', 't-mango'];
+	$('.o-statistic figure').each(function(){
         $(this).addClass(classes[~~(Math.random()*classes.length)]);
     });
 

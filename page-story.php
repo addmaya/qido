@@ -4,7 +4,7 @@
 		<div class="u-box u-relative">
 			<span class="c-milestones__line"></span>
 			<ul class="u-clear">
-				<li class="o-milestone">
+				<li class="o-milestone u-left">
 					<section class="u-wrap">
 						<figure class="o-milestone__figure">
 						</figure>
@@ -14,10 +14,41 @@
 							<span class="o-subheading">Highschool Stigma</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
+							
+						</section>
+						<div class="u-clear">
+							<span class="o-line"></span>
+						</div>
+					</section>
+				</li>
+				<li class="o-milestone u-right">
+					<section class="u-wrap">
+						<figure class="o-milestone__figure">
+						</figure>
+						<span class="o-bubble s--medium"></span>
+						<section class="o-milestone__story">
+							<span class="o-subtitle">December 2001</span>
+							<span class="o-subheading">Highschool Stigma</span>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
+							
+						</section>
+						<div class="u-clear">
+							<span class="o-line"></span>
+						</div>
+					</section>
+				</li>
+				<li class="o-milestone u-left">
+					<section class="u-wrap">
+						<figure class="o-milestone__figure">
+						</figure>
+						<span class="o-bubble s--medium"></span>
+						<section class="o-milestone__story">
+							<span class="o-subtitle">December 2001</span>
+							<span class="o-subheading">Highschool Stigma</span>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
+							
 						</section>
 						<div class="u-clear">
 							<span class="o-line"></span>
@@ -34,50 +65,7 @@
 							<span class="o-subheading">Highschool Stigma</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
-						</section>
-						<div class="u-clear">
-							<span class="o-line"></span>
-						</div>
-					</section>
-				</li>
-				<li class="o-milestone">
-					<section class="u-wrap">
-						<figure class="o-milestone__figure">
-						</figure>
-						<span class="o-bubble s--large"></span>
-						<section class="o-milestone__story">
-							<span class="o-subtitle">December 2001</span>
-							<span class="o-subheading">Highschool Stigma</span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
-						</section>
-						<div class="u-clear">
-							<span class="o-line"></span>
-						</div>
-					</section>
-				</li>
-				<li class="o-milestone u-right">
-					<section class="u-wrap">
-						<figure class="o-milestone__figure">
-						</figure>
-						<span class="o-bubble s--large"></span>
-						<section class="o-milestone__story">
-							<span class="o-subtitle">December 2001</span>
-							<span class="o-subheading">Highschool Stigma</span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
+							
 						</section>
 						<div class="u-clear">
 							<span class="o-line"></span>
@@ -94,30 +82,24 @@
 							<span class="o-subheading">Highschool Stigma</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
+							
 						</section>
 						<div class="u-clear">
 							<span class="o-line"></span>
 						</div>
 					</section>
 				</li>
-				<li class="o-milestone">
+				<li class="o-milestone u-left">
 					<section class="u-wrap u-pt-xl">
 						<figure class="o-milestone__figure">
 						</figure>
-						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
 						<section class="o-milestone__story">
 							<span class="o-subtitle">December 2001</span>
 							<span class="o-subheading">Highschool Stigma</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
+							
 						</section>
 						<div class="u-clear">
 							<span class="o-line"></span>
@@ -128,16 +110,13 @@
 					<section class="u-wrap u-pt-xl">
 						<figure class="o-milestone__figure">
 						</figure>
-						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
 						<section class="o-milestone__story">
 							<span class="o-subtitle">December 2001</span>
 							<span class="o-subheading">Highschool Stigma</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
-							<a href="#" class="o-button">
-								<i class="o-arrow"></i>
-								<span class="o-button__title">Learn More</span>
-							</a>
+							
 						</section>
 						<div class="u-clear">
 							<span class="o-line"></span>
@@ -156,114 +135,96 @@
 			<div class="o-slider">
 				<ul class="u-clear">
 					<li class="o-statistic s--small">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic s--medium">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic s--small">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 					<li class="o-statistic s--medium">
-						<section>
-							<figure>
-								<div class="u-table">
-									<div class="u-cell">
-										<i class="o-icon"></i>
-										<span class="o-statistic__figure">70,000</span>
-									</div>
+						<figure>
+							<div class="u-table">
+								<div class="u-cell">
+									<i class="o-icon"></i>
+									<span class="o-statistic__figure">70,000</span>
 								</div>
-							</figure>
-							<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
-						</section>
+							</div>
+						</figure>
+						<p>Appeared on BBC for the peer educators summit held in Kigali.</p>
 					</li>
 				</ul>
 				<section class="a-center">
 					<a href="" class="o-button">Donwload Annual Report 20016</a>
-					<a href="#" class="o-button"><i class="o-icon"></i></a>
-					<a href="#" class="o-button"><i class="o-icon"></i></a>
 				</section>
 			</div>
 		</div>

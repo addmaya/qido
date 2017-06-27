@@ -2,13 +2,10 @@
 <section class="c-page-cover">
 	<figure class="c-page-cover__image"></figure>
 	<div class="u-table">
-		<div class="u-cell">
+		<div class="u-cell u-relative">
 			<span class="c-page-cover__title"></span>
-			<div class="o-galaxy">
-				<span class="o-planet s--small"></span>
-				<span class="o-planet s--med"></span>
-				<span class="o-planet s--large"></span>
-			</div>
+			<span class="o-bubble s--small"></span>
+			<span class="o-bubble s--medium"></span>
 		</div>
 	</div>
 </section>
@@ -17,7 +14,14 @@
 		<h1>Our new music video for Shing & Pen is live. What do you think?
 			<span class="o-subtitle">Yesterday</span>
 		</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ullamcorper ligula at suscipit. Donec sollicitudin leo eget pulvinar tincidunt. Fusce id enim et lacus porta mattis. <a href="#" class="o-link"><i class="o-icon"></i><span>More</span></a></p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ullamcorper ligula at suscipit. Donec sollicitudin leo eget pulvinar tincidunt. Fusce id enim et lacus porta mattis.</p>
+		<a href="#" class="o-link">
+			<div class="o-arrow">
+				<i class="o-arrow__stem"></i>
+				<i class="o-arrow__head"></i>
+			</div>
+			<span>Read On</span>
+		</a>
 	</div>
 </section>
 <section class="c-page__title">
@@ -33,7 +37,9 @@
 						<option value="">Camp</option>
 						<option value="">HIV AIDS</option>
 					</select>
-					<i class="o-arrow"></i>
+					<span class="o-select__arrow">
+						<i class="o-arrow__head"></i>
+					</span>
 				</div>
 				<div class="o-select">
 					<select name="" id="">
@@ -44,14 +50,16 @@
 						<option value="">2011</option>
 						<option value="">2010</option>
 					</select>
-					<i class="o-arrow"></i>
+					<span class="o-select__arrow">
+						<i class="o-arrow__head"></i>
+					</span>
 				</div>
 			</section>
-			<section class="u-wrap">
+			<section class="u-wrap u-pdb-clear">
 				<ul class="u-clear">
 					<li class="o-article u-half">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--large"></span>
 							<a href="" class="u-block">
 								<figure class="o-article__figure">
 									<div class="u-center">
@@ -62,13 +70,20 @@
 							</a>
 							<section class="o-article__brief">
 								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
+									<span class="o-link">
+										<i class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</i>
+									</span>
+								</a></p>
 							</section>
 						</section>
 					</li>
 					<li class="o-article u-half">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--medium"></span>
 							<a href="" class="u-block">
 								<figure class="o-article__figure">
 									<div class="u-center">
@@ -79,13 +94,20 @@
 							</a>
 							<section class="o-article__brief">
 								<a class="o-subheading">10 things you need for the camp this year.</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
+									<span class="o-link">
+										<i class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</i>
+									</span>
+								</a></p>
 							</section>
 						</section>
 					</li>
 					<li class="o-article u-full">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--small"></span>
 							<a href="" class="u-block">
 								<figure class="o-article__figure">
 									<div class="u-center">
@@ -96,7 +118,62 @@
 							</a>
 							<section class="o-article__brief">
 								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
-								<p><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever. <i class="o-arrow"></i></a></p>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
+									<span class="o-link">
+										<i class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</i>
+									</span>
+								</a></p>
+							</section>
+						</section>
+					</li>
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble s--large"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
+									<span class="o-link">
+										<i class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</i>
+									</span>
+								</a></p>
+							</section>
+						</section>
+					</li>
+					<li class="o-article u-half">
+						<section class="u-wrap">
+							<span class="o-bubble s--xsmall"></span>
+							<a href="" class="u-block">
+								<figure class="o-article__figure">
+									<div class="u-center">
+										<i class="o-icon"></i>
+									</div>
+									<span class="o-article__time o-subtitle">5 days Ago</span>
+								</figure>
+							</a>
+							<section class="o-article__brief">
+								<a class="o-subheading">10 things you need for the camp this year.</a>
+								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
+									<span class="o-link">
+										<i class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</i>
+									</span>
+								</a></p>
 							</section>
 						</section>
 					</li>
@@ -104,7 +181,10 @@
 				<div class="a-center u-pt-l">
 					<span class="o-subtitle u-pb-m">8/125</span>
 					<a href="#" class="o-button">
-						<i class="o-arrow"></i>
+						<div class="o-arrow">
+							<i class="o-arrow__stem"></i>
+							<i class="o-arrow__head"></i>
+						</div>
 						<span class="o-button__title">Show me More</span>
 					</a>
 				</div>
@@ -121,7 +201,7 @@
 				<ul class="u-clear">
 					<li class="o-article u-third">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--large"></span>
 							<a href="#" class="u-block">
 								<figure class="o-article__figure">
 									<span class="o-article__time o-subtitle">5 days Ago</span>
@@ -132,7 +212,7 @@
 					</li>
 					<li class="o-article u-third">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--medium"></span>
 							<a href="#" class="u-block">
 								<figure class="o-article__figure">
 									<span class="o-article__time o-subtitle">5 days Ago</span>
@@ -143,7 +223,7 @@
 					</li>
 					<li class="o-article u-third">
 						<section class="u-wrap">
-							<span class="o-bubble"></span>
+							<span class="o-bubble s--small"></span>
 							<a href="#" class="u-block">
 								<figure class="o-article__figure">
 									<span class="o-article__time o-subtitle">5 days Ago</span>
@@ -156,7 +236,10 @@
 			</section>
 			<footer class="a-center u-pt-m">
 				<a href="#" class="o-button">
-					<i class="o-arrow"></i>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
 					<span class="o-button__title">Visit Sauti Plus</span>
 				</a>
 			</footer>

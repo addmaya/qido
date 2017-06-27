@@ -10,6 +10,10 @@ Author URI: http://addmaya.com/
 /*variables*/
 $browser-context: 16;
 $neptune: #0c3d8b;
+$venus: #6453BC;
+$jupiter: #03A9F4;
+$earth: #01b39b;
+$mercury: #3F51B5;
 
 /*functions*/
 @mixin image($image){background-image: url('images/'+$image)}
@@ -41,7 +45,8 @@ $neptune: #0c3d8b;
 @mixin light{font-weight: 300}
 @mixin arial{font-family: 'Arial'; font-weight: bold}
 @mixin cover{-webkit-background-size: cover; background-size: cover; background-position: center; background-repeat: no-repeat;}
-@mixin border-radius-s{border-radius: 6px;}
+@mixin border-radius-xs{border-radius: 6px}
+@mixin border-radius-s{border-radius: 12px}
 @mixin border-radius-l{border-radius: 50%}
 @mixin multiply{mix-blend-mode: multiply}
 
@@ -51,6 +56,9 @@ body{@include opensans; font-size: 0.95em; font-weight: 300;
   &.t-neptune{color: #3E526E;
     input,textarea{color: #3E526E}
   }
+  &.t-venus{color: #706992}
+  &.t-jupiter{color: #717c7d}
+  &.t-earth{color: #55635d}
 }
 strong{font-weight: 600}
 p{line-height: 1.6}
@@ -78,7 +86,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-third{width: percentage(1/3); float: left}
 .u-full{width: 100%;}
 .u-canvas{width: 100%; height: 100%;}
-.u-wrap{padding:em(24); @include clear}
+.u-wrap{padding:em(24); @include clear;
+  &.u-pdb-clear{padding-bottom: 0}
+}
 .u-center{@include center}
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
@@ -131,20 +141,29 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   &.s--pinterest{@include image('pinterest_color.svg')}
   &.s--rss{@include image('rss.svg')}
   &.s--mail{@include image('mail.svg')}
+  &.s--arrow__down{@include image('arrow_down.svg')}
 }
-.o-arrow{position: relative; display: inline-block; color:black; float: left; top: 7px;
-  i{display: block}
-  .o-arrow__stem{width: 12px; height: 1px; background-color: black;}
-  .o-arrow__head{height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 3px; top: -5px}
-  .t-neptune &{
-    .o-arrow__stem{background-color:$neptune}
-    .o-arrow__head{border-color: $neptune}
-  }
-  .c-button-next &{float: none;
-    .o-arrow__stem{background-color: #fff}
-    .o-arrow__head{border-color: #fff}
-  }
+
+@mixin o-arrow-theme($color){
+  .o-arrow__stem{background-color:$color}
+  .o-arrow__head{border-color: $color}
 }
+.o-arrow{position: relative; display: inline-block; color:black; top: 7px;
+  .c-button-next &{float: none; @include o-arrow-theme(#fff);}
+  .o-link &{float: left}
+  .c-page__info & {
+    .o-arrow__stem{background-color:#fff17d !important}
+    .o-arrow__head{border-color: #fff17d !important}
+  }
+  
+  .t-neptune &{@include o-arrow-theme($neptune)}
+  .t-venus &{@include o-arrow-theme(darken($venus,15%))}
+  .t-jupiter &{@include o-arrow-theme(darken($jupiter,15%))}
+  .t-earth &{@include o-arrow-theme(darken($earth,15%))}
+  .t-mercury &{@include o-arrow-theme(darken($mercury,15%))}
+}
+.o-arrow__stem{display: block; width: 12px; height: 1px;}
+.o-arrow__head{display: block; height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 3px; top: -5px}
 
 .o-menu{
   a{display: block; padding: em(9); font-size: em(16); @include light; color: #fff;}
@@ -154,18 +173,27 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: #fff; top: em(-4);}
 .o-menu-item__bullet{border: solid 2px #fff; width: em(10); height: em(10); display: inline-block; border-radius: 50%; top: 1px;}
 .o-submenu{display: none;}
-.o-button{display: inline-block; border:none; border-radius: em(24); padding: em(9) em(24); font-size: 1em; cursor: pointer; color: inherit;
+.o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef;
   .o-icon{width: 1em; height: 1em}
   .o-button__title{position: relative; top:-1px}
-  .o-arrow{right: 12px}
-  .t-neptune &{background-color: #d7e5ef}
+  .o-arrow{right: 12px; float: left; top: 6px;
+    &.s--rtl{@include prefix((transform: rotate(180deg))); top: auto; bottom: 3px}
+  }
+  
+  .t-venus &{background-color: #d3cfe6; color: darken($venus, 15%)}
+  .t-jupiter &{color: darken($jupiter, 15%)}
+  .t-earth &{background-color: #c4e8da; color: darken($earth, 15%);}
+  .t-mercury &{background-color: #d8deff; color: darken($mercury, 15%)}
 }
 .o-line{height: 1px; background-color:#d2e1ea; display: block;
   &.s--break{margin:em(48) 0;}
+
 }
 .o-link{display: inline-block; padding: em(4) 0;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
   span{display: inline-block; padding-left: em(12);}
+  .c-page__actions &{color: $neptune}
+  .c-page__info &{padding-top: em(16); color: #fff17d}
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
@@ -183,17 +211,31 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   li{padding-bottom: em(6)}
 }
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
-.o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4;
-  .o-arrow{margin-left: 0.5em}
+.o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400;
+  .o-arrow{margin-left: 0.5em; top: 3px !important}
+  
+  .t-venus &{color: darken($venus, 15%);}
+  .t-earth &{color: darken($earth, 10%);}
+  .t-mercury &{color: darken($mercury, 10%)}
+  .t-jupiter &{color: darken($jupiter, 10%)}
 }
-.o-select{display: inline-block; position: relative;
-  .o-arrow{position: absolute; top:em(10); right: 1em}
-  select{display: inline-block; border:solid 2px #000; border-radius: em(24); padding: 0.5em 4em 0.5em 1em; background-color: white; font-size: 1em;}
+.o-select{display: inline-block; position: relative; color: $neptune;
+  select{display: inline-block; border:solid 1px; border-radius: em(24); padding: em(9) em(56) em(12) em(24); background-color: #fff; font-size: 1em; color: inherit; margin-left: em(12)}
+  .t-venus &{color: $venus}
+  .t-mercury &{color: $mercury}
+}
+.o-select__arrow{display: inline-block; position: absolute; top:em(12); right: em(20); z-index: 1;
+  i{left: auto; top: auto; position: static; transform: rotate(135deg)}
 }
 .o-bubble{position: absolute; border-radius: 50%; z-index: -1;
   &.s--large{width: em(192); height: em(192); background-color: pink}
   &.s--medium{width: em(48); height: em(48); background-color: purple}
   &.s--small{width: em(24); height: em(24); background-color: blue}
+  
+  &.t-cool{background-color: #98B4D6}
+  &.t-warm{background-color: #EBD597}
+  &.t-passion{background-color: #b7a9e0}
+  &.t-romance{background-color: #EF847B}
 }
 .o-article{position: relative;
   &.u-full{float: left;
@@ -202,18 +244,28 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     .o-article__time{left:-9%; top: 3em;}
   }
   &.u-third{
-    .u-wrap{padding: 1.5em}
+    .u-wrap{padding: 1.5em; padding-top: 0;}
     .o-article__time{left:-25%; top: 8em;}
+    .s--medium{left: 0; right: auto;}
+    .s--small{left: 0; right: auto; top: 25%;}
+    .s--xsmall{left: 0; right: auto; top: 35%;}
   }
   .u-wrap{padding: 1.5em 4em}
   .o-subheading{padding-bottom: em(12)}
-  .o-bubble{top:0; left:0; height: 10em; width: 10em; background-color: blue}
+  .s--large{height: 15em; width: 15em; left: em(-36); top: 0;}
+  .s--medium{height: 10em; width: 10em; right: em(-36); top: 30%;}
+  .s--small{height: 6em; width: 6em; left: em(-12); top: 50%;}
+  .s--xsmall{height: 6em; width: 6em; right: 0; top: 20%;}
+  .o-arrow{top: 9px;}
 }
-.o-article__figure{position: relative; height: em(385); background-color: black; border-radius: em(5); margin-bottom: em(24);
+.o-article__figure{position: relative; height: em(385); background-color: black; @include border-radius-s; margin-bottom: em(24);
   .u-center{text-align: center; position: relative; z-index: 1; top: -1em}
-  .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%}
+  .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%; background-color: #FDC14D}
 }
-.o-article__time{display: inline-block; background-color: red; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative;}
+.o-article__time{display: inline-block; background-color: $neptune; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative; color: #fff; z-index: 1;
+  .t-venus &{background-color: darken($venus, 15%)}
+  .t-mercury &{background-color: darken($mercury, 15%)}
+}
 .o-page__section{padding:em(36) 0 em(72); position: relative;
   &:last-child{padding-bottom:0;}
   &.u-pt-xl{padding-top: 4.5em}
@@ -227,59 +279,94 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-section__footer{padding-top: 2em; text-align: center;}
 .o-section__title{display: inline-block; margin-bottom:4em; font-weight: 300; background-color:#0a0a0a; padding: 0.875em 2em; color: white; border-radius: 3em;
   &.s--clear{margin-bottom: 0;}
+  
+  .t-neptune &{background-color: darken(#092e69, 5%)}
+  .t-venus &{background-color: darken($venus, 15%)}
+  .t-jupiter &{background-color: darken($jupiter, 15%)}
+  .t-earth &{background-color: darken($earth, 10%)}
+  .t-earth &{background-color: darken($earth, 10%)}
 }
 .o-section__tint{background-color:#eaeaea; position: absolute; top: 3.5em; height: 50%; z-index: -1; width: 100%;
   &.s--full{top:em(60); height: 95%}
   &.s--split{background-color: #ababab;
     &:after{content:""; position: absolute; width: 50%; left:0; top:0; height: 100%; background-color: #929292}
   }
+  .t-neptune &{background-color: #d9e2f1}
+  .t-venus &{background-color: #F2F0FA}
+  .t-jupiter &{background-color: #e7f5f7}
+  .t-earth &{background-color: #E9F7F0}
+  .t-mercury &{background-color: #ebefff}
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
-  a{display: block; width: em(225); height: em(225); background-color: red; @include center}
+  a{display: block; width: em(225); height: em(225); background-color: #000; @include center}
   .o-subheading{padding:em(12) 0 em(6)}
   &.u-third{width: percentage(1/3)}
 }
-.o-tag{display: inline-block; font-size: 2.2em; color: blue; padding:em(6); text-transform: lowercase; font-weight: 300;
-  span{vertical-align: super; font-size: 50%}
+.o-tag{display: inline-block; font-size: 2.2em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
+  span{vertical-align: super; font-size: 50%; color:#00a6d0;}
 }
-.o-ticket__figure{display: block; position: relative;
-  figure{background-color: #000; @include border-radius-s;  height: em(320); position: relative;
-    &:after{content:""; position: absolute; top: 0; left: 0; z-index: 100; border-right: #fff 7px solid; border-bottom: #fff 7px solid; border-radius: 0 0 20px 0}
+.o-ticket{
+  .c-cut{position: absolute; z-index: 1; width: em(16); height: em(16); @include border-radius-l;
+    &.s--left{left: em(-8)}
+    &.s--right{right: em(-8)}
+    &.s--left__bottom{bottom: em(-8); left: em(-8);}
+    &.s--right__bottom{bottom: em(-8); right: em(-8);}
   }
 }
-.o-ticket__info{@include clear; background-color: grey; padding: em(12); @include border-radius-s; margin-bottom: 1.2em;
-  span{display: block; text-transform: uppercase; font-size: 0.75em; @include arial; padding:1.5em 1.5em 1.5em 0;}
-  .o-line{width: 30%; height: 2px}
+.o-ticket__figure{display: block; position: relative;
+  figure{background-color: #000; height: em(320); position: relative}
+  .c-cut{top: em(12); background-color: #f2f0fa}
+}
+.o-ticket__info{@include clear; background-color: #dedbea; padding: em(12); margin-bottom: 1.2em; position: relative;
+  span{display: block; text-transform: uppercase; font-size: 0.75em; font-family: 'Arial'; padding:1.5em 1.5em 1.5em 0; line-height: 1.5; color: #686475}
+  .o-line{width: 30%; height: 2px; background-color: #c7c2da;}
+  .c-cut{background-color: #fff}
+  .s--left{top:em(-8)}
+  .s--right{top:em(-8)}
 }
 .o-program{margin-bottom: 8em; float: left;
-  .o-program__figure{width: 75%; background-color: #848484; height:26em; border-radius: em(8); float: right}
+  .o-program__figure{width: 75%; background-color: #000; height:26em; border-radius: em(8); float: right}
   .o-button{margin-top: 1.5em; border-color: #fff}
   .o-bubble{
-    &.s--medium{width: 4em; height: 4em}
-    &.s--large{width: 9em; height: 9em}
+    &.s--medium{width: 3em; height: 3em}
+    &.s--large{width: 6em; height: 6em}
   }
   &.u-half{
     .o-program__figure{float: left; height: 30em; width: 70%;}
     .o-program__info{width: 90%; right: 2em; top: auto; bottom: -3em}
+    .s--medium{right: 10%; top: 5%;}
+    .s--large{right:20%; top: 15%}
   }
   &.s--left{
     .o-program__figure{float: left}
     .o-program__info{right: 0;}
     .o-program__logo{float: left;}
+    .s--medium{right: 20%; top:5%;}
+    .s--large{top: 30%; right: 0;}
   }
+  &.s--right{
+    .s--medium{left: 20%}
+    .s--large{top: 40%; left: 10%}
+  }
+  &:last-child{margin-bottom: em(72);}
 }
-.o-program__logo{width: em(156); height: em(156); background-color:red; @include border-radius-s; margin-bottom:em(12); float: right;}
+.o-program__logo{width: em(156); height: em(156); background-color:#e6e6e6; @include border-radius-s; margin-bottom:em(12); float: right;}
 .o-program__info{width: 42%; overflow: hidden; position: absolute; top:3em;
-  section{color: white; background-color: #464646; padding: 1.5em; @include border-radius-s; position: relative}
+  section{color: white; padding: 1.5em; @include border-radius-s; position: relative;
+    .t-mercury &{background-color: $mercury}
+    .t-venus &{background-color: $venus}
+  }
+  p{font-size: 0.875em}
+  .o-subheading{color:#fff;}
 }
-.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.2}
+.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.1}
 .o-program__summary{position: relative; z-index: 1}
 .o-milestone{width: 50%; float: left;
   p{padding-bottom: 1.5em;
     &:last-child{padding-bottom: 0;}
   }
   .o-subtitle{padding-bottom: em(12)}
-  .o-line{width: 50%; margin: em(84) 0 em(56); float: right; position: relative; right: -1.5em;}
+  .o-line{width: 50%; margin: em(84) 0 em(56); float: right; position: relative; right: -1.5em; background-color: $jupiter}
   &.u-right{float: right; padding-top: 8%;
     .o-line{float: left; right: auto; left: -1.5em;}
   }
@@ -287,11 +374,22 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     .u-wrap{padding: 0 1.5em}
     .o-milestone__story{@include center; width: 60%}
     .o-line{@include center; float: none; margin-bottom: 0}
+    .o-bubble{top: 5%; left: -5%; z-index: 2;}
+  }
+  .u-wrap{position: relative;}
+  
+  .s--large{top:0; width: 9em; height: 9em;}
+  .s--medium{top:20%;  width: 4em; height: 4em}
+  &.u-right{
+    .o-bubble{right: -5%}
+  }
+  &.u-left{
+    .o-bubble{left: -5%}
   }
 }
 .o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: black; @include border-radius-s; margin-bottom: 1.5em;}
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
-  figure{height: em(240); width: em(240); @include border-radius-l; background-color: pink; text-align: center;  margin-bottom:em(18); @include center}
+  figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
   p{padding: em(9)}
   .o-icon{background-color: #000; height: em(56); width: em(56); margin-bottom: em(12);}
   &.s--medium{
@@ -300,8 +398,12 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   &.s--small{
     figure{font-size: 0.5em}
   }
+  .t-banana{background-color: #FFCF72}
+  .t-berry{background-color: #FF7E88}
+  .t-ivy{background-color: #9687E0}
+  .t-mango{background-color: #7EE0A7}
 }
-.o-statistic__figure{display: block; font-size: 6em; @include sixcaps}
+.o-statistic__figure{display: block; font-size: 6em; @include sixcaps; color: #000;}
 .o-slide{height: 100%; overflow: hidden; position: relative;
   .o-button{border-color: #fff; margin-top: 1.5em;}
   .u-wrap{padding: 3em 1.5em 5em}
@@ -335,11 +437,16 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center}
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
 .c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
-  .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}
-  .t-neptune &{background-color: darken($neptune, 5%)}        
+  .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}     
   .s--small{background-color: #FDC14D; animation-duration: 40s; animation-name: bubbleOrbitReverse}
   .s--medium{background-color: #53BE80; animation-duration:100s; animation-name: bubbleOrbit}
   .o-bubble{top:50%; animation-timing-function:linear; animation-iteration-count: infinite}
+  
+  .t-neptune &{background-color: darken($neptune, 5%)}
+  .t-venus &{background-color: darken($venus, 20%)}   
+  .t-jupiter &{background-color: darken($jupiter,15%)}
+  .t-earth &{background-color: darken($earth,15%)}
+  .t-mercury &{background-color: darken($mercury,15%)}
 }
 @keyframes bubbleOrbit {
     from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
@@ -358,10 +465,15 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
 }
-.c-page__info{width: em(720); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-s;
+.c-page__info{width: em(720); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
   p{@include center; width: 90%; @include light}
   .u-wrap{padding: 2em}
+
   .t-neptune &{background-color:#0c3d8b}
+  .t-venus &{background-color: $venus}
+  .t-jupiter &{background-color: $jupiter}
+  .t-earth &{background-color: $earth}
+  .t-mercury &{background-color: $mercury}
 }
 .c-page__content{position: relative; top:-5%}
 .c-page__actions{@include clear; margin-bottom: 2em;
@@ -370,24 +482,31 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   }
   .o-subtitle{margin-bottom: 2em;}
 }
-.c-button-next{display: block; background-color: grey; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
+.c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
   span{position: relative; z-index: 2}
   figure{width: 100%; height: 100%; @include cover; @include cover; @include image('dummy/cover.jpg'); position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
   .o-icon{background-color: #fff;}
-  .t-neptune &{background-color: $neptune}
+
+  .t-venus &{background-color: darken($venus, 15%)}
+  .t-jupiter &{background-color: darken($jupiter, 15%)}
+  .t-earth &{background-color: darken($earth, 15%)}
+  .t-mercury &{background-color: darken($mercury, 15%)}
 }
 .c-page__footer{padding:4em 0; background-color: darken(#FCFCFC, 5%);
   h2{margin-bottom: em(12);}
   .o-networks{margin-bottom: em(48)}
+  .o-line{background-color: #d6d6d6}
 }
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
   figure{background-color: #000; width: em(96);height: em(96);}
 }
 .c-form-newsletter{@include clear;
-  .o-button{float: right; width: 42%}
+  .o-button{float: right; width: 42%; padding: em(8) em(24);
+    .o-arrow{top: 8px;}
+  }
   .o-input{float: left; width: 58%; margin-bottom: 0;
-    input{border: solid 1px $neptune; border-radius: 10em; padding: em(7) em(18); width: 78%;}
+    input{border: solid 1px #c4cad4; border-radius: 10em; padding: em(7) em(18); width: 78%;}
   }
 }
 .c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.7;
@@ -396,23 +515,23 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   a{display: block; padding: 0.5em}
 }
 .c-team{text-align: center; @include clear; margin-bottom: em(24);
-  li{width: 25%; float: left;}
-  figure{width: em(192); height: em(360); background-color: black; @include center; margin-bottom: em(18); position: relative}
-  .o-bubble{background-color: grey;
+  li{width: 25%; float: left; margin-bottom: em(48);}
+  figure{width: em(192); height: em(360); @include center; margin-bottom: em(18); position: relative}
+  .o-bubble{
     &.s--large{bottom: 0; left: 0}
     &.s--medium{top: 20%; left: 0}
     &.s--small{top: 40%; right: em(-20)}
   }
-  .o-subheading{padding-bottom: em(6);}
+  .o-subheading{padding-bottom: em(6)}
 }
 .c-programs__nav{@include clear; padding:0 1.5em 3em; 
   li{width: percentage(1/6); float: left;}
-  a{display: block; background-color: red; height:6em; margin:1em;}
+  a{display: block; background-color: #000; height:6em; margin:1em;}
 }
-.c-milestones__line{width: 1px; height: 104%; background-color: black; position: absolute; left: 50%; z-index: -1; top: -5em;}
+.c-milestones__line{width: 1px; height: 104%; background-color: $jupiter; position: absolute; left: 50%; z-index: -1; top: -5em;}
 .c-values{@include clear; 
   li{width: percentage(1/5); float: left;}
-  figure{background-color: red; padding-bottom: 150%;}
+  figure{background-color: #000; padding-bottom: 150%;}
   .o-subheading{height: em(72); padding-bottom: 0; padding-left:em(9)}
 }
 .c-splash{background-color: black; color: #fff; height:85%;

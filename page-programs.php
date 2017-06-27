@@ -19,7 +19,7 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<ul class="u-clear">
-				<li class="o-program u-full">
+				<li class="o-program u-full s--right">
 					<div class="u-clear u-relative">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
@@ -33,7 +33,10 @@
 								<div class="o-program__summary">
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
 									<a href="#" class="o-button">
-										<i class="o-arrow"></i>
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
 										<span class="o-button__title">Learn More</span>
 									</a>
 								</div>
@@ -56,7 +59,10 @@
 								<div class="o-program__summary">
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 									<a href="#" class="o-button">
-										<i class="o-arrow"></i>
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
 										<span class="o-button__title">Learn More</span>
 									</a>
 								</div>
@@ -79,7 +85,10 @@
 								<div class="o-program__summary">
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
 									<a href="#" class="o-button">
-										<i class="o-arrow"></i>
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
 										<span class="o-button__title">Learn More</span>
 									</a>
 								</div>
@@ -102,7 +111,10 @@
 								<div class="o-program__summary">
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500</p>
 									<a href="#" class="o-button">
-										<i class="o-arrow"></i>
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
 										<span class="o-button__title">Learn More</span>
 									</a>
 								</div>

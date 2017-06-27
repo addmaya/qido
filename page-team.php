@@ -39,11 +39,50 @@
 					<span class="o-subheading">Charlotte Nalumansi</span>
 					<span class="o-subtitle">Founder & CEO</span>
 				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
+				<li>
+					<figure>
+						<span class="o-bubble s--large"></span>
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--small"></span>
+					</figure>
+					<span class="o-subheading">Charlotte Nalumansi</span>
+					<span class="o-subtitle">Founder & CEO</span>
+				</li>
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
-					<i class="o-arrow"></i>
-					<span class="o-button__title">Join the Team</span>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Join the team</span>
 				</a>
 			</footer>
 		</div>
@@ -91,11 +130,20 @@
 				</li>
 			</ul>
 			<footer class="o-section__footer">
+				<span class="o-subtitle u-pb-m">4 of 8</span>
 				<a href="#" class="o-button">
-					<i class="o-icon"></i>
+					<div class="o-arrow s--rtl">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Previous</span>
 				</a>
 				<a href="#" class="o-button">
-					<i class="o-icon"></i>
+					<div class="o-arrow">
+						<i class="o-arrow__stem"></i>
+						<i class="o-arrow__head"></i>
+					</div>
+					<span class="o-button__title">Next</span>
 				</a>
 			</footer>
 		</div>
