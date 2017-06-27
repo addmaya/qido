@@ -89,6 +89,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-wrap{padding:em(24); @include clear;
   &.u-pdb-clear{padding-bottom: 0}
 }
+.u-white{color: #fff;}
 .u-center{@include center}
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
@@ -149,8 +150,15 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .o-arrow__head{border-color: $color}
 }
 .o-arrow{position: relative; display: inline-block; color:black; top: 7px;
-  .c-button-next &{float: none; @include o-arrow-theme(#fff);}
   .o-link &{float: left}
+  .o-slide &{
+    .o-arrow__stem{background-color:#fff !important}
+    .o-arrow__head{border-color: #fff !important}
+  }
+  .c-button-next &{float: none; z-index: 2;
+    .o-arrow__stem{background-color:#fff !important}
+    .o-arrow__head{border-color: #fff !important}
+  }
   .c-page__info & {
     .o-arrow__stem{background-color:#fff17d !important}
     .o-arrow__head{border-color: #fff17d !important}
@@ -210,7 +218,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-list{margin-bottom: em(24);
   li{padding-bottom: em(6)}
 }
-.o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;}
+.o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;
+  .t-jupiter &{color: darken($jupiter,10%)}
+}
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400;
   .o-arrow{margin-left: 0.5em; top: 3px !important}
   
@@ -228,9 +238,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   i{left: auto; top: auto; position: static; transform: rotate(135deg)}
 }
 .o-bubble{position: absolute; border-radius: 50%; z-index: -1;
-  &.s--large{width: em(192); height: em(192); background-color: pink}
-  &.s--medium{width: em(48); height: em(48); background-color: purple}
-  &.s--small{width: em(24); height: em(24); background-color: blue}
+  &.s--large{width: em(192); height: em(192)}
+  &.s--medium{width: em(48); height: em(48)}
+  &.s--small{width: em(24); height: em(24)}
   
   &.t-cool{background-color: #98B4D6}
   &.t-warm{background-color: #EBD597}
@@ -262,9 +272,11 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .u-center{text-align: center; position: relative; z-index: 1; top: -1em}
   .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%; background-color: #FDC14D}
 }
-.o-article__time{display: inline-block; background-color: $neptune; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative; color: #fff; z-index: 1;
+.o-article__time{display: inline-block; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative; color: #fff; z-index: 1; font-weight: normal;
   .t-venus &{background-color: darken($venus, 15%)}
   .t-mercury &{background-color: darken($mercury, 15%)}
+  .t-neptune &{background-color: $neptune}
+  .t-jupiter &{background-color: darken($jupiter, 15%)}
 }
 .o-page__section{padding:em(36) 0 em(72); position: relative;
   &:last-child{padding-bottom:0;}
@@ -284,7 +296,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-venus &{background-color: darken($venus, 15%)}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .t-earth &{background-color: darken($earth, 10%)}
-  .t-earth &{background-color: darken($earth, 10%)}
+  .t-mercury &{background-color: darken($mercury, 10%)}
 }
 .o-section__tint{background-color:#eaeaea; position: absolute; top: 3.5em; height: 50%; z-index: -1; width: 100%;
   &.s--full{top:em(60); height: 95%}
@@ -405,7 +417,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 }
 .o-statistic__figure{display: block; font-size: 6em; @include sixcaps; color: #000;}
 .o-slide{height: 100%; overflow: hidden; position: relative;
-  .o-button{border-color: #fff; margin-top: 1.5em;}
+  .o-button{border:solid 2px #fff; margin-top: 1.5em; background-color: transparent; color: #fff;}
   .u-wrap{padding: 3em 1.5em 5em}
 }
 .o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 0; left: 0;
@@ -413,21 +425,27 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 }
 .o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.5}
 .o-slide__figure{height: 100%;
-  figure{height: em(480); width: em(480); @include border-radius-l; background-color: red; @include center; position: relative; left: 6em; z-index: 2}
+  figure{height: em(480); width: em(480); @include border-radius-l; background-color: #000; @include center; position: relative; left: 6em; z-index: 2}
   .o-bubble{z-index: 1}
   .s--small{width: 2.5em; height: 2.5em;}
   .s--medium{width: 4em; height: 4em; right: 0}
   .s--large{width: 5em; height: 5em; bottom:0; background-color: transparent; border: solid 2px #fff; right: 0}
 }
-.o-card{color: white; margin-bottom: 1.5em;}
-.o-card__figure{width: 75%; height: em(360); background-color: red; @include border-radius-s; position: relative; @include center}
+.o-card{color: white; margin-bottom: 1.5em; position: relative;}
+.o-card__figure{width: 75%; height: em(360); background-color: #000; @include border-radius-s; position: relative; @include center}
 .o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s;}
 .o-card__info{width: 75%; @include center;
   p{padding: em(24) 0}
 }
-.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color: #8a8a8a;
-  .o-button{border-color: white; color: #fff}
-  .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em;}
+.o-card__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: -20%; opacity: 0.1; z-index: -1;
+  .s--left &{left: 0}
+  .s--right &{right: 0}
+}
+
+.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160);
+  .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em; z-index: 1}
+  .t-jupiter &{background-color: darken($jupiter, 15%)}
+  .o-imagelink__figure{display: block; height: 100%; @include multiply; @include cover; @include image('dummy/cover.jpg')}
 }
 
 /*components*/
@@ -486,6 +504,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   span{position: relative; z-index: 2}
   figure{width: 100%; height: 100%; @include cover; @include cover; @include image('dummy/cover.jpg'); position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
   .o-icon{background-color: #fff;}
+  .o-heading {color: #fff !important}
 
   .t-venus &{background-color: darken($venus, 15%)}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
@@ -534,10 +553,12 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   figure{background-color: #000; padding-bottom: 150%;}
   .o-subheading{height: em(72); padding-bottom: 0; padding-left:em(9)}
 }
-.c-splash{background-color: black; color: #fff; height:85%;
+.c-splash{background-color: black; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
   .u-box{height: 100%}
+  .s--small{background-color: #FFC14A}  
+  .s--medium{background-color: #5FD691}  
 }
-.c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em;
+.c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em; color: #696969;
   figure{position: relative; height: em(420)}
   .o-bubble{z-index: 1}
   .u-60p{height: 100%; position: relative;}
@@ -545,4 +566,10 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .o-subheading{padding-bottom: em(6)}
   .o-subtitle{margin-bottom: em(72);}
   .u-wrap{position: relative; top: em(72);}
+  .s--large{left:10%; top: 10%; width: 20em; height: 20em;}
+  .s--medium{left: 5%; top: 5%}
+  .s--small{right: 5%; bottom: 5%}
+}
+.c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
+  &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
 }
