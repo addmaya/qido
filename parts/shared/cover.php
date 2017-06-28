@@ -1,7 +1,7 @@
 <section class="c-page-cover">
 	<figure class="c-page-cover__image"></figure>
 	<div class="u-table">
-		<div class="u-cell u-relative">
+		<div class="u-cell">
 			<span class="c-page-cover__title"></span>
 			<span class="o-bubble s--small"></span>
 			<span class="o-bubble s--medium"></span>

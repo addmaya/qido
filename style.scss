@@ -44,11 +44,51 @@ $mercury: #3F51B5;
 @mixin sixcaps{font-family: 'Six Caps', sans-serif;}
 @mixin light{font-weight: 300}
 @mixin arial{font-family: 'Arial'; font-weight: bold}
-@mixin cover{-webkit-background-size: cover; background-size: cover; background-position: center; background-repeat: no-repeat;}
-@mixin border-radius-xs{border-radius: 6px}
+@mixin cover{background-size: cover; background-position: center; background-repeat: no-repeat;}
+@mixin border-radius-xs{border-radius: 4px}
 @mixin border-radius-s{border-radius: 12px}
 @mixin border-radius-l{border-radius: 50%}
 @mixin multiply{mix-blend-mode: multiply}
+@mixin linear{@include prefix((animation-timing-function: linear))}
+@mixin infinite{@include prefix((animation-iteration-count: infinite))}
+@mixin duration($seconds){
+  $t: $seconds * 1s;
+  @include prefix((animation-duration: $t));
+}
+@mixin delay($seconds){
+  $delay: $seconds * 1s;
+  @include prefix((animation-delay: $delay));
+}
+@mixin animation($name){@include prefix((animation-name: $name))}
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {@content;}
+  @-moz-keyframes #{$animationName} {@content;}
+  @-o-keyframes #{$animationName} {@content;}
+  @keyframes #{$animationName} {@content;}
+}
+@mixin animate($name,$duration, $delay) {
+  $t: $duration * 1s;
+  $d: $delay * 1s;
+  -webkit-animation-duration: $t;
+     -moz-animation-duration: $t;
+       -o-animation-duration: $t;
+          animation-duration: $t;
+  -webkit-animation-name: $name;
+     -moz-animation-name: $name;
+       -o-animation-name: $name;
+          animation-name: $name;
+  -webkit-animation-delay: $d;
+     -moz-animation-delay: $d;
+       -o-animation-delay: $d;
+          animation-delay: $d;
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+       -o-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+@mixin bezier($a, $b, $c, $d){
+  @include prefix((animation-timing-function: cubic-bezier($a, $b, $c, $d)))
+}
 
 /*defaults*/
 html,body{width:100%; height:100%}
@@ -94,6 +134,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
 .u-align__center{text-align: center}
+
 
 .u-pt-s{padding-top: 1em}
 .u-pt-m{padding-top: 1.5em}
@@ -456,9 +497,10 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
 .c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}     
-  .s--small{background-color: #FDC14D; animation-duration: 40s; animation-name: bubbleOrbitReverse}
-  .s--medium{background-color: #53BE80; animation-duration:100s; animation-name: bubbleOrbit}
-  .o-bubble{top:50%; animation-timing-function:linear; animation-iteration-count: infinite}
+  .u-cell{position: relative;}
+  .s--small{background-color: #FDC14D; @include duration(40); @include animation(bubble-small-orbit)}
+  .s--medium{background-color: #53BE80; @include duration(40); @include animation(bubble-large-orbit)}
+  .o-bubble{top:50%; @include linear; @include infinite}
   
   .t-neptune &{background-color: darken($neptune, 5%)}
   .t-venus &{background-color: darken($venus, 20%)}   
@@ -466,20 +508,26 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-earth &{background-color: darken($earth,15%)}
   .t-mercury &{background-color: darken($mercury,15%)}
 }
-@keyframes bubbleOrbit {
-    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-    to   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-}
-@keyframes bubbleOrbitReverse {
-    from   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-    to { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-}
 
-.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply}
-.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('sequences/talk.png'); background-position: left center; @include prefix((animation: coverTitle 6s steps(63) forwards)); top:-3em; position: relative;}
-@keyframes coverTitle {
-   100% { background-position: -22050px}
+.c-loader{position:fixed; z-index:999; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards));
+  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.6)}  
+  .o-bubble{@include linear; @include infinite; left: 50%}
+  .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubble-small-orbit); background-color: transparent}
+  .s--medium{border:solid 2px #54de8e; @include duration(16); @include animation(bubble-large-orbit); background-color: transparent}
+
+  .t-neptune &{background-color: darken($neptune, 5%)}
+  .t-venus &{background-color: darken($venus, 20%)}   
+  .t-jupiter &{background-color: darken($jupiter,15%)}
+  .t-earth &{background-color: darken($earth,15%)}
+  .t-mercury &{background-color: darken($mercury,15%)}
+
+  &.is-visible{@include duration(0.9); @include animation(slideInUp); @include bezier(0.37,-0.01, 0.03, 0.99);
+    .u-cell{@include animation(fadeInUp); @include delay(0.2); @include duration(0.7); animation-fill-mode:none;}
+  }
+  &.is-hidden{@include duration(0.6); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
+.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply}
+.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 4s steps(42) forwards)); top:-3em; position: relative;}
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
 }
@@ -573,3 +621,34 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
   &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
 }
+
+/*animation*/
+$orbit-radius:150px;
+@keyframes bubble-large-orbit {
+    from {transform: rotate(0deg) translateX($orbit-radius) rotate(0deg)}
+    to   {transform: rotate(360deg) translateX($orbit-radius) rotate(-360deg)}
+}
+@keyframes bubble-small-orbit {
+    from {transform: rotate(360deg) translateX($orbit-radius) rotate(-360deg)}
+    to {transform: rotate(0deg) translateX($orbit-radius) rotate(0deg)}
+}
+@keyframes c-loader-logo{
+  100% { background-position: -3648px}
+}
+
+@keyframes c-page-cover__title {
+   100% { background-position: -14280px}
+}
+@keyframes slideInUp {
+  from {@include prefix((transform: translate3d(0, 100%, 0)))}
+  to {@include prefix((transform: none))}
+}
+@keyframes slideOutUp {
+  from {@include prefix((transform: translate3d(0, 0, 0)))}
+  to {visibility: hidden; @include prefix((transform: translate3d(0, -100%, 0)))}
+}
+@keyframes fadeInUp {
+  from {@include prefix((transform: translate3d(0, 100%, 0))); opacity: 0;}
+  to {@include prefix((transform: none)); opacity: 1}
+}
+.fadeOut{opacity: 0}

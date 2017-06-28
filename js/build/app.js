@@ -46,28 +46,33 @@ jQuery(document).ready(function($) {
 	  }
 	});
 	page.init();
-	
+
+	var preloader = $('.c-loader');
 	Barba.Pjax.start();
 	var FadeTransition = Barba.BaseTransition.extend({
+	  
 	  start: function() {
-	    $("html, body").animate({ scrollTop: 0 }, "slow");
+	    preloader.removeClass('is-hidden');
 	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
-	    $('.c-loader').show();
 	  },
 	  fadeOut: function() {
-	    return $(this.oldContainer).animate({ opacity: 0 }).promise();
+	  	preloader.addClass('is-visible');
+	    return $(this.oldContainer).promise();
 	  },
 	  fadeIn: function() {
-	    var _this = this;
-	    var $el = $(this.newContainer);
-	    $(this.oldContainer).hide();
-	    $el.css({visibility : 'visible', opacity : 0});
+	  	var transition = this;
+	    var content = $(this.newContainer);
+
+	    $("html, body").animate({ scrollTop: 0 }, 0);
 	    
-	    $('.c-loader').hide();
-	    $el.animate({ opacity: 1 }, 400, function() {_this.done();});
+	    setTimeout(function(){
+	    	$(this.oldContainer).hide();
+	    	preloader.removeClass('is-visible').addClass('is-hidden');
+	    	transition.done();
+	    }, 1200);
+	    
 	  }
 	});
-
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
 });
 
