@@ -27,7 +27,7 @@
 	<div class="c-loader">
 		<div class="u-cell">
 			<span></span>
-			<i class="o-bubble s--small"></i>
-			<i class="o-bubble s--medium"></i>
+<!-- 			<i class="o-bubble s--small"></i>
+			<i class="o-bubble s--medium"></i> -->
 		</div>
 	</div>

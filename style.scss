@@ -510,7 +510,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 }
 
 .c-loader{position:fixed; z-index:999; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards));
-  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.6)}  
+  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.6);}  
   .o-bubble{@include linear; @include infinite; left: 50%}
   .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubble-small-orbit); background-color: transparent}
   .s--medium{border:solid 2px #54de8e; @include duration(16); @include animation(bubble-large-orbit); background-color: transparent}
@@ -521,10 +521,10 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-earth &{background-color: darken($earth,15%)}
   .t-mercury &{background-color: darken($mercury,15%)}
 
-  &.is-visible{@include duration(0.9); @include animation(slideInUp); @include bezier(0.37,-0.01, 0.03, 0.99);
-    .u-cell{@include animation(fadeInUp); @include delay(0.2); @include duration(0.7); animation-fill-mode:none;}
+  &.is-visible{@include duration(0.5); @include animation(slideInUp); @include bezier(0.37,-0.01, 0.03, 0.99); 
+    .u-cell{@include animation(fadeInUp); @include delay(0.2); @include duration(0.5); animation-fill-mode:both}
   }
-  &.is-hidden{@include duration(0.6); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
+  &.is-hidden{@include duration(0.5); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
 .c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply}
 .c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 4s steps(42) forwards)); top:-3em; position: relative;}
