@@ -28,6 +28,10 @@ jQuery(document).ready(function($) {
 		$('.o-menu').find('.is-active').removeClass('is-active');
 		$(this).addClass('is-active');
 	});
+	$('.c-logo').click(function() {
+		$('.o-menu').find('.is-active').removeClass('is-active');
+		$('.o-menu a').first().addClass('is-active');
+	});
 
 	$(window).scroll(function() {
 		var scroll = $(window).scrollTop();
