@@ -3,6 +3,9 @@ jQuery(document).ready(function($) {
 	//variables
 	var body = $('body');
 	var pageLoader = $('.c-loader');
+	var pageMenu = $('.c-page__menu');
+	var pageOverlay = $('.c-page__overlay');
+	var humberger = $('.c-humburger');
 
 	//functions
 	function updatePageTheme(cssClass){
@@ -13,10 +16,40 @@ jQuery(document).ready(function($) {
 	    }, 500); 
 	}
 
+	function toggleMenu(){
+		humberger.toggleClass('is-open');
+		body.toggleClass('u-oh').toggleClass('is-booting');
+		pageMenu.toggleClass('is-hidden').toggleClass('is-active');
+		pageOverlay.toggleClass('is-visible');
+	}
+
 	//menu
-	$('.c-menu a').click(function() {
-		$('.c-menu').find('.is-active').removeClass('is-active');
+	$('.o-menu a').click(function() {
+		$('.o-menu').find('.is-active').removeClass('is-active');
 		$(this).addClass('is-active');
+	});
+
+	$(window).scroll(function() {
+		var scroll = $(window).scrollTop();
+		if (scroll > 250){
+			$('.c-page__header').addClass('is-hidden');
+			pageMenu.addClass('is-hidden');
+			humberger.addClass('is-visible');
+		}
+		else {
+			$('.c-page__header').removeClass('is-hidden');
+			pageMenu.removeClass('is-hidden');
+			humberger.removeClass('is-visible');
+	   	}
+	});
+
+	$('.c-humburger').click(function(event) {
+		event.preventDefault();
+		toggleMenu();
+	});
+
+	$('.c-page__overlay').click(function() {
+		toggleMenu();
 	});
 
 	//lazy image
@@ -133,16 +166,17 @@ jQuery(document).ready(function($) {
 	  },
 	  fadeOut: function() {
 	  	pageLoader.addClass('is-visible');
+	  	if(pageOverlay.hasClass('is-visible')){
+	  		toggleMenu();
+	  	}
 	    return $(this.oldContainer).promise();
 	  },
 	  fadeIn: function() {
 	  	var transition = this;
-	    var content = $(this.newContainer);
-
-	    $("html, body").animate({ scrollTop: 0 }, 0);
-	    
+	    var content = $(this.newContainer);	    
 	    setTimeout(function(){
 	    	$(this.oldContainer).hide();
+	    	$('html, body').animate({ scrollTop: 0 }, 0);
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
 	    }, 800);

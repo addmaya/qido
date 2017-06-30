@@ -89,6 +89,7 @@ $mercury: #3F51B5;
 @mixin bezier($a, $b, $c, $d){
   @include prefix((animation-timing-function: cubic-bezier($a, $b, $c, $d)))
 }
+@mixin resetPivot{@include prefix((transform-origin: 0 0))}
 
 /*defaults*/
 html,body{width:100%; height:100%}
@@ -129,12 +130,12 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-wrap{padding:em(24); @include clear;
   &.u-pdb-clear{padding-bottom: 0}
 }
+.u-oh{overflow: hidden}
 .u-white{color: #fff;}
 .u-center{@include center}
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
 .u-align__center{text-align: center}
-
 
 .u-pt-s{padding-top: 1em}
 .u-pt-m{padding-top: 1.5em}
@@ -214,13 +215,31 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-arrow__stem{display: block; width: 12px; height: 1px;}
 .o-arrow__head{display: block; height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 3px; top: -5px}
 
+$active: #ffe992;
 .o-menu{
-  a{display: block; padding: em(9); font-size: em(16); @include light; color: #fff;}
-  span{position: relative;}
+  a{display: block; padding: em(9); padding-right: 0; font-size: em(16); @include light; color: #fff; position: relative;
+    &:hover, &.is-active{color: $active;
+      .o-menu-item__indicator{@include prefix ((transform:scale(1,1)))}
+      .o-menu-item__title{@include prefix ((transform:translateX(12px)))}
+      .o-menu-item__bullet{@include prefix ((transform:scale(1)));
+        &:after{@include prefix ((transform:scale(1,1)))}
+      }
+    }
+    &.is-active{
+      .o-menu-item__bullet{@include prefix((transition: border-color 0.3s ease)); border-color: transparent;
+        &:after{@include prefix ((transform:scale(1.4))); background-color: $active;}
+      }
+    }
+  }
 }
-.o-menu-item__title{width: em(90); display: inline-block;}
-.o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: #fff; top: em(-4);}
-.o-menu-item__bullet{border: solid 2px #fff; width: em(10); height: em(10); display: inline-block; border-radius: 50%; top: 1px;}
+.o-menu-item__title{width: em(90); display: inline-block; position: relative; top: -3px;
+  @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1)));
+}
+.o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: $active; top: -6px; position: absolute; top: 48%; right: em(-20); @include resetPivot; @include prefix ((transform:scale(0,1))); @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1)));
+}
+.o-menu-item__bullet{border: solid 2px #fff; width: 14px; height: 14px; display: inline-block; border-radius: 50%; top: 1px; position: relative;@include prefix((transition: transform 1s cubic-bezier(0, 0.5, 0, 1))); @include prefix ((transform:scale(0.7)));
+  &:after{content:"";position: absolute; top:2px; left: 2px; width: 70%; height: 70%; background-color: white; @include border-radius-l; @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1))); @include prefix ((transform:scale(0,0)))}
+}
 .o-submenu{display: none;}
 .o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef;
   .o-icon{width: 1em; height: 1em}
@@ -492,11 +511,14 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
   .o-networks{float: right; padding-top: em(8);}
-  .is-booting &{@include animate(fadeInDown, 1.5, 0); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+  .is-booting &{@include animate(fadeInDown, 1.5, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
+  &.is-hidden{@include animate(fadeOutUp, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
 }
 .c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center}
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10;
-  .is-booting &{@include animate(fadeInRight, 1.5, 0.3); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+  .is-booting &{@include animate(fadeInRight, 1.5, 0.3); @include prefix ((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
+  &.is-hidden{@include animate(fadeOutRight, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
+  &.is-active{@include animate(fadeInRight, 1,0); @include prefix ((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
 }
 .c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
@@ -539,7 +561,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply;
   .is-booting &{@include animate(fadeInUp, 1.2, 0.85); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
-.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 3s steps(42) forwards)); top:-3em; position: relative;}
+.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4);}
@@ -635,6 +657,31 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
   &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
 }
+.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin: 1em; z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));
+  .t-neptune &{background-color: $neptune}
+  .t-venus &{background-color: $venus}
+  .t-jupiter &{background-color: $jupiter}
+  .t-earth &{background-color: $earth}
+  .t-mercury &{background-color: $mercury}
+  
+  span{display: block; background-color: #fff; height: 3px; width: 50%; position: absolute; left: 1.1em; @include prefix((transition: transform 0.3s cubic-bezier(0.46, 0.01, 0.29, 1)))}
+  .o-line__1{top:30%;}
+  .o-line__2{top:45%;}
+  .o-line__3{top:60%;}
+  &:hover{
+    span{@include prefix((transform: translateX(-9px)))}
+  }
+
+  &.is-visible{@include prefix((transform: translate3d(0,0,0)))}
+  &.is-open{
+    .o-line__3{opacity: 0}
+    .o-line__1{@include prefix((transform: translateY(10px) rotate(45deg)));}
+    .o-line__2{@include prefix((transform: rotate(-45deg)))}
+  }
+}
+.c-page__overlay{position: fixed; top: 0; left: 0; z-index: 9; background:linear-gradient(45deg, rgba(214, 123, 123, 0), #3712ab); width: 100%; height: 100%; visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0.5s;
+  &.is-visible{visibility: visible; opacity: 1}
+}
 
 /*animation*/
 $orbit-radius:150px;
@@ -653,6 +700,13 @@ $orbit-radius:150px;
 @keyframes c-page-cover__title {
    100% { background-position: -14280px}
 }
+
+@keyframes c-page__overlay {
+   0% {visibility: hidden}
+   100% { visibility: visible; opacity: 1}
+}
+
+
 @keyframes fadeIn {
   from {opacity:0}
   to {opacity:1}
@@ -677,4 +731,12 @@ $orbit-radius:150px;
   from {@include prefix((transform: translate3d(100%, 0, 0))); opacity: 0;}
   to {@include prefix((transform: none)); opacity: 1}
 }
-.fadeOut{opacity: 0}
+@keyframes fadeOutUp {
+  from {opacity: 1}
+  to {@include prefix((transform: translate3d(0, -100%, 0))); opacity: 0;}
+}
+
+@keyframes fadeOutRight {
+  from {opacity: 1}
+  to {@include prefix((transform: translate3d(100%, 0, 0))); opacity: 0;}
+}

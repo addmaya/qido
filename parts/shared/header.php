@@ -11,6 +11,11 @@
 		</ul>
 	</section>
 </header>
+<a href="#" class="c-humburger">
+	<span class="o-line__1"></span>
+	<span class="o-line__2"></span>
+	<span class="o-line__3"></span>
+</a>
 <nav class="c-page__menu">
 	<section class="u-wrap">
 		<ul class="o-menu">
@@ -77,7 +82,7 @@
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
-			<li class="o-menu-item">
+			<li class="o-menu-item is-active">
 				<a href="<?php echo home_url(); ?>/contact">
 					<span class="o-menu-item__title">Contact</span>
 					<span class="o-menu-item__bullet"></span>
@@ -87,6 +92,7 @@
 		</ul>
 	</section>
 </nav>
+<div class="c-page__overlay"></div>
 <div id="barba-wrapper" class="u-canvas">
 	<div class="barba-container u-canvas" data-namespace="<?php
 		if(is_front_page()){echo 'home';}
