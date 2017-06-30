@@ -172,6 +172,7 @@ jQuery(document).ready(function($) {
 	  	pageLoader.addClass('is-visible');
 	  	if(pageOverlay.hasClass('is-visible')){
 	  		toggleMenu();
+	  		pageMenu.removeClass('is-hidden');
 	  	}
 	    return $(this.oldContainer).promise();
 	  },
