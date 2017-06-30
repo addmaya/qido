@@ -66,7 +66,7 @@ $mercury: #3F51B5;
   @-o-keyframes #{$animationName} {@content;}
   @keyframes #{$animationName} {@content;}
 }
-@mixin animate($name,$duration, $delay) {
+@mixin animate($name,$duration,$delay) {
   $t: $duration * 1s;
   $d: $delay * 1s;
   -webkit-animation-duration: $t;
@@ -492,15 +492,23 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
   .o-networks{float: right; padding-top: em(8);}
+  .is-booting &{@include animate(fadeInDown, 1.5, 0); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
 .c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center}
-.c-page__menu{position: fixed; right:0; top: em(84); z-index: 10}
+.c-page__menu{position: fixed; right:0; top: em(84); z-index: 10;
+  .is-booting &{@include animate(fadeInRight, 1.5, 0.3); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+}
 .c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
-  .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center}     
+  .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
+    .is-booting &{@include animate(fadeInUp, 1, 1.1); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+  }     
   .u-cell{position: relative;}
-  .s--small{background-color: #FDC14D; @include duration(40); @include animation(bubble-small-orbit)}
-  .s--medium{background-color: #53BE80; @include duration(40); @include animation(bubble-large-orbit)}
-  .o-bubble{top:50%; @include linear; @include infinite}
+  .s--small{background-color: #FDC14D; @include prefix((animation: bubble-small-orbit 40s linear infinite)); }
+  .s--medium{background-color: #53BE80; @include prefix((animation: bubble-large-orbit 80s linear infinite))}
+  .o-bubble{top:50%}
+  .o-bubble__group{
+    .is-booting &{@include animate(fadeIn,1.5,2.5)}
+  }
   
   .t-neptune &{background-color: darken($neptune, 5%)}
   .t-venus &{background-color: darken($venus, 20%)}   
@@ -509,8 +517,10 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-mercury &{background-color: darken($mercury,15%)}
 }
 
-.c-loader{position:fixed; z-index:999; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards));
-  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.6);}  
+.c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease));
+  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.4);
+    &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 5px white; top: -25%; left:-25%;};
+  }  
   .o-bubble{@include linear; @include infinite; left: 50%}
   .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubble-small-orbit); background-color: transparent}
   .s--medium{border:solid 2px #54de8e; @include duration(16); @include animation(bubble-large-orbit); background-color: transparent}
@@ -526,10 +536,13 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   }
   &.is-hidden{@include duration(0.5); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
-.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply}
-.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 4s steps(42) forwards)); top:-3em; position: relative;}
+.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply;
+  .is-booting &{@include animate(fadeInUp, 1.2, 0.85); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+}
+.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 3s steps(42) forwards)); top:-3em; position: relative;}
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
+  .is-booting &{@include animate(fadeIn, 1.5, 1.4);}
 }
 .c-page__info{width: em(720); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
   p{@include center; width: 90%; @include light}
@@ -540,6 +553,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-jupiter &{background-color: $jupiter}
   .t-earth &{background-color: $earth}
   .t-mercury &{background-color: $mercury}
+  .is-booting &{@include animate(fadeInUp, 1, 1.4); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
 .c-page__content{position: relative; top:-5%}
 .c-page__actions{@include clear; margin-bottom: 2em;
@@ -639,6 +653,10 @@ $orbit-radius:150px;
 @keyframes c-page-cover__title {
    100% { background-position: -14280px}
 }
+@keyframes fadeIn {
+  from {opacity:0}
+  to {opacity:1}
+}
 @keyframes slideInUp {
   from {@include prefix((transform: translate3d(0, 100%, 0)))}
   to {@include prefix((transform: none))}
@@ -649,6 +667,14 @@ $orbit-radius:150px;
 }
 @keyframes fadeInUp {
   from {@include prefix((transform: translate3d(0, 100%, 0))); opacity: 0;}
+  to {@include prefix((transform: none)); opacity: 1}
+}
+@keyframes fadeInDown {
+  from {@include prefix((transform: translate3d(0, -100%, 0))); opacity: 0;}
+  to {@include prefix((transform: none)); opacity: 1}
+}
+@keyframes fadeInRight {
+  from {@include prefix((transform: translate3d(100%, 0, 0))); opacity: 0;}
   to {@include prefix((transform: none)); opacity: 1}
 }
 .fadeOut{opacity: 0}

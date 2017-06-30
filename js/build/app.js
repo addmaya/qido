@@ -1,10 +1,24 @@
 jQuery(document).ready(function($) {
+	
+	//variables
+	var body = $('body');
+	var pageLoader = $('.c-loader');
+
+	//functions
+	function updatePageTheme(cssClass){
+		setTimeout(function(){
+	    	body.removeClass();
+			body.addClass(cssClass);
+			body.addClass('is-booting');
+	    }, 500); 
+	}
 
 	//menu
 	$('.c-menu a').click(function() {
 		$('.c-menu').find('.is-active').removeClass('is-active');
 		$(this).addClass('is-active');
 	});
+
 	//lazy image
 	$('.element').each(function() {
     	var me = $(this);
@@ -38,25 +52,87 @@ jQuery(document).ready(function($) {
 	    }
 	});
 
-	//page transitions
-	var page = Barba.BaseView.extend({
-	  namespace: 'page',
+	//page - home
+	var pageHome = Barba.BaseView.extend({
+	  namespace: 'home',
 	  onEnter: function() {
-	    alert('go');
+	    updatePageTheme('t-mercury');
 	  }
 	});
-	page.init();
+	pageHome.init();
 
-	var preloader = $('.c-loader');
+	//page - story
+	var pageStory = Barba.BaseView.extend({
+	  namespace: 'story',
+	  onEnter: function() {
+	    updatePageTheme('t-jupiter');
+	  }
+	});
+	pageStory.init();
+
+	//page - programs
+	var pagePrograms = Barba.BaseView.extend({
+	  namespace: 'programs',
+	  onEnter: function() {
+	    updatePageTheme('t-mercury');
+	  }
+	});
+	pagePrograms.init();
+
+	//page - team
+	var pageTeam = Barba.BaseView.extend({
+	  namespace: 'team',
+	  onEnter: function() {
+	    updatePageTheme('t-earth');
+	  }
+	});
+	pageTeam.init();
+
+	//page - partners
+	var pagePartners = Barba.BaseView.extend({
+	  namespace: 'partners',
+	  onEnter: function() {
+	    updatePageTheme('t-neptune');
+	  }
+	});
+	pagePartners.init();
+
+	//page - events
+	var pageEvents = Barba.BaseView.extend({
+	  namespace: 'events',
+	  onEnter: function() {
+	    updatePageTheme('t-venus');
+	  }
+	});
+	pageEvents.init();
+
+	//page - blog
+	var pageBlog = Barba.BaseView.extend({
+	  namespace: 'blog',
+	  onEnter: function() {
+	    updatePageTheme('t-mercury');
+	  }
+	});
+	pageBlog.init();
+
+	//page - contact
+	var pageContact = Barba.BaseView.extend({
+	  namespace: 'contact',
+	  onEnter: function() {
+	    updatePageTheme('t-neptune');
+	  }
+	});
+	pageContact.init();
+
+	//page transition
 	Barba.Pjax.start();
-	var FadeTransition = Barba.BaseTransition.extend({
-	  
+	var FadeTransition = Barba.BaseTransition.extend({	  
 	  start: function() {
-	    preloader.removeClass('is-hidden');
+	    pageLoader.removeClass('is-hidden');
 	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
 	  },
 	  fadeOut: function() {
-	  	preloader.addClass('is-visible');
+	  	pageLoader.addClass('is-visible');
 	    return $(this.oldContainer).promise();
 	  },
 	  fadeIn: function() {
@@ -67,10 +143,9 @@ jQuery(document).ready(function($) {
 	    
 	    setTimeout(function(){
 	    	$(this.oldContainer).hide();
-	    	preloader.removeClass('is-visible').addClass('is-hidden');
+	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
-	    }, 1200);
-	    
+	    }, 800);
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};

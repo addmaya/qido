@@ -17,7 +17,7 @@
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
 		<?php wp_head(); ?>
 	</head>
-	<body class="<?php
+	<body class="is-booting <?php
 		if(is_page('blog') || is_page('programs')){echo 't-mercury';}
 		if(is_page('story') || is_front_page()){echo 't-jupiter';}
 		if(is_page('team')){echo 't-earth';}
@@ -27,7 +27,5 @@
 	<div class="c-loader">
 		<div class="u-cell">
 			<span></span>
-<!-- 			<i class="o-bubble s--small"></i>
-			<i class="o-bubble s--medium"></i> -->
 		</div>
 	</div>
