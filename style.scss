@@ -260,10 +260,14 @@ $active: #ffe992;
 }
 .o-link{display: inline-block; padding: em(4) 0; position: relative;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
-  span{display: inline-block; padding-left: em(24); line-height: 1.5}
+  span{display: inline-block; padding-left: em(12)}
   .c-page__actions &{color: $neptune}
-  .c-page__info &{margin-top: em(16); color: #fff17d}
-  .o-arrow{position: absolute; top: 50%; }
+  .c-page__info &{padding-top: em(16); color: #fff17d}
+  .o-arrow{position: relative; top:6px; float: left}
+  .c-page__actions &{
+    .o-arrow{position: absolute; top: 50%;}
+    span{padding-left: em(24); line-height:1.5}
+  }
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
@@ -313,7 +317,7 @@ $active: #ffe992;
   &.u-full{float: left;
     .o-article__figure{height: 28em}
     .o-article__brief{width: 70%;}
-    .o-article__time{left:-9%; top: 3em;}
+    .o-article__time{left:-11%; top: 4em;}
   }
   &.u-third{
     .u-wrap{padding: 1.5em; padding-top: 0;}
@@ -330,11 +334,11 @@ $active: #ffe992;
   .s--xsmall{height: 6em; width: 6em; right: 0; top: 20%;}
   .o-arrow{top: 9px;}
 }
-.o-article__figure{position: relative; height: em(385); background-color: black; @include border-radius-s; margin-bottom: em(24);
+.o-article__figure{position: relative; height: em(385); background-color: #e6e6e6; @include border-radius-s; margin-bottom: em(24); background-position: center; background-repeat: no-repeat; background-size: cover;
   .u-center{text-align: center; position: relative; z-index: 1; top: -1em}
   .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%; background-color: #FDC14D}
 }
-.o-article__time{display: inline-block; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -20%; top: 2em; position: relative; color: #fff; z-index: 1; font-weight: normal;
+.o-article__time{display: inline-block; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -23%; top: 3em; position: relative; color: #fff; z-index: 1; font-weight: normal;
   .t-venus &{background-color: darken($venus, 15%)}
   .t-mercury &{background-color: darken($mercury, 15%)}
   .t-neptune &{background-color: $neptune}
@@ -376,7 +380,7 @@ $active: #ffe992;
   .o-subheading{padding:em(12) 0 em(6)}
   &.u-third{width: percentage(1/3)}
 }
-.o-tag{display: inline-block; font-size: 2.2em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
+.o-tag{display: inline-block; font-size: 2em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
   span{vertical-align: super; font-size: 50%; color:#00a6d0;}
 }
 .o-ticket{
@@ -560,7 +564,7 @@ $active: #ffe992;
   }
   &.is-hidden{@include duration(0.5); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
-.c-page-cover__image{height: 100%; @include cover; @include multiply;
+.c-page-cover__image{height: 100%; @include cover; @include multiply; filter: grayscale(100%);
   .is-booting &{@include animate(fadeInUp, 1.2, 0.85); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
 .c-page-cover__title{width: 340px; height: 182px; display: block; @include center; background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}

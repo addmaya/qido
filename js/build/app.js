@@ -64,10 +64,12 @@ jQuery(document).ready(function($) {
     });
 
     //bubbles
-    var classes = ['t-cool', 't-warm', 't-passion', 't-romance'];
-	$('.o-bubble').each(function(){
-        $(this).addClass(classes[~~(Math.random()*classes.length)]);
-    });
+    var bubbleThemes = ['t-cool', 't-warm', 't-passion', 't-romance'];
+	function randomizeBubbleColors(){
+		$('.o-bubble').each(function(){
+	        $(this).addClass(bubbleThemes[~~(Math.random()*bubbleThemes.length)]);
+	    });
+	}
 
     //statistics
     var classes = ['t-banana', 't-berry', 't-ivy', 't-mango'];
@@ -185,8 +187,10 @@ jQuery(document).ready(function($) {
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
 	    }, 800);
+	    randomizeBubbleColors();
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
+	randomizeBubbleColors();
 });
 

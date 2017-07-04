@@ -6,7 +6,7 @@
 		<figure class="c-page-cover__image" style="background-image:url('<?php getPostThumbnail(); ?>')"></figure>
 		<div class="u-table">
 			<div class="u-cell u-relative">
-				<span class="c-page-cover__title"></span>
+				<span class="c-page-cover__title" style="background-image:url('<?php the_field('title_animation', 135);?>')"></span>
 				<span class="o-bubble s--small"></span>
 				<span class="o-bubble s--medium"></span>
 			</div>
@@ -17,8 +17,8 @@
 			<h1><?php the_title(); ?>
 				<span class="o-subtitle"><?php getPostTime(); ?></span>
 			</h1>
-			<p><?php the_excerpt(); ?></p>
-			<a href="#" class="o-link">
+			<p><?php getPostExcerpt(186); ?></p>
+			<a href="<?php the_permalink(); ?>" class="o-link">
 				<div class="o-arrow">
 					<i class="o-arrow__stem"></i>
 					<i class="o-arrow__head"></i>
@@ -65,126 +65,54 @@
 			</section>
 			<section class="u-wrap u-pdb-clear">
 				<ul class="u-clear">
-					<li class="o-article u-half">
-						<section class="u-wrap">
-							<span class="o-bubble s--large"></span>
-							<a href="" class="u-block">
-								<figure class="o-article__figure">
-									<div class="u-center">
-										<i class="o-icon"></i>
-									</div>
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
-							</a>
-							<section class="o-article__brief">
-								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
-									<span class="o-link">
-										<i class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</i>
-									</span>
-								</a></p>
-							</section>
-						</section>
-					</li>
-					<li class="o-article u-half">
-						<section class="u-wrap">
-							<span class="o-bubble s--medium"></span>
-							<a href="" class="u-block">
-								<figure class="o-article__figure">
-									<div class="u-center">
-										<i class="o-icon"></i>
-									</div>
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
-							</a>
-							<section class="o-article__brief">
-								<a class="o-subheading">10 things you need for the camp this year.</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
-									<span class="o-link">
-										<i class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</i>
-									</span>
-								</a></p>
-							</section>
-						</section>
-					</li>
-					<li class="o-article u-full">
-						<section class="u-wrap">
-							<span class="o-bubble s--small"></span>
-							<a href="" class="u-block">
-								<figure class="o-article__figure">
-									<div class="u-center">
-										<i class="o-icon"></i>
-									</div>
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
-							</a>
-							<section class="o-article__brief">
-								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
-									<span class="o-link">
-										<i class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</i>
-									</span>
-								</a></p>
-							</section>
-						</section>
-					</li>
-					<li class="o-article u-half">
-						<section class="u-wrap">
-							<span class="o-bubble s--large"></span>
-							<a href="" class="u-block">
-								<figure class="o-article__figure">
-									<div class="u-center">
-										<i class="o-icon"></i>
-									</div>
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
-							</a>
-							<section class="o-article__brief">
-								<a href="#" class="o-subheading">How we rocked share 101 for the annual festival</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
-									<span class="o-link">
-										<i class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</i>
-									</span>
-								</a></p>
-							</section>
-						</section>
-					</li>
-					<li class="o-article u-half">
-						<section class="u-wrap">
-							<span class="o-bubble s--xsmall"></span>
-							<a href="" class="u-block">
-								<figure class="o-article__figure">
-									<div class="u-center">
-										<i class="o-icon"></i>
-									</div>
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
-							</a>
-							<section class="o-article__brief">
-								<a class="o-subheading">10 things you need for the camp this year.</a>
-								<p><a href="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever.
-									<span class="o-link">
-										<i class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</i>
-									</span>
-								</a></p>
-							</section>
-						</section>
-					</li>
+					<?php $blogPosts = new WP_Query(array('posts_per_page'=>6)); ?>
+					<?php if ($blogPosts->have_posts() ) : ?>
+						<?php 
+							$postIndex = 0;
+							$postClass = '';
+							$bubbleSizes = ['s--xsmall', 's--small', 's--medium', 's--large'];
+							
+							while ( $blogPosts->have_posts() ) : $blogPosts->the_post(); 
+							
+							if ($postIndex > 2) {
+								$postIndex = 0;
+							}
+
+							if($postIndex == 2){
+								$postClass = 'u-full';
+							} else {
+								$postClass = 'u-half';
+							}
+							
+							$postPermalink = get_permalink();
+						?>
+							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>">
+								<section class="u-wrap">
+									<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
+									<a href="" class="u-block">
+										<figure class="o-article__figure" style="background-image:url('<?php getPostThumbnail(); ?>')">
+											<div class="u-center">
+												<i class="o-icon"></i>
+											</div>
+											<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
+										</figure>
+									</a>
+									<section class="o-article__brief">
+										<a href="<?php echo $postPermalink; ?>" class="o-subheading"><?php the_title(); ?></a>
+										<p><a href="<?php echo $postPermalink; ?>"><?php getPostExcerpt(136); ?>
+											<span class="o-link">
+												<i class="o-arrow">
+													<i class="o-arrow__stem"></i>
+													<i class="o-arrow__head"></i>
+												</i>
+											</span>
+										</a></p>
+									</section>
+								</section>
+							</li>
+						<?php $postIndex ++; endwhile; ?>
+						<?php wp_reset_postdata(); ?>
+					<?php endif; ?>
 				</ul>
 				<div class="a-center u-pt-l">
 					<span class="o-subtitle u-pb-m">8/125</span>
@@ -193,7 +121,7 @@
 							<i class="o-arrow__stem"></i>
 							<i class="o-arrow__head"></i>
 						</div>
-						<span class="o-button__title">Show me More</span>
+						<span class="o-button__title">Load More Stories</span>
 					</a>
 				</div>
 			</section>
@@ -260,22 +188,13 @@
 				<span class="o-section__title">Find by topic</span>
 			</header>
 			<section>
-				<a href="#" class="o-tag">Love <span>1</span></a>
-				<a href="#" class="o-tag">Sex <span>12</span></a>
-				<a href="#" class="o-tag">Relationships <span>45</span></a>
-				<a href="#" class="o-tag">money <span>67</span></a>
-				<a href="#" class="o-tag">events <span>900</span></a>
-				<a href="#" class="o-tag">mtv <span>23</span></a>
-				<a href="#" class="o-tag">shuga <span>80</span></a>
-				<a href="#" class="o-tag">pregnancy <span>83</span></a>
-				<a href="#" class="o-tag">camp <span>55</span></a>
-				<a href="#" class="o-tag">academy <span>2</span></a>
-				<a href="#" class="o-tag">health <span>4</span></a>
-				<a href="#" class="o-tag">pregnancy <span>78</span></a>
-				<a href="#" class="o-tag">SRHS <span>100</span></a>
-				<a href="#" class="o-tag">condoms <span>144</span></a>
-				<a href="#" class="o-tag">girls <span>19</span></a>
-				<a href="#" class="o-tag">boys <span>4</span></a>
+				<?php $tagList = get_terms('post_tag',array('hide_empty'=>true)); if ($tagList) {?>
+				<?php foreach ($tagList as $postTag): ?>
+					<a href="<?php echo get_tag_link($postTag->term_id); ?>" class="o-tag"><?php  echo $postTag->name; ?> <span><?php  echo $postTag->count; ?></span></a>
+				<?php endforeach ?>
+				<?php } ?>
+
+			
 			</section>
 		</div>
 	</section>

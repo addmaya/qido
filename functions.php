@@ -125,13 +125,31 @@
 	}
 
 	function getPostTime(){
-		echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+		echo human_time_diff(get_the_time('U'),current_time('timestamp')).' ago';
 	}
 
 	function getPostThumbnail(){
 		if (has_post_thumbnail($post->ID)){
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 			echo $image[0];
+		}
+	}
+
+	function getPostExcerpt($charlength) {
+		$excerpt = get_the_excerpt();
+		$charlength++;
+
+		if ( mb_strlen( $excerpt ) > $charlength ) {
+			$subex = mb_substr( $excerpt, 0, $charlength - 5 );
+			$exwords = explode( ' ', $subex );
+			$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+			if ( $excut < 0 ) {
+				echo mb_substr( $subex, 0, $excut );
+			} else {
+				echo $subex;
+			}
+		} else {
+			echo $excerpt;
 		}
 	}
 ?>
