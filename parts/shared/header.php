@@ -3,11 +3,11 @@
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
 		<ul class="o-networks">
 			<li><a href="#"><span class="o-icon s--search"></span></a></li>
-			<li><a href="#"><span class="o-icon s--fb"></span></a></li>
-			<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-			<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-			<li><a href="#"><span class="o-icon s--youtube"></span></a></li>
-			<li><a href="#"><span class="o-icon s--soundcloud"></span></a></li>
+			<li><a href="https://www.facebook.com/reachahand"><span class="o-icon s--fb"></span></a></li>
+			<li><a href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
+			<li><a href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>
+			<li><a href="https://www.youtube.com/channel/UCf06VA_E9ICZkFue5AjC2XQ"><span class="o-icon s--youtube"></span></a></li>
+			<li><a href="https://soundcloud.com/reach-a-hand"><span class="o-icon s--soundcloud"></span></a></li>
 		</ul>
 	</section>
 </header>
@@ -39,20 +39,6 @@
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
-				<ul class="o-submenu">
-					<li class="o-submenu-item">
-						<a href="#">Program 1</a>
-						<a href="#">Program 2</a>
-						<a href="#">Program 3</a>
-						<a href="#">Program 4</a>
-						<a href="#">Program 5</a>
-						<a href="#">Program 6</a>
-						<a href="#">Program 7</a>
-						<a href="#">Program 8</a>
-						<a href="#">Program 9</a>
-						<a href="#">Program 10</a>
-					</li>
-				</ul>
 			</li>
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/team">

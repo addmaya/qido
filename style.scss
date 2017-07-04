@@ -566,7 +566,7 @@ $active: #ffe992;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4);}
 }
-.c-page__info{width: em(720); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
+.c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
   p{@include center; width: 90%; @include light}
   .u-wrap{padding: 2em}
 
