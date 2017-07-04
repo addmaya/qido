@@ -1,32 +1,40 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header'));?>
-<section class="c-page-cover">
-	<figure class="c-page-cover__image"></figure>
-	<div class="u-table">
-		<div class="u-cell u-relative">
-			<span class="c-page-cover__title"></span>
-			<span class="o-bubble s--small"></span>
-			<span class="o-bubble s--medium"></span>
-		</div>
-	</div>
-</section>
-<section class="c-page__info">
-	<div class="u-wrap">
-		<h1>Our new music video for Shing & Pen is live. What do you think?
-			<span class="o-subtitle">Yesterday</span>
-		</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ullamcorper ligula at suscipit. Donec sollicitudin leo eget pulvinar tincidunt. Fusce id enim et lacus porta mattis.</p>
-		<a href="#" class="o-link">
-			<div class="o-arrow">
-				<i class="o-arrow__stem"></i>
-				<i class="o-arrow__head"></i>
+<?php $featuredPosts = new WP_Query(array('posts_per_page'=>1)); ?>
+<?php if ( $featuredPosts->have_posts() ) : ?>
+	<?php while ( $featuredPosts->have_posts() ) : $featuredPosts->the_post(); ?>
+	<section class="c-page-cover">
+		<figure class="c-page-cover__image" style="background-image:url('<?php getPostThumbnail(); ?>')"></figure>
+		<div class="u-table">
+			<div class="u-cell u-relative">
+				<span class="c-page-cover__title"></span>
+				<span class="o-bubble s--small"></span>
+				<span class="o-bubble s--medium"></span>
 			</div>
-			<span>Read On</span>
-		</a>
-	</div>
-</section>
+		</div>
+	</section>
+	<section class="c-page__info">
+		<div class="u-wrap">
+			<h1><?php the_title(); ?>
+				<span class="o-subtitle"><?php getPostTime(); ?></span>
+			</h1>
+			<p><?php the_excerpt(); ?></p>
+			<a href="#" class="o-link">
+				<div class="o-arrow">
+					<i class="o-arrow__stem"></i>
+					<i class="o-arrow__head"></i>
+				</div>
+				<span>Read On</span>
+			</a>
+		</div>
+	</section>
+	<?php endwhile; ?>
+	<?php wp_reset_postdata(); ?>
+<?php endif; ?>
+
 <section class="c-page__title">
 	<span><?php the_title(); ?></span>
 </section>
+
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">

@@ -3,11 +3,11 @@
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
 		<ul class="o-networks">
 			<li><a href="#"><span class="o-icon s--search"></span></a></li>
-			<li><a href="#"><span class="o-icon s--fb"></span></a></li>
-			<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-			<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-			<li><a href="#"><span class="o-icon s--youtube"></span></a></li>
-			<li><a href="#"><span class="o-icon s--soundcloud"></span></a></li>
+			<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--fb"></span></a></li>
+			<li><a href="https://twitter.com/reachahand" target="_blank"><span class="o-icon s--twitter"></span></a></li>
+			<li><a href="https://www.instagram.com/reach_a_hand/" target="_blank"><span class="o-icon s--instagram"></span></a></li>
+			<li><a href="https://www.youtube.com/user/REACHAHANDUGANDA" target="_blank"><span class="o-icon s--youtube"></span></a></li>
+			<li><a href="https://soundcloud.com/reach-a-hand" target="_blank"><span class="o-icon s--soundcloud"></span></a></li>
 		</ul>
 	</section>
 </header>

@@ -41,6 +41,7 @@
 	        $scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
 	    }
 	}
+
 	remove_action('wp_head','rest_output_link_wp_head');
 	remove_action('wp_head','wp_oembed_add_discovery_links');
 	remove_action('template_redirect', 'rest_output_link_header', 11, 0);
@@ -82,4 +83,55 @@
 	  return 'wp-admin/edit.php';
 	}
 	add_filter('login_redirect', 'admin_default_page');
+
+	function verifyEmail($a){
+		if(isset($_POST[$a])) {
+			$userEmail = trim($_POST[$a]);
+			if(($userEmail != 'Email') && (preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", $userEmail))){
+				return $userEmail;
+			}
+		}
+	}
+	add_action('admin_post_submitContact', 'submitContact');
+	add_action('admin_post_nopriv_submitContact', 'submitContact');
+	function submitContact(){
+		if(isset($_POST['form_nonce']) || wp_verify_nonce($_POST['form_nonce'], 'form_nonce_key')){
+			if(isset($_POST['userName'])){
+				$userName = trim($_POST['userName']);
+			}
+			if(isset($_POST['userTelephone'])){
+				$userTelephone = trim($_POST['userTelephone']);
+			}			
+			if(isset($_POST['userEmail'])){
+				$userEmail = verifyEmail('userEmail');
+			}
+			if(isset($_POST['userMessage'])){
+				$userEmail = verifyEmail('userEmail');
+			}
+
+			$messageHeader[] = 'From: '.$userName.' <'.$userEmail.'>';
+			$messageHeader[] = 'Reply-To: '.$userName.' <'.$userEmail.'>';
+
+			if(isset($_POST['userMessage'])){
+				$userMessage = trim($_POST['userMessage']);
+				if(!strstr($userMessage, 'http://')){
+					$messageBody = 'Email: '.$userEmail."\n".'Name: '.$userName."\n".'Phone Number: '.$userTelephone."\n".'Message: '.$userMessage;
+					wp_mail('info@reachahand.org', 'RAHU Website Inquiry', $messageBody, $messageHeader);	
+				}
+				else {exit;}
+			}
+		}
+		else {exit;}	
+	}
+
+	function getPostTime(){
+		echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+	}
+
+	function getPostThumbnail(){
+		if (has_post_thumbnail($post->ID)){
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+			echo $image[0];
+		}
+	}
 ?>

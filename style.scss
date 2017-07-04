@@ -161,6 +161,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   li{display: inline-block; margin-right: em(3);}
   a{display: block;}
   .o-icon{background-color: transparent;}
+  &.s--medium{font-size:1.3em}
 }
 .o-icon{width: em(26); height: em(26); display: inline-block; background-color: red; background-size: contain; background-repeat: no-repeat;
   &.s--search{@include image('search__white.svg')}
@@ -192,7 +193,6 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .o-arrow__head{border-color: $color}
 }
 .o-arrow{position: relative; display: inline-block; color:black; top: 7px;
-  .o-link &{float: left}
   .o-slide &{
     .o-arrow__stem{background-color:#fff !important}
     .o-arrow__head{border-color: #fff !important}
@@ -243,9 +243,10 @@ $active: #ffe992;
 .o-submenu{display: none;}
 .o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef;
   .o-icon{width: 1em; height: 1em}
-  .o-button__title{position: relative; top:-1px}
+  .o-button__title{position: relative; top:-1px; font-weight: 300; @include opensans}
   .o-arrow{right: 12px; float: left; top: 6px;
     &.s--rtl{@include prefix((transform: rotate(180deg))); top: auto; bottom: 3px}
+    form &{top: 8px}
   }
   
   .t-venus &{background-color: #d3cfe6; color: darken($venus, 15%)}
@@ -257,11 +258,12 @@ $active: #ffe992;
   &.s--break{margin:em(48) 0;}
 
 }
-.o-link{display: inline-block; padding: em(4) 0;
+.o-link{display: inline-block; padding: em(4) 0; position: relative;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
-  span{display: inline-block; padding-left: em(12);}
+  span{display: inline-block; padding-left: em(24); line-height: 1.5}
   .c-page__actions &{color: $neptune}
-  .c-page__info &{padding-top: em(16); color: #fff17d}
+  .c-page__info &{margin-top: em(16); color: #fff17d}
+  .o-arrow{position: absolute; top: 50%; }
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
@@ -558,10 +560,10 @@ $active: #ffe992;
   }
   &.is-hidden{@include duration(0.5); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
-.c-page-cover__image{height: 100%; @include cover; @include image('dummy/cover.jpg'); @include multiply;
+.c-page-cover__image{height: 100%; @include cover; @include multiply;
   .is-booting &{@include animate(fadeInUp, 1.2, 0.85); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
-.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; @include image('animation/page-programs.png'); background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
+.c-page-cover__title{width: 340px; height: 182px; display: block; @include center; background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
 .c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4);}
@@ -577,7 +579,9 @@ $active: #ffe992;
   .t-mercury &{background-color: $mercury}
   .is-booting &{@include animate(fadeInUp, 1, 1.4); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
 }
-.c-page__content{position: relative; top:-5%}
+.c-page__content{position: relative; top:-5%;
+  .is-booting &{@include animate(fadeIn, 1.5, 1.8)}
+}
 .c-page__actions{@include clear; margin-bottom: 2em;
   .o-line{position: relative; top: em(30); margin: 2em 0;
     &:after{content:""; position: absolute; height: em(30); width: 1px; background-color: inherit; top: 0; left: 50%;};
@@ -586,7 +590,7 @@ $active: #ffe992;
 }
 .c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
   span{position: relative; z-index: 2}
-  figure{width: 100%; height: 100%; @include cover; @include cover; @include image('dummy/cover.jpg'); position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
+  figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
   .o-icon{background-color: #fff;}
   .o-heading {color: #fff !important}
 
@@ -599,10 +603,16 @@ $active: #ffe992;
   h2{margin-bottom: em(12);}
   .o-networks{margin-bottom: em(48)}
   .o-line{background-color: #d6d6d6}
+
+  .t-neptune &{background-color: #e4eaf5}
+  .t-venus &{background-color: #ece4f5}
+  .t-jupiter &{background-color: #e0edf7}
+  .t-earth &{background-color: #e4f5f0}
+  .t-mercury &{background-color: #e4e4f5}
 }
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
-  figure{background-color: #000; width: em(96);height: em(96);}
+  figure{width: 90%;height: em(96); background-repeat:no-repeat; background-size:70%; background-position: center;}
 }
 .c-form-newsletter{@include clear;
   .o-button{float: right; width: 42%; padding: em(8) em(24);
@@ -614,8 +624,10 @@ $active: #ffe992;
 }
 .c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.7;
   ul{padding: 2em 0;}
-  li{display: inline-block;}
-  a{display: block; padding: 0.5em}
+  li{display: inline-block; margin-left:em(6)}
+  a{display: block; padding: 0.5em; position: relative;
+    &:after{content:""; position: absolute; background-color:#929292; width: 20%; height: 1px; bottom:50%; left:em(-12)}
+  }
 }
 .c-team{text-align: center; @include clear; margin-bottom: em(24);
   li{width: 25%; float: left; margin-bottom: em(48);}
@@ -657,7 +669,7 @@ $active: #ffe992;
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
   &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
 }
-.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin: 1em; z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));
+.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0))); border-radius: 3px; 
   .t-neptune &{background-color: $neptune}
   .t-venus &{background-color: $venus}
   .t-jupiter &{background-color: $jupiter}
