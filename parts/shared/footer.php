@@ -4,6 +4,7 @@
 			$pageCoverImage = get_field('cover_image');
 			$pageID = get_the_id();
 		?>
+		<?php if(!is_front_page()){?>
 		<section class="c-page__actions">
 			<div class="u-box">
 				<span class="o-line s--break"></span>
@@ -46,6 +47,7 @@
 				</div>
 			</div>
 		</section>
+		<?php } ?>
 		<?php
 			$pageList = array();
 			foreach (get_pages('sort_column=menu_order&sort_order=asc') as $page) {

@@ -18,11 +18,11 @@ jQuery(document).ready(function($) {
 
 	function toggleMenu(){
 		humberger.toggleClass('is-open');
-		body.toggleClass('u-oh').toggleClass('is-booting');
+		body.toggleClass('u-oh');
 		pageMenu.toggleClass('is-hidden').toggleClass('is-active');
 		pageOverlay.toggleClass('is-visible');
 	}
-
+	
 	//menu
 	$('.o-menu a').click(function() {
 		$('.o-menu').find('.is-active').removeClass('is-active');
@@ -72,10 +72,12 @@ jQuery(document).ready(function($) {
 	}
 
     //statistics
-    var classes = ['t-banana', 't-berry', 't-ivy', 't-mango'];
-	$('.o-statistic figure').each(function(){
-        $(this).addClass(classes[~~(Math.random()*classes.length)]);
-    });
+    var statThemes = ['t-banana', 't-berry', 't-ivy', 't-mango'];
+	function randomizeStatBubbles(){
+		$('.o-statistic__bubble').each(function(){
+	        $(this).addClass(statThemes[~~(Math.random()*statThemes.length)]);
+	    });
+    }
 
     //scroll to hash
     $(document).on('click', 'a[href*="#"]:not([href="#"])', function(e) {
@@ -188,9 +190,12 @@ jQuery(document).ready(function($) {
 	    	transition.done();
 	    }, 800);
 	    randomizeBubbleColors();
+	    randomizeStatBubbles();
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
+	
 	randomizeBubbleColors();
+	randomizeStatBubbles();
 });
 

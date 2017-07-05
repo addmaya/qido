@@ -30,11 +30,9 @@
 	<?php endwhile; ?>
 	<?php wp_reset_postdata(); ?>
 <?php endif; ?>
-
 <section class="c-page__title">
 	<span><?php the_title(); ?></span>
 </section>
-
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">

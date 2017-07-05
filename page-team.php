@@ -3,78 +3,26 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<ul class="c-team">
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li>
-					<figure>
-						<span class="o-bubble s--large"></span>
-						<span class="o-bubble s--medium"></span>
-						<span class="o-bubble s--small"></span>
-					</figure>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
+				<?php 
+					$teamList = new WP_Query(array(
+						'post_type'=>'staff',
+						'posts_per_page'=>-1
+						));
+					if ($teamList->have_posts()){ 
+				?>	
+					<?php while ( $teamList->have_posts() ) : $teamList->the_post();  ?>
+					<li>
+						<figure data-thumb="'<?php the_field('photo_full');?>">
+							<span class="o-bubble s--large"></span>
+							<span class="o-bubble s--medium"></span>
+							<span class="o-bubble s--small"></span>
+						</figure>
+						<span class="o-subheading"><?php the_title(); ?></span>
+						<span class="o-subtitle"><?php the_field('title'); ?></span>
+					</li>
+					<?php endwhile; ?>
+					<?php wp_reset_postdata(); ?>
+				<?php } ?>
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
@@ -90,47 +38,32 @@
 	<section class="o-page__section">
 		<div class="o-section__tint"></div>
 		<div class="u-box">
+			<?php 
+				$boardList = new WP_Query(array('post_type'=>'director','posts_per_page'=>-1));
+				if ($boardList->have_posts()){
+					$boardCount =  $boardList->post_count;
+			?>	
 			<header class="o-section__header">
 				<span class="o-section__title">Board of Directors</span>
-				<span class="o-subtitle">Eight</span>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500.</p>
+				<span class="o-subtitle"><?php echo strval($boardCount); ?></span>
+				<p><?php the_field('directors_introduction'); ?></p>
 			</header>
 			<ul class="u-clear">
-				<li class="o-partner">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
+				<?php while ($boardList->have_posts()):$boardList->the_post();  ?>
+					<li class="o-partner">
+						<a href="#">
+							<figure class="o-partner__logo" data-thumb="<?php the_field('photo'); ?>"></figure>
+							<span></span>
+						</a>
+						<span class="o-subheading"><?php the_title(); ?></span>
+						<span class="o-subtitle"><?php the_field('title'); ?></span>
+					</li>
+				<?php endwhile; ?>
+				<?php wp_reset_postdata(); ?>
 			</ul>
+			<?php } ?>
 			<footer class="o-section__footer">
-				<span class="o-subtitle u-pb-m">4 of 8</span>
+				<span class="o-subtitle u-pb-m">4 of <?php echo $boardCount; ?></span>
 				<a href="#" class="o-button">
 					<div class="o-arrow s--rtl">
 						<i class="o-arrow__stem"></i>
@@ -151,78 +84,30 @@
 	<section class="o-page__section">
 		<div class="o-section__tint"></div>
 		<div class="u-box u-clear">
+			<?php 
+				$iconsList = new WP_Query(array('post_type'=>'cultural','posts_per_page'=>-1));
+				if ($iconsList->have_posts()){
+					$iconsCount =  $iconsList->post_count;
+			?>	
 			<header class="o-section__header s--left">
-				<span class="o-section__title">Board of Directors</span>
-				<span class="o-subtitle">Twenty Four</span>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500. Lorem Ipsum is simply.</p>
+				<span class="o-section__title">Cultural Icons</span>
+				<span class="o-subtitle"><?php echo strval($iconsCount); ?></span>
+				<p><?php the_field('cultural_icons_introduction'); ?></p>
 			</header>
 			<ul class="u-70p">
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
-				<li class="o-partner u-third">
-					<a href="#">
-						<figure class="o-partner__logo"></figure>
-						<span></span>
-					</a>
-					<span class="o-subheading">Charlotte Nalumansi</span>
-					<span class="o-subtitle">Founder & CEO</span>
-				</li>
+				<?php while ($iconsList->have_posts()):$iconsList->the_post();  ?>
+					<li class="o-partner u-third">
+						<a href="#">
+							<figure class="o-partner__logo" data-thumb="<?php echo the_field('photo'); ?>"></figure>
+							<span></span>
+						</a>
+						<span class="o-subheading"><?php the_title(); ?></span>
+						<span class="o-subtitle"><?php the_field('title'); ?></span>
+					</li>
+				<?php endwhile; ?>
+				<?php wp_reset_postdata(); ?>
 			</ul>
+			<?php } ?>
 		</div>
 	</section>
 </section>

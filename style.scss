@@ -437,7 +437,7 @@ $active: #ffe992;
   p{font-size: 0.875em}
   .o-subheading{color:#fff;}
 }
-.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.1}
+.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.1; text-transform: lowercase;}
 .o-program__summary{position: relative; z-index: 1}
 .o-milestone{width: 50%; float: left;
   p{padding-bottom: 1.5em;
@@ -465,7 +465,7 @@ $active: #ffe992;
     .o-bubble{left: -5%}
   }
 }
-.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: black; @include border-radius-s; margin-bottom: 1.5em;}
+.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em;}
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
   p{padding: em(9)}
@@ -508,7 +508,7 @@ $active: #ffe992;
   .s--right &{right: 0}
 }
 
-.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160);
+.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color:#3f51b5;
   .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em; z-index: 1}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .o-imagelink__figure{display: block; height: 100%; @include multiply; @include cover; @include image('dummy/cover.jpg')}
@@ -653,7 +653,7 @@ $active: #ffe992;
   figure{background-color: #000; padding-bottom: 150%;}
   .o-subheading{height: em(72); padding-bottom: 0; padding-left:em(9)}
 }
-.c-splash{background-color: black; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
+.c-splash{background-color: #e6e6e6; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
   .u-box{height: 100%}
   .s--small{background-color: #FFC14A}  
   .s--medium{background-color: #5FD691}  
