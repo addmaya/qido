@@ -100,6 +100,7 @@ body{@include opensans; font-size: 0.95em; font-weight: 300;
   &.t-venus{color: #706992}
   &.t-jupiter{color: #717c7d}
   &.t-earth{color: #55635d}
+  &.t-mercury{color:#46495a}
 }
 strong{font-weight: 600}
 p{line-height: 1.6}
@@ -163,7 +164,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .o-icon{background-color: transparent;}
   &.s--medium{font-size:1.3em}
 }
-.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red; background-size: contain; background-repeat: no-repeat;
+.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red; background-size: contain; background-repeat: no-repeat; background-position:center;
   &.s--search{@include image('search__white.svg')}
   &.s--fb{@include image('facebook_white.svg');
     .t-light &{@include image('facebook_color.svg')}
@@ -186,6 +187,8 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   &.s--rss{@include image('rss.svg')}
   &.s--mail{@include image('mail.svg')}
   &.s--arrow__down{@include image('arrow_down.svg')}
+  &.s--calendar{@include image('calendar.svg'); background-size:50%}
+  &.s--pen{@include image('pen.svg'); background-size:50%}
 }
 
 @mixin o-arrow-theme($color){
@@ -317,11 +320,9 @@ $active: #ffe992;
   &.u-full{float: left;
     .o-article__figure{height: 28em}
     .o-article__brief{width: 70%;}
-    .o-article__time{left:-11%; top: 4em;}
   }
   &.u-third{
     .u-wrap{padding: 1.5em; padding-top: 0;}
-    .o-article__time{left:-25%; top: 8em;}
     .s--medium{left: 0; right: auto;}
     .s--small{left: 0; right: auto; top: 25%;}
     .s--xsmall{left: 0; right: auto; top: 35%;}
@@ -335,10 +336,10 @@ $active: #ffe992;
   .o-arrow{top: 9px;}
 }
 .o-article__figure{position: relative; height: em(385); background-color: #e6e6e6; @include border-radius-s; margin-bottom: em(24); background-position: center; background-repeat: no-repeat; background-size: cover;
-  .u-center{text-align: center; position: relative; z-index: 1; top: -1em}
-  .o-icon{height: 2.5em; width: 2.5em; border-radius: 50%; background-color: #FDC14D}
+  .u-center{text-align: center; position: absolute; z-index: 1; top: em(-20); width: 100%}
+  .o-icon{height: 2.5em; width: 2.5em; background-color: #FDC14D; border-radius: 50%}
 }
-.o-article__time{display: inline-block; transform-origin:50% 50%; transform: rotate(-90deg); padding: 0.5em; font-size: em(9); left: -23%; top: 3em; position: relative; color: #fff; z-index: 1; font-weight: normal;
+.o-article__time{display: inline-block; padding: 0.5em 0.75em; font-size: em(9); top:4em; position: relative; color: #fff; z-index: 1; font-weight: normal;
   .t-venus &{background-color: darken($venus, 15%)}
   .t-mercury &{background-color: darken($mercury, 15%)}
   .t-neptune &{background-color: $neptune}
@@ -376,12 +377,13 @@ $active: #ffe992;
   .t-mercury &{background-color: #ebefff}
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
-  a{display: block; width: em(225); height: em(225); background-color: #000; @include center}
+  a{display: block; width: em(225); height: em(225); background-color: #b5c9de;  @include center}
   .o-subheading{padding:em(12) 0 em(6)}
+  figure{height: 100%; width: 100%; background-size:65%; background-repeat: no-repeat; background-position: center;}
   &.u-third{width: percentage(1/3)}
 }
-.o-tag{display: inline-block; font-size: 2em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
-  span{vertical-align: super; font-size: 50%; color:#00a6d0;}
+.o-tag{display: inline-block; font-size: 1.5em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
+  span{vertical-align: super; font-size: 50%; color:#00a6d0; font-weight:bold}
 }
 .o-ticket{
   .c-cut{position: absolute; z-index: 1; width: em(16); height: em(16); @include border-radius-l;
@@ -392,10 +394,10 @@ $active: #ffe992;
   }
 }
 .o-ticket__figure{display: block; position: relative;
-  figure{background-color: #000; height: em(320); position: relative}
+  figure{background-color: #e6e6e6; height: em(320); position: relative; background-size: cover; background-repeat: no-repeat; background-position: center}
   .c-cut{top: em(12); background-color: #f2f0fa}
 }
-.o-ticket__info{@include clear; background-color: #dedbea; padding: em(12); margin-bottom: 1.2em; position: relative;
+.o-ticket__info{@include clear; background-color: #dedbea; padding: em(12); margin-bottom: 1.2em; position: relative; @include image('barcode.svg'); background-size: em(24); background-position: 15px bottom; background-repeat: no-repeat;
   span{display: block; text-transform: uppercase; font-size: 0.75em; font-family: 'Arial'; padding:1.5em 1.5em 1.5em 0; line-height: 1.5; color: #686475}
   .o-line{width: 30%; height: 2px; background-color: #c7c2da;}
   .c-cut{background-color: #fff}
@@ -403,7 +405,7 @@ $active: #ffe992;
   .s--right{top:em(-8)}
 }
 .o-program{margin-bottom: 8em; float: left;
-  .o-program__figure{width: 75%; background-color: #000; height:26em; border-radius: em(8); float: right}
+  .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center}
   .o-button{margin-top: 1.5em; border-color: #fff}
   .o-bubble{
     &.s--medium{width: 3em; height: 3em}
@@ -437,7 +439,7 @@ $active: #ffe992;
   p{font-size: 0.875em}
   .o-subheading{color:#fff;}
 }
-.o-progam__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: 0; right: 0; opacity: 0.1; text-transform: lowercase;}
+.o-progam__monogram{font-weight: bold; color: black; font-size: 10em; position: absolute; bottom: 0; right: 0; opacity: 0.1; text-transform: lowercase;}
 .o-program__summary{position: relative; z-index: 1}
 .o-milestone{width: 50%; float: left;
   p{padding-bottom: 1.5em;
@@ -594,7 +596,7 @@ $active: #ffe992;
 }
 .c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
   span{position: relative; z-index: 2}
-  figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1}
+  figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1; filter: grayscale(100);}
   .o-icon{background-color: #fff;}
   .o-heading {color: #fff !important}
 

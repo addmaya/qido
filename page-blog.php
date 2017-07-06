@@ -90,7 +90,7 @@
 									<a href="" class="u-block">
 										<figure class="o-article__figure" style="background-image:url('<?php getPostThumbnail(); ?>')">
 											<div class="u-center">
-												<i class="o-icon"></i>
+												<i class="o-icon s--pen"></i>
 											</div>
 											<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
 										</figure>
@@ -138,32 +138,31 @@
 							<span class="o-bubble s--large"></span>
 							<a href="#" class="u-block">
 								<figure class="o-article__figure">
-									<span class="o-article__time o-subtitle">5 days Ago</span>
+									
 								</figure>
 							</a>
 							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
+							<span class="o-subtitle">5 days Ago</span>
 						</section>
 					</li>
 					<li class="o-article u-third">
 						<section class="u-wrap">
 							<span class="o-bubble s--medium"></span>
 							<a href="#" class="u-block">
-								<figure class="o-article__figure">
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
+								<figure class="o-article__figure"></figure>
 							</a>
 							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
+							<span class="o-subtitle">5 days Ago</span>
 						</section>
 					</li>
 					<li class="o-article u-third">
 						<section class="u-wrap">
 							<span class="o-bubble s--small"></span>
 							<a href="#" class="u-block">
-								<figure class="o-article__figure">
-									<span class="o-article__time o-subtitle">5 days Ago</span>
-								</figure>
+								<figure class="o-article__figure"></figure>
 							</a>
 							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
+							<span class="o-subtitle">5 days Ago</span>
 						</section>
 					</li>
 				</ul>
@@ -187,9 +186,11 @@
 			</header>
 			<section>
 				<?php $tagList = get_terms('post_tag',array('hide_empty'=>true)); if ($tagList) {?>
-				<?php foreach ($tagList as $postTag): ?>
+				<?php foreach ($tagList as $postTag): 
+					if($postTag->count > 1){
+				?>
 					<a href="<?php echo get_tag_link($postTag->term_id); ?>" class="o-tag"><?php  echo $postTag->name; ?> <span><?php  echo $postTag->count; ?></span></a>
-				<?php endforeach ?>
+				<?php } endforeach ?>
 				<?php } ?>
 
 			

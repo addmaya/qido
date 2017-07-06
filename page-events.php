@@ -38,14 +38,7 @@
 		$currentDate = date('Ymd');
 		$eventsList = new WP_Query(array(
 			'post_type'=>'event',
-            'posts_per_page'=>-1,
-            'meta_query'=> array(
-                array(
-	        		'key'		=> 'start_date_time',
-	        		'compare'	=> '>',
-	        		'value'		=> $currentDate,
-	    		)
-            )
+            'posts_per_page'=>-1
 		));
 		$eventsCount = $eventsList->post_count;
 		if ($eventsList->have_posts()){ 
@@ -54,7 +47,7 @@
 			<div class="o-section__tint"></div>
 			<div class="u-box">
 				<header class="a-center">
-					<span class="o-section__title">Upcoming Events - <?php echo $eventsCount; ?></span>
+					<span class="o-section__title"> Upcoming Events</span>
 				</header>
 				<section>
 					<ul class="u-clear">
@@ -70,8 +63,8 @@
 									<a href="<?php the_permalink(); ?>" class="o-ticket__figure">
 										<i class="c-cut s--left"></i>
 										<i class="c-cut s--right"></i>
-										<span class="o-article__time o-subtitle"><?php echo $eventDateDifference; ?> Days to</span>
-										<figure></figure>
+										<span class="o-article__time o-subtitle"><?php if($eventDateDifference < 0){echo abs($eventDateDifference).' days ago';} else {echo $eventDateDifference.' days to';} ?></span>
+										<figure style="background-image: url('<?php the_field('cover_image');?>')"></figure>
 									</a>
 									<div class="o-ticket__info">
 										<i class="c-cut s--left"></i>
@@ -161,7 +154,7 @@
 									<a href="" class="u-block">
 										<figure class="o-article__figure" style="background-image:url('<?php getPostThumbnail(); ?>')">
 											<div class="u-center">
-												<i class="o-icon"></i>
+												<i class="o-icon s--calendar"></i>
 											</div>
 											<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
 										</figure>
@@ -197,7 +190,17 @@
 		</div>
 	</section>
 	<?php 
-		$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>2));
+		$programsList = new WP_Query(array(
+			'post_type'=>'program',
+			'posts_per_page'=>2,
+			'tax_query'=>array(
+					array(
+						'taxonomy'=>'kind',
+						'field'=>'name',
+						'terms'=>'event'
+					)
+				)
+			));
 		if ($programsList->have_posts()){
 	?>
 	<section class="o-page__section">
@@ -208,7 +211,7 @@
 					<div class="u-clear u-relative">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
-						<figure class="o-program__figure"></figure>
+						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image')?>')"></figure>
 						<section class="o-program__info">
 							<div class="u-clear">
 								<figure class="o-program__logo" data-thumb="<?php the_field('logo'); ?>"></figure>
