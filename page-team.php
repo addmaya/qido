@@ -12,13 +12,13 @@
 				?>	
 					<?php while ( $teamList->have_posts() ) : $teamList->the_post();  ?>
 					<li>
-						<figure data-thumb="'<?php the_field('photo_full');?>">
+						<figure style="background-image:url('<?php the_field('photo_full');?>')">
 							<span class="o-bubble s--large"></span>
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--small"></span>
 						</figure>
-						<span class="o-subheading"><?php the_title(); ?></span>
-						<span class="o-subtitle"><?php the_field('title'); ?></span>
+						<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
+						<span class="o-subheading s--profile"><?php the_title(); ?></span>
 					</li>
 					<?php endwhile; ?>
 					<?php wp_reset_postdata(); ?>
@@ -35,80 +35,46 @@
 			</footer>
 		</div>
 	</section>
+	<?php 
+		$pageID = get_the_ID();
+		$childPages = new WP_Query(array(
+			'post_type'=>'page',
+			'post_parent'=>138
+			));
+		if ($childPages->have_posts()){
+	?>
 	<section class="o-page__section">
-		<div class="o-section__tint"></div>
 		<div class="u-box">
-			<?php 
-				$boardList = new WP_Query(array('post_type'=>'director','posts_per_page'=>-1));
-				if ($boardList->have_posts()){
-					$boardCount =  $boardList->post_count;
-			?>	
-			<header class="o-section__header">
-				<span class="o-section__title">Board of Directors</span>
-				<span class="o-subtitle"><?php echo strval($boardCount); ?></span>
-				<p><?php the_field('directors_introduction'); ?></p>
-			</header>
-			<ul class="u-clear">
-				<?php while ($boardList->have_posts()):$boardList->the_post();  ?>
-					<li class="o-partner">
-						<a href="#">
-							<figure class="o-partner__logo" data-thumb="<?php the_field('photo'); ?>"></figure>
-							<span></span>
-						</a>
-						<span class="o-subheading"><?php the_title(); ?></span>
-						<span class="o-subtitle"><?php the_field('title'); ?></span>
-					</li>
+			<ul class="o-program__group">
+				<?php while ( $childPages->have_posts() ) : $childPages->the_post();  ?>
+				<li class="o-program u-half s--clear">
+					<div class="u-clear u-relative">
+						<span class="o-bubble s--medium"></span>
+						<span class="o-bubble s--large"></span>
+						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image')?>')"></figure>
+						<section class="o-program__info">
+							<section>
+								<span class="o-subheading"><?php the_title(); ?></span>
+								<div class="o-program__summary">
+									<p><?php the_field('introduction'); ?></p>
+									<a href="<?php the_permalink(); ?>" class="o-button">
+										<div class="o-arrow">
+											<i class="o-arrow__stem"></i>
+											<i class="o-arrow__head"></i>
+										</div>
+										<span class="o-button__title">Learn More</span>
+									</a>
+								</div>
+								<span class="o-progam__monogram"><?php echo substr(get_the_title(),0,1) ?></span>
+							</section>
+						</section>
+					</div>
+				</li>
 				<?php endwhile; ?>
-				<?php wp_reset_postdata(); ?>
+				<?php wp_reset_postdata(); ?>		
 			</ul>
-			<?php } ?>
-			<footer class="o-section__footer">
-				<span class="o-subtitle u-pb-m">4 of <?php echo $boardCount; ?></span>
-				<a href="#" class="o-button">
-					<div class="o-arrow s--rtl">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
-					<span class="o-button__title">Previous</span>
-				</a>
-				<a href="#" class="o-button">
-					<div class="o-arrow">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
-					<span class="o-button__title">Next</span>
-				</a>
-			</footer>
 		</div>
 	</section>
-	<section class="o-page__section">
-		<div class="o-section__tint"></div>
-		<div class="u-box u-clear">
-			<?php 
-				$iconsList = new WP_Query(array('post_type'=>'cultural','posts_per_page'=>-1));
-				if ($iconsList->have_posts()){
-					$iconsCount =  $iconsList->post_count;
-			?>	
-			<header class="o-section__header s--left">
-				<span class="o-section__title">Cultural Icons</span>
-				<span class="o-subtitle"><?php echo strval($iconsCount); ?></span>
-				<p><?php the_field('cultural_icons_introduction'); ?></p>
-			</header>
-			<ul class="u-70p">
-				<?php while ($iconsList->have_posts()):$iconsList->the_post();  ?>
-					<li class="o-partner u-third">
-						<a href="#">
-							<figure class="o-partner__logo" data-thumb="<?php echo the_field('photo'); ?>"></figure>
-							<span></span>
-						</a>
-						<span class="o-subheading"><?php the_title(); ?></span>
-						<span class="o-subtitle"><?php the_field('title'); ?></span>
-					</li>
-				<?php endwhile; ?>
-				<?php wp_reset_postdata(); ?>
-			</ul>
-			<?php } ?>
-		</div>
-	</section>
+	<?php } ?>
 </section>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

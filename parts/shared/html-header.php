@@ -19,8 +19,8 @@
 	</head>
 	<body class="is-booting <?php
 		if(is_page('blog') || is_page('programs')){echo 't-mercury';}
-		if(is_page('story') || is_front_page()){echo 't-jupiter';}
-		if(is_page('team')){echo 't-earth';}
+		if(is_page('impact') || is_front_page()){echo 't-jupiter';}
+		if(is_page('team') || is_page('directors') || is_page('cultural-icons')){echo 't-earth';}
 		if(is_page('events')){echo 't-venus';}
 		if(is_page('partners') || is_page('contact')){echo 't-neptune';}
 	?>">

@@ -27,8 +27,15 @@
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/story">
-					<span class="o-menu-item__title">Story</span>
+				<a href="<?php echo home_url(); ?>/about">
+					<span class="o-menu-item__title">About</span>
+					<span class="o-menu-item__bullet"></span>
+					<span class="o-menu-item__indicator"></span>
+				</a>
+			</li>
+			<li class="o-menu-item">
+				<a href="<?php echo home_url(); ?>/impact">
+					<span class="o-menu-item__title">Impact</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
@@ -82,9 +89,9 @@
 <div id="barba-wrapper" class="u-canvas">
 	<div class="barba-container u-canvas" data-namespace="<?php
 		if(is_front_page()){echo 'home';}
-		if(is_page('story')){echo 'story';}
+		if(is_page('impact')){echo 'impact';}
 		if(is_page('programs')){echo 'programs';}
-		if(is_page('team')){echo 'team';}
+		if(is_page('team') || is_page('directors') || is_page('cultural-icons')){echo 'team';}
 		if(is_page('partners')){echo 'partners';}
 		if(is_page('events')){echo 'events';}
 		if(is_page('blog')){echo 'blog';}

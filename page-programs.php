@@ -8,7 +8,7 @@
 			?>
 			<ul class="c-programs__nav">			
 			<?php while ( $programLogos->have_posts() ) : $programLogos->the_post();  ?>
-				<li><a href="#program-<?php echo get_the_id(); ?>" data-thumb="<?php the_field('logo'); ?>"></a></li>
+				<li><a href="#program-<?php echo get_the_id(); ?>" style="background-image:url('<?php the_field('logo'); ?>')"></a></li>
 				<?php endwhile; ?>
 				<?php wp_reset_postdata(); ?>
 			<?php } ?>
@@ -35,10 +35,10 @@
 							$programClass = 'u-full s--right';
 							break;
 						case 1:
-							$programClass = 'u-half';
+							$programClass = 'u-half s--small';
 							break;
 						case 2:
-							$programClass = 'u-half';
+							$programClass = 'u-half s--small';
 							break;
 						case 3:
 							$programClass = 'u-full s--left';
@@ -51,15 +51,15 @@
 						<div class="u-clear u-relative">
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--large"></span>
-							<figure class="o-program__figure"></figure>
+							<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
 							<section class="o-program__info">
 								<div class="u-clear">
-									<figure class="o-program__logo" data-thumb="<?php the_field('logo'); ?>"></figure>
+									<figure class="o-program__logo" style="background-image:url('<?php the_field('logo'); ?>')"></figure>
 								</div>
 								<section>
 									<span class="o-subheading"><?php the_title(); ?></span>
 									<div class="o-program__summary">
-										<p><?php the_field('introduction'); ?></p>
+										<p><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</p>
 										<a href="<?php the_permalink(); ?>" class="o-button">
 											<div class="o-arrow">
 												<i class="o-arrow__stem"></i>

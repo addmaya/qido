@@ -102,14 +102,14 @@ jQuery(document).ready(function($) {
 	});
 	pageHome.init();
 
-	//page - story
-	var pageStory = Barba.BaseView.extend({
-	  namespace: 'story',
+	//page - impact
+	var pageImpact = Barba.BaseView.extend({
+	  namespace: 'impact',
 	  onEnter: function() {
 	    updatePageTheme('t-jupiter');
 	  }
 	});
-	pageStory.init();
+	pageImpact.init();
 
 	//page - programs
 	var pagePrograms = Barba.BaseView.extend({

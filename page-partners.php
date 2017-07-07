@@ -8,7 +8,12 @@
 			<div class="u-box">
 				<header class="o-section__header">
 					<span class="o-section__title"><?php echo $partnerGroup->name; ?></span>
-					<span class="o-subtitle"><?php echo strval($partnerGroup->count); ?></span>
+					<span class="o-subtitle">
+						<?php 
+							$partnerGroupCount = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+							echo $partnerGroupCount->format($partnerGroup->count);
+						?>
+					</span>
 					<p><?php echo $partnerGroup->description; ?></p>
 				</header>
 				<ul class="u-clear">
