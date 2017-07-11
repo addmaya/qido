@@ -22,6 +22,7 @@
 							</ul>
 						</section>
 					</div>
+					<?php if(!is_page('programs')){?>
 					<div class="u-half">
 						<section class="u-wrap">
 							<span class="o-subtitle">More for you</span>
@@ -30,7 +31,7 @@
 								<ul class="o-list u-pt-s">
 								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
 									<li>
-										<a href="<?php get_permalink(); ?>" class="o-link">
+										<a href="<?php the_permalink(); ?>" class="o-link">
 											<div class="o-arrow">
 												<i class="o-arrow__stem"></i>
 												<i class="o-arrow__head"></i>
@@ -44,6 +45,30 @@
 							<?php endif; ?>
 						</section>
 					</div>
+					<?php } else {?>
+					<div class="u-half">
+						<section class="u-wrap">
+							<span class="o-subtitle">Explore Our Programs</span>
+							<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1)); ?>
+							<?php if ( $postsList->have_posts() ) : ?>
+								<ul class="o-list u-pt-s">
+								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
+									<li>
+										<a href="<?php the_permalink(); ?>" class="o-link">
+											<div class="o-arrow">
+												<i class="o-arrow__stem"></i>
+												<i class="o-arrow__head"></i>
+											</div>
+											<span><?php the_title(); ?></span>
+										</a>
+									</li>
+								<?php endwhile; ?>
+								</ul>
+ 								<?php wp_reset_postdata(); ?>
+							<?php endif; ?>
+						</section>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</section>

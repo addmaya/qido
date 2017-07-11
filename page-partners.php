@@ -7,7 +7,7 @@
 			<div class="o-section__tint"></div>
 			<div class="u-box">
 				<header class="o-section__header">
-					<span class="o-section__title"><?php echo $partnerGroup->name; ?></span>
+					<span class="o-section__title"><?php echo $partnerGroup->name; ?> Partners</span>
 					<span class="o-subtitle">
 						<?php 
 							$partnerGroupCount = new NumberFormatter("en", NumberFormatter::SPELLOUT);

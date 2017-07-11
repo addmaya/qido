@@ -65,7 +65,7 @@
 												<i class="o-arrow__stem"></i>
 												<i class="o-arrow__head"></i>
 											</div>
-											<span class="o-button__title">Learn More</span>
+											<span class="o-button__title">Explore</span>
 										</a>
 									</div>
 									<span class="o-progam__monogram"><?php echo substr(get_the_title(),0,1) ?></span>

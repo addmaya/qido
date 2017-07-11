@@ -207,19 +207,19 @@
 		<div class="u-box">
 			<ul class="u-clear u-wrap">
 				<?php while ( $programsList->have_posts() ) : $programsList->the_post();  ?>
-				<li id="program-<?php echo get_the_id(); ?>" class="o-program u-half">
+				<li id="program-<?php echo get_the_id(); ?>" class="o-program u-half s--small">
 					<div class="u-clear u-relative">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
 						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image')?>')"></figure>
 						<section class="o-program__info">
 							<div class="u-clear">
-								<figure class="o-program__logo" data-thumb="<?php the_field('logo'); ?>"></figure>
+								<figure class="o-program__logo" style="background-image: url('<?php the_field('logo'); ?>')"></figure>
 							</div>
 							<section>
 								<span class="o-subheading"><?php the_title(); ?></span>
 								<div class="o-program__summary">
-									<p><?php the_field('introduction'); ?></p>
+									<p><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</p>
 									<a href="<?php the_permalink(); ?>" class="o-button">
 										<div class="o-arrow">
 											<i class="o-arrow__stem"></i>

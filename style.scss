@@ -365,7 +365,7 @@ $active: #ffe992;
 .o-section__title{display: inline-block; margin-bottom:4em; font-weight: 300; background-color:#0a0a0a; padding: 0.875em 2em; color: white; border-radius: 3em;
   &.s--clear{margin-bottom: 0;}
   
-  .t-neptune &{background-color: darken(#092e69, 5%)}
+  .t-neptune &{background-color: $neptune}
   .t-venus &{background-color: darken($venus, 15%)}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .t-earth &{background-color: darken($earth, 10%)}
@@ -673,7 +673,7 @@ $active: #ffe992;
 }
 .c-programs__nav{@include clear; padding:0 1.5em 3em; 
   li{width: percentage(1/6); float: left;}
-  a{display: block; background-color: #fff; height:6em; margin:1em; background-size: 65%; background-repeat: no-repeat; background-position: center; border:solid 1px #d3d4da; border-radius: 4px}
+  a{display: block; background-color: #fff; height:6em; margin:1em; background-size: 65%; background-repeat: no-repeat; background-position: center; border:solid 1px #d3daff; border-radius: 4px}
 }
 .c-milestones__line{width: 1px; height: 104%; background-color: $jupiter; position: absolute; left: 50%; z-index: -1; top: -5em;}
 .c-values{@include clear; 
@@ -750,7 +750,6 @@ $orbit-radius:150px;
    100% { visibility: visible; opacity: 1}
 }
 
-
 @keyframes fadeIn {
   from {opacity:0}
   to {opacity:1}
@@ -779,7 +778,6 @@ $orbit-radius:150px;
   from {opacity: 1}
   to {@include prefix((transform: translate3d(0, -100%, 0))); opacity: 0;}
 }
-
 @keyframes fadeOutRight {
   from {opacity: 1}
   to {@include prefix((transform: translate3d(100%, 0, 0))); opacity: 0;}
