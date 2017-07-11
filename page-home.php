@@ -30,7 +30,7 @@
 				<div class="o-slide__figure">
 					<div class="u-table">
 						<div class="u-cell">
-							<figure>
+							<figure style="background-image:url('<?php echo $slideImage; ?>')">
 								<span class="o-bubble s--small"></span>
 								<span class="o-bubble s--medium"></span>
 								<span class="o-bubble s--large"></span>
@@ -53,7 +53,7 @@
 		<div class="o-slider">
 			<ul class="u-clear">
 				<?php 
-					$statisticsList = new WP_Query(array('post_type'=>'statistic', 'posts_per_page'=>-1));
+					$statisticsList = new WP_Query(array('post_type'=>'statistic', 'posts_per_page'=>4, 'orderby'=>'rand'));
 					if ($statisticsList->have_posts()){
 						$bubbleSizes = ['', 's--small', 's--medium'];
 						$bubbleClasses = ['t-banana', 't-berry', 't-ivy', 't-mango'];
@@ -64,7 +64,7 @@
 					<figure class="<?php echo $bubbleClasses[$statisticIndex]; ?>">
 						<div class="u-table">
 							<div class="u-cell">
-								<i class="o-icon"></i>
+								<i class="o-icon" style="background-image:url('<?php the_field('icon'); ?>')"></i>
 								<span class="o-statistic__figure"><?php the_field('number'); ?></span>
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 	<div class="c-programs-tint"></div>
 	<div class="u-box">
 		<?php 
-			$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1));
+			$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>2));
 			if ($programsList->have_posts()){ 
 				$programClass='';
 				$programIndex = 0;
@@ -116,8 +116,8 @@
 				?>
 					<div class="u-half">
 						<section class="o-card <?php echo $programClass; ?>">
-							<figure class="o-card__figure">
-								<span class="o-card__logo" data-thumb="<?php the_field('logo'); ?>"></span>
+							<figure class="o-card__figure" style="background-image:url('<?php the_field('cover_image');?>')">
+								<span class="o-card__logo" style="background-image: url('<?php the_field('logo'); ?>')"></span>
 							</figure>
 							<section class="o-card__info">
 								<p><?php the_field('introduction'); ?></p>
@@ -126,7 +126,7 @@
 										<i class="o-arrow__stem"></i>
 										<i class="o-arrow__head"></i>
 									</div>
-									<span class="o-button__title">Learn More</span>
+									<span class="o-button__title">Explore</span>
 								</a>
 							</section>
 							<span class="o-card__monogram">g</span>
@@ -153,7 +153,7 @@
 	<div class="u-box">
 		<div class="u-clear c-splash-team">
 			<?php 
-				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1));
+				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1, 'orderby'=>'rand'));
 				while ( $featuredStaff->have_posts() ) : $featuredStaff->the_post(); 
 			?>
 			<div class="u-40p">
@@ -166,8 +166,8 @@
 			<div class="u-60p">
 				<section class="u-wrap">
 					<blockquote><q>"<?php the_field('quote'); ?>"</q></blockquote>
-					<span class="o-subheading"><?php the_title(); ?></span>
-					<span class="o-subtitle"><?php the_field('title'); ?></span>
+					<span class="o-subheading s--profile"><?php the_title(); ?></span>
+					<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 					<a href="<?php echo home_url(); ?>/team" class="o-imagelink">
 						<div class="o-imagelink__figure"></div>
 						<div class="a-center">

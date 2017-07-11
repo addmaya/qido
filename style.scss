@@ -14,6 +14,7 @@ $venus: #6453BC;
 $jupiter: #03A9F4;
 $earth: #01b39b;
 $mercury: #3F51B5;
+$easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
 
 /*functions*/
 @mixin image($image){background-image: url('images/'+$image)}
@@ -90,6 +91,9 @@ $mercury: #3F51B5;
   @include prefix((animation-timing-function: cubic-bezier($a, $b, $c, $d)))
 }
 @mixin resetPivot{@include prefix((transform-origin: 0 0))}
+@mixin scale2D($x,$y){
+  @include prefix((transform:scale($x,$y)));
+}
 
 /*defaults*/
 html,body{width:100%; height:100%}
@@ -138,6 +142,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-bkg__lightBlue{background-color: #F0F6FA}
 .u-block{display: block;}
 .u-align__center{text-align: center}
+.u-super{vertical-align:super; font-size: 0.75em}
 
 .u-pt-s{padding-top: 1em}
 .u-pt-m{padding-top: 1.5em}
@@ -161,11 +166,20 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 /*objects*/
 .o-networks{display: inline-block;
   li{display: inline-block; margin-right: em(3);}
-  a{display: block;}
-  .o-icon{background-color: transparent;}
+  a{display: block; position: relative;
+    &:after{content:""; width: 100%; height: 3px; background-color: #FFF; position: absolute; bottom:0; left:0; @include prefix((transform-origin: 0 0)); @include prefix((transition: transform 1s $easeOutExpo)); @include scale2D(0,1)}
+    &:hover{
+      &:after{@include scale2D(1,1)}
+      .o-icon{@include prefix((transform: translateY(em(-12))))}
+    }
+  }
+  .o-icon{background-color: transparent; @include prefix((transition: transform 1s $easeOutExpo));}
   &.s--medium{font-size:1.3em}
+  &.t-light{
+    a:after{background-color: darken($neptune, 20%)}
+  }
 }
-.o-icon{width: em(26); height: em(26); display: inline-block; background-color: red; background-size: contain; background-repeat: no-repeat; background-position:center;
+.o-icon{width: em(26); height: em(26); display: inline-block; background-size: contain; background-repeat: no-repeat; background-position:center;
   &.s--search{@include image('search__white.svg')}
   &.s--fb{@include image('facebook_white.svg');
     .t-light &{@include image('facebook_color.svg')}
@@ -217,46 +231,54 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   .t-mercury &{@include o-arrow-theme(darken($mercury,15%))}
 }
 .o-arrow__stem{display: block; width: 12px; height: 1px;}
-.o-arrow__head{display: block; height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 3px; top: -5px}
+.o-arrow__head{display: block; height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 7px; top: -5px}
 
 $active: #ffe992;
 .o-menu{
   a{display: block; padding: em(9); padding-right: 0; font-size: em(16); @include light; color: #fff; position: relative;
     &:hover, &.is-active{color: $active;
-      .o-menu-item__indicator{@include prefix ((transform:scale(1,1)))}
+      .o-menu-item__indicator{@include scale2D(1,1)}
       .o-menu-item__title{@include prefix ((transform:translateX(12px)))}
-      .o-menu-item__bullet{@include prefix ((transform:scale(1)));
-        &:after{@include prefix ((transform:scale(1,1)))}
+      .o-menu-item__bullet{@include scale2D(1,1);
+        &:after{@include scale2D(1,1)}
       }
     }
     &.is-active{
       .o-menu-item__bullet{@include prefix((transition: border-color 0.3s ease)); border-color: transparent;
-        &:after{@include prefix ((transform:scale(1.4))); background-color: $active;}
+        &:after{@include scale2D(1.4,1.4); background-color: $active;}
       }
     }
   }
 }
-.o-menu-item__title{width: em(90); display: inline-block; position: relative; top: -3px;
-  @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1)));
+.o-menu-item__title{width: em(96); display: inline-block; position: relative; top: -3px;
+  @include prefix((transition: transform 0.5s $easeOutExpo));
 }
-.o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: $active; top: -6px; position: absolute; top: 48%; right: em(-20); @include resetPivot; @include prefix ((transform:scale(0,1))); @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1)));
+.o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: $active; top: -6px; position: absolute; top: 48%; right: em(-20); @include resetPivot; @include scale2D(0,1); @include prefix((transition: transform 0.5s $easeOutExpo));
 }
-.o-menu-item__bullet{border: solid 2px #fff; width: 14px; height: 14px; display: inline-block; border-radius: 50%; top: 1px; position: relative;@include prefix((transition: transform 1s cubic-bezier(0, 0.5, 0, 1))); @include prefix ((transform:scale(0.7)));
-  &:after{content:"";position: absolute; top:2px; left: 2px; width: 70%; height: 70%; background-color: white; @include border-radius-l; @include prefix((transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1))); @include prefix ((transform:scale(0,0)))}
+.o-menu-item__bullet{border: solid 2px #fff; width: 14px; height: 14px; display: inline-block; border-radius: 50%; top: 1px; position: relative; @include prefix((transition: transform 1s $easeOutExpo)); @include scale2D(0.7,0.7);
+  &:after{content:"";position: absolute; top:2px; left: 2px; width: 70%; height: 70%; background-color: white; @include border-radius-l; @include prefix((transition: transform 0.5s $easeOutExpo)); @include scale2D(0,0)}
 }
 .o-submenu{display: none;}
-.o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef;
+.o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease));
   .o-icon{width: 1em; height: 1em}
-  .o-button__title{position: relative; top:-1px; font-weight: 300; @include opensans}
-  .o-arrow{right: 12px; float: left; top: 6px;
+  .o-button__title{position: relative; top:-1px; font-weight: 300; @include opensans; @include prefix((transition: transform 0.3s ease)); display: inline-block;}
+  .o-arrow{right: 12px; float: left; top: 6px; @include prefix((transition: transform 0.2s ease));
     &.s--rtl{@include prefix((transform: rotate(180deg))); top: auto; bottom: 3px}
     form &{top: 8px}
   }
+  .o-arrow__head{top:-4px}
   
   .t-venus &{background-color: #d3cfe6; color: darken($venus, 15%)}
   .t-jupiter &{color: darken($jupiter, 15%)}
   .t-earth &{background-color: #c4e8da; color: darken($earth, 15%);}
   .t-mercury &{background-color: #d8deff; color: darken($mercury, 15%)}
+
+  &:hover{background-color: darken($jupiter, 40%);
+    .o-button__title{color: #fff; @include prefix((transform: translateX(em(9))))}
+    .o-arrow{@include prefix((transform: translateX(em(6))))}
+    .o-arrow__head{border-color: #fff;}
+    .o-arrow__stem{background-color: #fff;}
+  }
 }
 .o-line{height: 1px; background-color:#d2e1ea; display: block;
   &.s--break{margin:em(48) 0;}
@@ -264,20 +286,27 @@ $active: #ffe992;
 }
 .o-link{display: inline-block; padding: em(4) 0; position: relative;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
-  span{display: inline-block; padding-left: em(12)}
+  span{display: inline-block; padding-left: em(12); @include prefix((transition: transform 0.3s ease));}
   .c-page__actions &{color: $neptune}
   .c-page__info &{padding-top: em(16); color: #fff17d}
-  .o-arrow{position: relative; top:6px; float: left}
+  .o-arrow{position: relative; top:6px; float: left; @include prefix((transition: transform 0.3s ease));}
   .c-page__actions &{
     .o-arrow{position: absolute; top: 50%;}
     span{padding-left: em(24); line-height:1.5}
+  }
+  &:hover{
+    .o-arrow{@include prefix((transform: translateX(em(6))))}
+    span{@include prefix((transform: translateX(em(12))))}
   }
 }
 .o-tabs__nav{
   h2{display: inline-block; padding-right: 1em}
 }
-.o-input{
-  input, textarea{border-bottom: solid 1px #c7dae6; width: 95%; margin-bottom: em(24); padding: em(12) 0 em(18); font-weight: 300}
+.o-input{position: relative;
+  input, textarea{border-bottom: solid 1px #c7dae6; width: 95%; margin-bottom: em(24); padding: em(12) 0 em(18); font-weight: 300; position: relative;
+    &:focus + span{@include scale2D(1,1)}
+  }
+  span{width: 15%; height: 2px; background-color: #3b7498; position: absolute; bottom: em(24); left: 0; @include prefix((transition: transform 0.5s $easeOutExpo)); @include resetPivot; @include scale2D(0,1)}
 }
 ::-webkit-input-placeholder {color: #3E526E}
 ::-moz-placeholder {color: #3E526E}
@@ -423,7 +452,7 @@ $active: #ffe992;
   .s--right{top:em(-8)}
 }
 .o-program{margin-bottom: 8em; float: left;
-  .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center}
+  .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center top}
   .o-button{margin-top: 1.5em; border-color: #fff}
   .o-bubble{
     &.s--medium{width: 3em; height: 3em}
@@ -491,16 +520,16 @@ $active: #ffe992;
     .o-bubble{left: -5%}
   }
 }
-.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em;}
+.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em; @include cover}
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
   p{padding: em(9)}
-  .o-icon{background-color: #000; height: em(56); width: em(56); margin-bottom: em(12);}
+  .o-icon{height: em(56); width: em(56); margin-bottom: em(12); background-repeat: no-repeat; background-size:contain; }
   &.s--medium{
     figure{font-size: 0.75em}
   }
   &.s--small{
-    figure{font-size: 0.5em}
+    figure{font-size: 0.65em}
   }
   .t-banana{background-color: #FFCF72}
   .t-berry{background-color: #FF7E88}
@@ -517,15 +546,15 @@ $active: #ffe992;
 }
 .o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.5}
 .o-slide__figure{height: 100%;
-  figure{height: em(480); width: em(480); @include border-radius-l; background-color: #000; @include center; position: relative; left: 6em; z-index: 2}
+  figure{height: em(560); width: em(560); @include border-radius-l; @include center; position: relative; left: 6em; z-index: 2; background-position: center; background-repeat: no-repeat; background-size: cover}
   .o-bubble{z-index: 1}
   .s--small{width: 2.5em; height: 2.5em;}
   .s--medium{width: 4em; height: 4em; right: 0}
   .s--large{width: 5em; height: 5em; bottom:0; background-color: transparent; border: solid 2px #fff; right: 0}
 }
 .o-card{color: white; margin-bottom: 1.5em; position: relative;}
-.o-card__figure{width: 75%; height: em(360); background-color: #000; @include border-radius-s; position: relative; @include center}
-.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s;}
+.o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center}
+.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s; background-size: 75%; background-position: center; background-repeat: no-repeat;}
 .o-card__info{width: 75%; @include center;
   p{padding: em(24) 0}
 }
@@ -546,7 +575,9 @@ $active: #ffe992;
   .is-booting &{@include animate(fadeInDown, 1.5, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
   &.is-hidden{@include animate(fadeOutUp, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
 }
-.c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center}
+.c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include prefix((transition: opacity 0.3s ease));
+  &:hover{opacity: 0.7}
+}
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10;
   .is-booting &{@include animate(fadeInRight, 1.5, 0.3); @include prefix ((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
   &.is-hidden{@include animate(fadeOutRight, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
@@ -572,8 +603,8 @@ $active: #ffe992;
 }
 
 .c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease));
-  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; transform: scale(0.4);
-    &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 5px white; top: -25%; left:-25%;};
+  span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; @include scale2D(0.4,0.4);
+    &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 7px white; top: -25%; left:-25%;};
   }  
   .o-bubble{@include linear; @include infinite; left: 50%}
   .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubble-small-orbit); background-color: transparent}
@@ -618,16 +649,29 @@ $active: #ffe992;
   }
   .o-subtitle{margin-bottom: 2em;}
 }
-.c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden;
+
+$cButtonNextEasing: cubic-bezier(0.27, 0, 0, 0.99);
+$cButtonNextDuration: 0.65s;
+.c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden; cursor: pointer; 
   span{position: relative; z-index: 2}
-  figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1; filter: grayscale(100);}
+  figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1; filter: grayscale(100); @include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing)); @include prefix((transform: scale3d(1.1, 1.1,1.1)))}
   .o-icon{background-color: #fff;}
-  .o-heading {color: #fff !important}
+  .o-heading {color: #fff !important; @include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
+  .o-arrow{@include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
+  .o-subtitle{@include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
 
   .t-venus &{background-color: darken($venus, 15%)}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .t-earth &{background-color: darken($earth, 15%)}
   .t-mercury &{background-color: darken($mercury, 15%)}
+
+  
+  &:hover{
+    figure{@include prefix((transform: scale3d(1.1,1.1,1.1) translateX(50px)))}
+    .o-arrow{@include prefix((transform: translateX(100px)))}
+    .o-heading{@include prefix((transform: translateX(60px)))}
+    .o-subtitle{@include prefix((transform: translateX(30px)))}
+  }
 }
 .c-page__footer{padding:4em 0; background-color: darken(#FCFCFC, 5%);
   h2{margin-bottom: em(12);}
@@ -697,23 +741,24 @@ $active: #ffe992;
   .s--large{left:10%; top: 10%; width: 20em; height: 20em;}
   .s--medium{left: 5%; top: 5%}
   .s--small{right: 5%; bottom: 5%}
+  .s--profile{height: auto}
 }
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
   &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
 }
-.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0))); border-radius: 3px; 
+.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));@include border-radius-l;
   .t-neptune &{background-color: $neptune}
   .t-venus &{background-color: $venus}
   .t-jupiter &{background-color: $jupiter}
   .t-earth &{background-color: $earth}
   .t-mercury &{background-color: $mercury}
   
-  span{display: block; background-color: #fff; height: 3px; width: 50%; position: absolute; left: 1.1em; @include prefix((transition: transform 0.3s cubic-bezier(0.46, 0.01, 0.29, 1)))}
+  span{display: block; background-color: #fff; height: 4px; width: 50%; position: absolute; left: 1.1em; @include prefix((transition: transform 0.3s cubic-bezier(0.46, 0.01, 0.29, 1)))}
   .o-line__1{top:30%;}
   .o-line__2{top:45%;}
   .o-line__3{top:60%;}
   &:hover{
-    span{@include prefix((transform: translateX(-9px)))}
+    span{@include prefix((transform: translateY(-6px)))}
   }
 
   &.is-visible{@include prefix((transform: translate3d(0,0,0)))}
@@ -781,4 +826,8 @@ $orbit-radius:150px;
 @keyframes fadeOutRight {
   from {opacity: 1}
   to {@include prefix((transform: translate3d(100%, 0, 0))); opacity: 0;}
+}
+@keyframes zoomForward {
+  from {transform: scale3d(1, 1, 1);}
+  to {transform: scale3d(1.2, 1.2, 1.2)}
 }

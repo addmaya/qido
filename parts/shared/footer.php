@@ -5,7 +5,7 @@
 			$pageID = get_the_id();
 		?>
 		<?php if(!is_front_page()){?>
-		<section class="c-page__actions">
+		<section class="c-page__actions" data-aos="fade-up">
 			<div class="u-box">
 				<span class="o-line s--break"></span>
 				<div class="u-clear">

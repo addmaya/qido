@@ -2,12 +2,12 @@
 	<section class="u-wrap">
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
 		<ul class="o-networks">
-			<li><a href="#"><span class="o-icon s--search"></span></a></li>
-			<li><a href="https://www.facebook.com/reachahand"><span class="o-icon s--fb"></span></a></li>
-			<li><a href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
-			<li><a href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>
-			<li><a href="https://www.youtube.com/channel/UCf06VA_E9ICZkFue5AjC2XQ"><span class="o-icon s--youtube"></span></a></li>
-			<li><a href="https://soundcloud.com/reach-a-hand"><span class="o-icon s--soundcloud"></span></a></li>
+			<li><a target="_blank" href="#"><span class="o-icon s--search"></span></a></li>
+			<li><a target="_blank" href="https://www.facebook.com/reachahand"><span class="o-icon s--fb"></span></a></li>
+			<li><a target="_blank" href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
+			<li><a target="_blank" href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>
+			<li><a target="_blank" href="https://www.youtube.com/channel/UCf06VA_E9ICZkFue5AjC2XQ"><span class="o-icon s--youtube"></span></a></li>
+			<li><a target="_blank" href="https://soundcloud.com/reach-a-hand"><span class="o-icon s--soundcloud"></span></a></li>
 		</ul>
 	</section>
 </header>
@@ -42,7 +42,7 @@
 			</li>
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/programs">
-					<span class="o-menu-item__title">Programs</span>
+					<span class="o-menu-item__title">Programs <span class="u-super">16</span></span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>

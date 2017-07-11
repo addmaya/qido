@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
-	
+
+
 	//variables
 	var body = $('body');
 	var pageLoader = $('.c-loader');
@@ -188,14 +189,22 @@ jQuery(document).ready(function($) {
 	    	$('html, body').animate({ scrollTop: 0 }, 0);
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
+	    	AOS.init({
+	    		duration: 600
+	    	});
 	    }, 800);
 	    randomizeBubbleColors();
 	    randomizeStatBubbles();
+
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
 	
 	randomizeBubbleColors();
 	randomizeStatBubbles();
+
+	AOS.init({
+		duration: 600
+	});
 });
 

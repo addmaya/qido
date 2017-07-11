@@ -13,6 +13,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/style.css" rel="stylesheet">
+		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/aos.css" rel="stylesheet">
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/vendors.js"></script>
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
 		<?php wp_head(); ?>

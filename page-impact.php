@@ -5,7 +5,7 @@
 			<span class="c-milestones__line"></span>
 			<ul class="u-clear">
 				<?php 
-					$milestonesList = new WP_Query(array('post_type'=>'milestone', 'posts_per_page'=>-1));
+					$milestonesList = new WP_Query(array('post_type'=>'milestone', 'posts_per_page'=>-1, 'order'=>'ASC'));
 					if ($milestonesList->have_posts()){
 						$milestoneIndex = 0;
 						$milestoneClass = '';
@@ -36,11 +36,15 @@
 				?>
 				<li class="o-milestone <?php echo $milestoneClass; ?>">
 					<section class="u-wrap">
-						<figure class="o-milestone__figure">
-						</figure>
+						<figure class="o-milestone__figure" style="background-image: url('<?php the_field('cover_image'); ?>')"></figure>
 						<span class="o-bubble s--large"></span>
 						<section class="o-milestone__story">
-							<span class="o-subtitle">December 2001</span>
+							<span class="o-subtitle">
+								<?php 
+									$milestoneDate = new DateTime(get_field('date'));
+									echo $milestoneDate->format('F Y');
+								?>
+							</span>
 							<span class="o-subheading"><?php the_title(); ?></span>
 							<p><?php the_field('description'); ?></p>
 							
@@ -75,7 +79,7 @@
 						<figure class="o-statistic__bubble">
 							<div class="u-table">
 								<div class="u-cell">
-									<i class="o-icon"></i>
+									<i class="o-icon" style="background-image:url('<?php the_field('icon'); ?>')"></i>
 									<span class="o-statistic__figure"><?php the_field('number'); ?></span>
 								</div>
 							</div>
@@ -91,30 +95,6 @@
 				</section>
 			</div>
 		</div>
-	</section>
-	<section class="o-page__section">
-		<div class="o-section__tint"></div>
-		<div class="u-box">
-			<header class="o-section__header">
-				<span class="o-section__title"><?php the_field('slogan'); ?></span>
-				<p><?php the_field('mission'); ?></p>
-			</header>		
-		</div>
-		<ul class="c-values">
-			<?php if(have_rows('values') ):?>
-				<?php 
-					while( have_rows('values') ): the_row();
-					$valueTitle = get_sub_field('value');
-					$valueDescription = get_sub_field('description');
-					$valueImage = get_sub_field('image');
-				 ?>
-				<li>
-					<span class="o-subheading"><?php echo $valueTitle; ?></span>
-					<figure data-thumb="<?php echo $valueImage; ?>"></figure>
-				</li>
-				<?php endwhile; ?>
-			<?php endif; ?>
-		</ul>
 	</section>
 </section>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

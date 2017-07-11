@@ -4,7 +4,7 @@
 		<div class="u-box s--small u-bkg__lightBlue">
 			<section class="u-wrap">
 				<section class="u-clear">
-					<section class="u-third">
+					<section class="u-third" data-aos="fade-up">
 						<h2>Address</h2>
 						<a href="<?php the_field('google_map_link'); ?>" class="u-block">
 							<p class="u-pb-m"><?php the_field('address'); ?></p>
@@ -17,7 +17,7 @@
 							</div>
 						</a>
 					</section>
-					<section class="u-third">
+					<section class="u-third" data-aos="fade-up" data-aos-delay="100">
 						<h2>Phone</h2>
 						<ul class="o-list">
 							<?php if( have_rows('telephones') ): ?>
@@ -38,7 +38,7 @@
 							<?php endif; ?>
 						</ul>
 					</section>
-					<section class="u-third">
+					<section class="u-third" data-aos="fade-up" data-aos-delay="200">
 						<h2>Mail</h2>
 						<ul class="o-list">
 							<?php if( have_rows('emails') ): ?>
@@ -62,7 +62,7 @@
 				<span class="o-line s--break"></span>
 				<section>
 					<div class="u-clear">
-						<section class="u-half">
+						<section class="u-half" data-aos="fade-up">
 							<h2>Follow the conversation</h2>
 							<ul class="o-networks t-light s--medium">
 								<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--fb"></span></a></li>
@@ -72,7 +72,7 @@
 								<li><a href="https://soundcloud.com/reach-a-hand" target="_blank"><span class="o-icon s--soundcloud"></span></a></li>
 							</ul>
 						</section>
-						<section class="u-half">
+						<section class="u-half" data-aos="fade-up" data-aos-delay="100">
 							<h2>Get Updates</h2>
 							<ul class="o-networks t-light s--medium">
 								<li><a href="#"><span class="o-icon s--rss"></span></a></li>
@@ -82,7 +82,7 @@
 					</div>
 				</section>
 				<span class="o-line s--break"></span>
-				<section>
+				<section data-aos="fade-up">
 					<div class="o-tabs">
 						<div class="o-tabs__nav">
 							<h2>
@@ -97,20 +97,29 @@
 										<input type="hidden" name="action" value="submitContact"/>
 										<?php wp_nonce_field('form_nonce_key','form_nonce');?>
 									</div>
-									<div class="o-input u-third">
-										<input type="text" placeholder="Your Name" name="userName">
-										<span></span>
+									<div class="u-third">
+										<div class="o-input">
+											<input type="text" placeholder="Your Name" name="userName">
+											<span></span>
+										</div>
 									</div>
-									<div class="o-input u-third">
-										<input type="email" placeholder="E-mail" name="userEmail">
-										<span></span>
+									<div class="u-third">
+										<div class="o-input">
+											<input type="email" placeholder="E-mail" name="userEmail">
+											<span></span>
+										</div>
 									</div>
-									<div class="o-input u-third">
-										<input type="number" placeholder="Telephone" name="userTelephone">
-										<span></span>
+									<div class="u-third">
+										<div class="o-input">
+											<input type="number" placeholder="Telephone" name="userTelephone">
+											<span></span>
+										</div>
 									</div>
-									<div class="o-input">
-										<textarea cols="30" rows="10" placeholder="Message" name="userMessage"></textarea>
+									<div class="u-left u-full">
+										<div class="o-input">
+											<textarea cols="30" rows="10" placeholder="Message" name="userMessage"></textarea>
+											<span></span>
+										</div>
 									</div>
 									<button class="o-button">
 										<div class="o-arrow">
