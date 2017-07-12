@@ -34,10 +34,11 @@
 					<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>" class="o-grid__item">
 						<a href="<?php the_permalink(); ?>" class="o-staff">
 							<figure style="background-image:url('<?php the_field('photo_full');?>')">
-								<span class="o-bubble s--large"></span>
-								<span class="o-bubble s--medium"></span>
-								<span class="o-bubble s--small"></span>
+								
 							</figure>
+							<span class="o-bubble s--large"></span>
+							<span class="o-bubble s--medium"></span>
+							<span class="o-bubble s--small"></span>
 							<span class="o-subheading s--profile"><?php the_title(); ?></span>
 							<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 						</a>
@@ -61,12 +62,21 @@
 			'post_parent'=>138
 			));
 		if ($childPages->have_posts()){
+			$pageIndex = 0;
+			$aosDelay = 0;
 	?>
 	<section class="o-page__section">
 		<div class="u-box">
 			<ul class="o-program__group">
-				<?php while ( $childPages->have_posts() ) : $childPages->the_post();  ?>
-				<li class="o-program u-half s--clear">
+				<?php while ( $childPages->have_posts() ) : $childPages->the_post();
+					if($pageIndex > 1){
+						$pageIndex = 0;
+					}
+					if($pageIndex == 1){
+						$aosDelay = 100;
+					}
+				?>
+				<li class="o-program u-half s--clear" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 					<div class="u-clear u-relative">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
@@ -86,7 +96,7 @@
 						</section>
 					</div>
 				</li>
-				<?php endwhile; ?>
+				<?php $pageIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>		
 			</ul>
 		</div>

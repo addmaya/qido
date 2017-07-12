@@ -85,10 +85,10 @@ $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
      -moz-animation-delay: $d;
        -o-animation-delay: $d;
           animation-delay: $d;
-  -webkit-animation-fill-mode: forwards;
-     -moz-animation-fill-mode: forwards;
-       -o-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+       -o-animation-fill-mode: both;
+          animation-fill-mode: both;
   -webkit-animation-timing-function: $timingFunction;
      -moz-animation-timing-function: $timingFunction;
        -o-animation-timing-function: $timingFunction;
@@ -109,7 +109,7 @@ $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
   @include prefix((transition: transform $transitionDuration $timingFunction));
 }
 @mixin shadow{
-  box-shadow: 0 em(48) em(72) rgba(0,0,0,0.3);
+  box-shadow: 0 em(48) em(72) rgba(0,0,0,0.35);
 }
 
 /*defaults*/
@@ -347,13 +347,14 @@ $active: #ffe992;
   .s--medium{height: 9em; width: 9em; right: em(-36); top: 30%;}
   .s--small{height: 6em; width: 6em; left: em(-12); top: 50%;}
   .s--xsmall{height: 4em; width: 4em; right: 0; top: 20%;}
+  .o-bubble{@include animate(levitate, 3, 0, ease-in-out); @include infinite; @include prefix((animation-play-state: paused))}
 }
 .o-article__link{display: block;
   &:hover{
     .o-article__figure{@include scale2D(1.05, 1.05);
       &:after{opacity:1}
     }
-    .o-bubble{@include animate(levitate, 3, 0, ease-in-out); @include infinite}
+    .o-bubble{@include prefix((animation-play-state:running))}
     .o-article__brief{@include translateY(em(18))}
   }
 }
@@ -419,14 +420,6 @@ $active: #ffe992;
     .u-table{@include translateY(-100%)}
   }
 }
-.o-director{width: 25%; float: left; margin-bottom:2em; text-align: center; 
-  a{display: block; width: em(225); height: em(225); @include center; position: relative;}
-  figure{height: 100%; width: 100%; background-size:cover; background-repeat: no-repeat; background-position: center; @include border-radius-l; background-color: #e6e6e6}
-  .o-subtitle{height: auto; padding: em(12) 0}
-  .s--medium{top: em(-20)}
-  .s--small{bottom: em(12); right: em(-6)}
-}
-
 
 .o-tag{display: inline-block; font-size: 1.5em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300; position: relative; @include transitionTransform(0.3,ease);
   span{vertical-align: super; font-size: 50%; color:#00a6d0; font-weight:bold}
@@ -577,12 +570,39 @@ $active: #ffe992;
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .o-imagelink__figure{display: block; height: 100%; @include multiply; @include cover; @include image('dummy/cover.jpg')}
 }
-.o-staff{display: block;
+.o-staff{display: block; position: relative;
+  figure{width: em(192); height: em(264); @include center; margin-bottom: em(18); position: relative; background-position: center; background-size: contain; background-repeat: no-repeat; @include transitionTransform(0.3, ease)}
+  .o-bubble{@include prefix((animation-play-state: paused)); z-index:-2;
+    &.s--large{bottom: 20%; left: 15%; @include animate(levitate, 4, 0, ease-in-out); @include infinite}
+    &.s--medium{top: 20%; left: 15%; @include animate(levitate, 3, 0, ease-in-out); @include infinite}
+    &.s--small{top: 40%; right: 10%; @include animate(levitate, 2, 0, ease-in-out); @include infinite}
+  }
+  .o-subheading{padding-bottom:0; position: relative; @include transitionTransform(0.3, ease)}
+  .o-subtitle{@include transitionTransform(0.3, ease)}
+
   &:hover{
-    .o-bubble{@include animate(levitate, 3, 0, ease-in-out); @include infinite}
+    .o-bubble{@include prefix((animation-play-state: running))}
+    .o-subheading{@include translateY(em(12))}
+    .o-subtitle{@include translateY(em(24))}
+    figure{@include translateY(em(-24))}
   }
 }
 
+.o-director{width: 25%; float: left; margin-bottom:4em; text-align: center; 
+  a{display: block; position: relative; @include transitionTransform(0.3, ease);
+    &:hover{@include translateY(em(-24));
+      .o-director__info{@include translateY(em(48))}
+      .o-bubble{@include prefix((animation-play-state: running))}
+    }
+  }
+  figure{width: em(225); height: em(225); background-size:cover; background-repeat: no-repeat; background-position: center; @include border-radius-l; background-color: #e6e6e6; @include center; }
+  .o-subheading{padding-bottom:0; padding-top:0.5em; }
+  .o-subtitle{height: auto; padding: em(6) 0}
+  .o-director__info{@include transitionTransform(0.3, ease)}
+  .s--medium{top:-10%; @include animate(levitate, 4, 0, ease-in-out); @include infinite}
+  .s--small{bottom: 55%; right: 5%; @include animate(levitate, 3, 0, ease-in-out); @include infinite}
+  .o-bubble{@include prefix((animation-play-state: paused)); z-index:-2}
+}
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
   .o-networks{float: right; padding-top: em(8);}
@@ -639,8 +659,8 @@ $active: #ffe992;
   .is-booting &{@include animate(fadeInUp, 1.2, 0.85, cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-page-cover__title{width: 340px; height: 182px; display: block; @include center; background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
-.c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: fixed;
-  span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3; opacity: 0.5}
+.c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
+  span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4, ease);}
 }
 .c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
@@ -733,13 +753,6 @@ $cButtonNextDuration: 0.65s;
   li{width: 25%; float: left; margin-bottom: em(48);
     &:last-child{margin-bottom: 0;}
   }
-  figure{width: em(192); height: em(264); @include center; margin-bottom: em(18); position: relative; background-position: center; background-size: contain; background-repeat: no-repeat;}
-  .o-bubble{
-    &.s--large{bottom: 0; left: 0}
-    &.s--medium{top: 20%; left: 0}
-    &.s--small{top: 40%; right: em(-20)}
-  }
-  .o-subheading{padding-bottom:0; position: relative}
 }
 .c-programs__nav{@include clear; padding:0 1.5em 3em; 
   li{width: percentage(1/6); float: left;}
@@ -861,4 +874,8 @@ $orbit-radius:150px;
 @keyframes levitate {
   0%, 100% {transform:translateY(0)}
   50% {transform:translateY(em(-48))}
+}
+@keyframes levitateReverse {
+  0%, 100% {transform:translateY(0)}
+  50% {transform:translateY(em(48))}
 }

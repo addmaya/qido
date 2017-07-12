@@ -33,9 +33,11 @@
 							<figure class="u-greyscale" style="background-image:url('<?php the_field('photo'); ?>')"></figure>
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--small"></span>
+							<section class="o-director__info">
+								<span class="o-subheading s--profile"><?php the_title(); ?></span>
+								<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
+							</section>
 						</a>
-						<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
-						<span class="o-subheading s--profile"><?php the_title(); ?></span>
 					</li>
 				<?php $directorIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>
