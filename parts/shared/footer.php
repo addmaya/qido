@@ -32,11 +32,8 @@
 								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
 									<li>
 										<a href="<?php the_permalink(); ?>" class="o-link">
-											<div class="o-arrow">
-												<i class="o-arrow__stem"></i>
-												<i class="o-arrow__head"></i>
-											</div>
-											<span><?php the_title(); ?></span>
+											<i class="o-icon s--arrow-ltr"></i>
+											<span class="o-link__title"><?php the_title(); ?></span>
 										</a>
 									</li>
 								<?php endwhile; ?>
@@ -55,11 +52,8 @@
 								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
 									<li>
 										<a href="<?php the_permalink(); ?>" class="o-link">
-											<div class="o-arrow">
-												<i class="o-arrow__stem"></i>
-												<i class="o-arrow__head"></i>
-											</div>
-											<span><?php the_title(); ?></span>
+											<i class="o-icon s--arrow-ltr"></i>
+											<span class="o-link__title"><?php the_title(); ?></span>
 										</a>
 									</li>
 								<?php endwhile; ?>
@@ -87,10 +81,7 @@
 		<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
 			<span class="o-subtitle">Next</span>
 			<span class="o-heading"><?php echo get_the_title($nextPageID); ?></span>
-			<div class="o-arrow">
-				<i class="o-arrow__stem"></i>
-				<i class="o-arrow__head"></i>
-			</div>
+			<i class="o-icon s--arrow-ltr"></i>
 			<figure style="background-image:url('<?php echo get_field('cover_image', $nextPageID); ?>')"></figure>
 		</a>
 		<footer class="c-page__footer">
@@ -110,10 +101,7 @@
 							<?php endif; ?>
 						</ul>
 						<a href="#" class="o-button">
-							<div class="o-arrow">
-								<i class="o-arrow__stem"></i>
-								<i class="o-arrow__head"></i>
-							</div>
+							<i class="o-icon s--arrow-ltr"></i>
 							<span class="o-button__title">Partner with Us</span>
 						</a>
 					</section>
@@ -127,10 +115,7 @@
 								?>
 								<li>
 									<a href="tel:+<?php echo $telephone;?>" class="o-link">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span>+ <?php echo $niceTelephone; ?></span>
 									</a>
 								</li>
@@ -144,10 +129,7 @@
 								?>
 								<li>
 									<a href="mailto:<?php echo $email;?>" class="o-link">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span><?php echo $email; ?></span>
 									</a>
 								</li>
@@ -160,10 +142,7 @@
 									<p class="u-pb-m"><?php the_field('address', 20); ?></p>
 								</a>
 								<a href="<?php the_field('google_map_link'); ?>" class="o-link">
-									<div class="o-arrow">
-										<i class="o-arrow__stem"></i>
-										<i class="o-arrow__head"></i>
-									</div>
+									<i class="o-icon s--arrow-ltr"></i>
 									<span>Locate on Map</span>
 								</a>
 							</li>
@@ -183,10 +162,7 @@
 								<input type="text" placeholder="Your E-mail"/>
 							</div>
 							<button class="o-button">
-								<div class="o-arrow">
-									<i class="o-arrow__stem"></i>
-									<i class="o-arrow__head"></i>
-								</div>
+								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">Subscribe</span>
 							</button>
 						</form>

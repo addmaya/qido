@@ -63,6 +63,12 @@
 	  }
 	}
 
+	function setActiveClass($page){
+		if(is_page($page)){
+			return ' is-active';
+		}
+	}
+
 	function remove_menus(){
 	  global $menu;
 	  global $submenu;

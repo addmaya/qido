@@ -2,34 +2,53 @@
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">
-			<ul class="c-team">
+			<ul class="c-team o-grid">
 				<?php 
 					$teamList = new WP_Query(array(
 						'post_type'=>'staff',
 						'posts_per_page'=>-1
 						));
 					if ($teamList->have_posts()){ 
+						$staffIndex = 0;
+						$aosDelay = 0;
 				?>	
-					<?php while ( $teamList->have_posts() ) : $teamList->the_post();  ?>
-					<li>
-						<figure style="background-image:url('<?php the_field('photo_full');?>')">
-							<span class="o-bubble s--large"></span>
-							<span class="o-bubble s--medium"></span>
-							<span class="o-bubble s--small"></span>
-						</figure>
-						<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
-						<span class="o-subheading s--profile"><?php the_title(); ?></span>
+					<?php while ( $teamList->have_posts() ) : $teamList->the_post();
+						if($staffIndex > 3){
+							$staffIndex = 0;
+						}
+						switch ($staffIndex) {
+							case 1:
+								$aosDelay = 100;
+								break;
+							case 2:
+								$aosDelay = 200;
+								break;
+							case 3:
+								$aosDelay = 300;
+								break;
+							default:
+								$aosDelay = 0;
+								break;
+						}
+					?>
+					<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>" class="o-grid__item">
+						<a href="<?php the_permalink(); ?>" class="o-staff">
+							<figure style="background-image:url('<?php the_field('photo_full');?>')">
+								<span class="o-bubble s--large"></span>
+								<span class="o-bubble s--medium"></span>
+								<span class="o-bubble s--small"></span>
+							</figure>
+							<span class="o-subheading s--profile"><?php the_title(); ?></span>
+							<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
+						</a>
 					</li>
-					<?php endwhile; ?>
+					<?php $staffIndex++; endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 				<?php } ?>
 			</ul>
 			<footer class="o-section__footer">
 				<a href="#" class="o-button">
-					<div class="o-arrow">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
+					<i class="o-icon s--arrow-ltr"></i>
 					<span class="o-button__title">Join the team</span>
 				</a>
 			</footer>
@@ -58,10 +77,7 @@
 								<div class="o-program__summary">
 									<p><?php the_field('introduction'); ?></p>
 									<a href="<?php the_permalink(); ?>" class="o-button">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span class="o-button__title">Learn More</span>
 									</a>
 								</div>

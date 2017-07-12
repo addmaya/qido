@@ -3,7 +3,7 @@
 <?php 
 	$partnerGroups = get_terms('group', array('orderby'=>'count', 'order'=>'DESC'));
 	foreach ($partnerGroups as $partnerGroup): ?>
-		<section class="o-page__section">
+		<section class="o-page__section" data-aos="fade-up">
 			<div class="o-section__tint"></div>
 			<div class="u-box">
 				<header class="o-section__header">
@@ -29,25 +29,47 @@
 									)
 								)
 							));
-						if ($partnerList->have_posts()){ 
+						if ($partnerList->have_posts()){
+							$partnerIndex = 0;
+							$aosDelay = 0;
 					?>	
-						<?php while ( $partnerList->have_posts() ) : $partnerList->the_post();  ?>
-						<li class="o-partner">
-							<a href="#">
-								<figure class="o-partner__logo" style="background-image:url('<?php echo get_field('logo');?>')"></figure>
-								<span></span>
+						<?php while ( $partnerList->have_posts() ) : $partnerList->the_post();  
+							if($partnerIndex > 3){
+								$partnerIndex = 0;
+							}
+							switch ($partnerIndex) {
+								case 1:
+									$aosDelay = 100;
+									break;
+								case 2:
+									$aosDelay = 200;
+									break;
+								case 3:
+									$aosDelay = 300;
+									break;
+								default:
+									$aosDelay = 0;
+									break;
+							}
+						?>
+						<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+							<a href="#" class="o-partner__link">
+								<figure class="o-partner__logo" style="background-image:url('<?php echo get_field('logo');?>')">
+									<div class="u-table">
+										<div class="u-cell">
+											<span>View Partner Profile</span>
+										</div>
+									</div>
+								</figure>
 							</a>
 						</li>
-						<?php endwhile; ?>
+						<?php $partnerIndex++; endwhile; ?>
 						<?php wp_reset_postdata(); ?>
 					<?php } ?>
 				</ul>
 				<footer class="o-section__footer">
 					<a href="#" class="o-button">
-						<div class="o-arrow">
-							<i class="o-arrow__stem"></i>
-							<i class="o-arrow__head"></i>
-						</div>
+						<i class="o-icon s--arrow-ltr"></i>
 						<span class="o-button__title">Partner with Us</span>
 					</a>
 				</footer>

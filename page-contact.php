@@ -9,10 +9,7 @@
 						<a href="<?php the_field('google_map_link'); ?>" class="u-block">
 							<p class="u-pb-m"><?php the_field('address'); ?></p>
 							<div class="o-button">
-								<div class="o-arrow">
-									<i class="o-arrow__stem"></i>
-									<i class="o-arrow__head"></i>
-								</div>
+								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">Locate on Map</span>
 							</div>
 						</a>
@@ -27,10 +24,7 @@
 								?>
 								<li>
 									<a href="tel:+<?php echo $telephone;?>" class="o-link">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span>+ <?php echo $niceTelephone; ?></span>
 									</a>
 								</li>
@@ -47,10 +41,7 @@
 								?>
 								<li>
 									<a href="mailto:<?php echo $email;?>" class="o-link">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span><?php echo $email; ?></span>
 									</a>
 								</li>
@@ -122,10 +113,7 @@
 										</div>
 									</div>
 									<button class="o-button">
-										<div class="o-arrow">
-											<i class="o-arrow__stem"></i>
-											<i class="o-arrow__head"></i>
-										</div>
+										<i class="o-icon s--arrow-ltr"></i>
 										<span class="o-button__title">Send Message</span>
 									</button>
 								</form>

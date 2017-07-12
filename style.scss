@@ -56,6 +56,9 @@ $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
   $t: $seconds * 1s;
   @include prefix((animation-duration: $t));
 }
+@mixin bezier($a, $b, $c, $d){
+  @include prefix((animation-timing-function: cubic-bezier($a, $b, $c, $d)))
+}
 @mixin delay($seconds){
   $delay: $seconds * 1s;
   @include prefix((animation-delay: $delay));
@@ -67,7 +70,7 @@ $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
   @-o-keyframes #{$animationName} {@content;}
   @keyframes #{$animationName} {@content;}
 }
-@mixin animate($name,$duration,$delay) {
+@mixin animate($name,$duration,$delay,$timingFunction) {
   $t: $duration * 1s;
   $d: $delay * 1s;
   -webkit-animation-duration: $t;
@@ -82,17 +85,31 @@ $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
      -moz-animation-delay: $d;
        -o-animation-delay: $d;
           animation-delay: $d;
-  -webkit-animation-fill-mode: both;
-     -moz-animation-fill-mode: both;
-       -o-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-@mixin bezier($a, $b, $c, $d){
-  @include prefix((animation-timing-function: cubic-bezier($a, $b, $c, $d)))
+  -webkit-animation-fill-mode: forwards;
+     -moz-animation-fill-mode: forwards;
+       -o-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: $timingFunction;
+     -moz-animation-timing-function: $timingFunction;
+       -o-animation-timing-function: $timingFunction;
+          animation-timing-function: $timingFunction;
 }
 @mixin resetPivot{@include prefix((transform-origin: 0 0))}
 @mixin scale2D($x,$y){
   @include prefix((transform:scale($x,$y)));
+}
+@mixin translateX($x){
+  @include prefix((transform:translateX($x)));
+}
+@mixin translateY($y){
+  @include prefix((transform:translateY($y)));
+}
+@mixin transitionTransform($seconds, $timingFunction){
+  $transitionDuration: $seconds * 1s;
+  @include prefix((transition: transform $transitionDuration $timingFunction));
+}
+@mixin shadow{
+  box-shadow: 0 em(48) em(72) rgba(0,0,0,0.3);
 }
 
 /*defaults*/
@@ -204,34 +221,8 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
   &.s--arrow__down{@include image('arrow_down.svg')}
   &.s--calendar{@include image('calendar.svg'); background-size:50%}
   &.s--pen{@include image('pen.svg'); background-size:50%}
+  &.s--arrow-ltr{@include image('arrow-ltr.svg')}
 }
-
-@mixin o-arrow-theme($color){
-  .o-arrow__stem{background-color:$color}
-  .o-arrow__head{border-color: $color}
-}
-.o-arrow{position: relative; display: inline-block; color:black; top: 7px;
-  .o-slide &{
-    .o-arrow__stem{background-color:#fff !important}
-    .o-arrow__head{border-color: #fff !important}
-  }
-  .c-button-next &{float: none; z-index: 2;
-    .o-arrow__stem{background-color:#fff !important}
-    .o-arrow__head{border-color: #fff !important}
-  }
-  .c-page__info & {
-    .o-arrow__stem{background-color:#fff17d !important}
-    .o-arrow__head{border-color: #fff17d !important}
-  }
-  
-  .t-neptune &{@include o-arrow-theme($neptune)}
-  .t-venus &{@include o-arrow-theme(darken($venus,15%))}
-  .t-jupiter &{@include o-arrow-theme(darken($jupiter,15%))}
-  .t-earth &{@include o-arrow-theme(darken($earth,15%))}
-  .t-mercury &{@include o-arrow-theme(darken($mercury,15%))}
-}
-.o-arrow__stem{display: block; width: 12px; height: 1px;}
-.o-arrow__head{display: block; height: 8px; width: 8px; border: solid 1px; border-left:0; border-bottom: 0; @include prefix((transform: rotate(45deg))); position: relative; left: 7px; top: -5px}
 
 $active: #ffe992;
 .o-menu{
@@ -262,11 +253,6 @@ $active: #ffe992;
 .o-button{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease));
   .o-icon{width: 1em; height: 1em}
   .o-button__title{position: relative; top:-1px; font-weight: 300; @include opensans; @include prefix((transition: transform 0.3s ease)); display: inline-block;}
-  .o-arrow{right: 12px; float: left; top: 6px; @include prefix((transition: transform 0.2s ease));
-    &.s--rtl{@include prefix((transform: rotate(180deg))); top: auto; bottom: 3px}
-    form &{top: 8px}
-  }
-  .o-arrow__head{top:-4px}
   
   .t-venus &{background-color: #d3cfe6; color: darken($venus, 15%)}
   .t-jupiter &{color: darken($jupiter, 15%)}
@@ -275,9 +261,6 @@ $active: #ffe992;
 
   &:hover{background-color: darken($jupiter, 40%);
     .o-button__title{color: #fff; @include prefix((transform: translateX(em(9))))}
-    .o-arrow{@include prefix((transform: translateX(em(6))))}
-    .o-arrow__head{border-color: #fff;}
-    .o-arrow__stem{background-color: #fff;}
   }
 }
 .o-line{height: 1px; background-color:#d2e1ea; display: block;
@@ -285,18 +268,13 @@ $active: #ffe992;
 
 }
 .o-link{display: inline-block; padding: em(4) 0; position: relative;
-  .o-icon{width: 1em; height: 1em; position: relative; top:2px;}
-  span{display: inline-block; padding-left: em(12); @include prefix((transition: transform 0.3s ease));}
+  .o-icon{width: 1em; height: 1em; position: relative; top:2px; @include prefix((transition: transform 0.3s ease))}
+  span{display: inline-block; padding-left: em(6); @include prefix((transition: transform 0.3s ease))}
   .c-page__actions &{color: $neptune}
   .c-page__info &{padding-top: em(16); color: #fff17d}
-  .o-arrow{position: relative; top:6px; float: left; @include prefix((transition: transform 0.3s ease));}
-  .c-page__actions &{
-    .o-arrow{position: absolute; top: 50%;}
-    span{padding-left: em(24); line-height:1.5}
-  }
   &:hover{
-    .o-arrow{@include prefix((transform: translateX(em(6))))}
-    span{@include prefix((transform: translateX(em(12))))}
+    .o-icon{@include prefix((transform: translateX(em(12))))}
+    span{@include prefix((transform: translateX(em(6))))}
   }
 }
 .o-tabs__nav{
@@ -314,7 +292,7 @@ $active: #ffe992;
 :-moz-placeholder {color: #3E526E}
 
 .o-subtitle{text-transform: uppercase; font-size: em(10); @include arial; display: block; letter-spacing: em(12);
-  &.s--profile{opacity: 0.8; text-transform: none; font-family: inherit; letter-spacing: normal; font-size: 0.875em; line-height: 1.5;height: em(40);
+  &.s--profile{opacity: 0.8; text-transform: none; font-family: inherit; letter-spacing: normal; font-size: 0.875em; line-height: 1.5;
   }
   &.o-board__title{height: auto}
 }
@@ -325,13 +303,14 @@ $active: #ffe992;
   .t-jupiter &{color: darken($jupiter,10%)}
 }
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400;
-  .o-arrow{margin-left: 0.5em; top: 3px !important}
-  &.s--profile{height: 3em; font-weight: 300}
-  
+  &.s--profile{font-weight: 300}
+  .o-icon{font-size: 0.5em; position: relative; top: 2px;}
+
   .t-venus &{color: darken($venus, 15%);}
   .t-earth &{color: darken($earth, 10%);}
   .t-mercury &{color: darken($mercury, 10%)}
   .t-jupiter &{color: darken($jupiter, 10%)}
+
 }
 .o-select{display: inline-block; position: relative; color: $neptune;
   select{display: inline-block; border:solid 1px; border-radius: em(24); padding: em(9) em(56) em(12) em(24); background-color: #fff; font-size: 1em; color: inherit; margin-left: em(12)}
@@ -353,7 +332,7 @@ $active: #ffe992;
 }
 .o-article{position: relative;
   &.u-full{float: left;
-    .o-article__figure{height: 28em}
+    .o-article__figure figure{height: 28em}
     .o-article__brief{width: 70%;}
   }
   &.u-third{
@@ -363,16 +342,28 @@ $active: #ffe992;
     .s--xsmall{left: 0; right: auto; top: 35%;}
   }
   .u-wrap{padding: 1.5em 4em}
-  .o-subheading{padding-bottom: em(12)}
-  .s--large{height: 15em; width: 15em; left: em(-36); top: 0;}
-  .s--medium{height: 10em; width: 10em; right: em(-36); top: 30%;}
+  .o-subheading{padding-bottom: em(12); @include transitionTransform(0.3, $easeOutExpo)}
+  .s--large{height: 13em; width: 13em; left: em(-36); top: 0;}
+  .s--medium{height: 9em; width: 9em; right: em(-36); top: 30%;}
   .s--small{height: 6em; width: 6em; left: em(-12); top: 50%;}
-  .s--xsmall{height: 6em; width: 6em; right: 0; top: 20%;}
-  .o-arrow{top: 9px;}
+  .s--xsmall{height: 4em; width: 4em; right: 0; top: 20%;}
 }
-.o-article__figure{position: relative; height: em(385); background-color: #e6e6e6; @include border-radius-s; margin-bottom: em(24); background-position: center; background-repeat: no-repeat; background-size: cover;
+.o-article__link{display: block;
+  &:hover{
+    .o-article__figure{@include scale2D(1.05, 1.05);
+      &:after{opacity:1}
+    }
+    .o-bubble{@include animate(levitate, 3, 0, ease-in-out); @include infinite}
+    .o-article__brief{@include translateY(em(18))}
+  }
+}
+.o-article__brief{line-height:1.6; @include transitionTransform(0.4, cubic-bezier(0.42, 0, 0, 1.46));}
+.o-article__figure{display: block; @include transitionTransform(0.4, cubic-bezier(0.42, 0, 0, 1.46)); position: relative;
+  figure{position: relative; height: em(385); background-color: #e6e6e6; @include border-radius-s; margin-bottom: em(24); background-position: center; background-repeat: no-repeat; background-size: cover;}
   .u-center{text-align: center; position: absolute; z-index: 1; top: em(-20); width: 100%}
   .o-icon{height: 2.5em; width: 2.5em; background-color: #FDC14D; border-radius: 50%}
+  
+  &:after{content:""; width: 100%; height:100%; z-index:-1; position: absolute; @include shadow; opacity:0; @include prefix ((transition: opacity 0.4s ease)); top: 0; left: 0; @include border-radius-s;}
 }
 .o-article__time{display: inline-block; padding: 0.5em 0.75em; font-size: em(9); top:4em; position: relative; color: #fff; z-index: 1; font-weight: normal;
   .t-venus &{background-color: darken($venus, 15%)}
@@ -412,14 +403,21 @@ $active: #ffe992;
   .t-mercury &{background-color: #ebefff}
 }
 .o-partner{width: 25%; float: left; margin-bottom:2em; text-align: center;
-  a{display: block; width: em(225); height: em(225); background-color: #e6e6e6; @include center;
-    &.u-transparent{background-color: transparent;}
-  }
+  a.u-transparent{background-color: transparent;}
   .o-subheading{padding:em(12) 0 em(6)}
-  figure{height: 100%; width: 100%; background-size:65%; background-repeat: no-repeat; background-position: center;
-    &.s--profile{background-size: cover; background-color: white; @include border-radius-l}
-  }
   &.u-third{width: percentage(1/3)}
+}
+.o-partner__logo{height: 100%; width: 100%; background-size:65%; background-repeat: no-repeat; background-position: center; overflow: hidden; position: relative;
+  &.s--profile{background-size: cover; background-color: white; @include border-radius-l}
+}
+.o-partner__link{display: block; width: em(225); height: em(225); background-color: #e6e6e6; @include center; @include transitionTransform(0.4, cubic-bezier(0.42, 0, 0, 1.46)); position: relative; 
+  .u-table{position: absolute; top: 100%; left: 0; z-index: 1; background-color: rgba(12, 61, 139, 0.94); width: 100%; height: 100%; @include transitionTransform(0.4, ease); color: #fff;}
+  span{display: inline-block; padding: em(12) em(12); border: solid 2px #fff; border-radius: em(48)}
+  &:after{content:""; position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity:0; @include prefix ((transition: opacity 0.4s ease)); @include shadow}
+  &:hover{@include scale2D(1.1, 1.1);
+    &:after{opacity:1}
+    .u-table{@include translateY(-100%)}
+  }
 }
 .o-director{width: 25%; float: left; margin-bottom:2em; text-align: center; 
   a{display: block; width: em(225); height: em(225); @include center; position: relative;}
@@ -429,27 +427,39 @@ $active: #ffe992;
   .s--small{bottom: em(12); right: em(-6)}
 }
 
-.o-tag{display: inline-block; font-size: 1.5em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300;
+
+.o-tag{display: inline-block; font-size: 1.5em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300; position: relative; @include transitionTransform(0.3,ease);
   span{vertical-align: super; font-size: 50%; color:#00a6d0; font-weight:bold}
+  &:hover{@include translateY(em(-6));
+    &:after{@include scale2D(1,1)}
+  }
+  &:after{content:""; position: absolute; bottom: 0; left: 0; @include resetPivot; @include scale2D(0,1); width: 90%; height: 3px; background-color: darken($neptune,10%); @include transitionTransform(0.3, $easeOutExpo)}
 }
-.o-ticket{
+.o-ticket{display: block;
   .c-cut{position: absolute; z-index: 1; width: em(16); height: em(16); @include border-radius-l;
     &.s--left{left: em(-8)}
     &.s--right{right: em(-8)}
-    &.s--left__bottom{bottom: em(-8); left: em(-8);}
-    &.s--right__bottom{bottom: em(-8); right: em(-8);}
+    &.s--left__bottom{bottom: em(-8); left: em(-8); background-color: #fff}
+    &.s--right__bottom{bottom: em(-8); right: em(-8); background-color: #fff}
+  }
+  .o-subheading{@include transitionTransform(0.4, cubic-bezier(0.42, 0, 0, 1.46))}
+
+  &:hover{
+    .o-ticket__figure{@include translateY(em(-24))}
+    .o-subheading{@include translateY(em(12))}
+    .o-ticket__info{background-color: darken(#4E4187,20%)}
   }
 }
-.o-ticket__figure{display: block; position: relative;
+.o-ticket__figure{display: block; position: relative; @include transitionTransform(0.4, cubic-bezier(0.42, 0, 0, 1.46));
   figure{background-color: #e6e6e6; height: em(320); position: relative; background-size: cover; background-repeat: no-repeat; background-position: center}
   .c-cut{top: em(12); background-color: #f2f0fa}
 }
-.o-ticket__info{@include clear; background-color: #dedbea; padding: em(12); margin-bottom: 1.2em; position: relative; @include image('barcode.svg'); background-size: em(24); background-position: 15px bottom; background-repeat: no-repeat;
-  span{display: block; text-transform: uppercase; font-size: 0.75em; font-family: 'Arial'; padding:1.5em 1.5em 1.5em 0; line-height: 1.5; color: #686475}
-  .o-line{width: 30%; height: 2px; background-color: #c7c2da;}
+.o-ticket__info{@include clear; background-color: #4E4187; padding: em(12); margin-bottom: 1.2em; position: relative; @include image('barcode.svg'); background-size: em(24); background-position: 15px bottom; background-repeat: no-repeat; @include prefix((transition: background-color 0.3s ease));
+  span{display: block; text-transform: uppercase; font-size: 0.75em; font-family: 'Arial'; padding:1.5em 1.5em 1.5em 0; line-height: 1.5; color: #fff}
+  .o-line{width: 30%; height: 2px; background-color: #fff; opacity: 0.2}
   .c-cut{background-color: #fff}
-  .s--left{top:em(-8)}
-  .s--right{top:em(-8)}
+  .s--left{top:em(-8); background-color: #f2f0fa}
+  .s--right{top:em(-8); background-color: #f2f0fa}
 }
 .o-program{margin-bottom: 8em; float: left;
   .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center top}
@@ -562,37 +572,41 @@ $active: #ffe992;
   .s--left &{left: 0}
   .s--right &{right: 0}
 }
-
 .o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color:#3f51b5;
   .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em; z-index: 1}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .o-imagelink__figure{display: block; height: 100%; @include multiply; @include cover; @include image('dummy/cover.jpg')}
 }
+.o-staff{display: block;
+  &:hover{
+    .o-bubble{@include animate(levitate, 3, 0, ease-in-out); @include infinite}
+  }
+}
 
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
   .o-networks{float: right; padding-top: em(8);}
-  .is-booting &{@include animate(fadeInDown, 1.5, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
-  &.is-hidden{@include animate(fadeOutUp, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
+  .is-booting &{@include animate(fadeInDown, 1.5, 0, cubic-bezier(0.3, 0, 0, 1))}
+  &.is-hidden{@include animate(fadeOutUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include prefix((transition: opacity 0.3s ease));
   &:hover{opacity: 0.7}
 }
 .c-page__menu{position: fixed; right:0; top: em(84); z-index: 10;
-  .is-booting &{@include animate(fadeInRight, 1.5, 0.3); @include prefix ((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
-  &.is-hidden{@include animate(fadeOutRight, 1, 0); @include prefix((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
-  &.is-active{@include animate(fadeInRight, 1,0); @include prefix ((animation-timing-function:cubic-bezier(0.3, 0, 0, 1)))}
+  .is-booting &{@include animate(fadeInRight, 1.5, 0.3, cubic-bezier(0.3, 0, 0, 1))}
+  &.is-hidden{@include animate(fadeOutRight, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
+  &.is-active{@include animate(fadeInRight, 1,0, cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
-    .is-booting &{@include animate(fadeInUp, 1, 1.1); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+    .is-booting &{@include animate(fadeInUp, 1, 1.1, cubic-bezier(0.3, 0, 0, 1))}
   }     
   .u-cell{position: relative;}
   .s--small{background-color: #FDC14D; @include prefix((animation: bubble-small-orbit 40s linear infinite)); }
   .s--medium{background-color: #53BE80; @include prefix((animation: bubble-large-orbit 80s linear infinite))}
   .o-bubble{top:50%}
   .o-bubble__group{
-    .is-booting &{@include animate(fadeIn,1.5,2.5)}
+    .is-booting &{@include animate(fadeIn,1.5,2.5, ease)}
   }
   
   .t-neptune &{background-color: darken($neptune, 5%)}
@@ -622,15 +636,28 @@ $active: #ffe992;
   &.is-hidden{@include duration(0.5); @include animation(slideOutUp); @include bezier(0.37,-0.01, 0.03, 0.99)}
 }
 .c-page-cover__image{height: 100%; @include cover; @include multiply; filter: grayscale(100%);
-  .is-booting &{@include animate(fadeInUp, 1.2, 0.85); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+  .is-booting &{@include animate(fadeInUp, 1.2, 0.85, cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-page-cover__title{width: 340px; height: 182px; display: block; @include center; background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
-.c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: absolute;
-  span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3;}
-  .is-booting &{@include animate(fadeIn, 1.5, 1.4);}
+.c-page__title{overflow-x: hidden; width: 100%; top: 50%;z-index: -1; position: fixed;
+  span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3; opacity: 0.5}
+  .is-booting &{@include animate(fadeIn, 1.5, 1.4, ease);}
 }
 .c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
-  p{@include center; width: 90%; @include light}
+  .u-block{@include center; width: 90%; @include light; line-height: 1.6;}
+
+  a{display: block; position: relative; overflow:hidden;
+    h1{@include transitionTransform(0.3, ease); position: relative;
+      &:after{content: ""; position: absolute; width:20%; height: 6px; background-color: #fff; left: 0; bottom: 1em; @include resetPivot; @include scale2D(0,1); @include transitionTransform(0.3, $easeOutExpo)}
+    }
+    &:hover{
+      h1{@include translateX(24px);
+        &:after{@include scale2D(1,1)}
+      }
+      &:after{opacity:0.3}
+    }
+    &:after{content:""; position: absolute; top:0; width:100%; height:400px; background-color:#000; left:0; z-index:-1; opacity:0; @include prefix((transition: opacity 0.3s ease))}    
+  }
   .u-wrap{padding: 2em}
 
   .t-neptune &{background-color:#0c3d8b}
@@ -638,16 +665,19 @@ $active: #ffe992;
   .t-jupiter &{background-color: $jupiter}
   .t-earth &{background-color: $earth}
   .t-mercury &{background-color: $mercury}
-  .is-booting &{@include animate(fadeInUp, 1, 1.4); animation-timing-function:cubic-bezier(0.3, 0, 0, 1)}
+  .is-booting &{@include animate(fadeInUp, 1, 1.4,cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-page__content{position: relative; top:-5%;
-  .is-booting &{@include animate(fadeIn, 1.5, 1.8)}
+  .is-booting &{@include animate(fadeIn, 1.5, 1.8,ease)}
 }
 .c-page__actions{@include clear; margin-bottom: 2em;
   .o-line{position: relative; top: em(30); margin: 2em 0;
     &:after{content:""; position: absolute; height: em(30); width: 1px; background-color: inherit; top: 0; left: 50%;};
   }
+  .o-list .o-icon{position: absolute; left:0; top: 30%}
   .o-subtitle{margin-bottom: 2em;}
+  .o-link__title{padding-left: em(30); line-height:1.5}
+  .o-networks{font-size: 1.25em; padding-top: em(12)}
 }
 
 $cButtonNextEasing: cubic-bezier(0.27, 0, 0, 0.99);
@@ -655,9 +685,8 @@ $cButtonNextDuration: 0.65s;
 .c-button-next{display: block; background-color: $neptune; padding: 5em 0; text-align: center; color: #fff; position: relative; overflow: hidden; cursor: pointer; 
   span{position: relative; z-index: 2}
   figure{width: 100%; height: 100%; @include cover; @include cover; position: absolute; top: 0; @include multiply; left: 0; z-index: 1; filter: grayscale(100); @include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing)); @include prefix((transform: scale3d(1.1, 1.1,1.1)))}
-  .o-icon{background-color: #fff;}
+  .o-icon{background-color: #fff; @include border-radius-l}
   .o-heading {color: #fff !important; @include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
-  .o-arrow{@include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
   .o-subtitle{@include prefix((transition: transform $cButtonNextDuration $cButtonNextEasing))}
 
   .t-venus &{background-color: darken($venus, 15%)}
@@ -668,7 +697,6 @@ $cButtonNextDuration: 0.65s;
   
   &:hover{
     figure{@include prefix((transform: scale3d(1.1,1.1,1.1) translateX(50px)))}
-    .o-arrow{@include prefix((transform: translateX(100px)))}
     .o-heading{@include prefix((transform: translateX(60px)))}
     .o-subtitle{@include prefix((transform: translateX(30px)))}
   }
@@ -689,9 +717,7 @@ $cButtonNextDuration: 0.65s;
   figure{width: 90%;height: em(96); background-repeat:no-repeat; background-size:70%; background-position: center;}
 }
 .c-form-newsletter{@include clear;
-  .o-button{float: right; width: 42%; padding: em(8) em(24);
-    .o-arrow{top: 8px;}
-  }
+  .o-button{float: right; width: 42%; padding: em(8) em(24)}
   .o-input{float: left; width: 58%; margin-bottom: 0;
     input{border: solid 1px #c4cad4; border-radius: 10em; padding: em(7) em(18); width: 78%;}
   }
@@ -830,4 +856,9 @@ $orbit-radius:150px;
 @keyframes zoomForward {
   from {transform: scale3d(1, 1, 1);}
   to {transform: scale3d(1.2, 1.2, 1.2)}
+}
+
+@keyframes levitate {
+  0%, 100% {transform:translateY(0)}
+  50% {transform:translateY(em(-48))}
 }

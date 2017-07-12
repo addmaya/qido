@@ -61,10 +61,7 @@
 									<div class="o-program__summary">
 										<p><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</p>
 										<a href="<?php the_permalink(); ?>" class="o-button">
-											<div class="o-arrow">
-												<i class="o-arrow__stem"></i>
-												<i class="o-arrow__head"></i>
-											</div>
+											<i class="o-icon s--arrow-ltr"></i>
 											<span class="o-button__title">Explore</span>
 										</a>
 									</div>

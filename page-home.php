@@ -19,10 +19,7 @@
 						<h1><a href="<?php echo $slideButtonLink; ?>"><?php echo $slideTitle; ?></a></h1>
 						<p><?php echo $slideCaption; ?></p>
 						<a href="<?php echo $slideButtonLink; ?>" class="o-button">
-							<div class="o-arrow">
-								<i class="o-arrow__stem"></i>
-								<i class="o-arrow__head"></i>
-							</div>
+							<i class="o-icon s--arrow-ltr"></i>
 							<span class="o-button__title"><?php echo $slideButtonText; ?></span>
 						</a>
 					</section>
@@ -77,10 +74,7 @@
 			</ul>
 			<section class="a-center">
 				<a href="<?php echo home_url(); ?>/story" class="o-button">
-					<div class="o-arrow">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
+					<i class="o-icon s--arrow-ltr"></i>
 					<span class="o-button__title">Our Story in Number</span>
 				</a>
 			</section>
@@ -122,10 +116,7 @@
 							<section class="o-card__info">
 								<p><?php the_field('introduction'); ?></p>
 								<a href="<?php the_permalink(); ?>" class="o-button">
-									<div class="o-arrow">
-										<i class="o-arrow__stem"></i>
-										<i class="o-arrow__head"></i>
-									</div>
+									<i class="o-icon s--arrow-ltr"></i>
 									<span class="o-button__title">Explore</span>
 								</a>
 							</section>
@@ -139,10 +130,7 @@
 		<footer class="o-section__footer">
 			<span class="o-subtitle u-pb-m">8 of <?php echo $programsCount; ?></span>
 			<a href="<?php echo home_url(); ?>/programs" class="o-button">
-				<div class="o-arrow">
-					<i class="o-arrow__stem"></i>
-					<i class="o-arrow__head"></i>
-				</div>
+				<i class="o-icon s--arrow-ltr"></i>
 				<span class="o-button__title">See all programs</span>
 			</a>
 		</footer>
@@ -172,10 +160,7 @@
 						<div class="o-imagelink__figure"></div>
 						<div class="a-center">
 							<span class="o-button">
-								<div class="o-arrow">
-									<i class="o-arrow__stem"></i>
-									<i class="o-arrow__head"></i>
-								</div>
+								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">Meet the Team</span>
 							</span>
 						</div>
@@ -184,10 +169,7 @@
 						<div class="o-imagelink__figure"></div>
 						<div class="a-center">
 							<span class="o-button">
-								<div class="o-arrow">
-									<i class="o-arrow__stem"></i>
-									<i class="o-arrow__head"></i>
-								</div>
+								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">See our Board</span>
 							</span>
 						</div>
@@ -234,10 +216,7 @@
 									<a href="<?php echo $postPermalink; ?>" class="o-subheading"><?php the_title(); ?></a>
 									<p><a href="<?php echo $postPermalink; ?>"><?php getPostExcerpt(136); ?>
 										<span class="o-link">
-											<i class="o-arrow">
-												<i class="o-arrow__stem"></i>
-												<i class="o-arrow__head"></i>
-											</i>
+											<i class="o-icon s--arrow-ltr"></i>
 										</span>
 									</a></p>
 								</section>
@@ -250,10 +229,7 @@
 			<div class="a-center u-pt-l">
 				<span class="o-subtitle u-pb-m">8 of 125</span>
 				<a href="<?php echo home_url(); ?>/blog" class="o-button">
-					<div class="o-arrow">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
+					<i class="o-icon s--arrow-ltr"></i>
 					<span class="o-button__title">Show me more</span>
 				</a>
 			</div>

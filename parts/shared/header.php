@@ -20,63 +20,63 @@
 	<section class="u-wrap">
 		<ul class="o-menu">
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>">
+				<a href="<?php echo home_url(); ?>" class="<?php echo setActiveClass('home'); ?>">
 					<span class="o-menu-item__title">Home</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/about">
+				<a href="<?php echo home_url(); ?>/about" class="<?php echo setActiveClass('about'); ?>">
 					<span class="o-menu-item__title">About</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/impact">
+				<a href="<?php echo home_url(); ?>/impact" class="<?php echo setActiveClass('impact'); ?>">
 					<span class="o-menu-item__title">Impact</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/programs">
+				<a href="<?php echo home_url(); ?>/programs" class="<?php echo setActiveClass('programs'); ?>">
 					<span class="o-menu-item__title">Programs <span class="u-super">16</span></span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/team">
+				<a href="<?php echo home_url(); ?>/team" class="<?php echo setActiveClass('team'); ?>">
 					<span class="o-menu-item__title">Team</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/partners">
+				<a href="<?php echo home_url(); ?>/partners" class="<?php echo setActiveClass('partners'); ?>">
 					<span class="o-menu-item__title">Partners</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/events">
+				<a href="<?php echo home_url(); ?>/events" class="<?php echo setActiveClass('events'); ?>">
 					<span class="o-menu-item__title">Events</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/blog">
+				<a href="<?php echo home_url(); ?>/blog" class="<?php echo setActiveClass('blog'); ?>">
 					<span class="o-menu-item__title">Blog</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
-			<li class="o-menu-item is-active">
-				<a href="<?php echo home_url(); ?>/contact">
+			<li class="o-menu-item">
+				<a href="<?php echo home_url(); ?>/contact" class="<?php echo setActiveClass('contact'); ?>">
 					<span class="o-menu-item__title">Contact</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>

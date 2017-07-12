@@ -126,6 +126,12 @@ jQuery(document).ready(function($) {
 	  namespace: 'team',
 	  onEnter: function() {
 	    updatePageTheme('t-earth');
+
+	    var gridTeam = $('.o-grid');    
+	    gridTeam.isotope({
+	    	 itemSelector: '.o-grid__item',
+	    	 layoutMode: 'packery'
+	    });
 	  }
 	});
 	pageTeam.init();
@@ -190,7 +196,7 @@ jQuery(document).ready(function($) {
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
 	    	AOS.init({
-	    		duration: 600
+	    		duration: 750
 	    	});
 	    }, 800);
 	    randomizeBubbleColors();
@@ -204,7 +210,7 @@ jQuery(document).ready(function($) {
 	randomizeStatBubbles();
 
 	AOS.init({
-		duration: 600
+		duration: 750
 	});
 });
 

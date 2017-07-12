@@ -13,19 +13,17 @@
 		</div>
 	</section>
 	<section class="c-page__info">
-		<div class="u-wrap">
-			<h1><?php the_title(); ?>
+		<a class="u-wrap" href="<?php the_permalink(); ?>">
+			<h1>
+				<?php the_title(); ?>
 				<span class="o-subtitle"><?php getPostTime(); ?></span>
 			</h1>
-			<p><?php getPostExcerpt(186); ?></p>
-			<a href="<?php the_permalink(); ?>" class="o-link">
-				<div class="o-arrow">
-					<i class="o-arrow__stem"></i>
-					<i class="o-arrow__head"></i>
-				</div>
+			<span class="u-block"><?php getPostExcerpt(186); ?></span>
+			<div class="o-link">
+				<i class="o-icon s--arrow-ltr"></i>
 				<span>Read On</span>
-			</a>
-		</div>
+			</div>
+		</a>
 	</section>
 	<?php endwhile; ?>
 	<?php wp_reset_postdata(); ?>
@@ -69,11 +67,19 @@
 							$postIndex = 0;
 							$postClass = '';
 							$bubbleSizes = ['s--xsmall', 's--small', 's--medium', 's--large'];
+							$aosDelay = 0;
 							
 							while ( $blogPosts->have_posts() ) : $blogPosts->the_post(); 
 							
 							if ($postIndex > 2) {
 								$postIndex = 0;
+							}
+
+							if ($postIndex == 1){
+								$aosDelay = 200;
+							}
+							else {
+								$aosDelay = 0;
 							}
 
 							if($postIndex == 2){
@@ -84,29 +90,27 @@
 							
 							$postPermalink = get_permalink();
 						?>
-							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>">
-								<section class="u-wrap">
-									<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
-									<a href="" class="u-block">
-										<figure class="o-article__figure" style="background-image:url('<?php getPostThumbnail(); ?>')">
+							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+								<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
+									<section class="o-article__figure">
+										<figure style="background-image:url('<?php getPostThumbnail(); ?>')">
 											<div class="u-center">
 												<i class="o-icon s--pen"></i>
 											</div>
 											<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
 										</figure>
-									</a>
-									<section class="o-article__brief">
-										<a href="<?php echo $postPermalink; ?>" class="o-subheading"><?php the_title(); ?></a>
-										<p><a href="<?php echo $postPermalink; ?>"><?php getPostExcerpt(136); ?>
-											<span class="o-link">
-												<i class="o-arrow">
-													<i class="o-arrow__stem"></i>
-													<i class="o-arrow__head"></i>
-												</i>
-											</span>
-										</a></p>
 									</section>
-								</section>
+									<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
+									<section class="o-article__brief">
+										<span class="o-subheading"><?php the_title(); ?></span>
+										<section>
+											<?php getPostExcerpt(136); ?>
+											<span class="o-link">
+												<i class="o-icon s--arrow-ltr"></i>
+											</span>
+										</section>
+									</section>
+								</a>
 							</li>
 						<?php $postIndex ++; endwhile; ?>
 						<?php wp_reset_postdata(); ?>
@@ -115,67 +119,11 @@
 				<div class="a-center u-pt-l">
 					<span class="o-subtitle u-pb-m">8/125</span>
 					<a href="#" class="o-button">
-						<div class="o-arrow">
-							<i class="o-arrow__stem"></i>
-							<i class="o-arrow__head"></i>
-						</div>
+						<i class="o-icon s--arrow-ltr"></i>
 						<span class="o-button__title">Load More Stories</span>
 					</a>
 				</div>
 			</section>
-		</div>
-	</section>
-	<section class="o-page__section">
-		<div class="o-section__tint"></div>
-		<div class="u-box">
-			<header class="a-center">
-				<span class="o-section__title">Sauti Plus Corner</span>
-			</header>
-			<section>
-				<ul class="u-clear">
-					<li class="o-article u-third">
-						<section class="u-wrap">
-							<span class="o-bubble s--large"></span>
-							<a href="#" class="u-block">
-								<figure class="o-article__figure">
-									
-								</figure>
-							</a>
-							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
-							<span class="o-subtitle">5 days Ago</span>
-						</section>
-					</li>
-					<li class="o-article u-third">
-						<section class="u-wrap">
-							<span class="o-bubble s--medium"></span>
-							<a href="#" class="u-block">
-								<figure class="o-article__figure"></figure>
-							</a>
-							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
-							<span class="o-subtitle">5 days Ago</span>
-						</section>
-					</li>
-					<li class="o-article u-third">
-						<section class="u-wrap">
-							<span class="o-bubble s--small"></span>
-							<a href="#" class="u-block">
-								<figure class="o-article__figure"></figure>
-							</a>
-							<a class="o-subheading" href="#">What we learned for this year's IGD Conference. <i class="o-arrow"></i></a>
-							<span class="o-subtitle">5 days Ago</span>
-						</section>
-					</li>
-				</ul>
-			</section>
-			<footer class="a-center u-pt-m">
-				<a href="#" class="o-button">
-					<div class="o-arrow">
-						<i class="o-arrow__stem"></i>
-						<i class="o-arrow__head"></i>
-					</div>
-					<span class="o-button__title">Visit Sauti Plus</span>
-				</a>
-			</footer>
 		</div>
 	</section>
 	<section class="o-page__section">
