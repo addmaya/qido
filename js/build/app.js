@@ -64,12 +64,30 @@ jQuery(document).ready(function($) {
     	me.css('background-image', 'url(' + thumb_url + ')');
     });
 
+    //swiper
+    var homeSwiper = new Swiper ('#homeSwiper', {
+        loop: true,
+        speed: 800,
+        autoplay: 600000,
+        autoplayDisableOnInteraction:false,
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev'
+     });
+
     //bubbles
     var bubbleThemes = ['t-cool', 't-warm', 't-passion', 't-romance'];
 	function randomizeBubbleColors(){
 		$('.o-bubble').each(function(){
 	        $(this).addClass(bubbleThemes[~~(Math.random()*bubbleThemes.length)]);
 	    });
+	}
+	function resetGridLayout(){
+		var grid = $('.o-grid');    
+		grid.isotope({
+			 itemSelector: '.o-grid__item',
+			 layoutMode: 'packery'
+		});
 	}
 
     //statistics
@@ -108,6 +126,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'impact',
 	  onEnter: function() {
 	    updatePageTheme('t-jupiter');
+	    resetGridLayout();
 	  }
 	});
 	pageImpact.init();
@@ -126,12 +145,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'team',
 	  onEnter: function() {
 	    updatePageTheme('t-earth');
-
-	    var gridTeam = $('.o-grid');    
-	    gridTeam.isotope({
-	    	 itemSelector: '.o-grid__item',
-	    	 layoutMode: 'packery'
-	    });
+	    resetGridLayout();
 	  }
 	});
 	pageTeam.init();
@@ -177,6 +191,7 @@ jQuery(document).ready(function($) {
 	var FadeTransition = Barba.BaseTransition.extend({	  
 	  start: function() {
 	    pageLoader.removeClass('is-hidden');
+	    pageMenu.find('.is-active').removeClass('is-active');
 	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
 	  },
 	  fadeOut: function() {

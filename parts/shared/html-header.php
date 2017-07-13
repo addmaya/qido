@@ -14,13 +14,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/style.css" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/aos.css" rel="stylesheet">
+		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/swiper.min.css" rel="stylesheet">
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/vendors.js"></script>
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
 		<?php wp_head(); ?>
 	</head>
 	<body class="is-booting <?php
-		if(is_page('blog') || is_page('programs') || is_page('about')){echo 't-mercury';}
-		if(is_page('impact') || is_front_page()){echo 't-jupiter';}
+		if(is_page('blog') || is_page('programs') || is_front_page()){echo 't-mercury';}
+		if(is_page('impact') || is_page('about')){echo 't-jupiter';}
 		if(is_page('team') || is_page('directors') || is_page('cultural-icons')){echo 't-earth';}
 		if(is_page('events')){echo 't-venus';}
 		if(is_page('partners') || is_page('contact')){echo 't-neptune';}

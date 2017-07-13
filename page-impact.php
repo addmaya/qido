@@ -9,10 +9,17 @@
 					if ($milestonesList->have_posts()){
 						$milestoneIndex = 0;
 						$milestoneClass = '';
+						$aosDelay = 0;
 				?>
 				<?php while ( $milestonesList->have_posts() ) : $milestonesList->the_post();  
 					if ($milestoneIndex > 4) {
 						$milestoneIndex = 0;
+					}
+					if ($milestoneIndex ==1) {
+						$aosDelay = 200;
+					}
+					else{
+						$aosDelay = 0;
 					}
 					switch ($milestoneIndex) {
 						case 0:
@@ -34,7 +41,7 @@
 							break;
 					}
 				?>
-				<li class="o-milestone <?php echo $milestoneClass; ?>">
+				<li class="o-milestone <?php echo $milestoneClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 					<section class="u-wrap">
 						<figure class="o-milestone__figure" style="background-image: url('<?php the_field('cover_image'); ?>')"></figure>
 						<span class="o-bubble s--large"></span>
@@ -50,7 +57,7 @@
 							
 						</section>
 						<div class="u-clear">
-							<span class="o-line"></span>
+							<span class="o-line" data-aos="fade-up"></span>
 						</div>
 					</section>
 				</li>
@@ -65,17 +72,46 @@
 		<div class="u-box">
 			<header class="o-section__header">
 				<span class="o-subtitle"><?php echo date("Y"); ?></span>
-				<h2 class="o-subheading">Fifteen Years Later</h2>
+				<h2 class="o-subheading">
+					<?php 
+						$rahuAge = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+						echo $rahuAge->format(date("Y") - 2009).' Years later';
+					?>
+
+				</h2>
 			</header>
 			<div class="o-slider">
-				<ul class="u-clear">
+				<ul class="u-clear o-grid">
 					<?php 
 						$statisticsList = new WP_Query(array('post_type'=>'statistic', 'posts_per_page'=>-1));
 						if ($statisticsList->have_posts()){
 							$bubbleSizes = ['', 's--small', 's--medium'];
+							$statisticIndex = 0;
+							$aosDelay=0;
 					?>
-					<?php while ( $statisticsList->have_posts() ) : $statisticsList->the_post(); ?>
-					<li class="o-statistic <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>">
+					<?php while ( $statisticsList->have_posts() ) : $statisticsList->the_post();
+						if($statisticIndex > 3){
+						    $statisticIndex = 0;
+						}
+						switch ($statisticIndex) {
+						    case 0:
+						        $aosDelay = 0;
+						        break;
+						    case 1:
+						        $aosDelay = 100;
+						        break;
+						    case 2:
+						        $aosDelay = 200;
+						        break;
+						    case 3:
+						        $aosDelay = 300;
+						        break;
+						    default:
+						        $aosDelay = 0;
+						        break;
+						}
+					?>
+					<li class="o-statistic o-grid__item <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $aosDelay; ?>">
 						<figure class="o-statistic__bubble">
 							<div class="u-table">
 								<div class="u-cell">
@@ -86,7 +122,7 @@
 						</figure>
 						<p><?php the_field('description'); ?></p>
 					</li>
-					<?php endwhile; ?>
+					<?php $statisticIndex++; endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 					<?php } ?>
 				</ul>

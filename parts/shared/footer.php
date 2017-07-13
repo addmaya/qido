@@ -162,8 +162,8 @@
 								<input type="text" placeholder="Your E-mail"/>
 							</div>
 							<button class="o-button">
-								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">Subscribe</span>
+								<i class="o-icon s--arrow-ltr"></i>
 							</button>
 						</form>
 					</section>

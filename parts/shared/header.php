@@ -26,13 +26,13 @@
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
-			<li class="o-menu-item">
+			<!-- <li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/about" class="<?php echo setActiveClass('about'); ?>">
 					<span class="o-menu-item__title">About</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
-			</li>
+			</li> -->
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/impact" class="<?php echo setActiveClass('impact'); ?>">
 					<span class="o-menu-item__title">Impact</span>
@@ -42,7 +42,7 @@
 			</li>
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/programs" class="<?php echo setActiveClass('programs'); ?>">
-					<span class="o-menu-item__title">Programs <span class="u-super">16</span></span>
+					<span class="o-menu-item__title">Programs <span class="u-super"><?php echo wp_count_posts('program')->publish; ?></span></span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>

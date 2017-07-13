@@ -1,8 +1,9 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header'));?>
-<section class="c-splash">
-	<div class="u-box">
+<section class="c-swiper">
+	<div class="swiper-container" id="homeSwiper">
+		<div class="swiper-wrapper">
 		<?php 
-			$slidesList = new WP_Query(array('post_type'=>'slide', 'posts_per_page'=>1));
+			$slidesList = new WP_Query(array('post_type'=>'slide', 'posts_per_page'=>-1));
 			if ($slidesList->have_posts()){
 		?>
 			<?php while ($slidesList->have_posts() ) : $slidesList->the_post();
@@ -13,33 +14,42 @@
 				$slideImage = get_field('image');
 				$slideVideo = get_field('video');
 			?>
-			<div class="o-slide">
-				<div class="o-slide__info">
-					<section class="u-wrap">
-						<h1><a href="<?php echo $slideButtonLink; ?>"><?php echo $slideTitle; ?></a></h1>
-						<p><?php echo $slideCaption; ?></p>
-						<a href="<?php echo $slideButtonLink; ?>" class="o-button">
-							<i class="o-icon s--arrow-ltr"></i>
-							<span class="o-button__title"><?php echo $slideButtonText; ?></span>
-						</a>
-					</section>
-				</div>
-				<div class="o-slide__figure">
-					<div class="u-table">
-						<div class="u-cell">
-							<figure style="background-image:url('<?php echo $slideImage; ?>')">
-								<span class="o-bubble s--small"></span>
-								<span class="o-bubble s--medium"></span>
-								<span class="o-bubble s--large"></span>
-							</figure>
+			<div class="swiper-slide">
+				<div class="o-slide">
+					<div class="u-box">			
+						<div class="o-slide__info">
+							<section class="u-wrap">
+								<h1><a href="<?php echo $slideButtonLink; ?>"><?php echo $slideTitle; ?></a></h1>
+								<p><?php echo $slideCaption; ?></p>
+								<a href="<?php echo $slideButtonLink; ?>" class="o-button">
+									
+									<span class="o-button__title"><?php echo $slideButtonText; ?></span>
+									<i class="o-icon s--arrow-ltr"></i>
+								</a>
+							</section>
 						</div>
+						<div class="o-slide__figure">
+							<div class="u-table">
+								<div class="u-cell">
+									<figure style="background-image:url('<?php echo $slideImage; ?>')">
+										<span class="o-bubble s--small"></span>
+										<span class="o-bubble s--medium"></span>
+										<span class="o-bubble s--large"></span>
+									</figure>
+								</div>
+							</div>
+						</div>
+						<span class="o-globe"></span>
 					</div>
 				</div>
-				<span class="o-globe"></span>
 			</div>
 			<?php endwhile; ?>
 			<?php wp_reset_postdata(); ?>
 		<?php } ?>
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
 	</div>
 </section>
 <section class="o-page__section u-pt-xl">
@@ -74,8 +84,9 @@
 			</ul>
 			<section class="a-center">
 				<a href="<?php echo home_url(); ?>/story" class="o-button">
-					<i class="o-icon s--arrow-ltr"></i>
+					
 					<span class="o-button__title">Our Story in Number</span>
+					<i class="o-icon s--arrow-ltr"></i>
 				</a>
 			</section>
 		</div>
@@ -191,36 +202,56 @@
 		</header>
 		<section class="u-wrap">
 			<ul class="u-clear">
-				<?php $blogPosts = new WP_Query(array('posts_per_page'=>4)); ?>
+				<?php $blogPosts = new WP_Query(array('posts_per_page'=>5)); ?>
 				<?php if ($blogPosts->have_posts() ) : ?>
 					<?php 
 						$postIndex = 0;
 						$postClass = '';
 						$bubbleSizes = ['s--xsmall', 's--small', 's--medium', 's--large'];
+						$aosDelay = 0;
 						
-						while ( $blogPosts->have_posts() ) : $blogPosts->the_post(); 						
+						while ( $blogPosts->have_posts() ) : $blogPosts->the_post(); 
+						
+						if ($postIndex > 2) {
+							$postIndex = 0;
+						}
+
+						if ($postIndex == 1){
+							$aosDelay = 200;
+						}
+						else {
+							$aosDelay = 0;
+						}
+
+						if($postIndex == 2){
+							$postClass = 'u-full';
+						} else {
+							$postClass = 'u-half';
+						}
+						
 						$postPermalink = get_permalink();
 					?>
-						<li class="o-article u-half">
-							<section class="u-wrap">
-								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
-								<a href="" class="u-block">
-									<figure class="o-article__figure" style="background-image:url('<?php getPostThumbnail(); ?>')">
+						<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+							<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
+								<section class="o-article__figure">
+									<figure style="background-image:url('<?php getPostThumbnail(); ?>')">
 										<div class="u-center">
-											<i class="o-icon"></i>
+											<i class="o-icon s--pen"></i>
 										</div>
 										<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
 									</figure>
-								</a>
+								</section>
+								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
 								<section class="o-article__brief">
-									<a href="<?php echo $postPermalink; ?>" class="o-subheading"><?php the_title(); ?></a>
-									<p><a href="<?php echo $postPermalink; ?>"><?php getPostExcerpt(136); ?>
+									<span class="o-subheading"><?php the_title(); ?></span>
+									<section>
+										<?php getPostExcerpt(136); ?>
 										<span class="o-link">
 											<i class="o-icon s--arrow-ltr"></i>
 										</span>
-									</a></p>
+									</section>
 								</section>
-							</section>
+							</a>
 						</li>
 					<?php $postIndex ++; endwhile; ?>
 					<?php wp_reset_postdata(); ?>
@@ -229,8 +260,8 @@
 			<div class="a-center u-pt-l">
 				<span class="o-subtitle u-pb-m">8 of 125</span>
 				<a href="<?php echo home_url(); ?>/blog" class="o-button">
+					<span class="o-button__title">Load More Stories</span>
 					<i class="o-icon s--arrow-ltr"></i>
-					<span class="o-button__title">Show me more</span>
 				</a>
 			</div>
 		</section>

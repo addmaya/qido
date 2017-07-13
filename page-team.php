@@ -77,24 +77,24 @@
 					}
 				?>
 				<li class="o-program u-half s--clear" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-					<div class="u-clear u-relative">
+					<a class="o-program__link" href="<?php the_permalink(); ?>">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
-						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image')?>')"></figure>
-						<section class="o-program__info">
-							<section>
+						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
+						<section class="o-program-meta">
+							<section class="o-program-excerpt__wrap">
 								<span class="o-subheading"><?php the_title(); ?></span>
-								<div class="o-program__summary">
-									<p><?php the_field('introduction'); ?></p>
-									<a href="<?php the_permalink(); ?>" class="o-button">
+								<div class="o-program__excerpt">
+									<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
+									<div class="o-button">
+										<span class="o-button__title">Explore</span>
 										<i class="o-icon s--arrow-ltr"></i>
-										<span class="o-button__title">Learn More</span>
-									</a>
+									</div>
 								</div>
 								<span class="o-progam__monogram"><?php echo substr(get_the_title(),0,1) ?></span>
 							</section>
 						</section>
-					</div>
+					</a>
 				</li>
 				<?php $pageIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>		
