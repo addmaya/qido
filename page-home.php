@@ -15,17 +15,18 @@
 				$slideVideo = get_field('video');
 			?>
 			<div class="swiper-slide">
-				<div class="o-slide">
+				<a class="o-slide" href="<?php echo $slideButtonLink; ?>" data-depth="0.6">
 					<div class="u-box">			
 						<div class="o-slide__info">
 							<section class="u-wrap">
-								<h1><a href="<?php echo $slideButtonLink; ?>"><?php echo $slideTitle; ?></a></h1>
-								<p><?php echo $slideCaption; ?></p>
-								<a href="<?php echo $slideButtonLink; ?>" class="o-button">
-									
-									<span class="o-button__title"><?php echo $slideButtonText; ?></span>
-									<i class="o-icon s--arrow-ltr"></i>
-								</a>
+								<h1 class="o-slide__title"><?php echo $slideTitle; ?></h1>
+								<span class="o-slide__excerpt">
+									<span class="u-block"><?php echo $slideCaption; ?></span>
+									<div class="o-button">
+										<span class="o-button__title"><?php echo $slideButtonText; ?></span>
+										<i class="o-icon s--arrow-ltr"></i>
+									</div>
+								</span>
 							</section>
 						</div>
 						<div class="o-slide__figure">
@@ -41,21 +42,19 @@
 						</div>
 						<span class="o-globe"></span>
 					</div>
-				</div>
+				</a>
 			</div>
 			<?php endwhile; ?>
 			<?php wp_reset_postdata(); ?>
 		<?php } ?>
 		</div>
 		<div class="swiper-pagination"></div>
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-button-next"></div>
 	</div>
 </section>
 <section class="o-page__section u-pt-xl">
 	<div class="u-box">
 		<header class="o-section__header">
-			<h2 class="o-heading">Touching youth for 6 years <br/>and counting</h2>
+			<h2 class="o-heading" data-aos="fade-up">Touching youth for 6 years <br/>and counting</h2>
 		</header>
 		<div class="o-slider">
 			<ul class="u-clear">
@@ -65,9 +64,31 @@
 						$bubbleSizes = ['', 's--small', 's--medium'];
 						$bubbleClasses = ['t-banana', 't-berry', 't-ivy', 't-mango'];
 						$statisticIndex = 0;
+						$aosDelay=0;
 				?>
-				<?php while ( $statisticsList->have_posts() ) : $statisticsList->the_post(); ?>
-				<li class="o-statistic <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>">
+				<?php while ( $statisticsList->have_posts() ) : $statisticsList->the_post(); 
+					if($statisticIndex > 3){
+					    $statisticIndex = 0;
+					}
+					switch ($statisticIndex) {
+					    case 0:
+					        $aosDelay = 0;
+					        break;
+					    case 1:
+					        $aosDelay = 100;
+					        break;
+					    case 2:
+					        $aosDelay = 200;
+					        break;
+					    case 3:
+					        $aosDelay = 300;
+					        break;
+					    default:
+					        $aosDelay = 0;
+					        break;
+					}
+				?>
+				<li class="o-statistic <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $aosDelay; ?>">
 					<figure class="<?php echo $bubbleClasses[$statisticIndex]; ?>">
 						<div class="u-table">
 							<div class="u-cell">

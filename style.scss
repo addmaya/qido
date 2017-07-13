@@ -314,8 +314,10 @@ $active: #ffe992;
 .o-list{margin-bottom: em(24);
   li{padding-bottom: em(6)}
 }
-.o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block;
+.o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block; position: relative;
   .t-jupiter &{color: darken($jupiter,10%)}
+  .t-mercury &{color: darken($mercury,0%)}
+  &:after{content:""; background-color:#3f51b5; width: 10%; height: 3px; margin: 0 auto; position: absolute; bottom: 0; left: 45%;}
 }
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400;
   &.s--profile{font-weight: 300}
@@ -574,29 +576,21 @@ $active: #ffe992;
   .t-mango{background-color: #7EE0A7}
 }
 .o-statistic__figure{display: block; font-size: 6em; @include sixcaps; color: #000;}
-.c-swiper{background-color: #e6e6e6; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
-  .u-box{height: 100%; position: relative;}
-  .s--small{background-color: #FFC14A}  
-  .s--medium{background-color: #5FD691}  
-  .swiper-container{width: 100%; height: 100%;}
-  .swiper-wrapper{@include prefix((transition-timing-function: cubic-bezier(0.63, -0.01, 0.15, 1)));
-    @include device(xs){@include prefix((transition-timing-function:linear))}
-  }
-}
 .o-slide{height: 100%; overflow: hidden; position: relative;
-  .o-button{border:solid 2px #fff; margin-top: 1.5em; background-color: transparent; color: #fff;}
+  .o-button{border:solid 2px #fff; margin-top: 1.5em; background-color: transparent; color: #fff; line-height: 1}
   .u-wrap{padding: 3em 1.5em 5em}
 }
-.o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 0; left: 0;
-  p{width:80%;}
-}
-.o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.5}
+.o-slide__excerpt{line-height: 1.6; display: block; width:80%}
+.o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 5%; left: 0}
+.o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.1; @include a-transform(3, ease)}
 .o-slide__figure{height: 100%;
-  figure{height: em(560); width: em(560); @include border-radius-l; @include center; position: relative; left: 6em; z-index: 2; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: #faebd7}
+  figure{height: em(560); width: em(560); @include border-radius-l; @include center; position: relative; left: 6em; z-index: 2; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: #faebd7; @include a-transform(1, ease);
+    &:hover{@include translateX(em(48))}
+  }
   .o-bubble{z-index: 1}
-  .s--small{width: 2.5em; height: 2.5em;}
-  .s--medium{width: 4em; height: 4em; right: 0}
-  .s--large{width: 5em; height: 5em; bottom:0; background-color: transparent; border: solid 2px #fff; right: 0}
+  .s--small{width: 2.5em; height: 2.5em; top:20%; left:50%; background-color: #FFC14A; @include prefix((animation: bubbleCoverSmall 20s linear infinite))}
+  .s--medium{width: 4em; height: 4em; right: 50%; top:30%; background-color: #5FD691; @include prefix((animation: bubbleCoverMedium 50s linear infinite))}
+  .s--large{width: 5em; height: 5em; bottom:25%; background-color: transparent; border: solid 2px #fff; right: 20%; @include prefix((animation:bubbleCoverLarge 80s linear infinite))}
 }
 .o-card{color: white; margin-bottom: 1.5em; position: relative;}
 .o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center}
@@ -665,8 +659,8 @@ $active: #ffe992;
     .is-booting &{@include animate(fadeInUp, 1, 1.1, cubic-bezier(0.3, 0, 0, 1))}
   }     
   .u-cell{position: relative;}
-  .s--small{background-color: #FDC14D; @include prefix((animation: bubble-small-orbit 40s linear infinite)); }
-  .s--medium{background-color: #53BE80; @include prefix((animation: bubble-large-orbit 80s linear infinite))}
+  .s--small{background-color: #FDC14D; @include prefix((animation: bubbleCoverSmall 40s linear infinite)); }
+  .s--medium{background-color: #53BE80; @include prefix((animation: bubbleCoverMedium 80s linear infinite))}
   .o-bubble{top:50%}
   .o-bubble__group{
     .is-booting &{@include animate(fadeIn,1.5,2.5, ease)}
@@ -684,8 +678,8 @@ $active: #ffe992;
     &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 7px white; top: -25%; left:-25%;};
   }  
   .o-bubble{@include linear; @include infinite; left: 50%}
-  .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubble-small-orbit); background-color: transparent}
-  .s--medium{border:solid 2px #54de8e; @include duration(16); @include animation(bubble-large-orbit); background-color: transparent}
+  .s--small{border:solid 2px #ffdc55; @include duration(8); @include animation(bubbleCoverSmall); background-color: transparent}
+  .s--medium{border:solid 2px #54de8e; @include duration(16); @include animation(bubbleCoverMedium); background-color: transparent}
 
   .t-neptune &{background-color: darken($neptune, 5%)}
   .t-venus &{background-color: darken($venus, 20%)}   
@@ -855,14 +849,41 @@ $cButtonNextDuration: 0.65s;
 .c-page__overlay{position: fixed; top: 0; left: 0; z-index: 9; background:linear-gradient(45deg, rgba(214, 123, 123, 0), #3712ab); width: 100%; height: 100%; visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0.5s;
   &.is-visible{visibility: visible; opacity: 1}
 }
+.c-swiper{background-color: #e6e6e6; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
+  .u-box{height: 100%; position: relative;}
+  .swiper-container{width: 100%; height: 100%;}
+  .swiper-wrapper{@include prefix((transition-timing-function: cubic-bezier(0.63, -0.01, 0.15, 1)));
+    @include device(xs){@include prefix((transition-timing-function:linear))}
+  }
+  .swiper-button-prev,.swiper-button-next{top: auto; bottom: em(48); opacity: 1}
+  .o-bubble{@include a-paused}
+  .swiper-pagination-bullet{border-radius:0; height:4px; width:em(72); position: relative;
+    &:after{@include u-after; @include resetPivot; @include scale2D(0,1); background-color:#fff; @include a-transform(6,linear); opacity:0}
+    &.swiper-pagination-bullet-active{
+      &:after{@include scale2D(1,1); opacity:1}
+    }
+  }
+  div.swiper-pagination{left:5%; bottom:5%}
+  .swiper-pagination-bullet-active{background-color:rgba(0,0,0,0.2)}
+}
+.swiper-slide-active {
+  .o-slide__figure{@include animate(fadeInRight,1,0.2, ease)}
+  .o-slide__title{@include animate(fadeInRight,1,0.8, $easeOutExpo)}
+  .o-slide__excerpt{@include animate(fadeInRight,1,1, $easeOutExpo)}
+  .o-bubble{@include a-running}
+}
 
 /*animation*/
 $orbit-radius:150px;
-@keyframes bubble-large-orbit {
+@keyframes bubbleCoverLarge {
+    from {transform: rotate(0deg) translateX($orbit-radius) rotate(0deg)}
+    to   {transform: rotate(-360deg) translateX($orbit-radius) rotate(-360deg)}
+}
+@keyframes bubbleCoverMedium {
     from {transform: rotate(0deg) translateX($orbit-radius) rotate(0deg)}
     to   {transform: rotate(360deg) translateX($orbit-radius) rotate(-360deg)}
 }
-@keyframes bubble-small-orbit {
+@keyframes bubbleCoverSmall {
     from {transform: rotate(360deg) translateX($orbit-radius) rotate(-360deg)}
     to {transform: rotate(0deg) translateX($orbit-radius) rotate(0deg)}
 }

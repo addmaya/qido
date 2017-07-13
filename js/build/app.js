@@ -64,16 +64,6 @@ jQuery(document).ready(function($) {
     	me.css('background-image', 'url(' + thumb_url + ')');
     });
 
-    //swiper
-    var homeSwiper = new Swiper ('#homeSwiper', {
-        loop: true,
-        speed: 800,
-        autoplay: 600000,
-        autoplayDisableOnInteraction:false,
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev'
-     });
 
     //bubbles
     var bubbleThemes = ['t-cool', 't-warm', 't-passion', 't-romance'];
@@ -117,6 +107,15 @@ jQuery(document).ready(function($) {
 	  namespace: 'home',
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
+	    var homeSwiper = new Swiper ('#homeSwiper', {
+	        loop: true,
+	        speed: 800,
+	        autoplay: 6000,
+	        autoplayDisableOnInteraction:false,
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true
+	     });
+	    $('.scene').parallax();
 	  }
 	});
 	pageHome.init();
