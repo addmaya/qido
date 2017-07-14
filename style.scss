@@ -317,7 +317,10 @@ $active: #ffe992;
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block; position: relative;
   .t-jupiter &{color: darken($jupiter,10%)}
   .t-mercury &{color: darken($mercury,0%)}
-  &:after{content:""; background-color:#3f51b5; width: 10%; height: 3px; margin: 0 auto; position: absolute; bottom: 0; left: 45%;}
+  &:after{content:""; background-color:#e8e8e8; width: 10%; height: 2px; margin: 0 auto; position: absolute; bottom: 0; left: 45%;}
+  .c-button-next &{
+    &:after{display:none;}
+  }
 }
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400;
   &.s--profile{font-weight: 300}
@@ -592,20 +595,39 @@ $active: #ffe992;
   .s--medium{width: 4em; height: 4em; right: 50%; top:30%; background-color: #5FD691; @include prefix((animation: bubbleCoverMedium 50s linear infinite))}
   .s--large{width: 5em; height: 5em; bottom:25%; background-color: transparent; border: solid 2px #fff; right: 20%; @include prefix((animation:bubbleCoverLarge 80s linear infinite))}
 }
-.o-card{color: white; margin-bottom: 1.5em; position: relative;}
-.o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center}
-.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s; background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.o-card{color: white; margin-bottom: 1.5em; position: relative; display: block;
+  &:hover{
+    .o-card__figure{@include scale2D(0.95, 0.95);
+      &:after{@include scale2D(1,1)}
+    }
+    .o-card__logo{@include translateY(em(-48));
+      &:after{opacity:1;}
+    }
+    .o-icon{@include translateX(em(12))}
+  }
+}
+.o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center; @include a-transform(0.4, $easeOutBack); 
+    &:after{content:""; position: absolute; z-index: 1; width: 20%; height: 4px; @include resetPivot; @include scale2D(0,1); left: 50%; top: 50%; @include a-transform(0.4, $easeOutExpo); background-color: #fff;}
+}
+.o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s; background-size: 75%; background-position: center; background-repeat: no-repeat; @include a-transform(0.4, $easeOutBack);
+  &:after{@include u-after; @include shadow; @include a-opacity(0.3); opacity: 0}
+}
 .o-card__info{width: 75%; @include center;
-  p{padding: em(24) 0}
+  .u-block{padding: em(24) 0; line-height: 1.6}
 }
 .o-card__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: -20%; opacity: 0.1; z-index: -1;
   .s--left &{left: 0}
   .s--right &{right: 0}
 }
-.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color:#3f51b5;
+.o-imagelink{display: inline-block; position: relative; width: em(240); height: em(160); background-color:#3f51b5; @include a-transform(0.4, $easeOutBack);
   .a-center{position: absolute; bottom: 0; width: 100%; padding-bottom: 1.5em; z-index: 1}
   .t-jupiter &{background-color: darken($jupiter, 15%)}
   .o-imagelink__figure{display: block; height: 100%; @include multiply; @include cover; @include image('dummy/cover.jpg')}
+  &:hover{@include translateY(em(-24));
+    .o-icon{@include translateX(em(12))}
+    &:after{opacity: 1}
+  }
+  &:after{@include u-after; @include shadow; @include a-opacity(0.4); opacity: 0}
 }
 .o-staff{display: block; position: relative;
   figure{width: em(192); height: em(264); @include center; margin-bottom: em(18); position: relative; background-position: center; background-size: contain; background-repeat: no-repeat; @include a-transform(0.3, ease)}
@@ -809,8 +831,8 @@ $cButtonNextDuration: 0.65s;
 }
 
 .c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em; color: #696969;
-  figure{position: relative; height: em(420)}
-  .o-bubble{z-index: 1}
+  .o-bubble{z-index: 1; @include a-transform(0.4, ease)}
+  .u-col{position: relative;}
   .u-60p{height: 100%; position: relative;}
   blockquote{padding-bottom: em(12)}
   .o-subheading{padding-bottom: em(6)}
@@ -821,8 +843,17 @@ $cButtonNextDuration: 0.65s;
   .s--small{right: 5%; bottom: 5%}
   .s--profile{height: auto}
 }
+.c-splash-team__link{display: block;@include a-transform(0.4, ease);
+  &:hover{@include translateX(em(12));
+    .c-splash-team__figure{@include translateX(em(-24))}
+  }
+}
+.c-splash-team__figure{position: relative; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; @include a-transform(0.4, ease)}
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
-  &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1}
+  &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1; @include a-transform(0.75,ease); @include resetPivot; @include scale2D(0,1); @include prefix((transition-delay:0.5s))}
+  .aos-animate &{
+    &:after{@include scale2D(1,1)}
+  }
 }
 .c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));@include border-radius-l;
   .t-neptune &{background-color: $neptune}
@@ -857,7 +888,7 @@ $cButtonNextDuration: 0.65s;
   }
   .swiper-button-prev,.swiper-button-next{top: auto; bottom: em(48); opacity: 1}
   .o-bubble{@include a-paused}
-  .swiper-pagination-bullet{border-radius:0; height:4px; width:em(72); position: relative;
+  .swiper-pagination-bullet{border-radius:0; height:3px; width:em(72); position: relative;
     &:after{@include u-after; @include resetPivot; @include scale2D(0,1); background-color:#fff; @include a-transform(6,linear); opacity:0}
     &.swiper-pagination-bullet-active{
       &:after{@include scale2D(1,1); opacity:1}

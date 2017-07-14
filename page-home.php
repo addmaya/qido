@@ -113,19 +113,24 @@
 		</div>
 	</div>
 </section>
-<section class="o-page__section u-pb-m u-white">
+<section class="o-page__section u-pb-m u-white" data-aos="fade-up">
 	<div class="c-programs-tint"></div>
 	<div class="u-box">
 		<?php 
-			$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>2));
+			$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>2, 'orderby'=>'rand'));
 			if ($programsList->have_posts()){ 
 				$programClass='';
 				$programIndex = 0;
-				$programsCount = $programsList->post_count;
+				$aosDelay = 0;
 		?>
 		<header class="o-section__header">
 			<span class="o-section__title"><a href="#">Our Programs</a></span>
-			<span class="o-subtitle">Twelve</span>
+			<span class="o-subtitle">
+				<?php 
+					$programsCount = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+					echo $programsCount->format(wp_count_posts('program')->publish);
+				?>
+			</span>
 		</header>
 		<section class="u-pt-m">
 			<div class="u-clear">			
@@ -135,35 +140,37 @@
 					}
 					if($programIndex > 0){
 						$programClass = 's--right';
+						$aosDelay = 100;
 					}
 					else {
 						$programClass = 's--left';
+						$aosDelay = 0;
 					}
 				?>
-					<div class="u-half">
-						<section class="o-card <?php echo $programClass; ?>">
+					<div class="u-half" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay;?>">
+						<a class="o-card <?php echo $programClass; ?>" href="<?php the_permalink(); ?>">
 							<figure class="o-card__figure" style="background-image:url('<?php the_field('cover_image');?>')">
 								<span class="o-card__logo" style="background-image: url('<?php the_field('logo'); ?>')"></span>
 							</figure>
 							<section class="o-card__info">
-								<p><?php the_field('introduction'); ?></p>
-								<a href="<?php the_permalink(); ?>" class="o-button">
-									<i class="o-icon s--arrow-ltr"></i>
+								<span class="u-block"><?php the_field('introduction'); ?></span>
+								<div class="o-button">
 									<span class="o-button__title">Explore</span>
-								</a>
+									<i class="o-icon s--arrow-ltr"></i>
+								</div>
 							</section>
 							<span class="o-card__monogram">g</span>
-						</section>
+						</a>
 					</div>
 				<?php $programIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>				
 			</div>
 		</section>
 		<footer class="o-section__footer">
-			<span class="o-subtitle u-pb-m">8 of <?php echo $programsCount; ?></span>
+			<span class="o-subtitle u-pb-m">8 of <?php echo wp_count_posts('program')->publish; ?></span>
 			<a href="<?php echo home_url(); ?>/programs" class="o-button">
-				<i class="o-icon s--arrow-ltr"></i>
 				<span class="o-button__title">See all programs</span>
+				<i class="o-icon s--arrow-ltr"></i>
 			</a>
 		</footer>
 		<?php } ?>
@@ -173,39 +180,39 @@
 	<div class="u-box">
 		<div class="u-clear c-splash-team">
 			<?php 
-				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1, 'orderby'=>'rand'));
+				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1));
 				while ( $featuredStaff->have_posts() ) : $featuredStaff->the_post(); 
 			?>
-			<div class="u-40p">
-				<figure data-thumb="<?php the_field('photo_medium'); ?>">
-					<span class="o-bubble s--large"></span>
-					<span class="o-bubble s--medium"></span>
-					<span class="o-bubble s--small"></span>
-				</figure>
-			</div>
-			<div class="u-60p">
+			<a class="u-40p u-col c-splash-team__link" href="<?php echo home_url(); ?>/team">
+				<figure class="c-splash-team__figure" style="background-image:url('<?php the_field('photo_full');?>')"></figure>
+				<span class="o-bubble s--large" data-aos="zoom-in" data-aos-delay="0"></span>
+				<span class="o-bubble s--medium" data-aos="zoom-in" data-aos-delay="50"></span>
+				<span class="o-bubble s--small" data-aos="zoom-in" data-aos-delay="75"></span>
+			</a>
+			<div class="u-60p u-col" >
 				<section class="u-wrap">
-					<blockquote><q>"<?php the_field('quote'); ?>"</q></blockquote>
-					<span class="o-subheading s--profile"><?php the_title(); ?></span>
-					<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
-					<a href="<?php echo home_url(); ?>/team" class="o-imagelink">
-						<div class="o-imagelink__figure"></div>
-						<div class="a-center">
-							<span class="o-button">
-								<i class="o-icon s--arrow-ltr"></i>
-								<span class="o-button__title">Meet the Team</span>
-							</span>
-						</div>
+					<a href="<?php echo home_url(); ?>/team" class="u-block c-splash-team__link">
+						<blockquote><q>"<?php the_field('quote'); ?>"</q></blockquote>
+						<span class="o-subheading s--profile"><?php the_title(); ?></span>
+						<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 					</a>
-					<a href="<?php echo home_url(); ?>/team" class="o-imagelink">
-						<div class="o-imagelink__figure"></div>
-						<div class="a-center">
-							<span class="o-button">
-								<i class="o-icon s--arrow-ltr"></i>
-								<span class="o-button__title">See our Board</span>
-							</span>
-						</div>
-					</a>
+					<?php if(have_rows('pod',181) ): ?>
+						<?php while( have_rows('pod',181) ): the_row();
+							$podID = get_sub_field('link');
+							$podLabel = get_sub_field('label');
+							$podCoverImage = get_field('cover_image', $podID); 
+						?>
+						<a href="<?php echo home_url(); ?>/team" class="o-imagelink">
+							<div class="o-imagelink__figure" style="background-image:url('<?php echo $podCoverImage; ?>')"></div>
+							<div class="a-center">
+								<span class="o-button">
+									<span class="o-button__title"><?php echo $podLabel; ?></span>
+									<i class="o-icon s--arrow-ltr"></i>
+								</span>
+							</div>
+						</a>
+						<?php endwhile; ?>
+					<?php endif; ?>
 				</section>
 			</div>
 			<?php endwhile; ?>
@@ -214,7 +221,7 @@
 	</div>
 </section>
 </section>
-<section class="o-page__section u-mt-l">
+<section class="o-page__section u-mt-l" data-aos="fade-up">
 	<div class="o-section__tint s--full" style="height:98%"></div>
 	<div class="u-box">
 		<header class="o-section__header">

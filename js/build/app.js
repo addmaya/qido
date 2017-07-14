@@ -115,7 +115,8 @@ jQuery(document).ready(function($) {
 	        pagination: '.swiper-pagination',
 	        paginationClickable: true
 	     });
-	    $('.scene').parallax();
+
+	    $('.c-splash-team .u-col').matchHeight();
 	  }
 	});
 	pageHome.init();
@@ -210,7 +211,7 @@ jQuery(document).ready(function($) {
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');
 	    	transition.done();
 	    	AOS.init({
-	    		duration: 750
+	    		duration: 700
 	    	});
 	    }, 800);
 	    randomizeBubbleColors();
@@ -224,7 +225,7 @@ jQuery(document).ready(function($) {
 	randomizeStatBubbles();
 
 	AOS.init({
-		duration: 750
+		duration: 700
 	});
 });
 
