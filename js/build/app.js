@@ -50,16 +50,22 @@ jQuery(document).ready(function($) {
 		});
 	}
 	//pop
-	$('.o-pop__close').click(function(e) {
-		e.preventDefault();
-		closePop();
-	});
-	$('.o-pop').click(function() {
-		closePop();
-	});
-	$('.o-pop .o-pop__box').click(function(e) {
-		e.stopPropagation();
-	});
+	function initPop(){
+		$('.o-pop__close').click(function(e) {
+			e.preventDefault();
+			closePop();
+		});
+		$('.o-pop').click(function() {
+			closePop();
+		});
+		$('.o-pop .o-pop__box').click(function(e) {
+			e.stopPropagation();
+		});
+		$('.js-showBioPop').click(function(e) {
+			e.preventDefault();
+			openPop();
+		});
+	}
 	function openPop(){
 		$('body').addClass('u-oh');
 		$('.o-pop').show();
@@ -68,10 +74,6 @@ jQuery(document).ready(function($) {
 		$('body').removeClass('u-oh');
 		$('.o-pop').hide();
 	}
-	$('.js-showBioPop').click(function(e) {
-		e.preventDefault();
-		openPop();
-	});
 
 	//menu
 	$('.o-menu a').click(function() {
@@ -264,7 +266,8 @@ jQuery(document).ready(function($) {
 	    randomizeBubbleColors();
 	    randomizeStatBubbles();
 	    windowScroll();
-
+	    initPop();
+	    
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
@@ -272,6 +275,7 @@ jQuery(document).ready(function($) {
 	randomizeBubbleColors();
 	randomizeStatBubbles();
 	windowScroll();
+	initPop();
 
 	AOS.init({
 		duration: 700
