@@ -12,7 +12,7 @@
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico"/>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
-		<link href="<?php echo get_stylesheet_directory_uri(); ?>/style.css" rel="stylesheet">
+		<link href="<?php echo get_stylesheet_directory_uri(); ?>/style.css?v0.901" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/aos.css" rel="stylesheet">
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/swiper.min.css" rel="stylesheet">
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/vendors.js"></script>
