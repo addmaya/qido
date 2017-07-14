@@ -1,4 +1,4 @@
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header', 'parts/shared/cover') ); ?>
 <div class="u-box">
 	<a href="<?php echo home_url();?>/partners" style="display:block; padding-top:1em"> < All Partners</a>
 	<h2>Single <?php the_title(); ?></h2>

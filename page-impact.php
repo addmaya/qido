@@ -72,7 +72,7 @@
 		<div class="u-box">
 			<header class="o-section__header">
 				<span class="o-subtitle"><?php echo date("Y"); ?></span>
-				<h2 class="o-subheading">
+				<h2 class="o-heading">
 					<?php 
 						$rahuAge = new NumberFormatter("en", NumberFormatter::SPELLOUT);
 						echo $rahuAge->format(date("Y") - 2009).' Years later';

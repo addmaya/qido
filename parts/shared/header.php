@@ -96,4 +96,5 @@
 		if(is_page('events')){echo 'events';}
 		if(is_page('blog')){echo 'blog';}
 		if(is_page('contact')){echo 'contact';}
+		if(is_single()){echo 'single-post';}
 	?>">

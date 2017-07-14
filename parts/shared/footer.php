@@ -78,12 +78,24 @@
 				$nextPageID = get_option('page_on_front');
 			}
 		?>
-		<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
-			<span class="o-subtitle">Next</span>
-			<span class="o-heading"><?php echo get_the_title($nextPageID); ?></span>
-			<i class="o-icon s--arrow-ltr"></i>
-			<figure style="background-image:url('<?php echo get_field('cover_image', $nextPageID); ?>')"></figure>
-		</a>
+		<?php if (!is_single()) {?>
+			<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
+				<span class="o-subtitle">Next</span>
+				<span class="o-heading"><?php echo get_the_title($nextPageID); ?></span>
+				<i class="o-icon s--arrow-ltr"></i>
+				<figure style="background-image:url('<?php echo get_field('cover_image', $nextPageID); ?>')"></figure>
+			</a>
+		<?php } else {
+			$nextPost = get_previous_post();
+			$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
+		?>
+			<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
+				<span class="o-subtitle">Next Story</span>
+				<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
+				<i class="o-icon s--arrow-ltr"></i>
+				<figure style="background-image:url('<?php echo $postCoverImage[0]; ?>')"></figure>
+			</a>
+		<?php } ?>
 		<footer class="c-page__footer">
 			<div class="u-box">
 				<section class="u-clear">

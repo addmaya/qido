@@ -1,32 +1,25 @@
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header') ); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<div class="u-box">
-	<a href="<?php echo home_url();?>/blog" style="display:block; padding-top:1em"> < All Posts</a>
-	<h2><?php the_title(); ?></h2>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Post Content</h3>
-				<p>Inc. share options</p>
-			</section>
-		</div>
+<section class="c-page-cover s--short">
+	<figure class="c-page-cover__image" style="background-image:url('<?php getPostThumbnail();?>')"></figure>
+</section>
+<section class="c-page__content s--clear u-oh">
+	<div class="c-bubble-roof">
+		<span class="o-bubble s--large"></span>
+		<span class="o-bubble s--medium"></span>
+		<span class="o-bubble s--small"></span>
+		<span class="o-bubble s--xlarge"></span>
 	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Related Posts</h3>
+	<div class="u-box">
+		<section class="o-story">
+			<h1 class="s--clear"><?php the_title(); ?></h1>
+			<time class="o-subtitle" datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?></time>
+			<section class="o-story__content">
+				<p><?php the_content(); ?></p>
 			</section>
-		</div>
+		</section>
 	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Footer</h3>
-				<p>Share options, next page suggestions, contact info, search, newsletter signup</p>
-			</section>
-		</div>
-	</div>
-</div>
-<?php endwhile; ?>
+</section>
 
+<?php endwhile; ?>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

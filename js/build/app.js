@@ -23,7 +23,56 @@ jQuery(document).ready(function($) {
 		pageMenu.toggleClass('is-hidden').toggleClass('is-active');
 		pageOverlay.toggleClass('is-visible');
 	}
-	
+
+	function windowScroll(){
+		$(window).scroll(function() {
+			var scroll = $(window).scrollTop();
+			if(! ($('.barba-container').data('namespace') == 'single-post')){
+				if (scroll > 250){
+					$('.c-page__header').addClass('is-hidden');
+					pageMenu.addClass('is-hidden');
+					humberger.addClass('is-visible');
+				}
+				else {
+					$('.c-page__header').removeClass('is-hidden');
+					pageMenu.removeClass('is-hidden');
+					humberger.removeClass('is-visible');
+			   	}
+		   	}
+		   	else {
+		   		if (scroll > 250){
+					$('.c-page__header').addClass('is-hidden');
+				}
+				else {
+					$('.c-page__header').removeClass('is-hidden');
+			   	}
+		   	}
+		});
+	}
+	//pop
+	$('.o-pop__close').click(function(e) {
+		e.preventDefault();
+		closePop();
+	});
+	$('.o-pop').click(function() {
+		closePop();
+	});
+	$('.o-pop .o-pop__box').click(function(e) {
+		e.stopPropagation();
+	});
+	function openPop(){
+		$('body').addClass('u-oh');
+		$('.o-pop').show();
+	}
+	function closePop(){
+		$('body').removeClass('u-oh');
+		$('.o-pop').hide();
+	}
+	$('.js-showBioPop').click(function(e) {
+		e.preventDefault();
+		openPop();
+	});
+
 	//menu
 	$('.o-menu a').click(function() {
 		$('.o-menu').find('.is-active').removeClass('is-active');
@@ -32,20 +81,6 @@ jQuery(document).ready(function($) {
 	$('.c-logo').click(function() {
 		$('.o-menu').find('.is-active').removeClass('is-active');
 		$('.o-menu a').first().addClass('is-active');
-	});
-
-	$(window).scroll(function() {
-		var scroll = $(window).scrollTop();
-		if (scroll > 250){
-			$('.c-page__header').addClass('is-hidden');
-			pageMenu.addClass('is-hidden');
-			humberger.addClass('is-visible');
-		}
-		else {
-			$('.c-page__header').removeClass('is-hidden');
-			pageMenu.removeClass('is-hidden');
-			humberger.removeClass('is-visible');
-	   	}
 	});
 
 	$('.c-humburger').click(function(event) {
@@ -177,6 +212,18 @@ jQuery(document).ready(function($) {
 	});
 	pageBlog.init();
 
+	//page - single post
+	var pageSinglePost = Barba.BaseView.extend({
+	  namespace: 'single-post',
+	  onEnter: function() {
+	    updatePageTheme('t-mercury');
+	    pageMenu.addClass('is-hidden');
+	    humberger.addClass('is-visible');
+	    $('.c-page__header .o-networks').addClass('u-hide');
+	  }
+	});
+	pageSinglePost.init();
+
 	//page - contact
 	var pageContact = Barba.BaseView.extend({
 	  namespace: 'contact',
@@ -216,6 +263,7 @@ jQuery(document).ready(function($) {
 	    }, 800);
 	    randomizeBubbleColors();
 	    randomizeStatBubbles();
+	    windowScroll();
 
 	  }
 	});
@@ -223,6 +271,7 @@ jQuery(document).ready(function($) {
 	
 	randomizeBubbleColors();
 	randomizeStatBubbles();
+	windowScroll();
 
 	AOS.init({
 		duration: 700

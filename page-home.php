@@ -153,7 +153,7 @@
 								<span class="o-card__logo" style="background-image: url('<?php the_field('logo'); ?>')"></span>
 							</figure>
 							<section class="o-card__info">
-								<span class="u-block"><?php the_field('introduction'); ?></span>
+								<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
 								<div class="o-button">
 									<span class="o-button__title">Explore</span>
 									<i class="o-icon s--arrow-ltr"></i>
