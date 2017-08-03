@@ -49,6 +49,20 @@ jQuery(document).ready(function($) {
 		   	}
 		});
 	}
+
+	function renderSwiper(){
+		var homeSwiper = new Swiper ('.o-swiper .swiper-container', {
+		    loop: true,
+		    speed: 800,
+		    autoplay: 6000,
+		    autoplayDisableOnInteraction:false,
+		    pagination: '.swiper-pagination',
+		    paginationClickable: true,
+		    nextButton: '.swiper-button-next',
+		    prevButton: '.swiper-button-prev'
+		 });
+	}
+
 	//pop
 	function initPop(){
 		$('.o-pop__close').click(function(e) {
@@ -222,9 +236,21 @@ jQuery(document).ready(function($) {
 	    pageMenu.addClass('is-hidden');
 	    humberger.addClass('is-visible');
 	    $('.c-page__header .o-networks').addClass('u-hide');
+
+	    $('.o-block p').each(function() {
+	        var $this = $(this);
+	        if($this.html().replace(/\s|&nbsp;/g, '').length == 0)
+	            $this.remove();
+	    });
+
+	    renderSwiper();
+	    resetGridLayout();
+
+	    $('.o-imagelist li').matchHeight();
 	  }
 	});
 	pageSinglePost.init();
+
 
 	//page - contact
 	var pageContact = Barba.BaseView.extend({
@@ -276,6 +302,8 @@ jQuery(document).ready(function($) {
 	randomizeStatBubbles();
 	windowScroll();
 	initPop();
+	renderSwiper();
+	resetGridLayout();
 
 	AOS.init({
 		duration: 700

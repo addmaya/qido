@@ -22,7 +22,7 @@
 							</ul>
 						</section>
 					</div>
-					<?php if(!is_page('programs')){?>
+					<?php if(! (is_page('programs') || is_singular('program'))){?>
 					<div class="u-half">
 						<section class="u-wrap">
 							<span class="o-subtitle">More for you</span>
@@ -45,8 +45,8 @@
 					<?php } else {?>
 					<div class="u-half">
 						<section class="u-wrap">
-							<span class="o-subtitle">Explore Our Programs</span>
-							<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1)); ?>
+							<span class="o-subtitle">Some of our Programs</span>
+							<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>6, 'post__not_in'=>array(get_the_id()))); ?>
 							<?php if ( $postsList->have_posts() ) : ?>
 								<ul class="o-list u-pt-s">
 								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
@@ -88,12 +88,21 @@
 		<?php } else {
 			$nextPost = get_previous_post();
 			$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
+			$postCoverImageURL = $postCoverImage[0];
+			$nextPostImage = '';
+
+			if (is_singular('program')) {
+				$nextPostImage = get_field('cover_image', $nextPost->ID);
+			}
+			else {
+				$nextPostImage = $postCoverImageURL;
+			}
 		?>
 			<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
 				<span class="o-subtitle">Next Story</span>
 				<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
 				<i class="o-icon s--arrow-ltr"></i>
-				<figure style="background-image:url('<?php echo $postCoverImage[0]; ?>')"></figure>
+				<figure style="background-image:url('<?php echo $nextPostImage; ?>')"></figure>
 			</a>
 		<?php } ?>
 		<footer class="c-page__footer">

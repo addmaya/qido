@@ -1,7 +1,7 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header') ); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <section class="c-page-cover s--short">
-	<figure class="c-page-cover__image" style="background-image:url('<?php getPostThumbnail();?>')"></figure>
+	<figure class="c-page-cover__image" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
 </section>
 <section class="c-page__content s--clear u-oh">
 	<div class="c-bubble-roof">
@@ -20,6 +20,5 @@
 		</section>
 	</div>
 </section>
-
 <?php endwhile; ?>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>
