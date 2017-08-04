@@ -26,13 +26,13 @@
 					<span class="o-menu-item__indicator"></span>
 				</a>
 			</li>
-			<!-- <li class="o-menu-item">
+			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/about" class="<?php echo setActiveClass('about'); ?>">
 					<span class="o-menu-item__title">About</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
-			</li> -->
+			</li>
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/impact" class="<?php echo setActiveClass('impact'); ?>">
 					<span class="o-menu-item__title">Impact</span>
@@ -48,7 +48,7 @@
 				</a>
 			</li>
 			<li class="o-menu-item">
-				<a href="<?php echo home_url(); ?>/team" class="<?php echo setActiveClass('team'); ?>">
+				<a href="<?php echo home_url(); ?>/our-team" class="<?php echo setActiveClass('our-team'); ?>">
 					<span class="o-menu-item__title">Team</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
@@ -89,9 +89,10 @@
 <div id="barba-wrapper" class="u-canvas">
 	<div class="barba-container u-canvas" data-namespace="<?php
 		if(is_front_page()){echo 'home';}
+		if(is_page('about')){echo 'impact';}
 		if(is_page('impact')){echo 'impact';}
 		if(is_page('programs')){echo 'programs';}
-		if(is_page('team') || is_page('directors') || is_page('cultural-icons')){echo 'team';}
+		if(is_page('our-team') || is_page('directors') || is_page('cultural-icons')){echo 'team';}
 		if(is_page('partners')){echo 'partners';}
 		if(is_page('events')){echo 'events';}
 		if(is_page('blog')){echo 'blog';}

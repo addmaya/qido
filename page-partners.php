@@ -133,7 +133,7 @@
 							}
 						?>
 						<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-							<a href="#" class="o-partner__link no-barba js-showBioPop">
+							<a href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop">
 								<figure class="o-partner__logo" style="background-image:url('<?php echo get_field('logo');?>')">
 									<div class="u-table">
 										<div class="u-cell">

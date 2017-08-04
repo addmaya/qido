@@ -68,7 +68,7 @@
 					}
 				?>
 					<li class="o-grid__item o-director" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-						<a href="#" class="no-barba js-showBioPop">
+						<a href="<?php the_permalink(); ?>" class="no-barba js-showBioPop">
 							<figure class="u-greyscale" style="background-image:url('<?php the_field('photo'); ?>')"></figure>
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--small"></span>

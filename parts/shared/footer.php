@@ -3,6 +3,9 @@
 			$pagePermalink = get_permalink();
 			$pageCoverImage = get_field('cover_image');
 			$pageID = get_the_id();
+			$postType = get_post_type();
+			$postTypeObject = get_post_type_object($postType);
+			$postTypeTitle = $postTypeObject->labels->singular_name;
 		?>
 		<?php if(!is_front_page()){?>
 		<section class="c-page__actions" data-aos="fade-up">
@@ -11,7 +14,7 @@
 				<div class="u-clear">
 					<div class="u-half">
 						<section class="u-wrap">
-							<span class="o-subtitle">Share this Page</span>
+							<span class="o-subtitle">Share this <?php echo $postTypeTitle; ?></span>
 							<ul class="o-networks t-light">
 								<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $pagePermalink; ?>"><span class="o-icon s--fb"></span></a></li>
 								<li><a href="https://twitter.com/home?status=<?php echo $pagePermalink; ?>"><span class="o-icon s--twitter"></span></a></li>
@@ -22,47 +25,72 @@
 							</ul>
 						</section>
 					</div>
-					<?php if(! (is_page('programs') || is_singular('program'))){?>
-					<div class="u-half">
-						<section class="u-wrap">
-							<span class="o-subtitle">More for you</span>
-							<?php $postsList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post__not_in' => array($pageID))); ?>
-							<?php if ( $postsList->have_posts() ) : ?>
-								<ul class="o-list u-pt-s">
-								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
-									<li>
-										<a href="<?php the_permalink(); ?>" class="o-link">
-											<i class="o-icon s--arrow-ltr"></i>
-											<span class="o-link__title"><?php the_title(); ?></span>
-										</a>
-									</li>
-								<?php endwhile; ?>
-								</ul>
- 								<?php wp_reset_postdata(); ?>
-							<?php endif; ?>
-						</section>
-					</div>
-					<?php } else {?>
-					<div class="u-half">
-						<section class="u-wrap">
-							<span class="o-subtitle">Some of our Programs</span>
-							<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>6, 'post__not_in'=>array(get_the_id()))); ?>
-							<?php if ( $postsList->have_posts() ) : ?>
-								<ul class="o-list u-pt-s">
-								<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
-									<li>
-										<a href="<?php the_permalink(); ?>" class="o-link">
-											<i class="o-icon s--arrow-ltr"></i>
-											<span class="o-link__title"><?php the_title(); ?></span>
-										</a>
-									</li>
-								<?php endwhile; ?>
-								</ul>
- 								<?php wp_reset_postdata(); ?>
-							<?php endif; ?>
-						</section>
-					</div>
+					<?php if( ($postType != 'program') && ($postType != 'event') ){?>
+						<div class="u-half">
+							<section class="u-wrap">
+								<span class="o-subtitle">More for you</span>
+								<?php $postsList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post__not_in' => array($pageID))); ?>
+								<?php if ( $postsList->have_posts() ) : ?>
+									<ul class="o-list u-pt-s">
+									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
+										<li>
+											<a href="<?php the_permalink(); ?>" class="o-link">
+												<i class="o-icon s--arrow-ltr"></i>
+												<span class="o-link__title"><?php the_title(); ?></span>
+											</a>
+										</li>
+									<?php endwhile; ?>
+									</ul>
+	 								<?php wp_reset_postdata(); ?>
+								<?php endif; ?>
+							</section>
+						</div>
 					<?php } ?>
+
+					<?php if($postType == 'program'){?>
+						<div class="u-half">
+							<section class="u-wrap">
+								<span class="o-subtitle">Explore our Programs</span>
+								<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'post__not_in'=>array(get_the_id()))); ?>
+								<?php if ( $postsList->have_posts() ) : ?>
+									<ul class="o-list u-pt-s">
+									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
+										<li>
+											<a href="<?php the_permalink(); ?>" class="o-link">
+												<i class="o-icon s--arrow-ltr"></i>
+												<span class="o-link__title"><?php the_title(); ?></span>
+											</a>
+										</li>
+									<?php endwhile; ?>
+									</ul>
+	 								<?php wp_reset_postdata(); ?>
+								<?php endif; ?>
+							</section>
+						</div>
+					<?php } ?>
+
+					<?php if($postType == 'event'){?>
+						<div class="u-half">
+							<section class="u-wrap">
+								<span class="o-subtitle">Explore other Events</span>
+								<?php $postsList = new WP_Query(array('posts_per_page'=>5, 'category_name' => 'events')); ?>
+								<?php if ( $postsList->have_posts() ) : ?>
+									<ul class="o-list u-pt-s">
+									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
+										<li>
+											<a href="<?php the_permalink(); ?>" class="o-link">
+												<i class="o-icon s--arrow-ltr"></i>
+												<span class="o-link__title"><?php the_title(); ?></span>
+											</a>
+										</li>
+									<?php endwhile; ?>
+									</ul>
+	 								<?php wp_reset_postdata(); ?>
+								<?php endif; ?>
+							</section>
+						</div>
+					<?php } ?>
+
 				</div>
 			</div>
 		</section>
@@ -90,16 +118,34 @@
 			$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
 			$postCoverImageURL = $postCoverImage[0];
 			$nextPostImage = '';
-
-			if (is_singular('program')) {
-				$nextPostImage = get_field('cover_image', $nextPost->ID);
-			}
-			else {
-				$nextPostImage = $postCoverImageURL;
+			$nextPostLabel = '';
+			
+			switch ($postType) {
+				case 'program':
+					$nextPostImage = get_field('cover_image', $nextPost->ID);
+					break;
+				case 'staff':
+					$nextPostImage = get_field('cover_image', 181);
+					break;
+				case 'cultural':
+					$nextPostImage = get_field('cover_image', 766);
+					break;
+				case 'director':
+					$nextPostImage = get_field('cover_image', 764);
+					break;
+				case 'partner':
+					$nextPostImage = get_field('cover_image', 52);
+					break;
+				case 'event':
+					$nextPostImage = get_field('cover_image', $nextPost->ID);
+					break;
+				default:
+					$nextPostImage = $postCoverImageURL;
+					break;
 			}
 		?>
 			<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
-				<span class="o-subtitle">Next Story</span>
+				<span class="o-subtitle">Next <?php echo $postTypeTitle; ?></span>
 				<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
 				<i class="o-icon s--arrow-ltr"></i>
 				<figure style="background-image:url('<?php echo $nextPostImage; ?>')"></figure>

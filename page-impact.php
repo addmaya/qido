@@ -126,9 +126,6 @@
 					<?php wp_reset_postdata(); ?>
 					<?php } ?>
 				</ul>
-				<section class="a-center">
-					<a href="" class="o-button">Donwload Annual Report 20016</a>
-				</section>
 			</div>
 		</div>
 	</section>

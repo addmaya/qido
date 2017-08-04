@@ -1,5 +1,37 @@
-jQuery(document).ready(function($) {
+function writeCookie(name, value, days) {
+    var date, expires;
 
+    if (days) {
+        date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var i, c, ca, nameEQ = name + "=";
+    ca = document.cookie.split(';');
+
+    for (i = 0; i < ca.length; i++) {
+        c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1, c.length);
+        }
+        if (c.indexOf(nameEQ) == 0) {
+            return c.substring(nameEQ.length, c.length);
+        }
+    }
+    return '';
+}
+
+var deleteCookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
+jQuery(document).ready(function($) {
 
 	//variables
 	var body = $('body');
@@ -247,10 +279,61 @@ jQuery(document).ready(function($) {
 	    resetGridLayout();
 
 	    $('.o-imagelist li').matchHeight();
+
+	    $('.o-reaction').on('click', '.is-reactive', function(e) {
+	    	e.preventDefault();
+	    	var me = $(this);
+	    	var postID = me.data('id');
+	    	var reactionTitle = me.data('reaction');
+	    	var reactionCount = parseInt(me.find('.o-reaction__count').html());
+
+	    	reactionCount++;
+
+	    	me.find('.o-reaction__count').html(reactionCount);
+	    	me.find('.o-reaction__add').html(reactionCount);
+	    	me.removeClass('is-reactive');
+	    	me.addClass('is-unreactive');
+
+	    	writeCookie(reactionTitle+postID, reactionCount, 1);
+
+	    	$.ajax({
+	    	   url: ajaxURL,
+	    	   method: 'post',
+	    	   dataType: 'json',
+	    	   data: {action: 'updatePostReaction', post_id: postID, reaction: reactionTitle, operation: 'increment'},
+	    	});
+
+	    	console.log(reactionCount);
+	    });
+
+	    $('.o-reaction').on('click', '.is-unreactive', function(e) {
+	    	e.preventDefault();
+	    	var me = $(this);
+	    	var postID = me.data('id');
+	    	var reactionTitle = me.data('reaction');
+	    	var reactionCount = parseInt(me.find('.o-reaction__count').html());
+
+	    	reactionCount--;
+
+	    	me.find('.o-reaction__count').html(reactionCount);
+	    	me.find('.o-reaction__add').html(reactionCount);
+	    	me.removeClass('is-unreactive');
+	    	me.addClass('is-reactive');
+
+	    	deleteCookie(reactionTitle+postID);
+
+	    	$.ajax({
+	    	   url: ajaxURL,
+	    	   method: 'post',
+	    	   dataType: 'json',
+	    	   data: {action: 'updatePostReaction', post_id: postID, reaction: reactionTitle, operation:'decrement'},
+	    	});
+
+	    	console.log(reactionCount);
+	    });
 	  }
 	});
 	pageSinglePost.init();
-
 
 	//page - contact
 	var pageContact = Barba.BaseView.extend({

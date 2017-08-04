@@ -1,36 +1,93 @@
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header', 'parts/shared/cover') ); ?>
-<div class="u-box">
-	<a href="<?php echo home_url();?>/partners" style="display:block; padding-top:1em"> < All Partners</a>
-	<h2>Single <?php the_title(); ?></h2>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Cover Photo</h3>
-			</section>
-		</div>
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header') ); ?>
+<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+<section class="c-page-cover s--xshort">
+	<figure class="c-page-cover__image" style="background-image:url('<?php the_field('cover_image', 52);?>')"></figure>
+</section>
+<section class="c-page__content s--clear u-oh">
+	<div class="c-bubble-roof">
+		<span class="o-bubble s--large"></span>
+		<span class="o-bubble s--medium"></span>
+		<span class="o-bubble s--small"></span>
+		<span class="o-bubble s--xlarge"></span>
 	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Partner Bio</h3>
-				<p>Bio, Link to Website</p>
+	<div class="u-box">
+		<section class="o-story s--wide">
+			<section class="o-story__content">
+				<div class="o-bio">
+					<div class="o-bio__figure">
+						<figure style="background-image:url('<?php the_field('logo');?>')">
+							<span class="o-bubble s--medium"></span>
+						</figure>
+						<ul class="o-networks t-light">
+							<li><a href="#"><span class="o-icon s--fb"></span></a></li>
+							<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
+							<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
+							<li><a href="#"><span class="o-icon s--web"></span></a></li>
+						</ul>
+					</div>
+					<div class="o-bio__story">
+						<section class="u-wrap">
+							<header>
+								<h1 class="s--clear"><?php the_title(); ?></h1>
+								<span class="o-subtitle s--profile">
+									<?php
+										$partnerCategories = get_the_terms(get_the_ID(), 'group');
+										foreach ($partnerCategories as $partnerCategory) {
+											echo $partnerCategory->name.' / ';
+										}
+										?>
+								</span>
+							</header>
+							<section>
+								<?php the_content(); ?>
+							</section>
+							<section>
+								<h3 class="u-pb-m">Programs supported</h3>
+								<?php 
+									$linkedPrograms = new WP_Query(array('post_per_page'=>-1,'post_type'=>'program', 'meta_query'=> array(array('key'=>'partners', 'value'=>'"' . get_the_ID() . '"', 'compare'=> 'LIKE'))));
+									if ($linkedPrograms->have_posts()){
+					                    $programIndex = 0;
+					                    $aosDelay=0;
+								?>
+								<ul class="c-programs__nav s--clear">			
+								<?php while ( $linkedPrograms->have_posts() ) : $linkedPrograms->the_post();
+
+					                if($programIndex > 5){
+					                    $programIndex = 0;
+					                }
+					                switch ($programIndex) {
+					                    case 1:
+					                        $aosDelay = 50;
+					                        break;
+					                    case 2:
+					                        $aosDelay = 100;
+					                        break;
+					                    case 3:
+					                        $aosDelay = 150;
+					                        break;
+					                    case 4:
+					                        $aosDelay = 200;
+					                        break;
+					                    case 5:
+					                        $aosDelay = 250;
+					                        break;
+					                    default:
+					                        $aosDelay = 0;
+					                        break;
+					                }
+					            ?>
+									<li class="u-third" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="<?php echo get_permalink(); ?>" style="background-image:url('<?php the_field('logo'); ?>')"></a></li>
+									<?php $programIndex++; endwhile; ?>
+									<?php wp_reset_postdata(); ?>
+								<?php } ?>
+								</ul>
+							</section>
+						</section>
+					</div>
+				</div>
 			</section>
-		</div>
+		</section>
 	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Projects Done with Partner</h3>
-			</section>
-		</div>
-	</div>
-	<div class="o-section u-table">
-		<div class="u-cell">
-			<section class="o-section__content">
-				<h3>Footer</h3>
-				<p>Share options, next page suggestions, contact info, search, newsletter signup</p>
-			</section>
-		</div>
-	</div>
-</div>
+</section>
+<?php endwhile; ?>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

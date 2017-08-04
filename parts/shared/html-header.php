@@ -17,12 +17,15 @@
 		<link href="<?php echo get_stylesheet_directory_uri(); ?>/js/vendors/swiper.min.css" rel="stylesheet">
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/vendors.js"></script>
 		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/build/app.js"></script>
+		<script>
+			var ajaxURL="<?php echo admin_url('admin-ajax.php'); ?>";
+		</script>
 		<?php wp_head(); ?>
 	</head>
 	<body class="is-booting <?php
 		if(is_page('blog') || is_page('programs') || is_front_page() ||is_single()){echo 't-mercury';}
 		if(is_page('impact') || is_page('about')){echo 't-jupiter';}
-		if(is_page('team') || is_page('directors') || is_page('cultural-icons')){echo 't-earth';}
+		if(is_page('our-team') || is_page('directors') || is_page('cultural-icons')){echo 't-earth';}
 		if(is_page('events')){echo 't-venus';}
 		if(is_page('partners') || is_page('contact')){echo 't-neptune';}
 	?>">

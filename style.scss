@@ -202,7 +202,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     &:after{content:""; width: 100%; height: 3px; background-color: #FFF; position: absolute; bottom:0; left:0; @include prefix((transform-origin: 0 0)); @include prefix((transition: transform 1s $easeOutExpo)); @include scale2D(0,1)}
     &:hover{
       &:after{@include scale2D(1,1)}
-      .o-icon{@include prefix((transform: translateY(em(-12))))}
+      .o-icon{@include prefix((transform: translateY(em(-7))))}
     }
   }
   .o-icon{background-color: transparent; @include prefix((transition: transform 1s $easeOutExpo));}
@@ -577,7 +577,7 @@ $active: #ffe992;
 }
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
-  p{padding: em(9)}
+  p{padding: em(9); font-weight: bold; width: 70%; font-size: 0.875em; margin: 0 auto; line-height: 1.6}
   .o-icon{height: em(56); width: em(56); margin-bottom: em(12); background-repeat: no-repeat; background-size:contain; }
   &.s--medium{
     figure{font-size: 0.75em}
@@ -674,9 +674,9 @@ $active: #ffe992;
   .s--small{bottom: 55%; right: 5%; @include animate(levitate, 3, 0, ease-in-out); @include infinite}
   .o-bubble{@include a-paused; z-index:-2}
 }
-.o-story{width: 60%; @include center; font-size:1.125em; padding:2em 0 4em;
+.o-story{width: 70%; @include center; font-size:1.125em; padding:2em 0 4em;
   p{margin-bottom: em(24); line-height:1.8}
-  h1{font-size:2.2em;
+  h1{font-size:2.2em; position: relative;
     .t-neptune &{color: $neptune}
     .t-venus &{color: $venus}   
     .t-jupiter &{color: $jupiter}
@@ -684,18 +684,48 @@ $active: #ffe992;
     .t-mercury &{color: $mercury}
   }
   .o-subtitle{padding:1em 0; opacity:0.5}
+  &.s--wide{width: auto;}
 }
-.o-story__content{padding-top:1.5em}
-.o-bio{@include clear;}
-.o-bio__figure{width: 40%; float: left; text-align: center;
-  figure{height: em(360); margin: 1.5em; background-size: contain; @include image('dummy/model.png'); background-repeat: no-repeat; background-position: center;
-  &.s--mtv{@include image('dummy/mtv.png')}
+.o-story__content{padding-top:1.5em;
+  .s--wide &{padding-top: 0}
 }
+.o-story__title{overflow:hidden; cursor: pointer;
+  .o-subtitle{opacity: 0.8}
+  section{position: absolute; background-color: #fff; top: 0; width: 100%; height: 100%; @include a-transform(0.3, 'ease'); @include translateY(100%); cursor:pointer}
+  ul{font-size:0.7em; padding-top: 1em}
+  &:hover{
+    section{@include translateY(0)}
+  }
+}
+.o-story__comments{border-top: solid 1px #e6e6e6; margin-top:3em; padding-top:2em; font-size:0.9em; width:90%; @include center;
+  .comment-reply-title{padding-bottom:1.5em; font-size:1.125em}
+  label{display: block; font-size:0.875em; font-weight: bold; padding-bottom: 0.75em}
+  textarea,input{border-bottom: solid 1px #b9c2f5; width:100%; @include opensans; color: #626990; font-weight: 300; padding-bottom:0.5em}
+  input[type="submit"]{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease)); width: auto}
+  h2{margin-bottom: 2.5em}
+  h4{font-weight: bold; text-transform: capitalize}
+  time{font-size: 0.75em; opacity: 0.7; margin-bottom: 1em; display: block; padding-top: 0.5em;}
+  img{display: none}
+  article{position: relative; margin-bottom:3em; 
+    &:after{content:""; width: 30%; background-color: #e6e6e6; height:1px; position: absolute; bottom: em(-12); left: 0}
+  }
+  p{margin-bottom: 1em}
+}
+.o-bio{@include clear;
+  .o-bubble{left: 20%; bottom: 0; top: auto;}
+}
+.o-bio__figure{width: 40%; float: left; text-align: center; 
+  figure{height: em(360); margin: 1.5em; background-size: contain; @include image('dummy/model.png'); background-repeat: no-repeat; background-position: center; position: relative;
+    &.s--mtv{@include image('dummy/mtv.png')}
+    &.s--radial{width: em(225); height: em(225); @include cover; @include border-radius-l; background-color: #e6e6e6; @include center; }
+  }
   .o-networks{margin: 1.5em}
   .is-booting &{@include animate(fadeInUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
 }
 .o-bio__story{width: 60%; float: left;
-  p{padding-bottom: 1.5em}
+  p{padding-bottom: 1.5em;
+    &:last-child{padding-bottom: 0;}
+  }
   h1{padding-bottom: em(3)}
   header{padding-bottom: 2em}
   .is-booting &{@include animate(fadeInUp, 1, 0.1, cubic-bezier(0.3, 0, 0, 1))}
@@ -797,7 +827,9 @@ $active: #ffe992;
 }
 .o-imagelist{@include clear;
   li{width: percentage(1/3); float: left; margin-bottom: 2em;}
-  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative}
+  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative;
+    &:after{@include shadow; @include u-after; opacity:1; @include border-radius-s}
+  }
   .o-bubble{top: 0 !important; left: -2em;}
 }
 .o-embed__content{position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; @include border-radius-s;
@@ -807,6 +839,24 @@ $active: #ffe992;
   .o-bubble{top: auto !important; bottom: 2%}
   .s--left{left: -8%;}
   .s--right{right: -8%;}
+}
+.o-reaction{text-align: center; display: inline-block; margin-right: 0.75em;
+  a{display:block; @include a-transform(0.25, $easeOutBack);
+    &:hover{@include scale2D(1.3,1.3);
+      .o-reaction__count{display: none}
+      .o-reaction__add{display: block}
+    }
+    &.is-unreactive, &.in-history{opacity:0.7; filter: grayscale(100%);}
+  }
+  .o-icon{width: 3em; height: 3em}
+  .s--angry{@include image('reactions/angry.svg')}
+  .s--bored{@include image('reactions/bored.svg')}
+  .s--happy{@include image('reactions/happy.svg')}
+  .s--love{@include image('reactions/kissing.svg')}
+  .s--wow{@include image('reactions/surprised.svg')}
+  span{display:block; padding-top: 0.5em; font-weight: bold; font-size: 0.875em; color: #3f51b5;
+    &.o-reaction__add{display: none}
+  }
 }
 /*components*/
 .c-page__header{position: fixed; z-index: 10; @include clear; width: 100%;
@@ -840,6 +890,7 @@ $active: #ffe992;
   .t-earth &{background-color: darken($earth,15%)}
   .t-mercury &{background-color: darken($mercury,15%)}
 
+  &.s--xshort{height: 13%}
   &.s--short{height: 30%}
   &.s--medium{height:45%;
     .c-page-cover__image{background-position:center top;}
@@ -966,13 +1017,18 @@ $cButtonNextDuration: 0.65s;
   }
 }
 .c-programs__nav{@include clear; padding:0 1.5em 3em; 
-  li{width: percentage(1/6); float: left;}
+  li{width: percentage(1/6); float: left;
+    &.u-third{width: percentage(1/3);}
+  }
   a{display: block; background-color: #fff; height:6em; margin:1em; background-size: 65%; background-repeat: no-repeat; background-position: center; border:solid 1px #e8e9eb; border-radius: 4px; @include a-transform(0.4, $easeOutBack); position: relative;
     
     &:after{border-radius:4px; @include u-after; opacity: 0; @include a-opacity(0.3); @include shadow}
     &:hover{@include scale2D(1.1,1.1);
       &:after{opacity:1}
     }
+  }
+  &.s--clear{padding: 0;
+    a{margin-left: 0;}
   }
 }
 .c-milestones__line{width: 1px; height: 104%; background-color: $jupiter; position: absolute; left: 50%; z-index: -1; top: -5em;}
@@ -1069,6 +1125,27 @@ $cButtonNextDuration: 0.65s;
   .o-line{margin: 3.5em 0; background-color: white}
 }
 .c-statistic{display: block; font-size: 6em; @include sixcaps; color: #000;}
+.c-event-meta{ padding: 1em;
+  ul{@include clear; border-top: solid 1px #e6e6e6; text-align: center; font-size: 0.875em; margin-top: 1.5em}
+  li{float: left; position: relative; width: percentage(1/5); padding-top: 0.875em;
+    &:after{content:""; width: 1px; background-color: #e6e6e6; height: 20px; right:0; top: 0; position: absolute;}
+    &:last-child{
+      &:after{display: none}
+    }
+  }
+  h4{font-family: 'Arial'; text-transform: uppercase; font-weight:bold; display: block; padding-bottom: 0.75em; font-size: 0.75em}
+  span{display: block; line-height: 1.6;
+    &.s--inline{display: inline-block}
+  }
+  a{color: #3f51b5}
+}
+.c-event__poster{background-color: #e6e6e6; width: 85%; margin:2em auto 5em; @include image('concrete-texture.png'); background-repeat: repeat; @include border-radius-s;
+  figure{margin:1em auto 3em; @include cover; position: relative;
+    &:after{@include shadow; @include u-after;}
+    &.s--portrait{width:40%; padding-bottom:56%;}
+    &.s--landscape{width: 70%; padding-bottom: 50%}
+  }
+}
 /*animation*/
 $orbit-radius:150px;
 @keyframes bubbleCoverLarge {

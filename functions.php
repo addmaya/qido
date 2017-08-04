@@ -159,7 +159,46 @@
 		}
 	}
 
+	function getReactions($post_id){
+	    if(!$post_id){return;}
+	    $html = '<ul class="u-align__center">';
+	    
+	    $reactions = ['angry', 'bored', 'love', 'happy', 'wow'];
+	    foreach ($reactions as $reaction) {
+	        $class = 'is-reactive';
+	        $cookie = $reaction.$post_id;
+	        $count = get_post_meta($post_id, $reaction, true);
+	        if(empty($count)){
+	            $count = 0;
+	        }
+	        $html .= '<li class="o-reaction"><a href="#" class="'.$class.'" data-reaction="'.$reaction.'" data-id="'.$post_id.'"><i class="o-icon s--'.$reaction.'"></i><span class="o-reaction__count">'.$count.'</span><span class="o-reaction__add">+</span></a></li>';
+	    }
+	    $html .= '</ul>';
+	    echo $html;
+	}
 
+	function updatePostReaction(){
+	    $post_id = $_POST['post_id'];
+	    $reaction = $_POST['reaction'];
+	    $operation = $_POST['operation'];
+
+	    $count = get_post_meta($post_id, $reaction, true);
+	    if($count == ''){
+	        $count = 0;
+	    }
+
+	    if($operation == 'increment'){
+		    $count += 1;
+		}else{
+			$count -= 1;
+		}
+
+	    update_post_meta($post_id, $reaction, $count);
+	    die();
+	}
+
+	add_action('wp_ajax_updatePostReaction', 'updatePostReaction');
+	add_action('wp_ajax_nopriv_updatePostReaction', 'updatePostReaction');
 
 	remove_filter('the_content', 'wpautop');
 ?>

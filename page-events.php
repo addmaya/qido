@@ -88,12 +88,6 @@
 						<?php wp_reset_postdata(); ?>
 					</ul>
 				</section>
-				<div class="a-center u-pt-m">
-					<a href="#" class="o-button">
-						<i class="o-icon s--arrow-ltr"></i>
-						<span class="o-button__title">See Full Calendar</span>
-					</a>
-				</div>
 			</div>
 		</section>
 	<?php } ?>
