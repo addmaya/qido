@@ -872,7 +872,7 @@ $active: #ffe992;
   &.is-hidden{@include animate(fadeOutRight, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-active{@include animate(fadeInRight, 1,0, cubic-bezier(0.3, 0, 0, 1))}
 }
-.c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden;
+.c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden; color: #fff; 
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
     .is-booting &{@include animate(fadeInUp, 1, 1.1, cubic-bezier(0.3, 0, 0, 1))}
   }     

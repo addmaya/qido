@@ -106,51 +106,54 @@
 				$nextPageID = get_option('page_on_front');
 			}
 		?>
-		<?php if (!is_single()) {?>
-			<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
-				<span class="o-subtitle">Next</span>
-				<span class="o-heading"><?php echo get_the_title($nextPageID); ?></span>
-				<i class="o-icon s--arrow-ltr"></i>
-				<figure style="background-image:url('<?php echo get_field('cover_image', $nextPageID); ?>')"></figure>
-			</a>
-		<?php } else {
-			$nextPost = get_previous_post();
-			$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
-			$postCoverImageURL = $postCoverImage[0];
-			$nextPostImage = '';
-			$nextPostLabel = '';
-			
-			switch ($postType) {
-				case 'program':
-					$nextPostImage = get_field('cover_image', $nextPost->ID);
-					break;
-				case 'staff':
-					$nextPostImage = get_field('cover_image', 181);
-					break;
-				case 'cultural':
-					$nextPostImage = get_field('cover_image', 766);
-					break;
-				case 'director':
-					$nextPostImage = get_field('cover_image', 764);
-					break;
-				case 'partner':
-					$nextPostImage = get_field('cover_image', 52);
-					break;
-				case 'event':
-					$nextPostImage = get_field('cover_image', $nextPost->ID);
-					break;
-				default:
-					$nextPostImage = $postCoverImageURL;
-					break;
-			}
-		?>
-			<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
-				<span class="o-subtitle">Next <?php echo $postTypeTitle; ?></span>
-				<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
-				<i class="o-icon s--arrow-ltr"></i>
-				<figure style="background-image:url('<?php echo $nextPostImage; ?>')"></figure>
-			</a>
-		<?php } ?>
+		<?php if (!is_tag()): ?>
+			<?php if (!is_single()) {?>
+				<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
+					<span class="o-subtitle">Next</span>
+					<span class="o-heading"><?php echo get_the_title($nextPageID); ?></span>
+					<i class="o-icon s--arrow-ltr"></i>
+					<figure style="background-image:url('<?php echo get_field('cover_image', $nextPageID); ?>')"></figure>
+				</a>
+			<?php } else {
+				$nextPost = get_previous_post();
+				$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
+				$postCoverImageURL = $postCoverImage[0];
+				$nextPostImage = '';
+				$nextPostLabel = '';
+				
+				switch ($postType) {
+					case 'program':
+						$nextPostImage = get_field('cover_image', $nextPost->ID);
+						break;
+					case 'staff':
+						$nextPostImage = get_field('cover_image', 181);
+						break;
+					case 'cultural':
+						$nextPostImage = get_field('cover_image', 766);
+						break;
+					case 'director':
+						$nextPostImage = get_field('cover_image', 764);
+						break;
+					case 'partner':
+						$nextPostImage = get_field('cover_image', 52);
+						break;
+					case 'event':
+						$nextPostImage = get_field('cover_image', $nextPost->ID);
+						break;
+					default:
+						$nextPostImage = $postCoverImageURL;
+						break;
+				}
+			?>
+				<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
+					<span class="o-subtitle">Next <?php echo $postTypeTitle; ?></span>
+					<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
+					<i class="o-icon s--arrow-ltr"></i>
+					<figure style="background-image:url('<?php echo $nextPostImage; ?>')"></figure>
+				</a>
+			<?php } ?>
+		<?php endif ?>
+
 		<footer class="c-page__footer">
 			<div class="u-box">
 				<section class="u-clear">
