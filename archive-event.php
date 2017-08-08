@@ -1,10 +1,10 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header') ); ?>
 <?php if ( have_posts() ):?>
 <section class="c-page-cover s--short">
-	<figure class="c-page-cover__image" style="background-image:url('<?php the_field('cover_image',168);?>')"></figure>
+	<figure class="c-page-cover__image" style="background-image:url('<?php the_field('cover_image',195);?>')"></figure>
 	<div class="u-table u-align__center">
 		<div class="u-cell">
-			<h1><?php echo single_cat_title( '', false ); ?></h1>
+			<h1>Events Calendar</h1>
 		</div>
 	</div>
 </section>

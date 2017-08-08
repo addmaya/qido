@@ -1,3 +1,4 @@
+<?php $bubbleSizes = ['s--xsmall', 's--small', 's--medium', 's--large']; ?>
 <li class="o-article u-half" data-aos="fade-up">
 	<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 		<section class="o-article__figure">

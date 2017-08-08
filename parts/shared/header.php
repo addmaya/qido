@@ -95,6 +95,7 @@
 		if(is_page('our-team') || is_page('directors') || is_page('cultural-icons')){echo 'team';}
 		if(is_page('partners')){echo 'partners';}
 		if(is_page('events')){echo 'events';}
+		if(is_archive()){echo 'calendar'}
 		if(is_page('blog')){echo 'blog';}
 		if(is_page('contact')){echo 'contact';}
 		if(is_single() || is_tag() || is_category()){echo 'single-post';}

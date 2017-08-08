@@ -47,7 +47,7 @@
 					<span class="o-section__title"> Events Calendar</span>
 				</header>
 				<section>
-					<ul class="u-clear">
+					<ul class="u-clear c-tickets">
 						<?php while ( $eventsList->have_posts() ) : $eventsList->the_post();
 							$eventDate = new DateTime(get_field('start_date_time'));
 							$currentTime = time();
@@ -63,16 +63,16 @@
 										<span class="o-article__time o-subtitle"><?php if($eventDateDifference < 0){echo abs($eventDateDifference).' days ago';} else {echo $eventDateDifference.' days to';} ?></span>
 										<figure style="background-image: url('<?php the_field('cover_image');?>')"></figure>
 									</section>
-									<div class="o-ticket__info">
+									<div class="o-ticket-meta">
 										<i class="c-cut s--left"></i>
 										<i class="c-cut s--right"></i>	
 										<i class="c-cut s--left__bottom"></i>
 										<i class="c-cut s--right__bottom"></i>
-										<div class="u-half">
+										<div class="o-ticket-meta__date">
 											<i class="o-line"></i>
 											<span><?php echo $eventDate->format('j M Y'); ?></span>
 										</div>
-										<div class="u-half">
+										<div class="o-ticket-meta__venue">
 											<i class="o-line"></i>
 											<span><?php the_field('venue'); ?></span>
 										</div>
@@ -88,6 +88,12 @@
 						<?php wp_reset_postdata(); ?>
 					</ul>
 				</section>
+				<footer class="o-section__footer">
+					<a href="<?php echo home_url(); ?>/calendar" class="o-button">
+						<i class="o-icon s--arrow-ltr"></i>
+						<span class="o-button__title">Full Events Calendar</span>
+					</a>
+				</footer>
 			</div>
 		</section>
 	<?php } ?>

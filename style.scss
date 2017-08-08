@@ -396,7 +396,7 @@ $active: #ffe992;
   
   &:after{@include u-after; @include shadow; opacity:0; @include a-opacity(0.4); z-index:-1; @include border-radius-s;}
 }
-.o-article__time{display: inline-block; padding: 0.5em 0.75em; font-size: em(9); top:4em; position: relative; color: #fff; z-index: 1; font-weight: normal;
+.o-article__time{display: inline-block; padding: 0.5em 0.75em; font-size: em(9); top:4em; position: relative; color: #fff; z-index: 1; font-weight: normal; letter-spacing:0.5em;
   .t-venus &{background-color: darken($venus, 15%)}
   .t-mercury &{background-color: darken($mercury, 15%)}
   .t-neptune &{background-color: $neptune}
@@ -471,7 +471,7 @@ $active: #ffe992;
       figure:after{@include scale2D(1,1)}
     }
     .o-subheading{@include translateY(em(12))}
-    .o-ticket__info{@include translateY(em(-12))}
+    .o-ticket-meta{@include translateY(em(-12))}
   }
 }
 .o-ticket__figure{display: block; position: relative; @include a-transform(0.4, $easeOutBack);
@@ -480,8 +480,10 @@ $active: #ffe992;
   }
   .c-cut{top: em(12); background-color: #f2f0fa}
 }
-.o-ticket__info{@include clear; background-color: #4E4187; padding: em(12); margin-bottom: 1.2em; position: relative; @include image('barcode.svg'); background-size: em(24); background-position: 15px bottom; background-repeat: no-repeat; @include a-transform(0.4, $easeOutBack);
+.o-ticket-meta{height:em(72); @include clear; background-color: #4E4187; padding: em(12); margin-bottom: 1.2em; position: relative; @include image('barcode.svg'); background-size: em(24); background-position: 15px bottom; background-repeat: no-repeat; @include a-transform(0.4, $easeOutBack);
   span{display: block; text-transform: uppercase; font-size: 0.75em; font-family: 'Arial'; padding:1.5em 1.5em 1.5em 0; line-height: 1.5; color: #fff}
+  .o-ticket-meta__date{width: 40%; float: left}
+  .o-ticket-meta__venue{width: 60%; float: left}
   .o-line{width: 30%; height: 2px; background-color: #fff; opacity: 0.2}
   .c-cut{background-color: #fff}
   .s--left{top:em(-8); background-color: #f2f0fa}
@@ -1145,6 +1147,10 @@ $cButtonNextDuration: 0.65s;
     &.s--portrait{width:40%; padding-bottom:56%;}
     &.s--landscape{width: 70%; padding-bottom: 50%}
   }
+}
+.c-tickets{
+  li{margin-bottom:0}
+  .u-wrap{padding-bottom:0}
 }
 /*animation*/
 $orbit-radius:150px;
