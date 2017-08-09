@@ -273,7 +273,7 @@
 								<section class="o-article__brief">
 									<span class="o-subheading"><?php the_title(); ?></span>
 									<section>
-										<?php getPostExcerpt(136); ?>
+										<?php echo getPostExcerpt(136); ?>
 										<span class="o-link">
 											<i class="o-icon s--arrow-ltr"></i>
 										</span>

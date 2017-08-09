@@ -23,10 +23,10 @@
 		<?php wp_head(); ?>
 	</head>
 	<body class="is-booting <?php
-		if(is_page('blog') || is_page('programs') || is_front_page() ||is_single() || is_tag() || is_category()){echo 't-mercury';}
+		if(is_page('blog') || is_page('programs') || is_front_page() || is_single() || is_tag() || is_category()){echo 't-mercury';}
 		if(is_page('impact') || is_page('about')){echo 't-jupiter';}
 		if(is_page('our-team') || is_page('directors') || is_page('cultural-icons')){echo 't-earth';}
-		if(is_page('events') || is_archive()){echo 't-venus';}
+		if(is_page('events') || is_post_type_archive('event')){echo 't-venus';}
 		if(is_page('partners') || is_page('contact')){echo 't-neptune';}
 	?>">
 	<div class="c-loader">

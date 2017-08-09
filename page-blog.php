@@ -18,7 +18,7 @@
 				<?php the_title(); ?>
 				<span class="o-subtitle"><?php getPostTime(); ?></span>
 			</h1>
-			<span class="u-block"><?php getPostExcerpt(186); ?></span>
+			<span class="u-block"><?php echo getPostExcerpt(186); ?></span>
 			<div class="o-link">
 				<i class="o-icon s--arrow-ltr"></i>
 				<span>Read On</span>
@@ -31,10 +31,10 @@
 <section class="c-page__title">
 	<span><?php the_title(); ?></span>
 </section>
-<section class="c-page__content">
+<section>
 	<section class="o-page__section">
 		<div class="u-box">
-			<section class="a-right">
+			<!-- <section class="a-right">
 				<div class="o-select">
 					<select name="" id="">
 						<option value="">All Topics</option>
@@ -58,10 +58,10 @@
 						<i class="o-arrow__head"></i>
 					</span>
 				</div>
-			</section>
+			</section> -->
 			<section class="u-wrap u-pdb-clear">
-				<ul class="u-clear">
-					<?php $blogPosts = new WP_Query(array('posts_per_page'=>6)); ?>
+				<ul class="u-clear u-relative" id="storiesGrid">
+					<?php $blogPosts = new WP_Query(array('posts_per_page'=>9)); ?>
 					<?php if ($blogPosts->have_posts() ) : ?>
 						<?php 
 							$postIndex = 0;
@@ -104,7 +104,7 @@
 									<section class="o-article__brief">
 										<span class="o-subheading"><?php the_title(); ?></span>
 										<section>
-											<?php getPostExcerpt(136); ?>
+											<?php echo getPostExcerpt(136); ?>
 											<span class="o-link">
 												<i class="o-icon s--arrow-ltr"></i>
 											</span>
@@ -117,10 +117,9 @@
 					<?php endif; ?>
 				</ul>
 				<div class="a-center u-pt-l">
-					<span class="o-subtitle u-pb-m">8/125</span>
-					<a href="#" class="o-button">
-						<i class="o-icon s--arrow-ltr"></i>
-						<span class="o-button__title">Load More Stories</span>
+					<a href="#" class="o-button" class="js-moreStories" id="morestories">
+						<i class="o-icon s--refresh"></i>
+						<span class="o-button__title">More Stories</span>
 					</a>
 				</div>
 			</section>
@@ -140,9 +139,26 @@
 					<a href="<?php echo get_tag_link($postTag->term_id); ?>" class="o-tag"><?php  echo $postTag->name; ?> <span><?php  echo $postTag->count; ?></span></a>
 				<?php } endforeach ?>
 				<?php } ?>
-
-			
 			</section>
+		</div>
+	</section>
+	<section class="o-page-section">
+		<div class="u-box">
+			<div class="o-box c-opportunities" data-aos="fade-up">
+				<div class="u-table">
+					<div class="u-cell" class="o-button">
+						<p>Let's work together.</p>
+						<a class="o-button" href="<?php echo home_url(); ?>/category/opportunities" >
+							<i class="o-icon s--arrow-ltr"></i>
+							<span class="o-button__title">Find Opportunities</span>
+						</a>
+						<a class="o-button">
+							<i class="o-icon s--arrow-ltr"></i>
+							<span class="o-button__title">Partner with us</span>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 </section>

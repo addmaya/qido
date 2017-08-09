@@ -59,7 +59,9 @@ jQuery(document).ready(function($) {
 	function windowScroll(){
 		$(window).scroll(function() {
 			var scroll = $(window).scrollTop();
-			if(! ($('.barba-container').data('namespace') == 'single-post')){
+			var pageNamespace = $('.barba-container').data('namespace');
+
+			if(!(pageNamespace == 'single-post' || pageNamespace == 'calendar')){
 				if (scroll > 250){
 					$('.c-page__header').addClass('is-hidden');
 					pageMenu.addClass('is-hidden');
@@ -95,6 +97,34 @@ jQuery(document).ready(function($) {
 		 });
 	}
 
+	function collapseHeader(){
+		pageMenu.addClass('is-hidden');
+		humberger.addClass('is-visible');
+		$('.c-page__header .o-networks').addClass('u-hide');
+	}
+
+	function submitContactForm(){
+		var contactForm = $('#contactForm');
+		var submitButton = contactForm.find('button .o-button__title');
+		contactForm.ajaxForm({
+		    beforeSend: function() { 
+		        submitButton.html('Sending...');
+		    },
+		    success: function() {
+		        contactForm.find('#contactFormAlert').html('Thank you. Your Request was sent');
+		        submitButton.html('Send Message');
+		        contactForm.each(function(){
+		        	this.reset();
+		        });
+		    },
+		    error: function(){
+		    	contactForm.find('#contactFormAlert').html('Please try again');
+		    	submitButton.html('Send Message');
+		    },
+		    resetForm: true
+		});
+	}
+
 	//pop
 	function initPop(){
 		$('.o-pop__close').click(function(e) {
@@ -109,7 +139,29 @@ jQuery(document).ready(function($) {
 		});
 		$('.js-showBioPop').click(function(e) {
 			e.preventDefault();
-			openPop();
+
+			var me = $(this);
+			var bioName = me.data('name');
+			var bioTitle = me.data('title');
+			var bioID = me.data('id');
+			var imageURL = me.find('figure').data('image');
+
+
+			$('#bioName').html(bioName);
+			$('#bioTitle').html(bioTitle);
+			$('#bioPhoto').css('background-image', 'url(' + imageURL + ')');
+
+
+			$.ajax({
+			   url: ajaxURL,
+			   method: 'post',
+			   dataType: 'json',
+			   data: {action: 'getBioContent', bioID: bioID},
+			   success: function(data){
+			        $('#bioContent').html(data);
+			        openPop();
+			   } 
+			});
 		});
 	}
 	function openPop(){
@@ -120,6 +172,34 @@ jQuery(document).ready(function($) {
 		$('body').removeClass('u-oh');
 		$('.o-pop').hide();
 	}
+
+	//stories
+	$('#morestories').click(function(e) {
+		e.preventDefault();
+
+		var me = $(this);
+		var postPerPage = 9;
+		var storiesGrid = $('#storiesGrid');
+		var offset = storiesGrid.find('li').length;
+		var tailIndex = storiesGrid.find('li').last().attr('id');
+		var category = me.data('category');
+
+		$.ajax({
+		   url: ajaxURL,
+		   method: 'post',
+		   dataType: 'json',
+		   data: {action: 'getStories', offset: offset, postsPerPage: 9, tailIndex: tailIndex, category: category},
+		   success: function(data){
+		   	console.log(data.length);
+		       if(data.length){
+		       		storiesGrid.append(data);
+				}
+				else{
+					$('html, body').animate({scrollTop: 0}, 500);
+				}
+		   } 
+		});
+	});
 
 	//menu
 	$('.o-menu a').click(function() {
@@ -265,18 +345,15 @@ jQuery(document).ready(function($) {
 	  namespace: 'single-post',
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
-	    pageMenu.addClass('is-hidden');
-	    humberger.addClass('is-visible');
-	    $('.c-page__header .o-networks').addClass('u-hide');
+	    collapseHeader();
+	    renderSwiper();
+	    resetGridLayout();
 
 	    $('.o-block p').each(function() {
 	        var $this = $(this);
 	        if($this.html().replace(/\s|&nbsp;/g, '').length == 0)
 	            $this.remove();
 	    });
-
-	    renderSwiper();
-	    resetGridLayout();
 
 	    $('.o-imagelist li').matchHeight();
 
@@ -302,8 +379,6 @@ jQuery(document).ready(function($) {
 	    	   dataType: 'json',
 	    	   data: {action: 'updatePostReaction', post_id: postID, reaction: reactionTitle, operation: 'increment'},
 	    	});
-
-	    	console.log(reactionCount);
 	    });
 
 	    $('.o-reaction').on('click', '.is-unreactive', function(e) {
@@ -335,11 +410,23 @@ jQuery(document).ready(function($) {
 	});
 	pageSinglePost.init();
 
+	//page - calendar
+	var pageCalendar = Barba.BaseView.extend({
+	  namespace: 'calendar',
+	  onEnter: function() {
+	    updatePageTheme('t-venus');
+	    collapseHeader();
+	    resetGridLayout();
+	  }
+	});
+	pageCalendar.init();
+
 	//page - contact
 	var pageContact = Barba.BaseView.extend({
 	  namespace: 'contact',
 	  onEnter: function() {
 	    updatePageTheme('t-neptune');
+	    submitContactForm();
 	  }
 	});
 	pageContact.init();
@@ -387,6 +474,7 @@ jQuery(document).ready(function($) {
 	initPop();
 	renderSwiper();
 	resetGridLayout();
+	submitContactForm();
 
 	AOS.init({
 		duration: 700

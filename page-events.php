@@ -17,7 +17,7 @@
 			<h1><?php the_title(); ?>
 				<span class="o-subtitle"><?php getPostTime(); ?></span>
 			</h1>
-			<span class="u-block"><?php getPostExcerpt(186); ?></span>
+			<span class="u-block"><?php echo getPostExcerpt(186); ?></span>
 			<div class="o-link">
 				<i class="o-icon s--arrow-ltr"></i>
 				<span>Read On</span>
@@ -47,7 +47,7 @@
 					<span class="o-section__title"> Events Calendar</span>
 				</header>
 				<section>
-					<ul class="u-clear c-tickets">
+					<ul class="c-tickets">
 						<?php while ( $eventsList->have_posts() ) : $eventsList->the_post();
 							$eventDate = new DateTime(get_field('start_date_time'));
 							$currentTime = time();
@@ -101,8 +101,8 @@
 		<div class="o-section__tint s--full"></div>
 		<div class="u-box">
 			<header class="a-center u-clear">
-				<span class="o-section__title u-left">Relieve Past Events</span>
-				<div class="o-select u-right">
+				<span class="o-section__title">Relieve Past Events</span>
+				<!-- <div class="o-select u-right">
 					<select name="" id="">
 						<option value="">All Topics</option>
 						<option value="">Camp</option>
@@ -124,10 +124,10 @@
 					<span class="o-select__arrow">
 						<i class="o-arrow__head"></i>
 					</span>
-				</div>
+				</div> -->
 			</header>
 			<section class="u-wrap">
-				<ul class="u-clear">
+				<ul class="u-clear" id="storiesGrid">
 					<?php $eventPosts = new WP_Query(array('posts_per_page'=>5, 'category_name' => 'events')); ?>
 					<?php if ($eventPosts->have_posts() ) : ?>
 						<?php 
@@ -170,7 +170,7 @@
 									<section class="o-article__brief">
 										<span class="o-subheading"><?php the_title(); ?></span>
 										<section>
-											<?php getPostExcerpt(136); ?>
+											<?php echo getPostExcerpt(136); ?>
 											<span class="o-link">
 												<i class="o-icon s--arrow-ltr"></i>
 											</span>
@@ -183,10 +183,9 @@
 					<?php endif; ?>
 				</ul>
 				<div class="a-center u-pt-l">
-					<span class="o-subtitle u-pb-m">8 of 125</span>
-					<a href="#" class="o-button">
-						<i class="o-icon s--arrow-ltr"></i>
-						<span class="o-button__title">Show me more</span>
+					<a href="#" class="o-button" id="morestories" data-category="events">
+						<i class="o-icon s--refresh"></i>
+						<span class="o-button__title">More Stories</span>
 					</a>
 				</div>
 			</section>

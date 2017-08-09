@@ -83,32 +83,32 @@
 						<div class="o-tabs__content">
 							<section>
 								<p>Need to asks us anything? Send us a message below, we'll get back to you within 24 hours.</p>
-								<form action="<?php echo get_admin_url();?>admin-post.php" method="post" class="u-clear u-pt-m">
+								<form action="<?php echo get_admin_url();?>admin-post.php" method="post" class="u-clear u-pt-m" id="contactForm">
 									<div class="u-hide">
 										<input type="hidden" name="action" value="submitContact"/>
 										<?php wp_nonce_field('form_nonce_key','form_nonce');?>
 									</div>
 									<div class="u-third">
 										<div class="o-input">
-											<input type="text" placeholder="Your Name" name="userName">
+											<input type="text" placeholder="Your Name" name="userName" required/>
 											<span></span>
 										</div>
 									</div>
 									<div class="u-third">
 										<div class="o-input">
-											<input type="email" placeholder="E-mail" name="userEmail">
+											<input type="email" placeholder="E-mail" name="userEmail" required/>
 											<span></span>
 										</div>
 									</div>
 									<div class="u-third">
 										<div class="o-input">
-											<input type="number" placeholder="Telephone" name="userTelephone">
+											<input type="number" placeholder="Telephone" name="userTelephone" required/>
 											<span></span>
 										</div>
 									</div>
 									<div class="u-left u-full">
 										<div class="o-input">
-											<textarea cols="30" rows="10" placeholder="Message" name="userMessage"></textarea>
+											<textarea cols="30" rows="10" placeholder="Message" name="userMessage" required></textarea>
 											<span></span>
 										</div>
 									</div>
@@ -116,6 +116,7 @@
 										<i class="o-icon s--arrow-ltr"></i>
 										<span class="o-button__title">Send Message</span>
 									</button>
+									<p class="u-pt-m" id="contactFormAlert"></p>
 								</form>
 							</section>
 						</div>

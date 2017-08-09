@@ -144,13 +144,15 @@
 						$nextPostImage = $postCoverImageURL;
 						break;
 				}
-			?>
+			?>	
+				<?php if($nextPost){?>
 				<a href="<?php echo get_permalink($nextPost->ID); ?>" class="c-button-next">
 					<span class="o-subtitle">Next <?php echo $postTypeTitle; ?></span>
 					<span class="o-heading"><?php echo get_the_title($nextPost->ID); ?></span>
 					<i class="o-icon s--arrow-ltr"></i>
 					<figure style="background-image:url('<?php echo $nextPostImage; ?>')"></figure>
 				</a>
+				<?php } ?>
 			<?php } ?>
 		<?php endif ?>
 
