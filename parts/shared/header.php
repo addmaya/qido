@@ -3,7 +3,7 @@
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
 		<ul class="o-networks">
 			<li><a target="_blank" href="#"><span class="o-icon s--search"></span></a></li>
-			<li><a target="_blank" href="https://www.facebook.com/reachahand"><span class="o-icon s--fb"></span></a></li>
+			<li><a target="_blank" href="https://www.facebook.com/reachahand"><span class="o-icon s--facebook"></span></a></li>
 			<li><a target="_blank" href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
 			<li><a target="_blank" href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>
 			<li><a target="_blank" href="https://www.youtube.com/channel/UCf06VA_E9ICZkFue5AjC2XQ"><span class="o-icon s--youtube"></span></a></li>

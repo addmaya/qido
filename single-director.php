@@ -18,11 +18,7 @@
 						<figure class="s--radial" style="background-image:url('<?php the_field('photo');?>')">
 							<span class="o-bubble s--large"></span>
 						</figure>
-						<ul class="o-networks t-light">
-							<li><a href="#"><span class="o-icon s--fb"></span></a></li>
-							<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-							<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-						</ul>
+						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
 					<div class="o-bio__story">
 						<section class="u-wrap">

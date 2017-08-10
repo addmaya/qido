@@ -16,7 +16,7 @@
 						<section class="u-wrap">
 							<span class="o-subtitle">Share this <?php echo $postTypeTitle; ?></span>
 							<ul class="o-networks t-light">
-								<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $pagePermalink; ?>"><span class="o-icon s--fb"></span></a></li>
+								<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $pagePermalink; ?>"><span class="o-icon s--facebook"></span></a></li>
 								<li><a href="https://twitter.com/home?status=<?php echo $pagePermalink; ?>"><span class="o-icon s--twitter"></span></a></li>
 								<li><a href="https://plus.google.com/share?url=<?php echo $pagePermalink; ?>"><span class="o-icon s--googleplus"></span></a></li>
 								<li><a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo $pagePermalink; ?>&media=<?php echo $pageCoverImage; ?>&description=<?php echo $pageTitle; ?>"><span class="o-icon s--pinterest"></span></a></li>
@@ -29,7 +29,7 @@
 						<div class="u-half">
 							<section class="u-wrap">
 								<span class="o-subtitle">More for you</span>
-								<?php $postsList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post__not_in' => array($pageID))); ?>
+								<?php $postsList = new WP_Query(array('post_type'=>'story', 'orderby'=>'rand', 'posts_per_page'=>6, 'post__not_in' => array($pageID))); ?>
 								<?php if ( $postsList->have_posts() ) : ?>
 									<ul class="o-list u-pt-s">
 									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
@@ -116,8 +116,7 @@
 				</a>
 			<?php } else {
 				$nextPost = get_previous_post();
-				$postCoverImage = wp_get_attachment_image_src( get_post_thumbnail_id($nextPost->ID ),'full');
-				$postCoverImageURL = $postCoverImage[0];
+				$postCoverImageURL = get_field('cover_image');
 				$nextPostImage = '';
 				$nextPostLabel = '';
 				
@@ -223,7 +222,7 @@
 					<section class="u-30p">
 						<h2>Follow the Conversation <span class="o-line"></span></h2>
 						<ul class="o-networks t-light s--medium">
-							<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--fb"></span></a></li>
+							<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--facebook"></span></a></li>
 							<li><a href="https://twitter.com/reachahand" target="_blank"><span class="o-icon s--twitter"></span></a></li>
 							<li><a href="https://www.instagram.com/reach_a_hand/" target="_blank"><span class="o-icon s--instagram"></span></a></li>
 							<li><a href="https://www.youtube.com/user/REACHAHANDUGANDA" target="_blank"><span class="o-icon s--youtube"></span></a></li>

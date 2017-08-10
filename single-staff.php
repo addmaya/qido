@@ -15,14 +15,10 @@
 			<section class="o-story__content">
 				<div class="o-bio">
 					<div class="o-bio__figure">
-						<figure style="background-image:url('<?php the_field('photo_full');?>')">
+						<figure class="s--color" style="background-image:url('<?php the_field('photo_full');?>')">
 							<span class="o-bubble s--large"></span>
 						</figure>
-						<ul class="o-networks t-light">
-							<li><a href="#"><span class="o-icon s--fb"></span></a></li>
-							<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-							<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-						</ul>
+						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
 					<div class="o-bio__story">
 						<section class="u-wrap">
@@ -31,7 +27,7 @@
 								<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 							</header>
 							<section>
-								<?php the_content(); ?>
+								<p><?php the_content(); ?></p>
 							</section>
 						</section>
 					</div>

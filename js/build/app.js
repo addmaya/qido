@@ -125,6 +125,35 @@ jQuery(document).ready(function($) {
 		});
 	}
 
+	function getStories(){
+		$('#morestories').click(function(e) {
+			e.preventDefault();
+
+			var me = $(this);
+			var postPerPage = 9;
+			var storiesGrid = $('#storiesGrid');
+			var offset = storiesGrid.find('li').length;
+			var tailIndex = storiesGrid.find('li').last().attr('id');
+			var category = me.data('category');
+
+			$.ajax({
+			   url: ajaxURL,
+			   method: 'post',
+			   dataType: 'json',
+			   data: {action: 'getStories', offset: offset, postsPerPage: 9, tailIndex: tailIndex, category: category},
+			   success: function(data){
+			   	console.log(data.length);
+			       if(data.length){
+			       		storiesGrid.append(data);
+					}
+					else{
+						$('html, body').animate({scrollTop: 0}, 500);
+					}
+			   } 
+			});
+		});
+	}
+
 	//pop
 	function initPop(){
 		$('.o-pop__close').click(function(e) {
@@ -172,34 +201,6 @@ jQuery(document).ready(function($) {
 		$('body').removeClass('u-oh');
 		$('.o-pop').hide();
 	}
-
-	//stories
-	$('#morestories').click(function(e) {
-		e.preventDefault();
-
-		var me = $(this);
-		var postPerPage = 9;
-		var storiesGrid = $('#storiesGrid');
-		var offset = storiesGrid.find('li').length;
-		var tailIndex = storiesGrid.find('li').last().attr('id');
-		var category = me.data('category');
-
-		$.ajax({
-		   url: ajaxURL,
-		   method: 'post',
-		   dataType: 'json',
-		   data: {action: 'getStories', offset: offset, postsPerPage: 9, tailIndex: tailIndex, category: category},
-		   success: function(data){
-		   	console.log(data.length);
-		       if(data.length){
-		       		storiesGrid.append(data);
-				}
-				else{
-					$('html, body').animate({scrollTop: 0}, 500);
-				}
-		   } 
-		});
-	});
 
 	//menu
 	$('.o-menu a').click(function() {
@@ -327,6 +328,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'events',
 	  onEnter: function() {
 	    updatePageTheme('t-venus');
+	    getStories();
 	  }
 	});
 	pageEvents.init();
@@ -336,6 +338,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'blog',
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
+	    getStories();
 	  }
 	});
 	pageBlog.init();
@@ -475,6 +478,7 @@ jQuery(document).ready(function($) {
 	renderSwiper();
 	resetGridLayout();
 	submitContactForm();
+	getStories();
 
 	AOS.init({
 		duration: 700

@@ -1,6 +1,7 @@
 <?php
 	require_once( 'external/starkers-utilities.php' );
-	add_theme_support('post-thumbnails');	
+	//add_theme_support('post-thumbnails');	
+	
 	function starkers_comment($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment; 
 		?>
@@ -24,7 +25,7 @@
 	  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 	  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
 	  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	  add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+	  //add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
 	}
 	add_action( 'init', 'disable_wp_emojicons' );
 
@@ -130,14 +131,11 @@
 	}
 
 	function getPostTime(){
-		echo human_time_diff(get_the_time('U'),current_time('timestamp')).' ago';
+		return human_time_diff(get_the_time('U'),current_time('timestamp')).' ago';
 	}
 
 	function getPostThumbnail(){
-		if (has_post_thumbnail($post->ID)){
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-			echo $image[0];
-		}
+		return get_field('cover_image');
 	}
 
 	function getPostExcerpt($charlength) {
@@ -242,10 +240,10 @@
 	    $args = array();
 
 	    if($storyCategory){
-	    	$args = array('post_per_page'=>$postsPerPage, 'offset'=>intval($offset), 'category_name' => $storyCategory);
+	    	$args = array('post_type'=>'story', 'post_per_page'=>$postsPerPage, 'offset'=>intval($offset), 'category_name' => $storyCategory);
 	    } 
 	    else{
-	    	$args = array('post_per_page'=>$postsPerPage, 'offset'=>intval($offset));
+	    	$args = array('post_type'=>'story', 'post_per_page'=>$postsPerPage, 'offset'=>intval($offset));
 	    }
 
 	    $stories = new WP_Query($args);
@@ -267,14 +265,9 @@
 
 	    		$storyTitle = get_the_title();
 	    		$storyLink = get_permalink();
-	    		$storyTime = human_time_diff(get_the_time('U'),current_time('timestamp')).' ago';
-	    		$storyThumb = '';
+	    		$storyTime = getPostTime();
+	    		$storyThumb = getPostThumbnail();
 	    		$storyExcerpt = getPostExcerpt(136);
-
-	    		if (has_post_thumbnail($post->ID)){
-	    			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-	    			$storyThumb = $image[0];
-	    		}
 
 	    		$html .= '<li id="'.$postIndex.'" class="o-article '.$postClass.'" data-aos="fade-up"><a class="u-wrap o-article__link" href="'.$storyLink.'"><section class="o-article__figure"><figure style="background-image:url('.$storyThumb.')"><div class="u-center"><i class="o-icon s--pen"></i></div><span class="o-article__time o-subtitle">'.$storyTime.'</span></figure></section><span class="o-bubble '.$bubbleSizes[array_rand($bubbleSizes)].'"></span><section class="o-article__brief"><span class="o-subheading">'.$storyTitle.'</span><section>'.$storyExcerpt.'<span class="o-link"><i class="o-icon s--arrow-ltr"></i></span></section></section></a></li>';
 

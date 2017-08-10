@@ -1,9 +1,9 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header'));?>
-<?php $featuredPosts = new WP_Query(array('posts_per_page'=>1)); ?>
+<?php $featuredPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>1)); ?>
 <?php if ( $featuredPosts->have_posts() ) : ?>
 	<?php while ( $featuredPosts->have_posts() ) : $featuredPosts->the_post(); ?>
 	<section class="c-page-cover">
-		<figure class="c-page-cover__image" style="background-image:url('<?php getPostThumbnail(); ?>')"></figure>
+		<figure class="c-page-cover__image" style="background-image:url('<?php echo getPostThumbnail(); ?>')"></figure>
 		<div class="u-table">
 			<div class="u-cell u-relative">
 				<span class="c-page-cover__title" style="background-image:url('<?php the_field('title_animation', 135);?>')"></span>
@@ -16,7 +16,7 @@
 		<a class="u-wrap" href="<?php the_permalink(); ?>">
 			<h1>
 				<?php the_title(); ?>
-				<span class="o-subtitle"><?php getPostTime(); ?></span>
+				<span class="o-subtitle"><?php echo getPostTime(); ?></span>
 			</h1>
 			<span class="u-block"><?php echo getPostExcerpt(186); ?></span>
 			<div class="o-link">
@@ -61,7 +61,7 @@
 			</section> -->
 			<section class="u-wrap u-pdb-clear">
 				<ul class="u-clear u-relative" id="storiesGrid">
-					<?php $blogPosts = new WP_Query(array('posts_per_page'=>9)); ?>
+					<?php $blogPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>9)); ?>
 					<?php if ($blogPosts->have_posts() ) : ?>
 						<?php 
 							$postIndex = 0;
@@ -93,11 +93,11 @@
 							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 								<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 									<section class="o-article__figure">
-										<figure style="background-image:url('<?php getPostThumbnail(); ?>')">
+										<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
 											<div class="u-center">
 												<i class="o-icon s--pen"></i>
 											</div>
-											<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
+											<span class="o-article__time o-subtitle"><?php  echo getPostTime(); ?></span>
 										</figure>
 									</section>
 									<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>

@@ -17,20 +17,24 @@
 				else {
 					$blockClass = 's--odd';
 				}
+
+				if (get_post_type()=='story') {
+					$blockClass = 's--linear';
+				}
 			?>
 			<?php if($sectionImage){?>
 				<section data-aos="fade-up" class="o-block <?php echo $blockClass; ?>">
 					<div class="u-box">
+						<div class="o-block__figure">
+							<figure style="background-image: url('<?php echo $sectionImage; ?>')">
+								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
+							</figure>
+						</div>
 						<div class="o-block__text">
 							<section class="u-wrap">
 								<h2><?php echo $sectionHeading;?></h2>
 								<p><?php echo $sectionContent; ?></p>
 							</section>
-						</div>
-						<div class="o-block__figure">
-							<figure style="background-image: url('<?php echo $sectionImage; ?>')">
-								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
-							</figure>
 						</div>
 					</div>
 				</section>

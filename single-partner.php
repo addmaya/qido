@@ -15,15 +15,8 @@
 			<section class="o-story__content">
 				<div class="o-bio">
 					<div class="o-bio__figure">
-						<figure style="background-image:url('<?php the_field('logo');?>')">
-							<span class="o-bubble s--medium"></span>
-						</figure>
-						<ul class="o-networks t-light">
-							<li><a href="#"><span class="o-icon s--fb"></span></a></li>
-							<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-							<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-							<li><a href="#"><span class="o-icon s--web"></span></a></li>
-						</ul>
+						<figure style="background-image:url('<?php the_field('logo');?>')"></figure>
+						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
 					<div class="o-bio__story">
 						<section class="u-wrap">
@@ -82,6 +75,16 @@
 								<?php } ?>
 								</ul>
 							</section>
+							<?php
+							$partnerURL = get_field('url');
+							if ($partnerURL ): ?>
+								<div class="u-pt-m">
+									<a target="_blank" href="<?php echo esc_url($partnerURL ); ?>" class="o-button">
+										<i class="o-icon s--arrow-ltr"></i>
+										<span class="o-button__title">Visit Website</span>
+									</a>
+								</div>
+							<?php endif ?>
 						</section>
 					</div>
 				</div>

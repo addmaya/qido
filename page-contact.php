@@ -56,7 +56,7 @@
 						<section class="u-half" data-aos="fade-up">
 							<h2>Follow the conversation</h2>
 							<ul class="o-networks t-light s--medium">
-								<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--fb"></span></a></li>
+								<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--facebook"></span></a></li>
 								<li><a href="https://twitter.com/reachahand" target="_blank"><span class="o-icon s--twitter"></span></a></li>
 								<li><a href="https://www.instagram.com/reach_a_hand/" target="_blank"><span class="o-icon s--instagram"></span></a></li>
 								<li><a href="https://www.youtube.com/user/REACHAHANDUGANDA" target="_blank"><span class="o-icon s--youtube"></span></a></li>

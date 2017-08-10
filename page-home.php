@@ -230,7 +230,7 @@
 		</header>
 		<section class="u-wrap">
 			<ul class="u-clear">
-				<?php $blogPosts = new WP_Query(array('posts_per_page'=>5)); ?>
+				<?php $blogPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>5)); ?>
 				<?php if ($blogPosts->have_posts() ) : ?>
 					<?php 
 						$postIndex = 0;
@@ -262,18 +262,18 @@
 						<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 							<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 								<section class="o-article__figure">
-									<figure style="background-image:url('<?php getPostThumbnail(); ?>')">
+									<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
 										<div class="u-center">
 											<i class="o-icon s--pen"></i>
 										</div>
-										<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
+										<span class="o-article__time o-subtitle"><?php  echo getPostTime(); ?></span>
 									</figure>
 								</section>
 								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
 								<section class="o-article__brief">
 									<span class="o-subheading"><?php the_title(); ?></span>
 									<section>
-										<?php echo getPostExcerpt(136); ?>
+										<span><?php the_field('excerpt'); ?></span>
 										<span class="o-link">
 											<i class="o-icon s--arrow-ltr"></i>
 										</span>

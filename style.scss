@@ -216,7 +216,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .o-icon{width: em(26); height: em(26); display: inline-block; background-size: contain; background-repeat: no-repeat; background-position:center;
   &.s--search{@include image('search__white.svg')}
   &.s--web{@include image('web.svg')}
-  &.s--fb{@include image('facebook_white.svg');
+  &.s--facebook{@include image('facebook_white.svg');
     .t-light &{@include image('facebook_color.svg')}
   }
   &.s--refresh{@include image('refresh.svg')}
@@ -696,7 +696,7 @@ $active: #ffe992;
 .o-story__title{overflow:hidden; cursor: pointer;
   .o-subtitle{opacity: 0.8}
   section{position: absolute; background-color: #fff; top: 0; width: 100%; height: 100%; @include a-transform(0.3, 'ease'); @include translateY(100%); cursor:pointer}
-  ul{font-size:0.7em; padding-top: 1em}
+  ul{font-size:0.7em; padding-top: 0em}
   &:hover{
     section{@include translateY(0)}
   }
@@ -721,6 +721,7 @@ $active: #ffe992;
 .o-bio__figure{width: 40%; float: left; text-align: center; 
   figure{height: em(360); margin: 1.5em; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; filter:grayscale(100%);
     &.s--radial{width: em(225); height: em(225); @include cover; @include border-radius-l; background-color: #e6e6e6; @include center; }
+    &.s--color{filter: none}
   }
   .o-networks{margin: 1.5em}
   .is-booting &{@include animate(fadeInUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
@@ -795,13 +796,17 @@ $active: #ffe992;
 .o-block__text{float: left; width: 55%; position: relative;
   .u-wrap{padding-top: 0}
   .s--even &{float: right}
+  .s--linear &{float: none; width: auto}
   &:after{content: ""; left:1.5em; bottom: 0; position: absolute; width: 20%; height: 1px; background-color: #e6e6e6}
 }
-.o-block__figure{float: left; width: 45%;
+.o-block__figure{float: right; width: 45%;
   figure{@include border-radius-s; padding-bottom: 80%; @include cover; position: relative;
     &:after{@include u-after; @include shadow; @include border-radius-s}
   }
-  .s--even &{float: right}
+  .s--even &{float: left}
+  .s--linear &{@include center; width: 75%; margin-bottom:1.5em; float: none;
+    figure{padding-bottom: 50%}
+  }
 }
 .o-documents{background-color: #efefef; padding:1.5em; @include center; width: 50%;
   li{border-bottom: solid 1px #d6d6d6; @include clear; padding-bottom: 1em; margin-bottom: 1em;
@@ -962,7 +967,7 @@ $active: #ffe992;
   .is-booting &{@include animate(fadeInUp, 1, 1.4,cubic-bezier(0.3, 0, 0, 1))}
 }
 .c-page__content{position: relative; top:-5%;
-  .is-booting &{@include animate(fadeIn, 1.5, 1.8,ease)}
+  .is-booting &{@include animate(fadeIn, 1.5, 1.6,ease)}
   &.s--clear{top:auto}
 }
 .c-page__actions{@include clear; margin-bottom: 2em;

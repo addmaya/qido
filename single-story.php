@@ -14,8 +14,8 @@
 		<span class="o-bubble s--small"></span>
 		<span class="o-bubble s--xlarge"></span>
 	</div>
-	<div class="u-box">
-		<section class="o-story">
+	<header class="o-story__header">
+		<div class="u-box">
 			<h1 class="s--clear o-story__title">
 				<span class="u-block"><?php the_title(); ?>
 					<section>
@@ -32,17 +32,21 @@
 				</span>
 			</h1>
 			<time class="o-subtitle" datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?></time>
-			<section class="o-story__content">
-				<p><?php the_content(); ?></p>
-			</section>
-			<section class="o-story__comments">
-				<?php getReactions(get_the_id()); ?>
-			</section>
-			<section class="o-story__comments">
-				<?php comments_template( '', true ); ?>
-			</section>
-		</section>
-	</div>
+		</div>
+	</header>
+	<section class="o-story__content">
+		<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
+	</section>
+	<section class="o-story__comments">
+		<div class="u-box">
+			<?php getReactions(get_the_id()); ?>
+		</div>
+	</section>
+	<section class="o-story__comments">
+		<div class="u-box">
+			<?php comments_template( '', true ); ?>
+		</div>
+	</section>
 </section>
 <?php endwhile; ?>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

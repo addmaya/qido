@@ -2,11 +2,11 @@
 <li class="o-article u-half" data-aos="fade-up">
 	<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 		<section class="o-article__figure">
-			<figure style="background-image:url('<?php getPostThumbnail(); ?>')">
+			<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
 				<div class="u-center">
 					<i class="o-icon s--pen"></i>
 				</div>
-				<span class="o-article__time o-subtitle"><?php  getPostTime(); ?></span>
+				<span class="o-article__time o-subtitle"><?php  echo getPostTime(); ?></span>
 			</figure>
 		</section>
 		<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
