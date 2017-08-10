@@ -52,26 +52,33 @@
 					</ul>
 				</section>
 			</header>
-			<section class="c-event__poster">
-				<?php 
-					$posterClass = '';
-					$poster = get_field('poster');
-					$posterURL = $poster['sizes']['large'];
+			<?php 
+				$posterClass = '';
+				$poster = get_field('poster');
+				$posterURL = '';
 
+				if ($poster) {
+					$posterURL = $poster['sizes']['large'];
 					if($poster['width'] < $poster['height']){
 						$posterClass = 's--portrait';
 					}
 					else {
 						$posterClass = 's--landscape';
 					}
-				 ?>
+				}
+				else {
+					$posterURL = get_field('cover_image');
+					$posterClass = 's--landscape';
+				}
+			?>
+			<section class="c-event__poster">
 				<section class="u-wrap">
 					<figure class="<?php echo $posterClass; ?>" style="background-image:url('<?php echo $posterURL; ?>')"></figure>
 				</section>
 			</section>
-			<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/dynamic-content') ); ?>
 		</section>
 	</div>
+	<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
 </section>
 <?php endwhile; ?>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>

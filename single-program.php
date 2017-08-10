@@ -9,14 +9,24 @@
 		<span class="o-bubble s--small"></span>
 		<span class="o-bubble s--xlarge"></span>
 	</div>
-	<div class="u-box c-program">
+	<div class="u-box">
 		<header class="c-program__header">
 			<figure style="background-image:url('<?php the_field('logo'); ?>')"></figure>
 			<p><?php the_field('introduction'); ?></p>
+			<?php
+			$programURL = get_field('website');
+			if ($programURL ): ?>
+				<div class="u-pt-m">
+					<a target="_blank" href="<?php echo esc_url($programURL ); ?>" class="o-button">
+						<i class="o-icon s--arrow-ltr"></i>
+						<span class="o-button__title">Visit Website</span>
+					</a>
+				</div>
+			<?php endif ?>
 		</header>
-		<span class="o-line"></span>
-		<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/dynamic-content') ); ?>
+		<span class="o-line s--hidden"></span>
 	</div>
+	<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
 	<?php
 		$programPartners = get_field('partners');
 		if($programPartners): 
