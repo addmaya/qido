@@ -1,4 +1,4 @@
-<div class="o-pop">
+<div class="o-pop" id="bioPop">
 	<div class="u-table">
 		<div class="u-cell">
 			<div class="o-pop__box">

@@ -163,6 +163,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-clear{@include clear}
 .u-half{width: 50%; float: left}
 .u-third{width: percentage(1/3); float: left}
+.u-fourth{width: percentage(1/4); float: left}
 .u-full{width: 100%;}
 .u-canvas{width: 100%; height: 100%;}
 .u-wrap{padding:em(24); @include clear;
@@ -748,7 +749,7 @@ $active: #ffe992;
   .is-booting &{
     &:after{@include animate(fadeIn, 0.5, 0, ease)}
   }
-  .o-subheading{font-weight: 300; font-size: 1.125em; padding: 1em 0}
+  .o-subheading{font-weight: 300; font-size: 1.25em; padding: 1em 0}
   .c-programs__nav{padding: 0;
     li{width: percentage(1/3)}
   }

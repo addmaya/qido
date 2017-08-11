@@ -171,7 +171,7 @@
  								<?php wp_reset_postdata(); ?>
 							<?php endif; ?>
 						</ul>
-						<a href="#" class="o-button">
+						<a href="#" class="o-button js-showPartnerForm">
 							<i class="o-icon s--arrow-ltr"></i>
 							<span class="o-button__title">Partner with Us</span>
 						</a>

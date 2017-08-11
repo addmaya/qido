@@ -111,14 +111,14 @@ jQuery(document).ready(function($) {
 		        submitButton.html('Sending...');
 		    },
 		    success: function() {
-		        contactForm.find('#contactFormAlert').html('Thank you. Your Request was sent');
+		        contactForm.find('.js-contactFormAlert').html('Thank you. Your Request was sent');
 		        submitButton.html('Send Message');
 		        contactForm.each(function(){
 		        	this.reset();
 		        });
 		    },
 		    error: function(){
-		    	contactForm.find('#contactFormAlert').html('Please try again');
+		    	contactForm.find('.js-contactFormAlert').html('Please try again');
 		    	submitButton.html('Send Message');
 		    },
 		    resetForm: true
@@ -175,11 +175,9 @@ jQuery(document).ready(function($) {
 			var bioID = me.data('id');
 			var imageURL = me.find('figure').data('image');
 
-
 			$('#bioName').html(bioName);
 			$('#bioTitle').html(bioTitle);
 			$('#bioPhoto').css('background-image', 'url(' + imageURL + ')');
-
 
 			$.ajax({
 			   url: ajaxURL,
@@ -188,17 +186,29 @@ jQuery(document).ready(function($) {
 			   data: {action: 'getBioContent', bioID: bioID},
 			   success: function(data){
 			        $('#bioContent').html(data);
-			        openPop();
+			        openPop($('#bioPop'));
 			   } 
 			});
 		});
+
+		$('.js-showPartnerForm').click(function(e) {
+			e.preventDefault();
+			$('.c-contact-form form').hide();
+
+			$('#partnerPop form').each(function(){
+				this.reset();
+			});
+			$('.js-contactFormAlert').html('');
+			openPop($('#partnerPop'));
+		});
 	}
-	function openPop(){
+	function openPop(ele){
 		$('body').addClass('u-oh');
-		$('.o-pop').show();
+		ele.show();
 	}
 	function closePop(){
 		$('body').removeClass('u-oh');
+		$('.c-contact-form form').show();
 		$('.o-pop').hide();
 	}
 
@@ -429,7 +439,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'contact',
 	  onEnter: function() {
 	    updatePageTheme('t-neptune');
-	    submitContactForm();
+	    
 	  }
 	});
 	pageContact.init();
@@ -466,7 +476,7 @@ jQuery(document).ready(function($) {
 	    randomizeStatBubbles();
 	    windowScroll();
 	    initPop();
-	    
+	    submitContactForm();
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
