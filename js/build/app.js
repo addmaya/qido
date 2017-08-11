@@ -111,15 +111,38 @@ jQuery(document).ready(function($) {
 		        submitButton.html('Sending...');
 		    },
 		    success: function() {
-		        contactForm.find('.js-contactFormAlert').html('Thank you. Your Request was sent');
+		        contactForm.find('#contactFormAlert').html('Thank you. Your Request was sent');
 		        submitButton.html('Send Message');
 		        contactForm.each(function(){
 		        	this.reset();
 		        });
 		    },
 		    error: function(){
-		    	contactForm.find('.js-contactFormAlert').html('Please try again');
+		    	contactForm.find('#contactFormAlert').html('Please try again');
 		    	submitButton.html('Send Message');
+		    },
+		    resetForm: true
+		});
+	}
+
+
+	function submitPartnerForm(){
+		var contactForm = $('#partnerForm');
+		var submitButton = contactForm.find('button .o-button__title');
+		contactForm.ajaxForm({
+		    beforeSend: function() { 
+		        submitButton.html('Sending...');
+		    },
+		    success: function() {
+		        contactForm.find('#partnerFormAlert').html('Thank you. Your Request was sent');
+		        submitButton.html('Send');
+		        contactForm.each(function(){
+		        	this.reset();
+		        });
+		    },
+		    error: function(){
+		    	contactForm.find('#partnerFormAlert').html('Please try again');
+		    	submitButton.html('Send');
 		    },
 		    resetForm: true
 		});
@@ -193,12 +216,10 @@ jQuery(document).ready(function($) {
 
 		$('.js-showPartnerForm').click(function(e) {
 			e.preventDefault();
-			$('.c-contact-form form').hide();
-
-			$('#partnerPop form').each(function(){
-				this.reset();
-			});
-			$('.js-contactFormAlert').html('');
+			
+			$('#partnerForm').each(function(){this.reset();});
+			$('#partnerFormAlert').html('');
+			
 			openPop($('#partnerPop'));
 		});
 	}
@@ -208,7 +229,6 @@ jQuery(document).ready(function($) {
 	}
 	function closePop(){
 		$('body').removeClass('u-oh');
-		$('.c-contact-form form').show();
 		$('.o-pop').hide();
 	}
 
@@ -281,6 +301,7 @@ jQuery(document).ready(function($) {
 	  namespace: 'home',
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
+	    
 	    var homeSwiper = new Swiper ('#homeSwiper', {
 	        loop: true,
 	        speed: 800,
@@ -300,7 +321,6 @@ jQuery(document).ready(function($) {
 	  namespace: 'impact',
 	  onEnter: function() {
 	    updatePageTheme('t-jupiter');
-	    resetGridLayout();
 	  }
 	});
 	pageImpact.init();
@@ -319,7 +339,6 @@ jQuery(document).ready(function($) {
 	  namespace: 'team',
 	  onEnter: function() {
 	    updatePageTheme('t-earth');
-	    resetGridLayout();
 	  }
 	});
 	pageTeam.init();
@@ -338,7 +357,6 @@ jQuery(document).ready(function($) {
 	  namespace: 'events',
 	  onEnter: function() {
 	    updatePageTheme('t-venus');
-	    getStories();
 	  }
 	});
 	pageEvents.init();
@@ -348,7 +366,6 @@ jQuery(document).ready(function($) {
 	  namespace: 'blog',
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
-	    getStories();
 	  }
 	});
 	pageBlog.init();
@@ -359,8 +376,6 @@ jQuery(document).ready(function($) {
 	  onEnter: function() {
 	    updatePageTheme('t-mercury');
 	    collapseHeader();
-	    renderSwiper();
-	    resetGridLayout();
 
 	    $('.o-block p').each(function() {
 	        var $this = $(this);
@@ -429,7 +444,6 @@ jQuery(document).ready(function($) {
 	  onEnter: function() {
 	    updatePageTheme('t-venus');
 	    collapseHeader();
-	    resetGridLayout();
 	  }
 	});
 	pageCalendar.init();
@@ -439,7 +453,6 @@ jQuery(document).ready(function($) {
 	  namespace: 'contact',
 	  onEnter: function() {
 	    updatePageTheme('t-neptune');
-	    
 	  }
 	});
 	pageContact.init();
@@ -472,23 +485,25 @@ jQuery(document).ready(function($) {
 	    		duration: 700
 	    	});
 	    }, 800);
-	    randomizeBubbleColors();
-	    randomizeStatBubbles();
-	    windowScroll();
-	    initPop();
-	    submitContactForm();
+	    
+	    boot();
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
 	
-	randomizeBubbleColors();
-	randomizeStatBubbles();
-	windowScroll();
-	initPop();
-	renderSwiper();
-	resetGridLayout();
-	submitContactForm();
-	getStories();
+	function boot(){
+		randomizeBubbleColors();
+		randomizeStatBubbles();
+		windowScroll();
+		initPop();
+		renderSwiper();
+		resetGridLayout();
+		submitContactForm();
+		getStories();
+		submitPartnerForm();
+	}
+
+	boot();
 
 	AOS.init({
 		duration: 700

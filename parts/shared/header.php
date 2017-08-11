@@ -1,4 +1,4 @@
-<div class="o-pop" id="partnerPop" style="display:block">
+<div class="o-pop" id="partnerPop">
 	<div class="u-table">
 		<div class="u-cell">
 			<div class="o-pop__box">
@@ -14,7 +14,7 @@
 				<div class="o-pop__content">
 					<section class="u-wrap u-pt-xl">
 						<h2 class="o-subheading">We can do a lot together</h2>
-						<form action="<?php echo get_admin_url();?>admin-post.php" method="post" class="u-clear u-pt-m" id="contactForm">
+						<form action="<?php echo get_admin_url();?>admin-post.php" method="post" class="u-clear u-pt-m" id="partnerForm">
 							<div class="u-hide">
 								<input type="hidden" name="action" value="submitContact"/>
 								<?php wp_nonce_field('form_nonce_key','form_nonce');?>
@@ -47,7 +47,7 @@
 								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">Send</span>
 							</button>
-							<p class="u-pt-m js-contactFormAlert"></p>
+							<p class="u-pt-m" id="partnerFormAlert"></p>
 						</form>
 					</section>
 				</div>
