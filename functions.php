@@ -75,7 +75,7 @@
 	  global $submenu;
 	  remove_menu_page( 'index.php' );                 
 	  // remove_menu_page( 'jetpack' ); 
-	  // remove_menu_page( 'edit.php' ); 
+	  remove_menu_page( 'edit.php' ); 
 	  // remove_menu_page( 'upload.php' );              
 	  // remove_menu_page( 'edit.php?post_type=page' );    
 	  remove_menu_page( 'edit-comments.php' );          
@@ -87,7 +87,7 @@
 	add_action( 'admin_menu', 'remove_menus' );
 
 	function admin_default_page() {
-	  return 'wp-admin/edit.php';
+	  return 'wp-admin/edit.php?post_type=story';
 	}
 	add_filter('login_redirect', 'admin_default_page');
 
@@ -139,21 +139,23 @@
 	}
 
 	function getPostExcerpt($charlength) {
-		$excerpt = get_the_excerpt();
-		$charlength++;
+		$postExcerpt = get_field('excerpt');
+		return substr(get_field('excerpt'), 0, $charlength);
 
-		if (mb_strlen($excerpt)>$charlength){
-			$subex = mb_substr( $excerpt, 0, $charlength - 5 );
-			$exwords = explode( ' ', $subex );
-			$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
-			if ( $excut < 0 ) {
-				return mb_substr( $subex, 0, $excut );
-			} else {
-				return $subex;
-			}
-		} else {
-			return $excerpt;
-		}
+		// $charlength++;
+
+		// if (mb_strlen($excerpt)>$charlength){
+		// 	$subex = mb_substr( $excerpt, 0, $charlength - 5 );
+		// 	$exwords = explode( ' ', $subex );
+		// 	$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+		// 	if ( $excut < 0 ) {
+		// 		return mb_substr( $subex, 0, $excut );
+		// 	} else {
+		// 		return $subex;
+		// 	}
+		// } else {
+		// 	return $excerpt;
+		// }
 	}
 
 	function getReactions($post_id){
@@ -285,4 +287,20 @@
 	add_action('wp_ajax_nopriv_getStories', 'getStories');
 
 	remove_filter('the_content', 'wpautop');
+
+
+	 function my_acf_admin_head() {
+	 	global $my_admin_page;
+	 	$screen = get_current_screen();
+	 	if($screen->post_type == 'story'){
+	 	?>
+	     <style type="text/css">
+	         #acf-group_59846e206d355, #commentsdiv, .acf-field-59815fa3627b7, .acf-field-5981dc0466160, .acf-field-5981e2c1a5470, .acf-field-5982add6060b1, .acf-field-5982adab060af, .acf-field-5982adb6060b0, .acf-field-5982adee060b2, .acf-field-5982adf8060b3{display: none}
+	     </style>
+	     <?php
+
+	     }
+	 }
+
+	add_action('acf/input/admin_head', 'my_acf_admin_head');
 ?>

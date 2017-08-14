@@ -52,6 +52,12 @@
 	</div>
 </section>
 <section class="o-page__section u-pt-xl">
+	<div class="c-bubble-roof">
+		<span class="o-bubble s--large"></span>
+		<span class="o-bubble s--medium"></span>
+		<span class="o-bubble s--small"></span>
+		<span class="o-bubble s--xlarge"></span>
+	</div>
 	<div class="u-box">
 		<header class="o-section__header">
 			<h2 class="o-heading" data-aos="fade-up">Touching youth for 6 years <br/>and counting</h2>

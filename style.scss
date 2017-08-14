@@ -694,12 +694,21 @@ $active: #ffe992;
 .o-story__content{padding-top:1.5em;
   .s--wide &{padding-top: 0}
 }
-.o-story__title{overflow:hidden; cursor: pointer;
-  .o-subtitle{opacity: 0.8}
+.o-story__header{padding: 2em 0 1em}
+.o-story__title{
+  h1{overflow:hidden; cursor:pointer; padding-bottom: 0.25em; color: #3f51b5;
+    .o-subtitle{font-size: 15%; padding-bottom: 1.5em}
+  }
+  .o-subtitle{opacity: 0.75; font-size: 0.5em}
   section{position: absolute; background-color: #fff; top: 0; width: 100%; height: 100%; @include a-transform(0.3, 'ease'); @include translateY(100%); cursor:pointer}
   ul{font-size:0.7em; padding-top: 0em}
   &:hover{
     section{@include translateY(0)}
+  }
+}
+.o-story__figure{padding-top:2em; 
+  img{max-width: 100%; height: auto; width: 100%; @include border-radius-s; position: relative; @include center;
+    &:after{@include shadow; @include u-after; opacity: 1; @include border-radius-s}
   }
 }
 .o-story__comments{border-top: solid 1px #e6e6e6; margin-top:3em; padding-top:2em; font-size:0.9em; width:90%; @include center;
@@ -1165,6 +1174,10 @@ $cButtonNextDuration: 0.65s;
 .c-tickets{@include clear;
   li{margin-bottom:0}
   .u-wrap{padding-bottom:0}
+}
+.c-story{width: 65%; @include center; font-size:1.125em; padding:2em 0 4em;
+  .u-box{width: auto}
+  .s--basic{width: auto; text-align: left}
 }
 /*animation*/
 $orbit-radius:150px;
