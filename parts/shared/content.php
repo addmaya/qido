@@ -41,8 +41,12 @@
 			<?php } else { ?>
 				<section data-aos="fade-up" class="o-block s--basic">
 					<div class="u-box">
-						<h2><?php echo $sectionHeading;?></h2>
-						<p><?php echo $sectionContent; ?></p>
+						<?php if ($sectionHeading): ?>
+							<h2><?php echo $sectionHeading;?></h2>
+						<?php endif ?>
+						<?php if ($sectionContent): ?>
+							<?php echo $sectionContent; ?>
+						<?php endif ?>
 					</div>
 				</section>
 			<?php } ?>

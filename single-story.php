@@ -3,12 +3,20 @@
 	$postPermalink = get_permalink();
 	$postCoverImage = get_field('cover_image');
 	$postTitle = get_the_title();
+	$postCoverImageCaption = get_field('featured_image_caption');
 ?>
 <section class="c-page-cover s--xshort">
 	<figure class="c-page-cover__image" style="background-image:url('<?php echo $postCoverImage;?>')"></figure>
 </section>
 <section class="c-page__content s--clear u-oh">
 	<div class="c-bubble-roof">
+		<span class="o-bubble s--large"></span>
+		<span class="o-bubble s--medium"></span>
+		<span class="o-bubble s--small"></span>
+		<span class="o-bubble s--xlarge"></span>
+	</div>
+	<div class="c-bubble-corridor">
+		<span class="o-bubble s--xmedium"></span>
 		<span class="o-bubble s--large"></span>
 		<span class="o-bubble s--medium"></span>
 		<span class="o-bubble s--small"></span>
@@ -38,13 +46,27 @@
 		<figure class="o-story__figure">
 			<div class="u-box">
 				<img src="<?php echo $postCoverImage; ?>" alt="<?php echo $postTitle; ?>"/>
+				<?php if ($postCoverImageCaption): ?>
+					<?php echo $postCoverImageCaption; ?>
+				<?php endif ?>
 			</div>
 		</figure>
 		<section class="o-story__content">
 			<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
 		</section>
+		<?php $storyTags = get_the_tags(); if ($storyTags) {?>
 		<section class="o-story__comments">
 			<div class="u-box">
+				<h3 class="comment-reply-title">Tagged as</h3>
+				<?php foreach ($storyTags as $storyTag): ?>
+					<a class="o-tag" href="<?php echo get_tag_link($storyTag->term_id); ?>"><?php  echo $storyTag->name; ?></a>
+				<?php endforeach ?>	
+			</div>
+		</section>
+		<?php } ?>
+		<section class="o-story__comments">
+			<div class="u-box">
+				<h3 class="comment-reply-title">Your Reaction</h3>
 				<?php getReactions(get_the_id()); ?>
 			</div>
 		</section>

@@ -37,6 +37,7 @@ $easeOutBack: cubic-bezier(0.42, 0, 0, 1.46);
         #{$prop}: #{$value};
   }
 }
+@mixin caption{font-family: 'Georgia', serif; font-style: italic}
 @mixin clear{&:after {content: ""; display: table; clear: both}}
 @mixin center{display: block; margin-left: auto; margin-right: auto}
 @mixin opensans{font-family: 'Open Sans', sans-serif}
@@ -52,6 +53,9 @@ $easeOutBack: cubic-bezier(0.42, 0, 0, 1.46);
 @mixin border-radius-s{border-radius: 12px}
 @mixin border-radius-l{border-radius: 50%}
 @mixin multiply{mix-blend-mode: multiply}
+@mixin setBubbleRadius($bubbleRadius){
+  width:$bubbleRadius; height:$bubbleRadius;
+}
 @mixin linear{@include prefix((animation-timing-function: linear))}
 @mixin infinite{@include prefix((animation-iteration-count: infinite))}
 @mixin duration($seconds){
@@ -148,7 +152,8 @@ h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
   .t-neptune &{color: $neptune}
 }
 a{color: inherit}
-blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative; quotes: "\201C""\201D""\2018""\2019";
+blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative;
+  background: url('images/quote-open.svg') left top/20% 20% no-repeat, url('images/quote-close.svg') right bottom/20% 20% no-repeat;
 }
 
 /*utilities*/
@@ -528,7 +533,9 @@ $active: #ffe992;
       &:after{@include scale2D(1,1)}
     }
     .o-program-meta{@include translateY(em(-48))}
-    .o-program-excerpt__wrap:after{opacity: 1}
+    .o-program-excerpt__wrap{background-color: #212b62;
+      &:after{opacity: 1}
+    }
     .o-icon{@include translateX(em(12))}
   }
 }
@@ -544,7 +551,7 @@ $active: #ffe992;
 .o-program__excerpt{position: relative; z-index: 1;
   .u-block{line-height: 1.6}
 }
-.o-program-excerpt__wrap{color: white; padding: 1.5em; @include border-radius-s; position: relative; 
+.o-program-excerpt__wrap{color: white; padding: 1.5em; @include border-radius-s; position: relative; @include prefix((transition: background-color 0.4s ease));
   .t-mercury &{background-color: $mercury}
   .t-venus &{background-color: $venus}
   .t-earth &{background-color: $earth}
@@ -582,7 +589,7 @@ $active: #ffe992;
 }
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48);
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
-  p{padding: em(9); font-weight: bold; width: 70%; font-size: 0.875em; margin: 0 auto; line-height: 1.5}
+  p{padding: em(9); width: 70%; font-size: 0.95em; margin: 0 auto; line-height: 1.5; padding-top: 0}
   .o-icon{height: em(42); width: em(42); margin-bottom: em(12); background-repeat: no-repeat; background-size:contain; }
   &.s--medium{
     figure{font-size: 0.75em}
@@ -693,6 +700,20 @@ $active: #ffe992;
 }
 .o-story__content{padding-top:1.5em;
   .s--wide &{padding-top: 0}
+  img{max-width: 100%; width: 100%; height: auto; @include border-radius-s; margin-top:2em}
+  .wp-caption-text{@include caption; padding: 1em 2em 2em !important; font-size: 0.875em; opacity:0.75}
+  h1{padding-top:1.5em; color: #3f51b5}
+  h2{font-weight:bold; padding-top: 1em; font-size:0.85em}
+  h3{font-weight:bold; padding:1em 0; font-size: 1.125em}
+  blockquote{font-size: 1.2em; width:85%; @include center; padding: 2em 0 3em; @include caption; opacity:0.7;}
+  ul{list-style: disc inside}
+  ol{list-style: decimal inside}
+  ol,ul{ padding-bottom: 2em; line-height:1.8; width:90%; @include center}
+  em{font-style: italic}
+  .iframe-container{position: relative; padding-bottom: 56.25% !important; overflow: hidden; max-width: 100%;height: auto; @include border-radius-s; margin: 2em 0;
+    iframe{position: absolute;top: 0; left: 0; width: 100%; height: 100%}
+  }
+  a{color: $mercury}
 }
 .o-story__header{padding: 2em 0 1em}
 .o-story__title{
@@ -706,13 +727,12 @@ $active: #ffe992;
     section{@include translateY(0)}
   }
 }
-.o-story__figure{padding-top:2em; 
-  img{max-width: 100%; height: auto; width: 100%; @include border-radius-s; position: relative; @include center;
-    &:after{@include shadow; @include u-after; opacity: 1; @include border-radius-s}
-  }
+.o-story__figure{padding-top:3em; 
+  img{max-width: 100%; height: auto; width: 100%; @include border-radius-s; position: relative; @include center; box-shadow: 0 em(48) em(72) rgba(0,0,0,0.35)}
+  p{@include caption; padding: 2em; opacity:0.9; text-transform: capitalize}
 }
-.o-story__comments{border-top: solid 1px #e6e6e6; margin-top:3em; padding-top:2em; font-size:0.9em; width:90%; @include center;
-  .comment-reply-title{padding-bottom:1.5em; font-size:1.125em}
+.o-story__comments{border-top: solid 1px #e6e6e6; margin-top:3em; padding-top:1em; font-size:0.9em; width:90%; @include center;
+  .comment-reply-title{padding-bottom:1.2em; font-size:1.125em}
   label{display: block; font-size:0.875em; font-weight: bold; padding-bottom: 0.75em}
   textarea,input{border-bottom: solid 1px #b9c2f5; width:100%; @include opensans; color: #626990; font-weight: 300; padding-bottom:0.5em}
   input[type="submit"]{display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease)); width: auto}
@@ -800,7 +820,7 @@ $active: #ffe992;
   &.s--imagelist{margin-bottom: 0}
 }
 .o-quote{position: relative; font-size: 1.4em; width: 70%; text-align: center; margin:0 auto;
-  p{font-family: 'Georgia'; padding-bottom: em(12); font-style: italic; color: #7c7d82; line-height: 1.6}
+  p{@include caption; padding-bottom: em(12); color: #7c7d82; line-height: 1.6}
   cite{font-size: 0.6em; border-bottom: solid 1px #e6e6e6; padding-bottom: 0.875em}
 }
 .o-block__text{float: left; width: 55%; position: relative;
@@ -1145,6 +1165,14 @@ $cButtonNextDuration: 0.65s;
   .s--medium{right: 2em; top: -2em; width: 4em; height: 4em;}
   .s--small{left:40%; width: 2.5em; height: 2.5em; top:-1em; left: 40%}
   .s--xlarge{top:-7em; width: 15em; height: 15em; left: 60%; opacity: 0.2}
+}
+
+.c-bubble-corridor{position: absolute; width: 100%; height: 100%; overflow:hidden; opacity:0.35; z-index:-5;
+  .s--xmedium{right: -6em; top: 10%; @include setBubbleRadius(9em)}
+  .s--large{top: 30%; left: -7em; @include setBubbleRadius(10em)}
+  .s--medium{right: -5em; top: 50%; @include setBubbleRadius(8em)}
+  .s--small{top:70%; left:-5em; @include setBubbleRadius(8em)}
+  .s--xlarge{top:90%; right: -5em; @include setBubbleRadius(10em)}
 }
 .c-program__header{width: 60%; @include center; text-align: center;
   figure{height: 8em; width: 16em; display: inline-block; @include center; margin: 1.5em auto; @include contain}

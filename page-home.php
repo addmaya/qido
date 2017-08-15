@@ -186,7 +186,7 @@
 	<div class="u-box">
 		<div class="u-clear c-splash-team">
 			<?php 
-				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1));
+				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1, 'orderby'=>'date'));
 				while ( $featuredStaff->have_posts() ) : $featuredStaff->the_post(); 
 			?>
 			<a class="u-40p u-col c-splash-team__link" href="<?php echo home_url(); ?>/team">
@@ -279,7 +279,7 @@
 								<section class="o-article__brief">
 									<span class="o-subheading"><?php the_title(); ?></span>
 									<section>
-										<span><?php the_field('excerpt'); ?></span>
+										<?php echo getPostExcerpt(150); ?>
 										<span class="o-link">
 											<i class="o-icon s--arrow-ltr"></i>
 										</span>

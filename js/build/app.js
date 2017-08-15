@@ -125,7 +125,6 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-
 	function submitPartnerForm(){
 		var contactForm = $('#partnerForm');
 		var submitButton = contactForm.find('button .o-button__title');
@@ -431,8 +430,20 @@ jQuery(document).ready(function($) {
 	    	   dataType: 'json',
 	    	   data: {action: 'updatePostReaction', post_id: postID, reaction: reactionTitle, operation:'decrement'},
 	    	});
+	    });
 
-	    	console.log(reactionCount);
+	    $('.wp-caption').each(function() {
+	    	var me = $(this);
+	    	me.css({width: 'auto'});
+	    });
+	    
+	    $('.o-story__content iframe').each(function() {
+	    	var me = $(this);
+	    	var parent = me.parent();
+
+	    	if(!parent.hasClass('o-embed__content')){
+	    		me.parent().addClass('iframe-container');
+	    	}
 	    });
 	  }
 	});

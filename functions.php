@@ -140,7 +140,7 @@
 
 	function getPostExcerpt($charlength) {
 		$postExcerpt = get_field('excerpt');
-		return substr(get_field('excerpt'), 0, $charlength);
+		return substr(get_field('excerpt'), 0, $charlength).'...';
 
 		// $charlength++;
 
@@ -160,7 +160,7 @@
 
 	function getReactions($post_id){
 	    if(!$post_id){return;}
-	    $html = '<ul class="u-align__center">';
+	    $html = '<ul>';
 	    
 	    $reactions = ['angry', 'bored', 'love', 'happy', 'wow'];
 	    foreach ($reactions as $reaction) {

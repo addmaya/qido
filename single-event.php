@@ -10,6 +10,13 @@
 		<span class="o-bubble s--small"></span>
 		<span class="o-bubble s--xlarge"></span>
 	</div>
+	<div class="c-bubble-corridor">
+		<span class="o-bubble s--xmedium"></span>
+		<span class="o-bubble s--large"></span>
+		<span class="o-bubble s--medium"></span>
+		<span class="o-bubble s--small"></span>
+		<span class="o-bubble s--xlarge"></span>
+	</div>
 	<div class="u-box">
 		<section class="o-story s--wide">
 			<header class="u-align__center">

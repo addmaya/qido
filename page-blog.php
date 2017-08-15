@@ -61,7 +61,7 @@
 			</section> -->
 			<section class="u-wrap u-pdb-clear">
 				<ul class="u-clear u-relative" id="storiesGrid">
-					<?php $blogPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>9)); ?>
+					<?php $blogPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>9, 'offset'=>-1)); ?>
 					<?php if ($blogPosts->have_posts() ) : ?>
 						<?php 
 							$postIndex = 0;
@@ -104,7 +104,7 @@
 									<section class="o-article__brief">
 										<span class="o-subheading"><?php the_title(); ?></span>
 										<section>
-											<?php echo getPostExcerpt(136); ?>
+											<?php echo getPostExcerpt(150); ?>
 											<span class="o-link">
 												<i class="o-icon s--arrow-ltr"></i>
 											</span>
@@ -152,7 +152,7 @@
 							<i class="o-icon s--arrow-ltr"></i>
 							<span class="o-button__title">Find Opportunities</span>
 						</a>
-						<a class="o-button">
+						<a class="o-button js-showPartnerForm no-barba">
 							<i class="o-icon s--arrow-ltr"></i>
 							<span class="o-button__title">Partner with us</span>
 						</a>
