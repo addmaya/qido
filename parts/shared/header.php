@@ -59,7 +59,6 @@
 	<section class="u-wrap">
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
 		<ul class="o-networks">
-			<li><a target="_blank" href="#"><span class="o-icon s--search"></span></a></li>
 			<li><a target="_blank" href="https://www.facebook.com/reachahand"><span class="o-icon s--facebook"></span></a></li>
 			<li><a target="_blank" href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
 			<li><a target="_blank" href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>

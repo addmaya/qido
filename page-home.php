@@ -65,14 +65,14 @@
 		<div class="o-slider">
 			<ul class="u-clear">
 				<?php 
-					$statisticsList = new WP_Query(array('post_type'=>'statistic', 'posts_per_page'=>4, 'orderby'=>'rand'));
-					if ($statisticsList->have_posts()){
-						$bubbleSizes = ['', 's--small', 's--medium'];
+					$statisticsList = get_field('statistics', 170);
+					if (have_rows('statistics',170)){
 						$bubbleClasses = ['t-banana', 't-berry', 't-ivy', 't-mango'];
 						$statisticIndex = 0;
 						$aosDelay=0;
 				?>
-				<?php while ( $statisticsList->have_posts() ) : $statisticsList->the_post(); 
+				<?php while (have_rows('statistics',170)):the_row();
+					$statIcon = get_sub_field('icon');
 					if($statisticIndex > 3){
 					    $statisticIndex = 0;
 					}
@@ -94,19 +94,21 @@
 					        break;
 					}
 				?>
-				<li class="o-statistic <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>" data-aos="zoom-in" data-aos-delay="<?php echo $aosDelay; ?>">
+				<li class="o-statistic" data-aos="zoom-in" data-aos-delay="<?php echo $aosDelay; ?>">
 					<figure class="<?php echo $bubbleClasses[$statisticIndex]; ?>">
 						<div class="u-table">
 							<div class="u-cell">
-								<i class="o-icon" style="background-image:url('<?php the_field('icon'); ?>')"></i>
-								<span class="o-statistic__figure"><?php the_field('number'); ?></span>
+								<?php if ($statIcon): ?>
+									<span class="o-icon" style="background-image: url('<?php echo $statIcon; ?>')"></span>
+								<?php endif ?>
+								<span class="o-statistic__figure"><?php the_sub_field('number'); ?> <span class="o-statistic__unit"><?php the_sub_field('unit'); ?></span></span>
+								<?php the_sub_field('description'); ?>
 							</div>
 						</div>
 					</figure>
 					<p><?php the_field('description'); ?></p>
 				</li>
 				<?php $statisticIndex++; endwhile; ?>
-				<?php wp_reset_postdata(); ?>
 				<?php } ?>
 			</ul>
 			<section class="a-center">

@@ -27,7 +27,9 @@
 									<h1 class="s--clear" id="bioName"></h1>
 									<span class="o-subtitle s--profile" id="bioTitle"></span>
 								</header>
-								<section id="bioContent"></section>
+								<section class="o-story__content">
+									<p id="bioContent"></p>
+								</section>
 								<section id="bioLinks"></section>
 							</section>
 						</div>

@@ -32,7 +32,7 @@
 							<ul class="o-networks t-light">
 								<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $postPermalink; ?>"><span class="o-icon s--facebook"></span></a></li>
 								<li><a href="https://twitter.com/home?status=<?php echo $postPermalink; ?>"><span class="o-icon s--twitter"></span></a></li>
-								<li><a href="https://plus.google.com/share?url=<?php echo $postPermalink; ?>"><span class="o-icon s--googleplus"></span></a></li>
+								<li><a href="https://plus.google.com/share?url=<?php echo $postPermalink; ?>"><span class="o-icon s--google_plus"></span></a></li>
 								<li><a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo $postPermalink; ?>&media=<?php echo $postCoverImage; ?>&description=<?php echo $postTitle; ?>"><span class="o-icon s--pinterest"></span></a></li>
 								<li><a href="mailto:?&subject=<?php echo $postTitle;?>&body=<?php echo $postPermalink; ?>"><span class="o-icon s--mail"></span></a></li>
 								<li><a target="_blank" href="whatsapp://send?text=<?php echo $postPermalink; ?>" class="o-icon__wrap"><span class="o-icon s--whatsapp"></span></a></li>

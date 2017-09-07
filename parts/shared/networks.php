@@ -1,42 +1,14 @@
-<?php if (have_rows('social_handles')): ?>
-	<ul class="o-networks t-light">
-		<?php while( have_rows('social_handles') ): the_row();
-			$networkLabel = get_sub_field('network');
-			$networkHandle = get_sub_field('handle');
-			$networkLink = '';
-
-			switch ($networkLabel) {
-				case 'facebook':
-					$shareLink = 'https://facebook.com/';
-					break;
-				case 'twitter':
-					$shareLink = 'https://twitter.com/';
-					break;
-				case 'whatsapp':
-					$shareLink = 'https://api.whatsapp.com/send?phone=';
-					$networkHandle = str_replace(' ', '', $networkHandle);
-					break;
-				case 'instagram':
-					$shareLink = 'https://instagram.com/';
-					break;
-				case 'pinterest':
-					$shareLink = 'https://pinterest.com/';
-					break;
-				case 'soundcloud':
-					$shareLink = 'https://soundcloud.com/';
-					break;
-				case 'youtube':
-					$shareLink = 'https://youtube.com/';
-					break;
-				case 'googleplus':
-					$shareLink = 'https://googleplus.com/';
-					break;
-				default:
-					break;
+<ul class="o-networks t-light">
+	<?php 
+		$networks = acf_get_fields('127');
+		if ($networks){
+			foreach ($networks as $network) {
+				$networkName = $network['name'];
+				$networkField = get_field($networkName, get_the_ID());
+				if($networkField){
+				echo '<li><a target="_blank" href="'.$networkField.'"><span class="o-icon s--'.$networkName.'"></span></a></li>';
+				}
 			}
-		?>
-			
-			<li><a target="_blank" href="<?php echo $shareLink.$networkHandle; ?>"><span class="o-icon s--<?php echo $networkLabel;?>"></span></a></li>
-		<?php endwhile; ?>
-	</ul>
-<?php endif ?>
+		}
+	 ?>
+</ul>

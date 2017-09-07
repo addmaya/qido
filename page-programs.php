@@ -54,7 +54,13 @@
 						$programClass = '';
                         $aosDelay=0;
 				?>
-				<?php while ( $programsList->have_posts() ) : $programsList->the_post();  
+				<?php while ( $programsList->have_posts() ) : $programsList->the_post();
+					$programContent = false;
+					$programLink = get_permalink();
+					$programID = get_the_id();  
+					if(have_rows('content', $programID)){
+						$programContent = true;
+					}
 					if ($programIndex > 3) {
 						$programIndex = 0;
 					}
@@ -81,8 +87,8 @@
 							break;
 					}
 				?>
-					<li id="program-<?php echo get_the_id(); ?>" class="o-program <?php echo $programClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-						<a class="o-program__link" href="<?php the_permalink(); ?>">
+					<li id="program-<?php echo $programID; ?>" class="o-program <?php echo $programClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+						<a class="o-program__link <?php if($programContent){echo 'is-clickable" href="'.$programLink.'"';} ?>">
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--large"></span>
 							<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
@@ -93,11 +99,15 @@
 								<section class="o-program-excerpt__wrap">
 									<span class="o-subheading"><?php the_title(); ?></span>
 									<div class="o-program__excerpt">
-										<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
-										<div class="o-button">
-											<span class="o-button__title">Explore</span>
-											<i class="o-icon s--arrow-ltr"></i>
-										</div>
+										<?php if($programContent){?>
+											<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
+											<div class="o-button">
+												<span class="o-button__title">Explore</span>
+												<i class="o-icon s--arrow-ltr"></i>
+											</div>
+										<?php } else {?>
+											<span class="u-block"><?php the_field('introduction'); ?></span>
+										<?php } ?>	
 									</div>
 									<span class="o-progam__monogram"><?php echo substr(get_the_title(),0,1) ?></span>
 								</section>

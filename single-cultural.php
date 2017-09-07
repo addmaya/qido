@@ -23,7 +23,6 @@
 				<div class="o-bio">
 					<div class="o-bio__figure">
 						<figure class="s--radial" style="background-image:url('<?php the_field('photo');?>')">
-							<span class="o-bubble s--large"></span>
 						</figure>
 						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>

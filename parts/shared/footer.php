@@ -18,7 +18,7 @@
 							<ul class="o-networks t-light">
 								<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $pagePermalink; ?>"><span class="o-icon s--facebook"></span></a></li>
 								<li><a href="https://twitter.com/home?status=<?php echo $pagePermalink; ?>"><span class="o-icon s--twitter"></span></a></li>
-								<li><a href="https://plus.google.com/share?url=<?php echo $pagePermalink; ?>"><span class="o-icon s--googleplus"></span></a></li>
+								<li><a href="https://plus.google.com/share?url=<?php echo $pagePermalink; ?>"><span class="o-icon s--google_plus"></span></a></li>
 								<li><a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo $pagePermalink; ?>&media=<?php echo $pageCoverImage; ?>&description=<?php echo $pageTitle; ?>"><span class="o-icon s--pinterest"></span></a></li>
 								<li><a href="mailto:?&subject=<?php echo $pageTitle;?>&body=<?php echo $pagePermalink; ?>"><span class="o-icon s--mail"></span></a></li>
 								<li><a target="_blank" href="whatsapp://send?text=<?php echo $pagePermalink; ?>" class="o-icon__wrap"><span class="o-icon s--whatsapp"></span></a></li>

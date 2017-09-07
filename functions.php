@@ -102,6 +102,13 @@
 	
 	add_action('admin_post_submitContact', 'submitContact');
 	add_action('admin_post_nopriv_submitContact', 'submitContact');
+
+	function my_acf_init() {
+		
+		acf_update_setting('google_api_key', 'AIzaSyD5bqFYkSJTUhUKxJUdao3JY8tOVDjMNLA');
+	}
+
+	add_action('acf/init', 'my_acf_init');
 	
 	function submitContact(){
 		if(isset($_POST['form_nonce']) || wp_verify_nonce($_POST['form_nonce'], 'form_nonce_key')){

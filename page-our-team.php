@@ -76,7 +76,7 @@
 					}
 				?>
 				<li class="o-program u-half s--clear" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-					<a class="o-program__link" href="<?php the_permalink(); ?>">
+					<a class="o-program__link is-clickable" href="<?php the_permalink(); ?>">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
 						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>

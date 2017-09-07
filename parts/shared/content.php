@@ -33,7 +33,10 @@
 						<div class="o-block__text">
 							<section class="u-wrap">
 								<h2><?php echo $sectionHeading;?></h2>
-								<p><?php echo $sectionContent; ?></p>
+								<div class="o-story__content">
+									<?php echo $sectionContent; ?>
+								</div>
+								
 							</section>
 						</div>
 					</div>

@@ -44,7 +44,7 @@
 				<header class="o-section__header">
 					<span class="o-section__title">Program Partners</span>
 				</header>
-				<ul class="u-clear">
+				<ul class="u-clear c-program__partners">
 					<?php foreach ($programPartners as $post):?>
 						<?php setup_postdata($post ); ?>
 							<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
