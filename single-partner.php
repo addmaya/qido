@@ -39,51 +39,50 @@
 								</span>
 							</header>
 							<section>
-								<?php the_content(); ?>
+								<?php the_field('introduction'); ?>
 							</section>
 							<section>
 								<h3 class="u-pb-m">Programs supported</h3>
 								<?php 
-									$linkedPrograms = new WP_Query(array('post_per_page'=>-1,'post_type'=>'program', 'meta_query'=> array(array('key'=>'partners', 'value'=>'"' . get_the_ID() . '"', 'compare'=> 'LIKE'))));
-									if ($linkedPrograms->have_posts()){
-					                    $programIndex = 0;
-					                    $aosDelay=0;
-								?>
-								<ul class="c-programs__nav s--clear">			
-								<?php while ( $linkedPrograms->have_posts() ) : $linkedPrograms->the_post();
 
-					                if($programIndex > 5){
-					                    $programIndex = 0;
-					                }
-					                switch ($programIndex) {
-					                    case 1:
-					                        $aosDelay = 50;
-					                        break;
-					                    case 2:
-					                        $aosDelay = 100;
-					                        break;
-					                    case 3:
-					                        $aosDelay = 150;
-					                        break;
-					                    case 4:
-					                        $aosDelay = 200;
-					                        break;
-					                    case 5:
-					                        $aosDelay = 250;
-					                        break;
-					                    default:
-					                        $aosDelay = 0;
-					                        break;
-					                }
-					            ?>
-									<li class="u-third" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="<?php echo get_permalink(); ?>" style="background-image:url('<?php the_field('logo'); ?>')"></a></li>
-									<?php $programIndex++; endwhile; ?>
-									<?php wp_reset_postdata(); ?>
-								<?php } ?>
-								</ul>
+								$posts = get_field('programs');
+
+								if( $posts ): ?>
+								    <ul class="c-programs__nav s--clear">
+								    <?php foreach( $posts as $post): 
+								    	if($programIndex > 5){
+								    	    $programIndex = 0;
+								    	}
+								    	switch ($programIndex) {
+								    	    case 1:
+								    	        $aosDelay = 50;
+								    	        break;
+								    	    case 2:
+								    	        $aosDelay = 100;
+								    	        break;
+								    	    case 3:
+								    	        $aosDelay = 150;
+								    	        break;
+								    	    case 4:
+								    	        $aosDelay = 200;
+								    	        break;
+								    	    case 5:
+								    	        $aosDelay = 250;
+								    	        break;
+								    	    default:
+								    	        $aosDelay = 0;
+								    	        break;
+								    	}
+								    ?>
+								        <?php setup_postdata($post); ?>
+								        <li class="u-third" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="<?php echo get_permalink(); ?>" style="background-image:url('<?php the_field('logo'); ?>')"></a></li>
+								    <?php $programIndex++; endforeach; ?>
+								    </ul>
+								    <?php wp_reset_postdata();?>
+								<?php endif; ?>
 							</section>
 							<?php
-							$partnerURL = get_field('url');
+							$partnerURL = get_field('website');
 							if ($partnerURL ): ?>
 								<div class="u-pt-m">
 									<a target="_blank" href="<?php echo esc_url($partnerURL ); ?>" class="o-button">

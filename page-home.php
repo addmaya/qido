@@ -60,19 +60,31 @@
 	</div>
 	<div class="u-box">
 		<header class="o-section__header">
-			<h2 class="o-heading" data-aos="fade-up">Touching youth for 6 years <br/>and counting</h2>
+			<h2 class="o-heading" data-aos="fade-up" style="text-transform: none;">
+				Changing Youth<br/>
+				<?php 
+					$rahuAge = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+					echo $rahuAge->format(date("Y") - 2009).' Years and counting';
+				?><br/>
+			</h2>
 		</header>
 		<div class="o-slider">
 			<ul class="u-clear">
 				<?php 
-					$statisticsList = get_field('statistics', 170);
-					if (have_rows('statistics',170)){
-						$bubbleClasses = ['t-banana', 't-berry', 't-ivy', 't-mango'];
-						$statisticIndex = 0;
-						$aosDelay=0;
+					$statistics = get_field('statistics', 170);
+					$statisticsList = array_rand( $statistics, 4);
+
+					$bubbleClasses = ['t-banana', 't-berry', 't-ivy', 't-mango'];
+					$statisticIndex = 0;
+					$aosDelay=0;
 				?>
-				<?php while (have_rows('statistics',170)):the_row();
-					$statIcon = get_sub_field('icon');
+
+				<?php 
+				 ?>
+				<?php
+					foreach( $statisticsList as $statistic ){
+					
+					$statIcon = $statistics[$statistic]['icon'];
 					if($statisticIndex > 3){
 					    $statisticIndex = 0;
 					}
@@ -101,15 +113,13 @@
 								<?php if ($statIcon): ?>
 									<span class="o-icon" style="background-image: url('<?php echo $statIcon; ?>')"></span>
 								<?php endif ?>
-								<span class="o-statistic__figure"><?php the_sub_field('number'); ?> <span class="o-statistic__unit"><?php the_sub_field('unit'); ?></span></span>
-								<?php the_sub_field('description'); ?>
+								<span class="o-statistic__figure"><?php echo $statistics[$statistic]['number']; ?> <span class="o-statistic__unit"><?php echo $statistics[$statistic]['unit']; ?></span></span>
+								<?php echo $statistics[$statistic]['description']; ?>
 							</div>
 						</div>
 					</figure>
-					<p><?php the_field('description'); ?></p>
 				</li>
-				<?php $statisticIndex++; endwhile; ?>
-				<?php } ?>
+				<?php $statisticIndex++; } ?>
 			</ul>
 			<section class="a-center">
 				<a href="<?php echo home_url(); ?>/story" class="o-button">

@@ -14,6 +14,15 @@
 						$aosDelay = 0;
 				?>	
 					<?php while ( $teamList->have_posts() ) : $teamList->the_post();
+						$staffLink = '';	
+						$staffBio = get_the_content();
+
+						if(strlen($staffBio) > 2){
+							$staffLink = 'href="'.get_permalink().'" class="o-staff no-barba js-showBioPop is-clickable"';
+						} else{
+							$staffLink = 'class="o-staff"';
+						}
+
 						if($staffIndex > 3){
 							$staffIndex = 0;
 						}
@@ -33,7 +42,7 @@
 						}
 					?>
 					<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>" class="o-grid__item">
-						<a href="<?php the_permalink(); ?>" class="o-staff no-barba js-showBioPop" data-title="<?php the_field('title'); ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
+						<a <?php echo $staffLink; ?> data-title="<?php the_field('title'); ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
 							<figure data-image="<?php the_field('photo_full'); ?>" style="background-image:url('<?php the_field('photo_full');?>')"></figure>
 							<span class="o-bubble s--large"></span>
 							<span class="o-bubble s--medium"></span>

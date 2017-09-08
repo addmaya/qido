@@ -218,8 +218,9 @@
 		}
 		else{
 			$html .= '<p>'.get_post_meta( $bioID, 'introduction', true).'</p>';
-
-			$linkedPrograms = new WP_Query(array('post_per_page'=>-1,'post_type'=>'program', 'meta_query'=> array(array('key'=>'partners', 'value'=>'"' . intval($bioID). '"', 'compare'=> 'LIKE'))));
+			$ids = get_field('programs', $bioID, false);
+			
+			$linkedPrograms = new WP_Query(array('post_per_page'=>-1,'post_type'=>'program', 'post__in'=>$ids));
 			if ($linkedPrograms->have_posts()){
 				$html .='<h2 class="o-subheading">Programs Supported</h2><ul class="c-programs__nav s--clear">';
 				while ($linkedPrograms->have_posts()){

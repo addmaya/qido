@@ -667,11 +667,13 @@ $active: #ffe992;
   .o-subheading{padding-bottom:0; position: relative; @include a-transform(0.3, ease)}
   .o-subtitle{@include a-transform(0.3, ease)}
 
-  &:hover{
-    .o-bubble{@include a-running}
-    .o-subheading{@include translateY(em(12))}
-    .o-subtitle{@include translateY(em(24))}
-    figure{@include translateY(em(-24))}
+  &.is-clickable{
+    &:hover{
+      .o-bubble{@include a-running}
+      .o-subheading{@include translateY(em(12))}
+      .o-subtitle{@include translateY(em(24))}
+      figure{@include translateY(em(-24))}
+    }
   }
 }
 .o-director{width: 25%; float: left; margin-bottom:4em; text-align: center; 
@@ -1083,7 +1085,7 @@ $cButtonNextDuration: 0.65s;
       &:after{opacity:1}
     }
   }
-  &.s--clear{padding: 0;
+  &.s--clear{padding: 0; margin: 0; list-style:none;
     a{margin-left: 0;}
   }
 }
