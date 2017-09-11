@@ -326,7 +326,7 @@ jQuery(document).ready(function($) {
 	    var homeSwiper = new Swiper ('#homeSwiper', {
 	        loop: true,
 	        speed: 800,
-	        autoplay: 600000,
+	        autoplay: 6000,
 	        autoplayDisableOnInteraction:false,
 	        pagination: '.swiper-pagination',
 	        paginationClickable: true
