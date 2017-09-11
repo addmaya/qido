@@ -75,7 +75,7 @@
 <nav class="c-page__menu">
 	<section class="u-wrap">
 		<ul class="o-menu">
-			<li class="o-menu-item">
+			<li class="o-menu-item is-active">
 				<a href="<?php echo home_url(); ?>" class="<?php echo setActiveClass('home'); ?>">
 					<span class="o-menu-item__title">Home</span>
 					<span class="o-menu-item__bullet"></span>

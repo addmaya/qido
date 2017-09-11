@@ -3,7 +3,7 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<?php 
-				$programLogos = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1));
+				$programLogos = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order', 'order'=> 'ASC'));
 				if ($programLogos->have_posts()){
                     $programLogoIndex = 0;
                     $aosDelay=0;
@@ -48,7 +48,7 @@
 		<div class="u-box">
 			<ul class="u-clear">
 				<?php 
-					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1));
+					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order','order'=> 'ASC'));
 					if ($programsList->have_posts()){
 						$programIndex = 0;
 						$programClass = '';
@@ -57,7 +57,9 @@
 				<?php while ( $programsList->have_posts() ) : $programsList->the_post();
 					$programContent = false;
 					$programLink = get_permalink();
-					$programID = get_the_id();  
+					$programID = get_the_id(); 
+					$programWebsite = esc_url(get_field('website')); 
+					 
 					if(have_rows('content', $programID)){
 						$programContent = true;
 					}
@@ -107,6 +109,12 @@
 											</div>
 										<?php } else {?>
 											<span class="u-block"><?php the_field('introduction'); ?></span>
+											<?php if ($programWebsite): ?>
+												<div class="o-button js-program-website" data-link="<?php echo $programWebsite; ?>">
+													<span class="o-button__title">Visit Website</span>
+													<i class="o-icon s--arrow-ltr"></i>
+												</div>
+											<?php endif ?>
 										<?php } ?>	
 									</div>
 									<span class="o-progam__monogram"><?php echo substr(get_the_title(),0,1) ?></span>

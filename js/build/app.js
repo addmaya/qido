@@ -231,15 +231,37 @@ jQuery(document).ready(function($) {
 		$('.o-pop').hide();
 	}
 
+	function showNewsletter(){
+		$('.js-show-newsletter').click(function(e) {
+			e.preventDefault();
+			var email = $('.c-form-newsletter input');
+			$('html, body').animate({
+			    scrollTop: email.offset().top
+			}, 1000);
+
+			email.focus();
+		});
+	}
+
+	function clickProgramLink(){
+		$('.js-program-website').click(function() {
+		  window.open($(this).data('link')); 
+		  return false;
+		});
+	}
+
 	//menu
-	$('.o-menu a').click(function() {
-		$('.o-menu').find('.is-active').removeClass('is-active');
-		$(this).addClass('is-active');
-	});
-	$('.c-logo').click(function() {
-		$('.o-menu').find('.is-active').removeClass('is-active');
-		$('.o-menu a').first().addClass('is-active');
-	});
+	function updateMenu(){
+		$('.o-menu a').click(function() {
+			$('.o-menu').find('.is-active').removeClass('is-active');
+			$(this).addClass('is-active');
+
+		});
+		$('.c-logo').click(function() {
+			$('.o-menu').find('.is-active').removeClass('is-active');
+			$('.o-menu a').first().addClass('is-active');
+		});
+	}
 
 	$('.c-humburger').click(function(event) {
 		event.preventDefault();
@@ -304,7 +326,7 @@ jQuery(document).ready(function($) {
 	    var homeSwiper = new Swiper ('#homeSwiper', {
 	        loop: true,
 	        speed: 800,
-	        autoplay: 6000,
+	        autoplay: 600000,
 	        autoplayDisableOnInteraction:false,
 	        pagination: '.swiper-pagination',
 	        paginationClickable: true
@@ -473,7 +495,7 @@ jQuery(document).ready(function($) {
 	var FadeTransition = Barba.BaseTransition.extend({	  
 	  start: function() {
 	    pageLoader.removeClass('is-hidden');
-	    pageMenu.find('.is-active').removeClass('is-active');
+	    
 	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
 	  },
 	  fadeOut: function() {
@@ -512,6 +534,9 @@ jQuery(document).ready(function($) {
 		submitContactForm();
 		getStories();
 		submitPartnerForm();
+		showNewsletter();
+		clickProgramLink();
+		updateMenu();
 	}
 
 	boot();

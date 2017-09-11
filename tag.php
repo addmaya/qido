@@ -12,7 +12,7 @@
 </section>
 <section class="c-page__content s--clear u-oh">
 	<div class="u-box u-pt-l">
-		<ul class="u-clear">
+		<ul class="u-clear o-grid">
 			<?php while ( have_posts() ) : the_post();?>
 				<?php Starkers_Utilities::get_template_parts(array('parts/shared/post'));?>
 			<?php endwhile; ?>

@@ -15,24 +15,6 @@
 						</a>
 					</section>
 					<section class="u-third" data-aos="fade-up" data-aos-delay="100">
-						<h2>Phone</h2>
-						<ul class="o-list">
-							<?php if( have_rows('telephones') ): ?>
-								<?php while( have_rows('telephones') ): the_row();
-									$telephone = get_sub_field('telephone');
-									$niceTelephone = substr(chunk_split($telephone, 3, ' '), 0, -1);
-								?>
-								<li>
-									<a href="tel:+<?php echo $telephone;?>" class="o-link">
-										<i class="o-icon s--arrow-ltr"></i>
-										<span>+ <?php echo $niceTelephone; ?></span>
-									</a>
-								</li>
-								<?php endwhile; ?>
-							<?php endif; ?>
-						</ul>
-					</section>
-					<section class="u-third" data-aos="fade-up" data-aos-delay="200">
 						<h2>Mail</h2>
 						<ul class="o-list">
 							<?php if( have_rows('emails') ): ?>
@@ -43,6 +25,25 @@
 									<a href="mailto:<?php echo $email;?>" class="o-link">
 										<i class="o-icon s--arrow-ltr"></i>
 										<span><?php echo $email; ?></span>
+									</a>
+								</li>
+								<?php endwhile; ?>
+							<?php endif; ?>
+						</ul>
+						<p class="u-pb-m"><?php the_field('mail'); ?></p>
+					</section>
+					<section class="u-third" data-aos="fade-up" data-aos-delay="200">
+						<h2>Telephone</h2>
+						<ul class="o-list">
+							<?php if( have_rows('telephones') ): ?>
+								<?php while( have_rows('telephones') ): the_row();
+									$telephone = get_sub_field('telephone');
+									$niceTelephone = substr(chunk_split($telephone, 3, ' '), 0, -1);
+								?>
+								<li>
+									<a href="tel:+<?php echo $telephone;?>" class="o-link">
+										<i class="o-icon s--arrow-ltr"></i>
+										<span>+ <?php echo $niceTelephone; ?></span>
 									</a>
 								</li>
 								<?php endwhile; ?>
@@ -64,10 +65,10 @@
 							</ul>
 						</section>
 						<section class="u-half" data-aos="fade-up" data-aos-delay="100">
-							<h2>Get Updates</h2>
+							<h2>Subscribe for Updates</h2>
 							<ul class="o-networks t-light s--medium">
-								<li><a href="#"><span class="o-icon s--rss"></span></a></li>
-								<li><a href="#"><span class="o-icon s--mail"></span></a></li>
+								<li><a href="<?php echo home_url(); ?>/feed" target="_blank"><span class="o-icon s--rss"></span></a></li>
+								<li><a href="#newsletter" class="js-show-newsletter"><span class="o-icon s--mail"></span></a></li>
 							</ul>
 						</section>
 					</div>
@@ -77,7 +78,7 @@
 					<div class="o-tabs">
 						<div class="o-tabs__nav">
 							<h2>
-								<a href="#">Write to Us</a>
+								<a href="#">Got an Inquiry?</a>
 							</h2>
 						</div>
 						<div class="o-tabs__content">

@@ -228,7 +228,7 @@
 							<li><a href="https://www.youtube.com/user/REACHAHANDUGANDA" target="_blank"><span class="o-icon s--youtube"></span></a></li>
 							<li><a href="https://soundcloud.com/reach-a-hand" target="_blank"><span class="o-icon s--soundcloud"></span></a></li>
 						</ul>
-						<form action="<?php the_permalink(); ?>" class="c-form-newsletter">
+						<form action="<?php the_permalink(); ?>" class="c-form-newsletter" id="newsletter">
 							<div class="o-input">
 								<input type="text" placeholder="Your E-mail"/>
 							</div>
@@ -242,7 +242,8 @@
 				<section class="c-sitemap">
 					<ul>
 						<li><a href="<?php echo home_url();?>">Home</a></li>
-						<li><a href="<?php echo home_url();?>/story">Story</a></li>
+						<li><a href="<?php echo home_url();?>/about">About</a></li>
+						<li><a href="<?php echo home_url();?>/impact">Impact</a></li>
 						<li><a href="<?php echo home_url();?>/programs">Programs</a></li>
 						<li><a href="<?php echo home_url();?>/team">Team</a></li>
 						<li><a href="<?php echo home_url();?>/partners">Partners</a></li>

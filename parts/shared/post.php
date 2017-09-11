@@ -1,5 +1,5 @@
 <?php $bubbleSizes = ['s--xsmall', 's--small', 's--medium', 's--large']; ?>
-<li class="o-article u-half" data-aos="fade-up">
+<li class="o-article u-half o-grid__item" data-aos="fade-up">
 	<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 		<section class="o-article__figure">
 			<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">

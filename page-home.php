@@ -2,23 +2,19 @@
 <section class="c-swiper">
 	<div class="swiper-container" id="homeSwiper">
 		<div class="swiper-wrapper">
-		<?php 
-			$slidesList = new WP_Query(array('post_type'=>'slide', 'posts_per_page'=>-1));
-			if ($slidesList->have_posts()){
-		?>
-			<?php while ($slidesList->have_posts() ) : $slidesList->the_post();
-				$slideTitle = get_the_title();
-				$slideCaption = get_field('description');
-				$slideButtonText = get_field('link_text');
-				$slideButtonLink = get_field('link');
-				$slideImage = get_field('image');
-				$slideVideo = get_field('video');
-			?>
+		<?php if( have_rows('slides') ): ?>
+			<?php while( have_rows('slides') ): the_row(); 
+				$slideTitle = get_sub_field('title');
+				$slideCaption = get_sub_field('caption');
+				$slideButtonText = get_sub_field('button_label');
+				$slideButtonLink = get_sub_field('button_link');
+				$slideImage = get_sub_field('image');
+			?>	
 			<div class="swiper-slide">
 				<a class="o-slide" href="<?php echo $slideButtonLink; ?>" data-depth="0.6">
 					<div class="u-box">			
 						<div class="o-slide__info">
-							<section class="u-wrap">
+							<section>
 								<h1 class="o-slide__title"><?php echo $slideTitle; ?></h1>
 								<span class="o-slide__excerpt">
 									<span class="u-block"><?php echo $slideCaption; ?></span>
@@ -45,8 +41,7 @@
 				</a>
 			</div>
 			<?php endwhile; ?>
-			<?php wp_reset_postdata(); ?>
-		<?php } ?>
+		<?php endif; ?>
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
@@ -142,7 +137,7 @@
 				$aosDelay = 0;
 		?>
 		<header class="o-section__header">
-			<span class="o-section__title"><a href="#">Our Programs</a></span>
+			<span class="o-section__title"><a href="#">Featured Programs</a></span>
 			<span class="o-subtitle">
 				<?php 
 					$programsCount = new NumberFormatter("en", NumberFormatter::SPELLOUT);
@@ -152,7 +147,14 @@
 		</header>
 		<section class="u-pt-m">
 			<div class="u-clear">			
-				<?php while ( $programsList->have_posts() ) : $programsList->the_post(); 
+				<?php while ( $programsList->have_posts() ) : $programsList->the_post();
+					$programContent = false;
+					$programLink = get_permalink();
+					$programWebsite = esc_url(get_field('website'));
+					if(have_rows('content', $programID)){
+						$programContent = true;
+					}
+
 					if($programIndex > 1){
 						$programIndex = 0;
 					}
@@ -166,17 +168,30 @@
 					}
 				?>
 					<div class="u-half" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay;?>">
-						<a class="o-card <?php echo $programClass; ?>" href="<?php the_permalink(); ?>">
+						<a class="o-card <?php if(!$programContent){if(!$programWebsite){echo $programClass;}else{echo $programClass.' is-clickable';}}else{echo $programClass.' is-clickable';}; ?>" <?php if($programContent){echo 'href="'.$programLink.'"';} ?>>
 							<figure class="o-card__figure" style="background-image:url('<?php the_field('cover_image');?>')">
 								<span class="o-card__logo" style="background-image: url('<?php the_field('logo'); ?>')"></span>
 							</figure>
-							<section class="o-card__info">
-								<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
-								<div class="o-button">
-									<span class="o-button__title">Explore</span>
-									<i class="o-icon s--arrow-ltr"></i>
-								</div>
-							</section>
+							<?php if($programContent){?>
+								<section class="o-card__info">
+									<span class="u-block"><?php echo substr(get_field('introduction'), 0, 200); ?> [...]</span>
+									<div class="o-button">
+										<span class="o-button__title">Learn More</span>
+										<i class="o-icon s--arrow-ltr"></i>
+									</div>
+								</section>
+								<?php } else {?>
+									<section class="o-card__info">
+										<span class="u-block"><?php echo get_field('introduction'); ?></span>
+									
+									<?php if ($programWebsite): ?>
+										<div class="o-button js-program-website" data-link="<?php echo $programWebsite; ?>">
+											<span class="o-button__title">Visit Website</span>
+											<i class="o-icon s--arrow-ltr"></i>
+										</div>
+									<?php endif ?>
+									</section>
+								<?php } ?>
 							<span class="o-card__monogram">g</span>
 						</a>
 					</div>
@@ -185,9 +200,8 @@
 			</div>
 		</section>
 		<footer class="o-section__footer">
-			<span class="o-subtitle u-pb-m">8 of <?php echo wp_count_posts('program')->publish; ?></span>
 			<a href="<?php echo home_url(); ?>/programs" class="o-button">
-				<span class="o-button__title">See all programs</span>
+				<span class="o-button__title">See all <?php echo wp_count_posts('program')->publish; ?> Programs</span>
 				<i class="o-icon s--arrow-ltr"></i>
 			</a>
 		</footer>
@@ -198,7 +212,7 @@
 	<div class="u-box">
 		<div class="u-clear c-splash-team">
 			<?php 
-				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1, 'orderby'=>'date'));
+				$featuredStaff = new WP_Query(array('post_type'=>'staff', 'posts_per_page'=>1, 'orderby'=>'rand', 'meta_query'=> array(array('key'=>'quote', 'value'=>'', 'compare'=> '!='))));
 				while ( $featuredStaff->have_posts() ) : $featuredStaff->the_post(); 
 			?>
 			<a class="u-40p u-col c-splash-team__link" href="<?php echo home_url(); ?>/team">
@@ -210,7 +224,7 @@
 			<div class="u-60p u-col" >
 				<section class="u-wrap">
 					<a href="<?php echo home_url(); ?>/team" class="u-block c-splash-team__link">
-						<blockquote><q>"<?php the_field('quote'); ?>"</q></blockquote>
+						<blockquote><?php the_field('quote'); ?></blockquote>
 						<span class="o-subheading s--profile"><?php the_title(); ?></span>
 						<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 					</a>
@@ -244,7 +258,7 @@
 	<div class="u-box">
 		<header class="o-section__header">
 			<span class="o-section__title">What's Happening @RAHU</span>
-			<p>We hold events, throw parties and do alot Corporate parnters are how RAHU works in partnership with other organizations with similar mission, as well as communities to enhance synergies, sustainability and ownership of programs</p>
+			<p>Along side our partners, we provide constructive entertainment through parties and events, hold fun and educative youth camps and retreats as well as community and school outreaches.</p>
 		</header>
 		<section class="u-wrap">
 			<ul class="u-clear">
@@ -304,7 +318,6 @@
 				<?php endif; ?>
 			</ul>
 			<div class="a-center u-pt-l">
-				<span class="o-subtitle u-pb-m">8 of 125</span>
 				<a href="<?php echo home_url(); ?>/blog" class="o-button">
 					<span class="o-button__title">Load More Stories</span>
 					<i class="o-icon s--arrow-ltr"></i>

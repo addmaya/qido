@@ -43,6 +43,13 @@
 	    }
 	}
 
+	function get_custom_feeds($feed_query) {
+		if (isset($feed_query['feed']) && !isset($feed_query['post_type']))
+			$feed_query['post_type'] = array('story', 'event');
+		return $feed_query;
+	}
+	add_filter('request', 'get_custom_feeds');
+
 	remove_action('wp_head','rest_output_link_wp_head');
 	remove_action('wp_head','wp_oembed_add_discovery_links');
 	remove_action('template_redirect', 'rest_output_link_header', 11, 0);
@@ -76,7 +83,7 @@
 	  remove_menu_page( 'index.php' );                 
 	  // remove_menu_page( 'jetpack' ); 
 	  remove_menu_page( 'edit.php' ); 
-	  // remove_menu_page( 'upload.php' );              
+	  remove_menu_page( 'upload.php' );              
 	  // remove_menu_page( 'edit.php?post_type=page' );    
 	  remove_menu_page( 'edit-comments.php' );          
 	  //remove_menu_page( 'themes.php' );                
@@ -311,4 +318,12 @@
 	 }
 
 	add_action('acf/input/admin_head', 'my_acf_admin_head');
+
+	function order_category_archives( $query ) {
+	  if ( (is_category() || is_tag()) && $query->is_main_query() ){
+	    $query->set( 'post_type', 'story' );
+	  }
+	}
+
+	add_action( 'pre_get_posts', 'order_category_archives' );
 ?>

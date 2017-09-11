@@ -71,7 +71,7 @@
 				<footer class="o-section__footer">
 					<a href="#" class="o-button js-showPartnerForm">
 						<i class="o-icon s--arrow-ltr"></i>
-						<span class="o-button__title">Partner with Us</span>
+						<span class="o-button__title">Become A Partner</span>
 					</a>
 				</footer>
 			</div>

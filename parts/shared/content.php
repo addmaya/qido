@@ -244,13 +244,19 @@
 								<section><?php echo $listDescription; ?></section>
 							</header>
 						<?php  }?>
-					<?php if(have_rows('list_items')): ?>
+					<?php if(have_rows('list_items')): 
+						$count = count(get_field('list_items'));
+						if($count % 3 == 0){
+							$listWidth = '50%';
+						}
+					?>
 						<ul class="o-imagelist">
 							<?php while(have_rows('list_items')):the_row();
 								$listItemImage = get_sub_field('image');
 								$listItemText = get_sub_field('text');
+
 							?>
-								<li>
+								<li <?php if($listWidth){echo 'style="width: 50%"';}?>>
 									<section class="u-wrap">
 										<figure style="background-image: url('<?php echo $listItemImage; ?>')">
 											<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>

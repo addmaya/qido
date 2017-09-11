@@ -277,7 +277,7 @@ $active: #ffe992;
   &:after{content:"";position: absolute; top:2px; left: 2px; width: 70%; height: 70%; background-color: white; @include border-radius-l; @include prefix((transition: transform 0.5s $easeOutExpo)); @include scale2D(0,0)}
 }
 .o-submenu{display: none;}
-.o-button{outline:none; display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24) em(12) em(30); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease));
+.o-button{outline:none; display: inline-block; border:none; border-radius: em(24); padding: em(12) em(24); font-size: 1em; cursor: pointer; color: inherit; background-color: #d7e5ef; @include prefix((transition: background-color 0.3s ease));
   .o-icon{width: 1em; height: 1em; @include a-transform(0.2, ease)}
 
   .t-venus &{background-color: #d3cfe6; color: darken($venus, 15%)}
@@ -298,10 +298,12 @@ $active: #ffe992;
   &.s--hidden{margin: 3.5em 0; background-color: white}
 }
 .o-link{display: inline-block; padding: em(4) 0; position: relative;
-  .o-icon{width: 1em; height: 1em; position: relative; top:2px; @include prefix((transition: transform 0.3s ease))}
+  .o-icon{width: 1em; height: 1em; position: relative; top:2px; @include prefix((transition: transform 0.3s ease));}
   span{display: inline-block; padding-left: em(6); @include prefix((transition: transform 0.3s ease))}
   .c-page__actions &{color: $neptune}
-  .c-page__info &{padding-top: em(16); color: #fff17d}
+  .c-page__info &{padding-top: em(16); color: #fff17d;
+    .o-icon{@include image('arrow-ltr-light.svg')}
+  }
   &:hover{
     .o-icon{@include translateX(em(12))}
     span{@include translateX(em(6))}
@@ -537,9 +539,11 @@ $active: #ffe992;
       .o-program-excerpt__wrap{background-color: #212b62;
         &:after{opacity: 1}
       }
-      .o-icon{@include translateX(em(12))}
+      .o-icon{@include translateX(em(0))}
+      .o-button__title{@include translateX(em(0))}
     }
   }
+  .o-button__title{color: #1f2239}
 }
 .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center top; @include a-transform(0.5, $easeOutBack); position: relative;
   &:after{content:""; position: absolute; top:20%; @include resetPivot; @include scale2D(0,1); width: 20%; height: 4px; background-color: #fff; left: 50%; @include a-transform(0.3, $easeOutExpo)}
@@ -553,7 +557,7 @@ $active: #ffe992;
 .o-program__excerpt{position: relative; z-index: 1; font-size:0.875em;
   .u-block{line-height: 1.75}
 }
-.o-program-excerpt__wrap{color: white; padding: 1.5em; @include border-radius-s; position: relative; @include prefix((transition: background-color 0.4s ease)); background-color:#2c2d35;
+.o-program-excerpt__wrap{color: white; padding: 1.5em; @include border-radius-s; position: relative; @include prefix((transition: background-color 0.4s ease)); background-color:#1f2239;
   .is-clickable &{
     .t-mercury &{background-color: $mercury}
     .t-venus &{background-color: $venus}
@@ -608,15 +612,16 @@ $active: #ffe992;
 .o-statistic__figure{display: block; font-size: 6em; @include sixcaps; color: #000;}
 .o-statistic__unit{vertical-align: super; font-size: 50%}
 .o-slide{height: 100%; overflow: hidden; position: relative;
-  .o-button{border:solid 2px #fff; margin-top: 1.5em; background-color: transparent; color: #fff; line-height: 1}
+  .o-button{border:solid 2px #fff; margin-top: 2em; background-color: transparent; color: #fff; line-height: 1}
   .u-wrap{padding: 3em 1.5em 5em}
 }
-.o-slide__excerpt{line-height: 1.6; display: block; width:80%}
-.o-slide__info{width: 50%; position: absolute; z-index: 3; bottom: 5%; left: 0}
+.o-slide__excerpt{line-height: 1.6; display: block; width:80%;
+  p{font-size: 0.875em}
+}
+.o-slide__info{width: 45%; position: absolute; z-index: 3; bottom:25%; left: 0}
 .o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.1; @include a-transform(3, ease)}
 .o-slide__figure{height: 100%;
   figure{height: em(560); width: em(560); @include border-radius-l; @include center; position: relative; left: 6em; z-index: 2; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: #faebd7; @include a-transform(1, ease);
-    &:hover{@include translateX(em(48))}
   }
   .o-bubble{z-index: 1}
   .s--small{width: 2.5em; height: 2.5em; top:20%; left:50%; background-color: #FFC14A; @include prefix((animation: bubbleCoverSmall 20s linear infinite))}
@@ -624,6 +629,7 @@ $active: #ffe992;
   .s--large{width: 5em; height: 5em; bottom:25%; background-color: transparent; border: solid 2px #fff; right: 20%; @include prefix((animation:bubbleCoverLarge 80s linear infinite))}
 }
 .o-card{color: white; margin-bottom: 1.5em; position: relative; display: block;
+  &.is-clickable{
   &:hover{
     .o-card__figure{@include scale2D(0.95, 0.95);
       &:after{@include scale2D(1,1)}
@@ -631,7 +637,9 @@ $active: #ffe992;
     .o-card__logo{@include translateY(em(-48));
       &:after{opacity:1;}
     }
+    .o-card__info{@include translateY(em(-12))}
     .o-icon{@include translateX(em(12))}
+  }
   }
 }
 .o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center; @include a-transform(0.4, $easeOutBack); 
@@ -640,7 +648,7 @@ $active: #ffe992;
 .o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s; background-size: 75%; background-position: center; background-repeat: no-repeat; @include a-transform(0.4, $easeOutBack);
   &:after{@include u-after; box-shadow: 0 em(48) em(72) rgba(0,0,0,0.4); @include a-opacity(0.3); opacity: 0; @include border-radius-s; }
 }
-.o-card__info{width: 75%; @include center;
+.o-card__info{width: 75%; @include center; @include a-transform(0.4, $easeOutBack);
   .u-block{padding: em(24) 0; line-height: 1.6}
 }
 .o-card__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: -20%; opacity: 0.1; z-index: -1;
@@ -656,6 +664,12 @@ $active: #ffe992;
     &:after{opacity: 1}
   }
   &:after{@include u-after; @include shadow; @include a-opacity(0.4); opacity: 0}
+}
+.o-pagination{
+  .page-numbers{color: #3f51b5;
+    &.current{color: inherit; font-weight:bold; border-bottom:solid 1px}
+  }
+  a{padding:0.5em; display:inline-block}
 }
 .o-staff{display: block; position: relative;
   figure{width: em(192); height: em(264); @include center; margin-bottom: em(18); position: relative; background-position: center; background-size: contain; background-repeat: no-repeat; @include a-transform(0.3, ease)}
@@ -1056,7 +1070,7 @@ $cButtonNextDuration: 0.65s;
 .c-form-newsletter{@include clear;
   .o-button{float: right; width: 42%; padding: em(8) em(24)}
   .o-input{float: left; width: 58%; margin-bottom: 0;
-    input{border: solid 1px #c4cad4; border-radius: 10em; padding: em(7) em(18); width: 78%;}
+    input{border: solid 2px #c4cad4; border-radius: 10em; padding: em(7) em(18); width: 78%;}
   }
 }
 .c-sitemap{font-size: em(14); padding-top:3em; text-align: center; opacity: 0.7;
@@ -1154,7 +1168,7 @@ $cButtonNextDuration: 0.65s;
   }
   .swiper-button-prev,.swiper-button-next{top: auto; bottom: em(48); opacity: 1}
   .o-bubble{@include a-paused}
-  .swiper-pagination-bullet{border-radius:0; height:3px; width:em(72); position: relative;
+  .swiper-pagination-bullet{border-radius:0; height:5px; width:em(72); position: relative;
     &:after{@include u-after; @include resetPivot; @include scale2D(0,1); background-color:#fff; @include a-transform(6,linear); opacity:0}
     &.swiper-pagination-bullet-active{
       &:after{@include scale2D(1,1); opacity:1}
