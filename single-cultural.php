@@ -1,7 +1,11 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header') ); ?>
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) while ( have_posts() ) : the_post();
+	$postPermalink = get_permalink();
+	$postCoverImage = get_field('cover_image');
+	$postTitle = get_the_title();
+?>
 <section class="c-page-cover s--xshort">
-	<figure class="c-page-cover__image" style="background-image:url('<?php the_field('cover_image', 138);?>')"></figure>
+	<figure class="c-page-cover__image js-defer" data-image-url="<?php the_field('cover_image', 138);?>"></figure>
 </section>
 <section class="c-page__content s--clear u-oh">
 	<div class="c-bubble-roof">
@@ -22,7 +26,7 @@
 			<section class="o-story__content">
 				<div class="o-bio">
 					<div class="o-bio__figure">
-						<figure class="s--radial" style="background-image:url('<?php the_field('photo');?>')">
+						<figure class="s--radial js-defer" data-image-url="<?php the_field('photo');?>">
 						</figure>
 						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
@@ -33,7 +37,7 @@
 								<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>
 							</header>
 							<section>
-								<?php the_content(); ?>
+								<p><?php the_content(); ?></p>
 							</section>
 						</section>
 					</div>

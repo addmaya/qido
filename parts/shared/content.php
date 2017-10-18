@@ -26,7 +26,7 @@
 				<section data-aos="fade-up" class="o-block <?php echo $blockClass; ?>">
 					<div class="u-box">
 						<div class="o-block__figure">
-							<figure style="background-image: url('<?php echo $sectionImage; ?>')">
+							<figure class="js-defer" data-image-url="<?php echo $sectionImage; ?>">
 								<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
 							</figure>
 						</div>
@@ -44,12 +44,13 @@
 			<?php } else { ?>
 				<section data-aos="fade-up" class="o-block s--basic">
 					<div class="u-box">
-						<?php if ($sectionHeading): ?>
-							<h2><?php echo $sectionHeading;?></h2>
-						<?php endif ?>
-						<?php if ($sectionContent): ?>
-							<?php echo $sectionContent; ?>
-						<?php endif ?>
+						<section class="o-story__content"><?php if ($sectionHeading): ?>
+								<h2><?php echo $sectionHeading;?></h2>
+							<?php endif ?>
+							<?php if ($sectionContent): ?>
+								<?php echo $sectionContent; ?>
+							<?php endif ?>
+						</section>
 					</div>
 				</section>
 			<?php } ?>
@@ -207,22 +208,36 @@
 								
 					<?php if(have_rows('documents')):
 						$docsCount = count(get_sub_field('documents'));
+						$bubbleSizes = ['s--xsmall', 's--small', 's--medium'];
 					?>
-						<ul class="o-documents">
+						<ul class="o-doc__group">
 							<?php while(have_rows('documents')):the_row();
 								$docFile = get_sub_field('file');
 								$docLabel = get_sub_field('label');
+								$docFileURL = $docFile['url'];
+
 							?>
 								<li>
-									<span class="o-icon s--doc"></span>
-									<a href="<?php echo $docFile; ?>" target="_blank">
-										<p><?php echo $docLabel; ?></p>
-										<span>View Doc</span>
+									<!-- <h1><?php var_dump($docFile); ?></h1> -->
+									<a class="o-doc no-barba" href="<?php echo $docFileURL; ?>" target="_blank">
+										<div class="u-table">
+											<div class="u-cell">
+												<div class="u-wrap">
+													<span class="o-doc__title"><?php echo $docLabel; ?></span>
+													<span class="o-line"></span>
+												</div>
+											</div>
+										</div>
+										<span class="o-icon s--doc"></span>
+										<span class="o-bubble s--left"></span>
+										<span class="o-bubble s--right"></span>
+										<span class="o-doc__type"><?php echo wp_check_filetype($docFileURL)['ext']; ?></span>
 									</a>
 								</li>
 							<?php endwhile; ?>
 						</ul>
-					<?php endif; ?></div>
+					<?php endif; ?>
+				</div>
 			</section>
 		<?php } ?>
 
@@ -232,6 +247,8 @@
 					<?php 
 						$listTitle = get_sub_field('list_title');
 						$listDescription = get_sub_field('list_description');
+						$columnCount = get_sub_field('columns');
+						$columnWidth = (1/$columnCount)*100 + '%';
 					?>
 						<?php if($listTitle && $list_description){?>
 							<header>
@@ -244,21 +261,16 @@
 								<section><?php echo $listDescription; ?></section>
 							</header>
 						<?php  }?>
-					<?php if(have_rows('list_items')): 
-						$count = count(get_field('list_items'));
-						if($count % 3 == 0){
-							$listWidth = '50%';
-						}
-					?>
+					<?php if(have_rows('list_items')): ?>
 						<ul class="o-imagelist">
 							<?php while(have_rows('list_items')):the_row();
 								$listItemImage = get_sub_field('image');
 								$listItemText = get_sub_field('text');
-
+								
 							?>
-								<li <?php if($listWidth){echo 'style="width: 50%"';}?>>
+								<li style="width: <?php echo $columnWidth; ?>%">
 									<section class="u-wrap">
-										<figure style="background-image: url('<?php echo $listItemImage; ?>')">
+										<figure class="js-defer" data-image-url="<?php echo $listItemImage; ?>">
 											<span class="o-bubble <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
 										</figure>
 										<p><?php echo $listItemText; ?></p>

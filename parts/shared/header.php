@@ -58,13 +58,13 @@
 <header class="c-page__header">
 	<section class="u-wrap">
 		<a href="<?php echo home_url();?>" class="c-logo"></a>
-		<ul class="o-networks">
+		<!-- <ul class="o-networks">
 			<li><a target="_blank" href="https://www.facebook.com/reachahand"><span class="o-icon s--facebook"></span></a></li>
 			<li><a target="_blank" href="https://twitter.com/reachahand"><span class="o-icon s--twitter"></span></a></li>
 			<li><a target="_blank" href="https://www.instagram.com/reach_a_hand/"><span class="o-icon s--instagram"></span></a></li>
 			<li><a target="_blank" href="https://www.youtube.com/channel/UCf06VA_E9ICZkFue5AjC2XQ"><span class="o-icon s--youtube"></span></a></li>
 			<li><a target="_blank" href="https://soundcloud.com/reach-a-hand"><span class="o-icon s--soundcloud"></span></a></li>
-		</ul>
+		</ul> -->
 	</section>
 </header>
 <a href="#" class="c-humburger">
@@ -75,13 +75,13 @@
 <nav class="c-page__menu">
 	<section class="u-wrap">
 		<ul class="o-menu">
-			<li class="o-menu-item is-active">
+			<!-- <li class="o-menu-item is-active">
 				<a href="<?php echo home_url(); ?>" class="<?php echo setActiveClass('home'); ?>">
 					<span class="o-menu-item__title">Home</span>
 					<span class="o-menu-item__bullet"></span>
 					<span class="o-menu-item__indicator"></span>
 				</a>
-			</li>
+			</li> -->
 			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/about" class="<?php echo setActiveClass('about'); ?>">
 					<span class="o-menu-item__title">About</span>
@@ -132,6 +132,13 @@
 				</a>
 			</li>
 			<li class="o-menu-item">
+				<a href="<?php echo home_url(); ?>/category/opportunities" class="<?php if(is_category('opportunities')){echo ' is-active';} ?>">
+					<span class="o-menu-item__title">Opportunities</span>
+					<span class="o-menu-item__bullet"></span>
+					<span class="o-menu-item__indicator"></span>
+				</a>
+			</li>
+			<li class="o-menu-item">
 				<a href="<?php echo home_url(); ?>/contact" class="<?php echo setActiveClass('contact'); ?>">
 					<span class="o-menu-item__title">Contact</span>
 					<span class="o-menu-item__bullet"></span>
@@ -148,7 +155,7 @@
 		if(is_page('about')){echo 'impact';}
 		if(is_page('impact')){echo 'impact';}
 		if(is_page('programs')){echo 'programs';}
-		if(is_page('our-team') || is_page('directors') || is_page('cultural-icons')){echo 'team';}
+		if(is_page('our-team') || is_page('advisory-board') || is_page('cultural-icons')){echo 'team';}
 		if(is_page('partners')){echo 'partners';}
 		if(is_page('events')){echo 'events';}
 		if(is_post_type_archive('event')){echo 'calendar';}

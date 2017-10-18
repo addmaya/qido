@@ -52,16 +52,28 @@
 									$aosDelay = 0;
 									break;
 							}
+
+							$partnerLogo = get_field('logo');
 						?>
 						<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 							<a href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop" data-title="<?php echo $partnerGroup->name.' Partner'; ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
-								<figure class="o-partner__logo" data-image="<?php the_field('logo'); ?>" style="background-image:url('<?php echo get_field('logo');?>')">
-									<div class="u-table">
+								<?php if ($partnerLogo){ ?>
+									<figure class="o-partner__logo js-defer" data-image-url="<?php echo $partnerLogo; ?>">
+										<div class="u-table">
+											<div class="u-cell">
+												<span>View Partner Profile</span>
+											</div>
+										</div>
+									</figure>
+								<?php } else {?>
+									<div class="o-partner__title">
 										<div class="u-cell">
-											<span>View Partner Profile</span>
+											<div class="u-wrap">
+												<h2><?php the_title(); ?></h2>
+											</div>
 										</div>
 									</div>
-								</figure>
+								<?php } ?>
 							</a>
 						</li>
 						<?php $partnerIndex++; endwhile; ?>

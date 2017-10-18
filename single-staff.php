@@ -22,7 +22,7 @@
 			<section class="o-story__content">
 				<div class="o-bio">
 					<div class="o-bio__figure">
-						<figure class="s--color" style="background-image:url('<?php the_field('photo_full');?>')">
+						<figure class="s--color js-defer" data-image-url="<?php the_field('photo_full');?>">
 							<span class="o-bubble s--large"></span>
 						</figure>
 						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>

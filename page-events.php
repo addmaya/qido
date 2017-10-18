@@ -61,7 +61,7 @@
 										<i class="c-cut s--left"></i>
 										<i class="c-cut s--right"></i>
 										<span class="o-article__time o-subtitle"><?php if($eventDateDifference < 0){echo abs($eventDateDifference).' days ago';} else {echo $eventDateDifference.' days to';} ?></span>
-										<figure style="background-image: url('<?php the_field('cover_image');?>')"></figure>
+										<figure class="js-defer" data-image-url="<?php the_field('cover_image');?>"></figure>
 									</section>
 									<div class="o-ticket-meta">
 										<i class="c-cut s--left"></i>
@@ -159,7 +159,7 @@
 							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 								<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 									<section class="o-article__figure">
-										<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
+										<figure class="js-defer" data-image-url="<?php echo getPostThumbnail(); ?>">
 											<div class="u-center">
 												<i class="o-icon s--pen"></i>
 											</div>
@@ -240,10 +240,10 @@
 					<a class="o-program__link <?php if($programContent){echo 'is-clickable" href="'.$programLink.'"';} ?>">
 						<span class="o-bubble s--medium"></span>
 						<span class="o-bubble s--large"></span>
-						<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
+						<figure class="o-program__figure js-defer" data-image-url="<?php the_field('cover_image');?>"></figure>
 						<section class="o-program-meta">
 							<div class="u-clear">
-								<figure class="o-program__logo" style="background-image:url('<?php the_field('logo'); ?>')"></figure>
+								<figure class="o-program__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></figure>
 							</div>
 							<section class="o-program-excerpt__wrap">
 								<span class="o-subheading"><?php the_title(); ?></span>

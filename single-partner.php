@@ -22,7 +22,7 @@
 			<section class="o-story__content">
 				<div class="o-bio">
 					<div class="o-bio__figure">
-						<figure style="background-image:url('<?php the_field('logo');?>')"></figure>
+						<figure class="js-defer" data-image-url="<?php the_field('logo');?>"></figure>
 						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
 					<div class="o-bio__story">

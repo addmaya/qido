@@ -106,7 +106,7 @@
 						<div class="u-table">
 							<div class="u-cell">
 								<?php if ($statIcon): ?>
-									<span class="o-icon" style="background-image: url('<?php echo $statIcon; ?>')"></span>
+									<span class="o-icon js-defer" data-image-url="<?php echo $statIcon; ?>"></span>
 								<?php endif ?>
 								<span class="o-statistic__figure"><?php echo $statistics[$statistic]['number']; ?> <span class="o-statistic__unit"><?php echo $statistics[$statistic]['unit']; ?></span></span>
 								<?php echo $statistics[$statistic]['description']; ?>
@@ -169,8 +169,8 @@
 				?>
 					<div class="u-half" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay;?>">
 						<a class="o-card <?php if(!$programContent){if(!$programWebsite){echo $programClass;}else{echo $programClass.' is-clickable';}}else{echo $programClass.' is-clickable';}; ?>" <?php if($programContent){echo 'href="'.$programLink.'"';} ?>>
-							<figure class="o-card__figure" style="background-image:url('<?php the_field('cover_image');?>')">
-								<span class="o-card__logo" style="background-image: url('<?php the_field('logo'); ?>')"></span>
+							<figure class="o-card__figure js-defer" data-image-url="<?php the_field('cover_image');?>">
+								<span class="o-card__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></span>
 							</figure>
 							<?php if($programContent){?>
 								<section class="o-card__info">
@@ -216,7 +216,7 @@
 				while ( $featuredStaff->have_posts() ) : $featuredStaff->the_post(); 
 			?>
 			<a class="u-40p u-col c-splash-team__link" href="<?php echo home_url(); ?>/team">
-				<figure class="c-splash-team__figure" style="background-image:url('<?php the_field('photo_full');?>')"></figure>
+				<figure class="c-splash-team__figure js-defer" data-image-url="<?php the_field('photo_full');?>"></figure>
 				<span class="o-bubble s--large" data-aos="zoom-in" data-aos-delay="0"></span>
 				<span class="o-bubble s--medium" data-aos="zoom-in" data-aos-delay="50"></span>
 				<span class="o-bubble s--small" data-aos="zoom-in" data-aos-delay="75"></span>
@@ -234,8 +234,8 @@
 							$podLabel = get_sub_field('label');
 							$podCoverImage = get_field('cover_image', $podID); 
 						?>
-						<a href="<?php echo home_url(); ?>/team" class="o-imagelink">
-							<div class="o-imagelink__figure" style="background-image:url('<?php echo $podCoverImage; ?>')"></div>
+						<a href="<?php echo get_permalink($podID); ?>" class="o-imagelink">
+							<div class="o-imagelink__figure js-defer" data-image-url="<?php echo $podCoverImage; ?>"></div>
 							<div class="a-center">
 								<span class="o-button">
 									<span class="o-button__title"><?php echo $podLabel; ?></span>
@@ -294,7 +294,7 @@
 						<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 							<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 								<section class="o-article__figure">
-									<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
+									<figure class="js-defer" data-image-url="<?php echo getPostThumbnail(); ?>">
 										<div class="u-center">
 											<i class="o-icon s--pen"></i>
 										</div>

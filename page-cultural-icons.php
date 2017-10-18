@@ -31,7 +31,7 @@
 				?>
 					<li class="o-grid__item o-director" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 						<a href="<?php the_permalink(); ?>" class="no-barba js-showBioPop" data-title="<?php the_field('title'); ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
-							<figure class="u-greyscale" data-image="<?php the_field('photo'); ?>" style="background-image:url('<?php the_field('photo'); ?>')"></figure>
+							<figure class="u-greyscale js-defer" data-image-url="<?php the_field('photo'); ?>"></figure>
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--small"></span>
 							<section class="o-director__info">

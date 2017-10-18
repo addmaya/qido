@@ -15,11 +15,6 @@
 					<div class="o-bio">
 						<div class="o-bio__figure">
 							<figure id="bioPhoto"></figure>
-							<ul class="o-networks t-light">
-								<li><a href="#"><span class="o-icon s--facebook"></span></a></li>
-								<li><a href="#"><span class="o-icon s--twitter"></span></a></li>
-								<li><a href="#"><span class="o-icon s--instagram"></span></a></li>
-							</ul>
 						</div>
 						<div class="o-bio__story">
 							<section class="u-wrap">

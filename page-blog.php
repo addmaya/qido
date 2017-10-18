@@ -93,7 +93,7 @@
 							<li id="<?php echo $postIndex; ?>" class="o-article <?php echo $postClass; ?>" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 								<a class="u-wrap o-article__link" href="<?php the_permalink(); ?>">
 									<section class="o-article__figure">
-										<figure style="background-image:url('<?php echo getPostThumbnail(); ?>')">
+										<figure class="js-defer" data-image-url="<?php echo getPostThumbnail(); ?>">
 											<div class="u-center">
 												<i class="o-icon s--pen"></i>
 											</div>

@@ -1,5 +1,64 @@
 <?php
 	require_once( 'external/starkers-utilities.php' );
+	
+	function getImageID($image_url) {
+	    global $wpdb;
+	    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
+	        return $attachment[0]; 
+	}
+
+
+	add_filter( 'tiny_mce_before_init', 'my_format_TinyMCE' );
+
+	function my_format_TinyMCE( $in ) {
+		//$in['paste_remove_styles'] = true;
+		$in['paste_as_text'] = true;
+		return $in;
+	}
+
+	
+	function getYoutubeID($url){
+	    parse_str(parse_url($url, PHP_URL_QUERY ), $yt_id);
+	    return $yt_id['v'];  
+	}
+
+	function getYoutubeMeta($yt_id){
+		$yt_apikey = 'AIzaSyCuQTR5LVpmHgs2EPrhBVbAGjmHunxTmMk';
+		$yt_query = wp_remote_get('https://www.googleapis.com/youtube/v3/videos?id='.$yt_id.'&key='.$yt_apikey.'&fields=items(snippet(title,description,publishedAt,thumbnails(maxres,high)),statistics(viewCount))&part=snippet,statistics');
+		$yt_response = json_decode($yt_query['body']);
+		$yt_meta['yt_date'] = $yt_response->items[0]->snippet->publishedAt;
+        $yt_meta['yt_title'] = $yt_response->items[0]->snippet->title;
+		$yt_meta['yt_desc'] = $yt_response->items[0]->snippet->description;
+		$yt_meta['yt_count'] = $yt_response->items[0]->statistics->viewCount;
+		$yt_meta['yt_thumb_max'] = $yt_response->items[0]->snippet->thumbnails->maxres->url;
+        $yt_meta['yt_thumb_high'] = $yt_response->items[0]->snippet->thumbnails->high->url;
+		return $yt_meta;
+	}
+
+	//save video post type
+	add_action('acf/save_post', 'my_acf_save_post', 20);
+	function my_acf_save_post( $post_id ) {
+	    global $post; 
+	    if ($post->post_type == 'milestone'){
+	        $yt_video_id = getYoutubeID(get_field('video', false, false));
+	        $yt_video = getYoutubeMeta($yt_video_id);
+	        $yt_title = $yt_video['yt_title'];
+	        $yt_count = $yt_video['yt_count'];
+	        $yt_desc = $yt_video['yt_desc'];
+	        $yt_thumb_max = $yt_video['yt_thumb_max'];
+	        $yt_thumb_high = $yt_video['yt_thumb_high'];
+	        $yt_date = $yt_video['yt_date'];
+	        if ($yt_thumb_max) {
+	        	$yt_thumb = $yt_thumb_max;
+	        }
+	    	else {
+	    		$yt_thumb = $yt_thumb_high;
+	    	}
+	        update_field('video_thumb', $yt_thumb, $post_id);
+	    }
+	}
+
+
 	//add_theme_support('post-thumbnails');	
 	
 	function starkers_comment($comment, $args, $depth) {
@@ -107,8 +166,7 @@
 		}
 	}
 	
-	add_action('admin_post_submitContact', 'submitContact');
-	add_action('admin_post_nopriv_submitContact', 'submitContact');
+	
 
 	function my_acf_init() {
 		
@@ -117,6 +175,9 @@
 
 	add_action('acf/init', 'my_acf_init');
 	
+	add_action('admin_post_submitContact', 'submitContact');
+	add_action('admin_post_nopriv_submitContact', 'submitContact');
+
 	function submitContact(){
 		if(isset($_POST['form_nonce']) || wp_verify_nonce($_POST['form_nonce'], 'form_nonce_key')){
 			if(isset($_POST['userName'])){
@@ -217,10 +278,23 @@
 	    $bioID = $_POST['bioID'];
 	    $html = '';
 	    
+	    $networks = acf_get_fields('127');
+	    
+	    $html .= '<ul class="o-networks t-light">';
+	    foreach ($networks as $network) {
+	    	$networkName = $network['name'];
+	    	$networkField = esc_url(get_field($networkName, $bioID));
+	    	if($networkField){
+	    	$html .= '<li><a target="_blank" href="'.$networkField.'"><span class="o-icon s--'.$networkName.'"></span></a></li>';
+	    	}
+	    }
+	    $html .='</ul>';
+
+
 	    if(get_post_type($bioID) != 'partner'){
 			$bioObject = get_post($bioID);
 			$bioContent = $bioObject->post_content;
-			$html = $bioContent;
+			$html .= $bioContent;
 			echo json_encode($html);
 		}
 		else{
@@ -236,10 +310,8 @@
 				}
 				$html .='</ul>';
 				wp_reset_postdata();
-				echo json_encode($html);
-			} else {
-				echo json_encode($html);
 			}
+			echo json_encode($html); 
 		}
 	    die();
 	}
@@ -301,7 +373,7 @@
 	add_action('wp_ajax_getStories', 'getStories');
 	add_action('wp_ajax_nopriv_getStories', 'getStories');
 
-	remove_filter('the_content', 'wpautop');
+	//remove_filter('the_content', 'wpautop');
 
 
 	 function my_acf_admin_head() {

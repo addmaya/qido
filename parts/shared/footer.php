@@ -158,17 +158,14 @@
 		<footer class="c-page__footer">
 			<div class="u-box">
 				<section class="u-clear">
-					<section class="u-40p">
+					<section class="u-fourth">
 						<h2>Some of our Partners <span class="o-line"></span></h2>
 						<ul class="c-partners">
 							<?php $partnerList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post_type'=>'partner')); ?>
 							<?php if ( $partnerList->have_posts() ) : ?>
-								<ul class="o-list u-pt-s">
 								<?php while ( $partnerList->have_posts() ) : $partnerList->the_post(); ?>
 									<li class="u-third"><a href="<?php echo get_permalink(); ?>"><figure style="background-image:url('<?php echo get_field('logo');?>')"></figure></a></li>
-								<?php endwhile; ?>
-								</ul>
- 								<?php wp_reset_postdata(); ?>
+								<?php endwhile; wp_reset_postdata(); ?>
 							<?php endif; ?>
 						</ul>
 						<a href="<?php echo home_url(); ?>/partners" class="o-button js-showPartnerForm no-barba">
@@ -176,7 +173,23 @@
 							<span class="o-button__title">Partner with Us</span>
 						</a>
 					</section>
-					<section class="u-30p">
+					<section class="u-fourth">
+						<h2>Our programs <span class="o-line"></span></h2>
+						<?php $programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1)); ?>
+						<?php if ( $programsList->have_posts() ) : ?>
+							<ul class="c-programList">
+							<?php while ( $programsList->have_posts() ) : $programsList->the_post(); ?>
+								<li>
+									<a href="<?php the_permalink(); ?>" class="o-link">
+										<i class="o-icon s--arrow-ltr"></i>
+										<span class="o-link__title"><?php the_title(); ?></span>
+									</a>
+								</li>
+							<?php endwhile; wp_reset_postdata(); ?>
+							</ul>
+						<?php endif; ?>
+					</section>
+					<section class="u-fourth">
 						<h2>Contact RAHU <span class="o-line"></span></h2>
 						<ul class="o-list">
 							<?php if(have_rows('telephones',20)): ?>
@@ -212,15 +225,15 @@
 								<a href="#" class="u-block">
 									<p class="u-pb-m"><?php the_field('address', 20); ?></p>
 								</a>
-								<a href="<?php the_field('google_map_link'); ?>" class="o-link">
+								<a target="_blank" href="<?php the_field('google_map_link',20); ?>" class="o-link">
 									<i class="o-icon s--arrow-ltr"></i>
 									<span>Locate on Map</span>
 								</a>
 							</li>
 						</ul>
 					</section>
-					<section class="u-30p">
-						<h2>Follow the Conversation <span class="o-line"></span></h2>
+					<section class="u-fourth">
+						<h2>Follow Reach A Hand <span class="o-line"></span></h2>
 						<ul class="o-networks t-light s--medium">
 							<li><a href="https://www.facebook.com/reachahand/" target="_blank"><span class="o-icon s--facebook"></span></a></li>
 							<li><a href="https://twitter.com/reachahand" target="_blank"><span class="o-icon s--twitter"></span></a></li>
@@ -228,9 +241,10 @@
 							<li><a href="https://www.youtube.com/user/REACHAHANDUGANDA" target="_blank"><span class="o-icon s--youtube"></span></a></li>
 							<li><a href="https://soundcloud.com/reach-a-hand" target="_blank"><span class="o-icon s--soundcloud"></span></a></li>
 						</ul>
-						<form action="<?php the_permalink(); ?>" class="c-form-newsletter" id="newsletter">
+						<h2>Subscribe for Updates <span class="o-line"></span></h2>
+						<form action="https://reachahand.us9.list-manage.com/subscribe/post?u=dcafd1c1cc18e0435b20dd58f&amp;id=9f446f2cad" method="post" id="newsletter" name="mc-embedded-subscribe-form" class="c-form-newsletter" target="_blank" novalidate>
 							<div class="o-input">
-								<input type="text" placeholder="Your E-mail"/>
+								<input type="email" placeholder="Your E-mail" name="EMAIL" class="required">
 							</div>
 							<button class="o-button">
 								<span class="o-button__title">Subscribe</span>

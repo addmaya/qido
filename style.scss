@@ -203,7 +203,7 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .a-center{text-align: center}
 
 /*objects*/
-.o-networks{display: inline-block;
+.o-networks{display: inline-block; transition:opacity 0.5s, visibility 0.5s; opacity: 1; visibility: visible;
   li{display: inline-block; margin-right: em(3);}
   a{display: block; position: relative;
     &:after{content:""; width: 100%; height: 3px; background-color: #FFF; position: absolute; bottom:0; left:0; @include prefix((transform-origin: 0 0)); @include prefix((transition: transform 1s $easeOutExpo)); @include scale2D(0,1)}
@@ -218,10 +218,14 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     a:after{background-color: darken($neptune, 20%)}
   }
   &.u-hide{display: none}
+  &.is-invisible{opacity:0; visibility: hidden}
 }
+.o-tweet{padding-right:em(24); @include image('twitter.svg'); background-position: right center; display: block; background-size:em(24); background-repeat: no-repeat}
 .o-icon{width: em(26); height: em(26); display: inline-block; background-size: contain; background-repeat: no-repeat; background-position:center;
   &.s--search{@include image('search__white.svg')}
   &.s--web{@include image('web.svg')}
+  &.s--website{@include image('web.svg')}
+  &.s--play{@include image('play.svg')}
   &.s--facebook{@include image('facebook_white.svg');
     .t-light &{@include image('facebook_color.svg')}
   }
@@ -240,6 +244,9 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
     .t-light &{@include image('soundcloud_color.svg')}
   }
   &.s--whatsapp{@include image('whatsapp_color.svg');}
+  &.s--wikipedia{@include image('wikipedia.svg');}
+  &.s--linkedin{@include image('linkedin.svg');}
+  &.s--snapchat{@include image('snapchat.svg');}
   &.s--google_plus{@include image('googleplus_color.svg')}
   &.s--pinterest{@include image('pinterest_color.svg')}
   &.s--rss{@include image('rss.svg')}
@@ -268,7 +275,7 @@ $active: #ffe992;
     }
   }
 }
-.o-menu-item__title{width: em(96); display: inline-block; position: relative; top: -3px;
+.o-menu-item__title{width: em(120); display: inline-block; position: relative; top: -3px;
   @include prefix((transition: transform 0.5s $easeOutExpo));
 }
 .o-menu-item__indicator{height: 3px; width: em(16); display: inline-block; background-color: $active; top: -6px; position: absolute; top: 48%; right: em(-20); @include resetPivot; @include scale2D(0,1); @include prefix((transition: transform 0.5s $easeOutExpo));
@@ -328,7 +335,7 @@ $active: #ffe992;
   }
   &.o-board__title{height: auto}
 }
-.o-list{margin-bottom: em(24);
+.o-list{margin-bottom: em(24); @include clear;
   li{padding-bottom: em(6)}
 }
 .o-heading{font-size: em(36); font-weight: 300; padding: em(8); display: block; position: relative; text-transform: capitalize;
@@ -447,6 +454,9 @@ $active: #ffe992;
   a.u-transparent{background-color: transparent;}
   .o-subheading{padding:em(12) 0 em(6)}
   &.u-third{width: percentage(1/3)}
+}
+.o-partner__title{display: table; width: 100%; height: 100%; font-size: 0.875em;
+  .u-wrap{padding: 1em}
 }
 .o-partner__logo{height: 100%; width: 100%; background-size:65%; background-repeat: no-repeat; background-position: center; overflow: hidden; position: relative;
   &.s--profile{background-size: cover; background-color: white; @include border-radius-l}
@@ -591,8 +601,12 @@ $active: #ffe992;
     .o-bubble{left: -5%}
   }
 }
-.o-milestone__figure{padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em; @include cover; filter:grayscale(100%);
+.o-milestone__figure{position: relative; padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em; @include cover; filter:grayscale(100%);
   &:hover{filter:grayscale(0%);}
+  .u-table{height: 100%}
+}
+.o-playButton{position: absolute; left: 50%; top: 40%;
+  span{position: relative; left: -50%; width:6em; height:6em}
 }
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48); color: black;
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
@@ -728,12 +742,14 @@ $active: #ffe992;
   ul{list-style: disc inside}
   ol{list-style: decimal inside}
   ol,ul{ padding-bottom: 2em; line-height:1.8; width:90%; @include center}
+  li{padding-bottom:em(18)}
   em{font-style: italic}
   .iframe-container{position: relative; padding-bottom: 56.25% !important; overflow: hidden; max-width: 100%;height: auto; @include border-radius-s; margin: 2em 0;
     iframe{position: absolute;top: 0; left: 0; width: 100%; height: 100%}
   }
   a{color: $mercury}
   span{font-weight:300 !important}
+  .o-networks{width:auto; padding: 1.5em 0}
 }
 .o-story__header{padding: 2em 0 1em}
 .o-story__title{
@@ -784,9 +800,10 @@ $active: #ffe992;
   header{padding-bottom: 2em}
   .is-booting &{@include animate(fadeInUp, 1, 0.1, cubic-bezier(0.3, 0, 0, 1))}
 }
-
+.o-player{position: relative; padding-bottom: 56.25%; height: 0;overflow: hidden; max-width: 100%; height: auto;
+  iframe, object, embed{position: absolute; top: 0; left: 0; width: 100%; height: 100%}
+}
 .o-pop{position: fixed; top: 0; left:0; width: 100%; height: 100%; z-index: 200; overflow:scroll;display: none;
-  iframe{width: 100%; height: 100%; top:0; left: 0; position: absolute; z-index: 1}
   .u-table{width: 100%;height: 100%;}
   .u-cell{vertical-align: middle}
   .u-canvas{width: 100%; height: 540px}
@@ -807,7 +824,7 @@ $active: #ffe992;
 .o-pop__close{position: absolute; top: -15px; right: -10px; z-index:20;
   .o-icon{width: 3em; height: 3em; margin: em(3)}
 }
-.o-pop__box{background-color: #fff; width: 860px; min-height: 560px; margin: 1.5em auto; position: relative; box-shadow: 30px 30px 50px 0px rgba(0, 0, 0, 0.35);
+.o-pop__box{background-color: #fff; width: 860px; /*min-height: 560px;*/ margin: 1.5em auto; position: relative; box-shadow: 30px 30px 50px 0px rgba(0, 0, 0, 0.35);
   &.s--narrow{width:480px}
   @include device(sm){width:90%;
     &.s--narrow{width:90%;}
@@ -833,7 +850,9 @@ $active: #ffe992;
     .o-bubble{right: em(-66)}
   }
   &.s--quote{margin: 4em auto}
-  &.s--basic{text-align: center; width: 65%; margin-left: auto; margin-right: auto;}
+  &.s--basic{width: 65%; margin-left: auto; margin-right: auto;
+    .u-box{width: auto}
+  }
   &.s--statistics{background-color: #e8f5ff; padding-top: 1.5em}
   .o-statistic{display: inline-block; color: #000; float: none; 
     figure{height: 17em; width: 17em;}
@@ -859,15 +878,28 @@ $active: #ffe992;
     figure{padding-bottom: 50%}
   }
 }
-.o-documents{background-color: #efefef; padding:1.5em; @include center; width: 50%;
-  li{border-bottom: solid 1px #d6d6d6; @include clear; padding-bottom: 1em; margin-bottom: 1em;
-    &:last-child{border-bottom:none; margin-bottom: 0}
-  }
-  a{display: block; float: left; padding-left: 1em}
-  p{padding-bottom: 0.2em}
-  span{color: #3774b7}
-  .o-icon{height: 2em; width: 2em; float: left; position: relative; top: em(9)}
+.o-doc__group{@include clear; text-align: center;
+  li{display: inline-block; margin: 0 em(12)}
 }
+.o-doc{display: block; text-align: center; width: em(240); height: em(248); position: relative; @include a-transform(0.3, ease); color: #566577; 
+  .u-table{width: 90%; background-color: #C8DCF9; @include prefix((transition: background-color 0.3s))}
+  .o-icon{height: 1.75em; width: 1.75em; display: block; top:1em; position: absolute; left: 1em}
+  .o-doc__title{text-align: left; display: block; line-height: 1.2; padding-bottom: 1em; @include prefix((transition: opacity 0.3s))}
+  .u-wrap{padding: 1em;}
+  .o-line{width: 30%; background-color: #b4cff8}
+  .o-bubble{bottom: em(6); @include animate(levitate, 2, 0, ease-in-out); @include infinite; @include a-paused;
+    &.s--left{left:em(-12); width: 3em; height: 3em; @include delay(0.5)}
+    &.s--right{right: em(4); width: 4em; height: 4em}
+  }
+  .o-doc__type{position: absolute; left: 1em; bottom: 1em}
+
+  &:hover{@include translateY(em(-18)); color: #f8f8f8;
+    .u-table{background-color: #1095c7}
+    .o-bubble{@include a-running}
+    .o-doc__type{color: #f8f8f8}
+  }
+}
+
 .o-swiper{width: 85%; @include center; position: relative;
   .swiper-container{width: 100%; @include border-radius-s}
   .o-bubble{top: auto !important; bottom: 3em}
@@ -885,10 +917,10 @@ $active: #ffe992;
   figcaption{text-align: center; padding:0.5em; width: 50%; @include center; font-weight: bold; color: #fff}
 }
 .o-imagelist{@include clear; padding-top: 1.5em;
-  li{width: percentage(1/3); float: left; margin-bottom: 2em;
+  li{width: 50%; float: left; margin-bottom: 2em;
     &.s--fluid{width:25%}
   }
-  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative;
+  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative; background-position:center top;
     &:after{box-shadow: 0 em(48) em(72) rgba(0,0,0,0.35); @include u-after; opacity:1; @include border-radius-s}
   }
   .o-bubble{top: 0 !important; left: -2em;}
@@ -933,10 +965,10 @@ $active: #ffe992;
   .is-booting &{@include animate(fadeInDown, 1.5, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-hidden{@include animate(fadeOutUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
 }
-.c-logo{display: block; width: 11em; height:2.5em;float: left; @include image('rahu_logo_landscape.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include a-opacity(0.4);
+.c-logo{display: block; width: 7em; height:4.5em;float: left; @include image('rahu_logo_vert.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include a-opacity(0.4); position: relative; top: -12px;
   &:hover{opacity: 0.7}
 }
-.c-page__menu{position: fixed; right:0; top: em(84); z-index: 10;
+.c-page__menu{position: fixed; right:0; top: em(0); z-index: 10;
   .is-booting &{@include animate(fadeInRight, 1.5, 0.3, cubic-bezier(0.3, 0, 0, 1))}
   &.is-hidden{@include animate(fadeOutRight, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-active{@include animate(fadeInRight, 1,0, cubic-bezier(0.3, 0, 0, 1))}
@@ -1062,6 +1094,8 @@ $cButtonNextDuration: 0.65s;
   .t-jupiter &{background-color: #e0edf7}
   .t-earth &{background-color: #e4f5f0}
   .t-mercury &{background-color: #e4e4f5}
+
+  .u-box{width:90%; padding: 0 1.5em}
 }
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
@@ -1227,7 +1261,7 @@ $cButtonNextDuration: 0.65s;
   li{margin-bottom:0}
   .u-wrap{padding-bottom:0}
 }
-.c-story{width: 65%; @include center; font-size:1.125em; padding:2em 0 4em;
+.c-story{width: 55%; @include center; font-size:1.125em; padding:2em 0 4em;
   .u-box{width: auto}
   .s--basic{width: auto; text-align: left}
 }

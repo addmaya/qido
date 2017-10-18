@@ -35,7 +35,7 @@
                         break;
                 }
             ?>
-				<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="#program-<?php echo get_the_id(); ?>" style="background-image:url('<?php the_field('logo'); ?>')"></a></li>
+				<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="#program-<?php echo get_the_id(); ?>" class="js-defer" data-image-url="<?php the_field('logo'); ?>"></a></li>
 				<?php $programLogoIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>
 			<?php } ?>
@@ -93,10 +93,10 @@
 						<a class="o-program__link <?php if($programContent){echo 'is-clickable" href="'.$programLink.'"';} ?>">
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--large"></span>
-							<figure class="o-program__figure" style="background-image:url('<?php the_field('cover_image');?>')"></figure>
+							<figure class="o-program__figure js-defer" data-image-url="<?php the_field('cover_image');?>"></figure>
 							<section class="o-program-meta">
 								<div class="u-clear">
-									<figure class="o-program__logo" style="background-image:url('<?php the_field('logo'); ?>')"></figure>
+									<figure class="o-program__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></figure>
 								</div>
 								<section class="o-program-excerpt__wrap">
 									<span class="o-subheading"><?php the_title(); ?></span>

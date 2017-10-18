@@ -80,7 +80,7 @@
 			?>
 			<section class="c-event__poster">
 				<section class="u-wrap">
-					<figure class="<?php echo $posterClass; ?>" style="background-image:url('<?php echo $posterURL; ?>')"></figure>
+					<figure class="js-defer <?php echo $posterClass; ?>" data-image-url="<?php echo $posterURL; ?>"></figure>
 				</section>
 			</section>
 		</section>
