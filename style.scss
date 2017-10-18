@@ -663,7 +663,7 @@ $active: #ffe992;
   &:after{@include u-after; box-shadow: 0 em(48) em(72) rgba(0,0,0,0.4); @include a-opacity(0.3); opacity: 0; @include border-radius-s; }
 }
 .o-card__info{width: 75%; @include center; @include a-transform(0.4, $easeOutBack);
-  .u-block{padding: em(24) 0; line-height: 1.6}
+  .u-block{padding: em(24) 0; line-height: 1.8; font-size:0.875em;}
 }
 .o-card__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: -20%; opacity: 0.1; z-index: -1;
   .s--left &{left: 0}
@@ -1202,7 +1202,7 @@ $cButtonNextDuration: 0.65s;
   }
   .swiper-button-prev,.swiper-button-next{top: auto; bottom: em(48); opacity: 1}
   .o-bubble{@include a-paused}
-  .swiper-pagination-bullet{border-radius:0; height:5px; width:em(72); position: relative;
+  .swiper-pagination-bullet{border-radius:0; height:3px;width:em(72); position: relative;
     &:after{@include u-after; @include resetPivot; @include scale2D(0,1); background-color:#fff; @include a-transform(6,linear); opacity:0}
     &.swiper-pagination-bullet-active{
       &:after{@include scale2D(1,1); opacity:1}
