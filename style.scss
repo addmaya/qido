@@ -131,12 +131,11 @@ $easeOutBack: cubic-bezier(0.42, 0, 0, 1.46);
 
 /*defaults*/
 html,body{width:100%; height:100%}
-body{@include opensans; font-size: 0.95em; font-weight: 300;
+body{@include opensans; font-size: 0.95em; font-weight: 300; color: #717c7d;
   &.t-neptune{color: #3E526E;
     input,textarea{color: #3E526E}
   }
   &.t-venus{color: #706992}
-  &.t-jupiter{color: #717c7d}
   &.t-earth{color: #55635d}
   &.t-mercury{color:#46495a}
 }
@@ -357,7 +356,7 @@ $active: #ffe992;
 
 }
 .o-select{display: inline-block; position: relative; color: $neptune;
-  select{display: inline-block; border:solid 1px; border-radius: em(24); padding: em(9) em(56) em(12) em(24); background-color: #fff; font-size: 1em; color: inherit; margin-left: em(12)}
+  select{display: inline-block; border:solid 1px; border-radius: em(24); padding: em(9) em(56) em(12) em(24); background-color: #fff; font-size: 1em; color: inherit; margin-left: em(12); @include image('dropdown.svg'); background-size: em(16); background-repeat:no-repeat; background-position: 90% center}
   .t-venus &{color: $venus}
   .t-mercury &{color: $mercury}
 }
@@ -719,7 +718,10 @@ $active: #ffe992;
   .s--medium{top:-10%; @include animate(levitate, 4, 0, ease-in-out); @include infinite}
   .s--small{bottom: 55%; right: 5%; @include animate(levitate, 3, 0, ease-in-out); @include infinite}
   .o-bubble{@include a-paused; z-index:-2}
+
+  &.s--educators{width:percentage(1/6); font-size: 0.75em}
 }
+
 .o-story{width: 70%; @include center; font-size:1.125em; padding:2em 0 4em;
   p{margin-bottom: em(24); line-height:1.7}
   h1{font-size:2.2em; position: relative;
@@ -789,6 +791,7 @@ $active: #ffe992;
   figure{height: em(360); margin: 1.5em; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; filter:grayscale(100%);
     &.s--radial{width: em(225); height: em(225); @include cover; @include border-radius-l; background-color: #e6e6e6; @include center; }
     &.s--color{filter: none}
+    &.s--rounded{@include border-radius-l; width: em(240); height: em(240); background-size: cover}
   }
   .o-networks{margin: 1.5em}
   .is-booting &{@include animate(fadeInUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
@@ -974,7 +977,7 @@ $active: #ffe992;
   &.is-hidden{@include animate(fadeOutRight, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-active{@include animate(fadeInRight, 1,0, cubic-bezier(0.3, 0, 0, 1))}
 }
-.c-page-cover{background-color: #252525; height:70%; position: relative; overflow: hidden; color: #fff; 
+.c-page-cover{background-color: #03A9F4; height:70%; position: relative; overflow: hidden; color: #fff; 
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
     .is-booting &{@include animate(fadeInUp, 1, 1.1, cubic-bezier(0.3, 0, 0, 1))}
   }     
@@ -999,7 +1002,7 @@ $active: #ffe992;
   }
 }
 
-.c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease));
+.c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease)); background-color: darken($jupiter,15%);
   span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; @include scale2D(0.4,0.4);
     &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 7px white; top: -25%; left:-25%;};
   }  
@@ -1009,7 +1012,6 @@ $active: #ffe992;
 
   .t-neptune &{background-color: darken($neptune, 5%)}
   .t-venus &{background-color: darken($venus, 20%)}   
-  .t-jupiter &{background-color: darken($jupiter,15%)}
   .t-earth &{background-color: darken($earth,15%)}
   .t-mercury &{background-color: darken($mercury,15%)}
 
@@ -1026,7 +1028,7 @@ $active: #ffe992;
   span{font-size: 30em; @include arial; text-transform: lowercase; color: #F3F3F3}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4, ease);}
 }
-.c-page__info{width: em(816); @include center; background-color: darken(#252525, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
+.c-page__info{width: em(816); @include center; background-color: darken(#03A9F4, 8%); color: #fff; position: relative; top: -10%; text-align: center; @include border-radius-xs;
   .u-block{@include center; width: 90%; @include light; line-height: 1.6;}
 
   a{display: block; position: relative; overflow:hidden;
@@ -1100,7 +1102,7 @@ $cButtonNextDuration: 0.65s;
 }
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
-  figure{width: 90%;height: em(96); background-repeat:no-repeat; background-size:70%; background-position: center;}
+  figure{width: 90%;height: em(96); background-repeat:no-repeat; background-size:70%; background-position: center; mix-blend-mode: multiply; filter: grayscale(100%)}
 }
 .c-form-newsletter{@include clear;
   .o-button{float: right; width: 42%; padding: em(8) em(24)}
@@ -1170,10 +1172,9 @@ $cButtonNextDuration: 0.65s;
     &:after{@include scale2D(1,1)}
   }
 }
-.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));@include border-radius-l;
+.c-humburger{position: fixed; width:4.5em; height: 4.5em; top:0; right:0; margin:em(12); z-index: 12; transition: background-color 0.5s ease, transform 0.5s ease; @include prefix((transform: translate3d(200%, 0, 0)));@include border-radius-l; background-color: $jupiter;
   .t-neptune &{background-color: $neptune}
   .t-venus &{background-color: $venus}
-  .t-jupiter &{background-color: $jupiter}
   .t-earth &{background-color: $earth}
   .t-mercury &{background-color: $mercury}
   

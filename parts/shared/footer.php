@@ -247,7 +247,7 @@
 								<input type="email" placeholder="Your E-mail" name="EMAIL" class="required">
 							</div>
 							<button class="o-button">
-								<span class="o-button__title">Subscribe</span>
+								<span class="o-button__title">Get In</span>
 								<i class="o-icon s--arrow-ltr"></i>
 							</button>
 						</form>

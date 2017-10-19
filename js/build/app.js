@@ -199,6 +199,24 @@ jQuery(document).ready(function($) {
 		});
 	}
 
+	function getEducators(){
+		$('#educatorsYear').on('change', function() {
+			var me = $(this);
+			var educatorsYear = me.val();
+
+			$.ajax({
+			   url: ajaxURL,
+			   method: 'post',
+			   dataType: 'json',
+			   data: {action: 'getEducators', year: educatorsYear},
+			   success: function(data){
+			        $('#educatorsGrid').html(data);
+			        loadDeferredImages($('#educatorsGrid').find('.js-defer'));
+			   } 
+			});
+		});
+	}
+
 	//pop
 	function initPop(){
 		$('.o-pop__close').click(function(e) {
@@ -211,14 +229,22 @@ jQuery(document).ready(function($) {
 		$('.o-pop .o-pop__box').click(function(e) {
 			e.stopPropagation();
 		});
-		$('.js-showBioPop').click(function(e) {
+		$('body').on('click', '.js-showBioPop', function(e){
 			e.preventDefault();
 
 			var me = $(this);
 			var bioName = me.data('name');
 			var bioTitle = me.data('title');
 			var bioID = me.data('id');
+			var bioType = me.data('type');
 			var imageURL = me.find('figure').data('image-url');
+
+			if (me.data('rounded') != '1') {
+				$('#bioPhoto').addClass('s--rounded');
+			}
+			else {
+				$('#bioPhoto').removeClass('s--rounded');
+			}
 
 			$('#bioName').html(bioName);
 			$('#bioTitle').html(bioTitle);
@@ -228,7 +254,7 @@ jQuery(document).ready(function($) {
 			   url: ajaxURL,
 			   method: 'post',
 			   dataType: 'json',
-			   data: {action: 'getBioContent', bioID: bioID},
+			   data: {action: 'getBioContent', bioID: bioID, type: bioType},
 			   success: function(data){
 			        $('#bioContent').html(data);
 			        openPop($('#bioPop'));
@@ -618,6 +644,7 @@ jQuery(document).ready(function($) {
 		clickProgramLink();
 		updateMenu();
 		loadDeferredImages($('.js-defer'));
+		getEducators();
 	}
 
 	boot();

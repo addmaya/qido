@@ -1,6 +1,86 @@
 <?php
 	require_once( 'external/starkers-utilities.php' );
 	
+	
+	function renderEducator($aosDelay, $educatorName, $educatorID, $educatorPhoto){
+		$html = '';
+		$html .= '<li class="o-grid__item o-director s--educators" data-aos="fade-up" data-aos-delay="'.$aosDelay.'">';
+		$html .= '<a data-type="educator" href="#" class="no-barba js-showBioPop" data-title="Peer Educator" data-name="'.$educatorName.'" data-id="'.$educatorID.'">';
+		$html .= '<figure class="u-greyscale js-defer" data-image-url="'.$educatorPhoto.'"></figure>';
+		$html .= '<span class="o-bubble s--medium"></span><span class="o-bubble s--small"></span>';
+		$html .= '<section class="o-director__info">';
+		$html .= '<span class="o-subheading s--profile">'.$educatorName.'</span>';
+		$html .= '</section></a></li>';
+
+		return $html;
+	}
+
+	function getEducators(){
+		$year = $_POST['year'];
+		$html = '';
+
+		$alumni = new WP_User_Query(array(
+				'role'=>'educator',
+				'meta_query'=> array(
+					array(
+						'key'=>'year',
+						'value'=>$year,
+						'compare'=> '='
+					)
+				)
+			)
+		);
+
+		$educators = $alumni->get_results();
+
+		if (!empty($educators)){
+			$alumniIndex = 0;
+			$aosDelay = 0;
+
+			foreach($educators as $educator){			
+				$educatorID = $educator->ID;
+				$educatorInfo = get_userdata($educatorID);
+				$educatorName = $educatorInfo->first_name.' '.$educatorInfo->last_name;
+				$educatorPhoto = get_field('photo', 'user_'.$educatorID);
+				
+				if($alumniIndex > 3){
+					$alumniIndex = 0;
+				}
+				switch ($alumniIndex) {
+					case 1:
+						$aosDelay = 100;
+						break;
+					case 2:
+						$aosDelay = 200;
+						break;
+					case 3:
+						$aosDelay = 300;
+						break;
+					default:
+						$aosDelay = 0;
+						break;
+				}
+				$html .= renderEducator($aosDelay, $educatorName, $educatorID, $educatorPhoto);
+				$alumniIndex++;
+			}
+			echo json_encode($html);
+		}
+		die();
+	}
+
+	add_action('wp_ajax_getEducators', 'getEducators');
+	add_action('wp_ajax_nopriv_getEducators', 'getEducators');
+
+
+	//add new role
+
+	add_role('educator', __(
+    'Peer Educator'),
+    array(
+        'read'=> true
+        )
+	);
+
 	function getImageID($image_url) {
 	    global $wpdb;
 	    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
@@ -275,11 +355,15 @@
 	add_action('wp_ajax_nopriv_updatePostReaction', 'updatePostReaction');
 
 	function getBioContent(){
+	    $bioType = $_POST['type'];
 	    $bioID = $_POST['bioID'];
 	    $html = '';
-	    
 	    $networks = acf_get_fields('127');
-	    
+
+	    if ($bioType == 'educator') {
+	    	$bioID = 'user_'.$bioID;
+	    }
+
 	    $html .= '<ul class="o-networks t-light">';
 	    foreach ($networks as $network) {
 	    	$networkName = $network['name'];
@@ -290,12 +374,14 @@
 	    }
 	    $html .='</ul>';
 
-
-	    if(get_post_type($bioID) != 'partner'){
-			$bioObject = get_post($bioID);
-			$bioContent = $bioObject->post_content;
-			$html .= $bioContent;
-			echo json_encode($html);
+	    if(get_post_type($bioID) != 'partner' || $bioType == 'educator'){
+			if ($bioType != 'educator') {
+				$bioObject = get_post($bioID);
+				$bioContent = $bioObject->post_content;
+				$html .= $bioContent;
+			} else {
+				$html .= get_the_author_meta('description', intval($_POST['bioID']));
+			}
 		}
 		else{
 			$html .= '<p>'.get_post_meta( $bioID, 'introduction', true).'</p>';
@@ -310,9 +396,9 @@
 				}
 				$html .='</ul>';
 				wp_reset_postdata();
-			}
-			echo json_encode($html); 
+			} 
 		}
+		echo json_encode($html);
 	    die();
 	}
 
