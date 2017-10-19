@@ -17,6 +17,7 @@ $mercury: #3F51B5;
 $easeOutExpo: cubic-bezier(0, 0.5, 0, 1);
 $easeOutBack: cubic-bezier(0.42, 0, 0, 1.46);
 
+
 /*functions*/
 @mixin image($image){background-image: url('images/'+$image)}
 @mixin device($device){
@@ -144,6 +145,9 @@ p{line-height: 1.8}
 h1{font-size: em(40); font-weight: 300; padding-bottom: em(16); line-height: 1.3;
   .o-subtitle{font-size: 25%; letter-spacing: em(36); padding-top: em(20)}
   &.s--clear{padding: 0}
+  @include device(xs){
+    font-size: em(32)
+  }
 
 }
 h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
@@ -153,25 +157,43 @@ h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
 a{color: inherit}
 blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative;
   background: url('images/quote-open.svg') left top/20% 20% no-repeat, url('images/quote-close.svg') right bottom/20% 20% no-repeat;
+  @include device(xs){
+    font-size: em(22);
+  }
 }
 
 /*utilities*/
 .u-box{width: em(1124); @include center;
   &.s--small{width: em(816)}
   &.s--fluid{width: 95%}
+
+  @include device(xs){width: 90%;
+    &.s--small{width:90%}
+    &.s--fluid{width: 90%}
+  }
 }
 .u-left{float: left}
 .u-right{float: right}
 .u-table{display: table; width: 100%; height: 100%;}
 .u-cell{display: table-cell; vertical-align: middle;}
 .u-clear{@include clear}
-.u-half{width: 50%; float: left}
-.u-third{width: percentage(1/3); float: left}
-.u-fourth{width: percentage(1/4); float: left}
+.u-half{width: 50%; float: left;
+  @include device(xs){float: none; width: auto}
+}
+.u-third{width: percentage(1/3); float: left;
+  @include device(xs){float: none; width: auto}
+}
+.u-fourth{width: percentage(1/4); float: left;
+  @include device(sm){width: 50%}
+  @include device(xs){float: none; width: auto}
+}
 .u-full{width: 100%;}
 .u-canvas{width: 100%; height: 100%;}
 .u-wrap{padding:em(24); @include clear;
   &.u-pdb-clear{padding-bottom: 0}
+  @include device(xs){
+    &.is-morphus{padding: 0}
+  }
 }
 .u-greyscale{filter:grayscale(100);}
 .u-oh{overflow: hidden}
@@ -193,10 +215,26 @@ blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: rela
 .u-mt-l{margin-top: 3em}
 .u-mt-xl{margin-top: 4.5em}
 
-.u-30p{width: 30%; float: left;}
-.u-40p{width: 40%; float: left}
-.u-60p{width: 60%; float: left}
-.u-70p{width: 70%; float: left}
+.u-30p{width: 30%; float: left;
+  @include device(xs){
+    float: none; width: auto;
+  }
+}
+.u-40p{width: 40%; float: left;
+  @include device(xs){
+    float: none; width: auto;
+  }
+}
+.u-60p{width: 60%; float: left;
+  @include device(xs){
+    float: none; width: auto;
+  }
+}
+.u-70p{width: 70%; float: left;
+  @include device(xs){
+    float: none; width: auto;
+  }
+}
 .u-relative{position: relative;}
 .a-right{text-align: right}
 .a-center{text-align: center}
@@ -302,6 +340,9 @@ $active: #ffe992;
 .o-line{height: 1px; background-color:#d2e1ea; display: block;
   &.s--break{margin:em(48) 0;}
   &.s--hidden{margin: 3.5em 0; background-color: white}
+  @include device(xs){
+    &.s--hidden{margin: 2.5em 0}
+  }
 }
 .o-link{display: inline-block; padding: em(4) 0; position: relative;
   .o-icon{width: 1em; height: 1em; position: relative; top:2px; @include prefix((transition: transform 0.3s ease));}
@@ -323,6 +364,10 @@ $active: #ffe992;
     &:focus + span{@include scale2D(1,1)}
   }
   span{width: 15%; height: 2px; background-color: #3b7498; position: absolute; bottom: em(24); left: 0; @include prefix((transition: transform 0.5s $easeOutExpo)); @include resetPivot; @include scale2D(0,1)}
+
+  @include device(xs){
+    input, textarea{margin-bottom: 0}
+  }
 }
 ::-webkit-input-placeholder {color: #3E526E}
 ::-moz-placeholder {color: #3E526E}
@@ -343,6 +388,9 @@ $active: #ffe992;
   &:after{content:""; background-color:#e8e8e8; width: 10%; height: 2px; margin: 0 auto; position: absolute; bottom: 0; left: 45%;}
   .c-button-next &{
     &:after{display:none;}
+  }
+  @include device(xs){
+    font-size: em(28); padding: 0;
   }
 }
 .o-subheading{font-size: em(24); padding-bottom: em(16); display: block; line-height: 1.4; font-weight: 400; text-transform: capitalize;
@@ -391,6 +439,18 @@ $active: #ffe992;
   .s--small{height: 6em; width: 6em; left: em(-12); top: 50%;}
   .s--xsmall{height: 4em; width: 4em; right: 0; top: 20%;}
   .o-bubble{@include animate(levitate, 2, 0, ease-in-out); @include infinite; @include a-paused}
+
+  @include device(xs){
+    &.u-full{float: none;
+      .o-article__brief{width: auto}
+    }
+    .u-wrap{padding: 0}
+    .o-bubble{height: 6em !important; width: 6em !important; left: em(-12) !important; top: 50% !important; right: auto !important}  
+
+    &.u-third{
+      .u-wrap{padding: 0}
+    }
+  }
 }
 .o-article__link{display: block;
   &:hover{
@@ -427,6 +487,9 @@ $active: #ffe992;
   .o-section__title{margin-bottom: em(24)}
   p{margin-top: 2.5em;}
   &.s--left{text-align: left; margin: 0; width: 30%; float: left}
+  @include device(xs){
+    width: auto
+  }
 }
 .o-section__footer{padding-top: 2em; text-align: center;}
 .o-section__title{display: inline-block; margin-bottom:4em; font-weight: 300; background-color:#0a0a0a; padding: 0.875em 2em; color: white; border-radius: 3em;
@@ -453,12 +516,19 @@ $active: #ffe992;
   a.u-transparent{background-color: transparent;}
   .o-subheading{padding:em(12) 0 em(6)}
   &.u-third{width: percentage(1/3)}
+
+  @include device(xs){
+    width: 50% !important; float: left; margin-bottom: 0;
+  }
 }
 .o-partner__title{display: table; width: 100%; height: 100%; font-size: 0.875em;
   .u-wrap{padding: 1em}
 }
 .o-partner__logo{height: 100%; width: 100%; background-size:65%; background-repeat: no-repeat; background-position: center; overflow: hidden; position: relative; filter: grayscale(100%); mix-blend-mode: multiply;
   &.s--profile{background-size: cover; background-color: white; @include border-radius-l}
+  @include device(xs){
+    height: auto; padding-bottom: 100%;
+  }
 }
 .o-partner__link{display: block; width: em(225); height: em(225); background-color: #e6e6e6; @include center; @include a-transform(0.4, $easeOutBack); position: relative; 
   .u-table{position: absolute; top: 100%; left: 0; z-index: 1; background-color: rgba(12, 61, 139, 0.94); width: 100%; height: 100%; @include a-transform(0.4, ease); color: #fff;}
@@ -469,6 +539,10 @@ $active: #ffe992;
     .u-table{@include translateY(-100%)}
     .o-partner__logo{filter:none}
   }
+  @include device(xs){margin: em(12);
+    width: auto; height:auto;
+    .u-table{display: none}
+  }
 }
 .o-tag{display: inline-block; font-size: 1.5em; color: #0c3d8b; padding:em(6); text-transform: lowercase; font-weight: 300; position: relative; @include a-transform(0.3,ease);
   span{vertical-align: super; font-size: 50%; color:#00a6d0; font-weight:bold}
@@ -476,6 +550,10 @@ $active: #ffe992;
     &:after{@include scale2D(1,1)}
   }
   &:after{content:""; position: absolute; left:0; bottom:0; @include resetPivot; @include scale2D(0,1); width: 90%; height: 3px; background-color: darken($neptune,10%); @include a-transform(0.3, $easeOutExpo)}
+
+  @include device(xs){
+    font-size: 1.2em
+  }
 }
 .o-ticket{display: block;
   .c-cut{position: absolute; z-index: 1; width: em(16); height: em(16); @include border-radius-l;
@@ -537,6 +615,12 @@ $active: #ffe992;
   &.s--small{
     .o-program__logo{float: left;}
   }
+  @include device(xs){
+    float: none; margin-bottom:0;
+    &.u-half{
+      .o-program-meta{width: auto; right:0; bottom: 0}
+    }
+  }
 }
 .o-program__link{@include clear; position: relative; display: block;
   &.is-clickable{
@@ -557,11 +641,23 @@ $active: #ffe992;
 }
 .o-program__figure{width: 75%; background-color: darken(#e6e6e6, 5%); height:26em; border-radius: em(8); float: right; background-size: cover; background-repeat: no-repeat; background-position: center top; @include a-transform(0.5, $easeOutBack); position: relative;
   &:after{content:""; position: absolute; top:20%; @include resetPivot; @include scale2D(0,1); width: 20%; height: 4px; background-color: #fff; left: 50%; @include a-transform(0.3, $easeOutExpo)}
+
+  @include device(xs){
+    width: 100%; float: none !important;
+  }
 }
 .o-program__group{@include clear; padding: 1.5em 1.5em 0}
-.o-program__logo{width: em(156); height: em(156); background-color:#fff; @include border-radius-s; margin-bottom:em(12); float: right; background-size: 75%; background-repeat: no-repeat; background-position: center}
+.o-program__logo{width: em(156); height: em(156); background-color:#fff; @include border-radius-s; margin-bottom:em(12); float: right; background-size: 75%; background-repeat: no-repeat; background-position: center;
+  @include device(xs){
+    position: relative; left: em(12); float: none !important; right: auto !important; 
+  }
+}
 .o-program-meta{width: 42%; position: absolute; top:3em; @include a-transform(0.4, $easeOutBack);
   .o-subheading{color:#fff;}
+
+  @include device(xs){
+    width: auto; position: relative !important; top:em(-124) !important; bottom: auto !important; 
+  } 
 }
 .o-progam__monogram{font-weight: bold; color: black; font-size: 10em; position: absolute; bottom: 24px; right: 24px; opacity: 0.1; text-transform: lowercase;}
 .o-program__excerpt{position: relative; z-index: 1; font-size:0.875em;
@@ -600,6 +696,17 @@ $active: #ffe992;
   &.u-left{
     .o-bubble{left: -5%}
   }
+
+  @include device(xs){
+    width: auto; float: none;
+    &.u-right{float: none}
+    &.u-full{width: auto;
+      .o-milestone__story{width: auto}
+      .o-bubble{z-index:-2}
+    }
+    .o-line{margin: em(24) 0 em(24); float: right !important; right: -1em !important; left: auto !important}
+    .u-wrap{padding: 1em}
+  }
 }
 .o-milestone__figure{position: relative; padding-bottom: 50%; width: 100%; background-color: #e6e6e6; @include border-radius-s; margin-bottom: 1.5em; @include cover; filter:grayscale(100%);
   &:hover{filter:grayscale(0%);}
@@ -607,6 +714,9 @@ $active: #ffe992;
 }
 .o-playButton{position: absolute; left: 50%; top: 40%;
   span{position: relative; left: -50%; width:6em; height:6em}
+  @include device(xs){
+    span{width:3em; height:3em}
+  }
 }
 .o-statistic{width: 25%;text-align: center; float: left; margin-bottom: em(48); color: black;
   figure{height: em(240); width: em(240); @include border-radius-l; text-align: center;  margin-bottom:em(18); @include center}
@@ -622,17 +732,26 @@ $active: #ffe992;
   .t-berry{background-color: #FF7E88}
   .t-ivy{background-color: #9687E0}
   .t-mango{background-color: #7EE0A7}
+
+  @include device(xs){
+    float: none; width: auto; 
+  }
 }
 .o-statistic__figure{display: block; font-size: 6em; @include sixcaps; color: #000;}
 .o-statistic__unit{vertical-align: super; font-size: 50%}
-.o-slide{height: 100%; overflow: hidden; position: relative;
+.o-slide{height: 100%; overflow: hidden; position: relative; display: block;
   .o-button{border:solid 2px #fff; margin-top: 2em; background-color: transparent; color: #fff; line-height: 1}
   .u-wrap{padding: 3em 1.5em 5em}
+  @include device(xs){
+     padding-top: 8em;
+  }
 }
 .o-slide__excerpt{line-height: 1.6; display: block; width:80%;
   p{font-size: 0.875em}
+  @include device(xs){
+    width: auto;
+  }
 }
-.o-slide__info{width: 45%; position: absolute; z-index: 3; bottom:25%; left: 0}
 .o-globe{border: solid 2px #fff; position: absolute; width:30em; height:30em; z-index: 1; @include border-radius-l; bottom: -60%; left: 35%; opacity: 0.1; @include a-transform(3, ease)}
 .o-slide__figure{height: 100%;
   figure{height: em(560); width: em(560); @include border-radius-l; @include center; position: relative; left: 6em; z-index: 2; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: #faebd7; @include a-transform(1, ease);
@@ -641,7 +760,18 @@ $active: #ffe992;
   .s--small{width: 2.5em; height: 2.5em; top:20%; left:50%; background-color: #FFC14A; @include prefix((animation: bubbleCoverSmall 20s linear infinite))}
   .s--medium{width: 4em; height: 4em; right: 50%; top:30%; background-color: #5FD691; @include prefix((animation: bubbleCoverMedium 50s linear infinite))}
   .s--large{width: 5em; height: 5em; bottom:25%; background-color: transparent; border: solid 2px #fff; right: 20%; @include prefix((animation:bubbleCoverLarge 80s linear infinite))}
+
+  @include device(xs){height: auto;
+    figure{width: 100%; height: auto; padding-bottom: 100%; position: static}
+  }
 }
+.o-slide__info{width: 45%; position: absolute; z-index: 3; bottom:25%; left: 0;
+  @include device(xs){
+    width: auto; position: static;
+  }
+}
+.o-globe{display: none}
+
 .o-card{color: white; margin-bottom: 1.5em; position: relative; display: block;
   &.is-clickable{
   &:hover{
@@ -658,12 +788,21 @@ $active: #ffe992;
 }
 .o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center; @include a-transform(0.4, $easeOutBack); 
     &:after{content:""; position: absolute; z-index: 1; width: 20%; height: 4px; @include resetPivot; @include scale2D(0,1); left: 50%; top: 50%; @include a-transform(0.4, $easeOutExpo); background-color: #fff;}
+  @include device(xs){
+    width: auto
+  }
 }
 .o-card__logo{display: block; width: 10em; height: 10em; position: absolute; bottom: 3em; left: -15%; background-color: white; @include border-radius-s; background-size: 75%; background-position: center; background-repeat: no-repeat; @include a-transform(0.4, $easeOutBack);
   &:after{@include u-after; box-shadow: 0 em(48) em(72) rgba(0,0,0,0.4); @include a-opacity(0.3); opacity: 0; @include border-radius-s; }
+  @include device(xs){
+    left: em(-6)
+  }
 }
 .o-card__info{width: 75%; @include center; @include a-transform(0.4, $easeOutBack);
   .u-block{padding: em(24) 0; line-height: 1.8; font-size:0.875em;}
+  @include device(xs){
+    width: auto;
+  }
 }
 .o-card__monogram{font-weight: bold; color: black; font-size: 15em; position: absolute; bottom: -20%; opacity: 0.1; z-index: -1;
   .s--left &{left: 0}
@@ -703,6 +842,9 @@ $active: #ffe992;
       figure{@include translateY(em(-24))}
     }
   }
+  @include device(xs){
+    margin: 0 auto;
+  }
 }
 .o-director{width: 25%; float: left; margin-bottom:4em; text-align: center; 
   a{display: block; position: relative; @include a-transform(0.3, ease);
@@ -720,6 +862,10 @@ $active: #ffe992;
   .o-bubble{@include a-paused; z-index:-2}
 
   &.s--educators{width:percentage(1/6); font-size: 0.75em}
+
+  @include device(xs){
+    width: 100% !important; float: none; margin-bottom: em(24);
+  }
 }
 
 .o-story{width: 70%; @include center; font-size:1.125em; padding:2em 0 4em;
@@ -753,6 +899,11 @@ $active: #ffe992;
   a{color: $mercury}
   span{font-weight:300 !important}
   .o-networks{width:auto; padding: 1.5em 0}
+
+  @include device(xs){
+    blockquote{font-size:1em; width:auto;}
+    .o-networks{padding:0}
+  }
 }
 .o-story__header{padding: 2em 0 1em}
 .o-story__title{
@@ -795,6 +946,11 @@ $active: #ffe992;
   }
   .o-networks{margin: 1.5em}
   .is-booting &{@include animate(fadeInUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
+
+  @include device(xs){
+    width: auto; float: none;
+    .o-networks{margin: 0}
+  }
 }
 .o-bio__story{width: 60%; float: left;
   p{padding-bottom: 1.5em;
@@ -803,6 +959,11 @@ $active: #ffe992;
   h1{padding-bottom: em(3)}
   header{padding-bottom: 2em}
   .is-booting &{@include animate(fadeInUp, 1, 0.1, cubic-bezier(0.3, 0, 0, 1))}
+
+  @include device(xs){
+    width: auto; float: none
+    h1{padding-top: 0}
+  }
 }
 .o-player{position: relative; padding-bottom: 56.25%; height: 0;overflow: hidden; max-width: 100%; height: auto;
   iframe, object, embed{position: absolute; top: 0; left: 0; width: 100%; height: 100%}
@@ -862,6 +1023,18 @@ $active: #ffe992;
     figure{height: 17em; width: 17em;}
   }
   &.s--imagelist{margin-bottom: 0}
+
+  @include device(xs){
+    header{width: auto}
+    h2{font-size: em(28); padding-top: 1em}
+    .o-bubble.s--large{height: auto; width: 50%; padding-bottom: 50%}
+    &.s--odd{
+      .o-bubble{right: 0; top: -1em}
+    }
+    &.s--even{
+      .o-bubble{left: 0}
+    }
+  }
 }
 .o-quote{position: relative; font-size: 1.4em; width: 70%; text-align: center; margin:0 auto;
   p{@include caption; padding-bottom: em(12); color: #7c7d82; line-height: 1.6}
@@ -872,6 +1045,10 @@ $active: #ffe992;
   .s--even &{float: right}
   .s--linear &{float: none; width: auto}
   &:after{content: ""; left:1.5em; bottom: 0; position: absolute; width: 20%; height: 1px; background-color: #e6e6e6}
+
+  @include device(xs){
+    float: none; width: auto
+  }
 }
 .o-block__figure{float: right; width: 45%;
   figure{@include border-radius-s; padding-bottom: 80%; @include cover; position: relative;
@@ -880,6 +1057,10 @@ $active: #ffe992;
   .s--even &{float: left}
   .s--linear &{@include center; width: 75%; margin-bottom:1.5em; float: none;
     figure{padding-bottom: 50%}
+  }
+
+  @include device(xs){
+    float: none; width: auto;
   }
 }
 .o-doc__group{@include clear; text-align: center;
@@ -911,6 +1092,11 @@ $active: #ffe992;
   .s--right{right: -5%;}
   .swiper-button-prev{left:-10%; @include image('arrow-rtl.svg'); width: 2em; background-size: contain}
   .swiper-button-next{right: -10%; @include image('arrow-ltr.svg'); width: 2em; background-size: contain}
+
+  @include device(xs){
+    .s--left{left: 0; bottom: 1em}
+    .s--right{right: 0; bottom: -1em}
+  }
 }
 .o-swiper__pagination{text-align: center; padding-top: 1.5em;
   .swiper-pagination{position: static; display: inline-block;}
@@ -928,6 +1114,10 @@ $active: #ffe992;
     &:after{box-shadow: 0 em(48) em(72) rgba(0,0,0,0.35); @include u-after; opacity:1; @include border-radius-s}
   }
   .o-bubble{top: 0 !important; left: -2em;}
+
+  @include device(xs){
+    li{width: auto !important; float: none}
+  }
 }
 .o-embed__content{position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; @include border-radius-s;
   iframe, object, embed{position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
@@ -936,6 +1126,10 @@ $active: #ffe992;
   .o-bubble{top: auto !important; bottom: 2%}
   .s--left{left: -8%;}
   .s--right{right: -8%;}
+
+  @include device(xs){
+    width: auto
+  }
 }
 .o-reaction{text-align: center; display: inline-block; margin-right: 0.75em;
   a{display:block; @include a-transform(0.25, $easeOutBack);
@@ -969,13 +1163,18 @@ $active: #ffe992;
   .is-booting &{@include animate(fadeInDown, 1.5, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-hidden{@include animate(fadeOutUp, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
 }
-.c-logo{display: block; width: 7em; height:4.5em;float: left; @include image('rahu_logo_vert.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include a-opacity(0.4); position: relative; top: -12px;
+.c-logo{display: block; width: 7em; height:4.5em; @include image('rahu_logo_vert.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; @include a-opacity(0.4); position: relative; top: -12px;
   &:hover{opacity: 0.7}
 }
-.c-page__menu{position: fixed; right:0; top: em(0); z-index: 10;
+.c-page__menu{position: fixed; right:0; top:0; z-index: 10;
   .is-booting &{@include animate(fadeInRight, 1.5, 0.3, cubic-bezier(0.3, 0, 0, 1))}
   &.is-hidden{@include animate(fadeOutRight, 1, 0, cubic-bezier(0.3, 0, 0, 1))}
   &.is-active{@include animate(fadeInRight, 1,0, cubic-bezier(0.3, 0, 0, 1))}
+
+  @include device(xs){top: 20%;
+    visibility: hidden; opacity: 0;
+    &.is-active{visibility: visible}
+  }
 }
 .c-page-cover{background-color: #03A9F4; height:70%; position: relative; overflow: hidden; color: #fff; 
   .u-table{position: absolute; top:0; z-index: 1; left: 0; text-align: center;
@@ -1051,6 +1250,11 @@ $active: #ffe992;
   .t-earth &{background-color: $earth}
   .t-mercury &{background-color: $mercury}
   .is-booting &{@include animate(fadeInUp, 1, 1.4,cubic-bezier(0.3, 0, 0, 1))}
+
+  @include device(xs){text-align: left; 
+    width: auto;
+    .u-wrap{padding:1em}
+  }
 }
 .c-page__content{position: relative; top:-5%;
   .is-booting &{@include animate(fadeIn, 1.5, 1.6,ease)}
@@ -1099,10 +1303,25 @@ $cButtonNextDuration: 0.65s;
   .t-mercury &{background-color: #e4e4f5}
 
   .u-box{width:90%; padding: 0 1.5em}
+  @include device(xs){
+    .u-box{padding: 0}
+    .u-fourth {padding-bottom:2em}
+  }
 }
+.c-contacts{
+  @include device(xs){
+    .u-third, .u-half{padding-bottom: 2em}
+    .u-wrap{padding: 1em}
+  }
+}
+
 .c-partners{margin-bottom: em(24);@include clear;
   a{display: block; margin:em(12); margin-left: 0}
   figure{width: 90%;height: em(96); background-repeat:no-repeat; background-size:70%; background-position: center; mix-blend-mode: multiply; filter: grayscale(100%)}
+
+  @include device(xs){
+    li{width: 50%; float: left}
+  }
 }
 .c-form-newsletter{@include clear;
   .o-button{float: right; width: 42%; padding: em(8) em(24)}
@@ -1121,9 +1340,15 @@ $cButtonNextDuration: 0.65s;
   li{width: 25%; float: left; margin-bottom: em(48);
     &:last-child{margin-bottom: 0;}
   }
+  @include device(xs){font-size:0.875em;
+    li{float: none; width: 100%; margin-bottom: em(24)}
+  }
 }
 .c-program__partners{text-align: center; 
   li{float: none; display: inline-block;}
+  @include device(xs){
+    li{float: left}
+  }
 }
 .c-programs__nav{@include clear; padding:0 1.5em 3em; 
   li{width: percentage(1/6); float: left;
@@ -1139,14 +1364,26 @@ $cButtonNextDuration: 0.65s;
   &.s--clear{padding: 0; margin: 0; list-style:none;
     a{margin-left: 0;}
   }
+
+  @include device(xs){padding: 0 0 3em;
+    li{width: 50% !important}
+  } 
 }
-.c-milestones__line{width: 1px; height: 100%; background-color: $jupiter; position: absolute; left: 50%; z-index: -1; top: -5em;}
+.c-milestones__line{width: 1px; height: 100%; background-color: $jupiter; position: absolute; left: 50%; z-index: -1; top: -5em;
+  @include device(xs){
+    right:0; left: auto;
+  }
+}
 .c-values{@include clear; 
   li{width: percentage(1/5); float: left;}
   figure{background-color: #000; padding-bottom: 150%;}
   .o-subheading{height: em(72); padding-bottom: 0; padding-left:em(9)}
 }
-
+.c-splash-articles{
+  @include device(xs){
+    .u-wrap{padding: 0}
+  }
+}
 .c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em; color: #696969;
   .o-bubble{z-index: 1; @include a-transform(0.4, ease)}
   .u-col{position: relative;}
@@ -1159,13 +1396,23 @@ $cButtonNextDuration: 0.65s;
   .s--medium{left: 5%; top: 5%}
   .s--small{right: 5%; bottom: 5%}
   .s--profile{height: auto}
+
+  @include device(xs){width: auto;
+    .s--large{width:100%; height: auto; padding-bottom: 100%;  left: 0}
+    .u-wrap{position: static}
+    .u-60p{z-index: 2}
+  }
 }
 .c-splash-team__link{display: block;@include a-transform(0.4, ease);
   &:hover{@include translateX(em(12));
     .c-splash-team__figure{@include translateX(em(-24))}
   }
 }
-.c-splash-team__figure{position: relative; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; @include a-transform(0.4, ease)}
+.c-splash-team__figure{position: relative; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; @include a-transform(0.4, ease);
+  @include device(xs){
+    width: auto; height:em(300);
+  }
+}
 .c-programs-tint{z-index: -1; width: 100%; top: 3.75em; height: 95%; background-color:#199ad4; position: absolute;
   &:after{content: ""; position: absolute; width: 50%; left: 0; top: 0; height: 100%; background-color: #23aae6; z-index: -1; @include a-transform(0.75,ease); @include resetPivot; @include scale2D(0,1); @include prefix((transition-delay:0.5s))}
   .aos-animate &{
@@ -1192,9 +1439,17 @@ $cButtonNextDuration: 0.65s;
     .o-line__1{@include prefix((transform: translateY(10px) rotate(45deg)));}
     .o-line__2{@include prefix((transform: rotate(-45deg)))}
   }
+
+  @include device(xs){font-size: 0.875em; top: em(6);
+    @include prefix((transform: translate3d(0,0,0)));
+  }
 }
 .c-page__overlay{position: fixed; top: 0; left: 0; z-index: 9; background:linear-gradient(45deg, rgba(214, 123, 123, 0), #3712ab); width: 100%; height: 100%; visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0.5s;
   &.is-visible{visibility: visible; opacity: 1}
+
+  @include device(xs){
+    background: linear-gradient(45deg, rgb(18, 131, 130), #3712ab);
+  }
 }
 .c-swiper{background-color: #e6e6e6; color: #fff; height:85%; background: #1c5fe0; background: -webkit-linear-gradient(45deg, #1c5fe0, #41A0F2); background: linear-gradient(45deg, #1c5fe0, #41A0F2);
   .u-box{height: 100%; position: relative;}
@@ -1219,12 +1474,22 @@ $cButtonNextDuration: 0.65s;
     .o-slide__excerpt{@include animate(fadeInRight,1,1, $easeOutExpo)}
     .o-bubble{@include a-running}
   }
+
+  @include device(xs){
+    height: auto;
+    .swiper-container{height: auto}
+    div.swiper-pagination{position: static; padding:2em 0}
+  }
 }
 .c-bubble-roof{
   .s--large{top:-7em;}
   .s--medium{right: 2em; top: -2em; width: 4em; height: 4em;}
   .s--small{left:40%; width: 2.5em; height: 2.5em; top:-1em; left: 40%}
   .s--xlarge{top:-7em; width: 15em; height: 15em; left: 60%; opacity: 0.2}
+
+  @include device(xs){
+    .o-bubble{left:0 !important; right: auto !important;}
+  }
 }
 
 .c-bubble-corridor{position: absolute; width: 100%; height: 100%; overflow:hidden; opacity:0.35; z-index:-5;
@@ -1236,6 +1501,9 @@ $cButtonNextDuration: 0.65s;
 }
 .c-program__header{width: 60%; @include center; text-align: center;
   figure{height: 8em; width: 16em; display: inline-block; @include center; margin: 1.5em auto; @include contain}
+  @include device(xs){
+    width: auto;
+  }
 }
 .c-statistic{display: block; font-size: 6em; @include sixcaps; color: #000;}
 .c-event-meta{ padding: 1em;
@@ -1251,12 +1519,26 @@ $cButtonNextDuration: 0.65s;
     &.s--inline{display: inline-block}
   }
   a{color: #3f51b5}
+
+  @include device(xs){padding: 0;
+    li{float: none; width: auto; padding-bottom: em(12);
+      &:after{display: none}
+    }
+  }
 }
 .c-event__poster{background-color: #e6e6e6; width: 85%; margin:2em auto 5em; @include image('concrete-texture.png'); background-repeat: repeat; @include border-radius-s;
   figure{margin:1em auto 3em; @include cover; position: relative;
     &:after{@include shadow; @include u-after;}
     &.s--portrait{width:40%; padding-bottom:56%;}
     &.s--landscape{width: 70%; padding-bottom: 50%}
+  }
+  @include device(xs){
+    width: auto;
+    .u-wrap{padding: 1em}
+    figure{margin-bottom: 1em;
+      &.s--landscape{width:auto; padding-bottom:60%}
+      &.s--portrait{width: 90%; padding-bottom: 100%;}
+    }
   }
 }
 .c-tickets{@include clear;
@@ -1266,6 +1548,15 @@ $cButtonNextDuration: 0.65s;
 .c-story{width: 55%; @include center; font-size:1.125em; padding:2em 0 4em;
   .u-box{width: auto}
   .s--basic{width: auto; text-align: left}
+
+  @include device(xs){
+    width: 90%;
+  }
+}
+/*hooks*/
+
+#contactForm{
+  .o-button{margin-top: 2em}
 }
 /*animation*/
 $orbit-radius:150px;

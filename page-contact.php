@@ -1,6 +1,6 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/html-header','parts/shared/header', 'parts/shared/cover'));?>
 <section class="c-page__content">
-	<section class="o-page__section">
+	<section class="o-page__section c-contacts">
 		<div class="u-box s--small u-bkg__lightBlue">
 			<section class="u-wrap">
 				<section class="u-clear">

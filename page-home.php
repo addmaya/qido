@@ -13,6 +13,17 @@
 			<div class="swiper-slide">
 				<a class="o-slide" href="<?php echo $slideButtonLink; ?>" data-depth="0.6">
 					<div class="u-box">			
+						<div class="o-slide__figure">
+							<div class="u-table">
+								<div class="u-cell">
+									<figure style="background-image:url('<?php echo $slideImage; ?>')">
+										<span class="o-bubble s--small"></span>
+										<span class="o-bubble s--medium"></span>
+										<span class="o-bubble s--large"></span>
+									</figure>
+								</div>
+							</div>
+						</div>
 						<div class="o-slide__info">
 							<section>
 								<h1 class="o-slide__title"><?php echo $slideTitle; ?></h1>
@@ -24,17 +35,6 @@
 									</div>
 								</span>
 							</section>
-						</div>
-						<div class="o-slide__figure">
-							<div class="u-table">
-								<div class="u-cell">
-									<figure style="background-image:url('<?php echo $slideImage; ?>')">
-										<span class="o-bubble s--small"></span>
-										<span class="o-bubble s--medium"></span>
-										<span class="o-bubble s--large"></span>
-									</figure>
-								</div>
-							</div>
 						</div>
 						<span class="o-globe"></span>
 					</div>
@@ -252,8 +252,7 @@
 		</div>
 	</div>
 </section>
-</section>
-<section class="o-page__section u-mt-l" data-aos="fade-up">
+<section class="o-page__section u-mt-l c-splash-articles" data-aos="fade-up">
 	<div class="o-section__tint s--full" style="height:98%"></div>
 	<div class="u-box">
 		<header class="o-section__header">

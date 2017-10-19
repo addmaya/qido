@@ -126,7 +126,7 @@
 					</span>
 				</div> -->
 			</header>
-			<section class="u-wrap">
+			<section class="u-wrap is-morphus">
 				<ul class="u-clear" id="storiesGrid">
 					<?php $eventPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>5, 'category_name' => 'events')); ?>
 					<?php if ($eventPosts->have_posts() ) : ?>
@@ -210,7 +210,7 @@
 	?>
 	<section class="o-page__section">
 		<div class="u-box">
-			<ul class="u-clear u-wrap">
+			<ul class="u-clear u-wrap is-morphus">
 				<?php while ($programsList->have_posts()) : $programsList->the_post();
 					$programContent = false;
 					$programLink = get_permalink();

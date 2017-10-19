@@ -28,7 +28,7 @@
 						<?php Starkers_Utilities::get_template_parts(array('parts/shared/networks')); ?>
 					</div>
 					<div class="o-bio__story">
-						<section class="u-wrap">
+						<section class="u-wrap is-morphus">
 							<header>
 								<h1 class="s--clear"><?php the_title(); ?></h1>
 								<span class="o-subtitle s--profile"><?php the_field('title'); ?></span>

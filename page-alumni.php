@@ -3,7 +3,7 @@
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">
-			<section class="a-right">
+			<section class="a-right u-pb-m">
 				<div class="o-select">
 					<select name="educatorsYear" id="educatorsYear">
 						<?php 

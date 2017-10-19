@@ -3,7 +3,8 @@
 <section class="c-page__content">
 <?php 
 	$partnerGroups = get_terms('group', array('orderby'=>'count', 'order'=>'DESC'));
-	foreach ($partnerGroups as $partnerGroup): ?>
+?>
+	<?php foreach ($partnerGroups as $partnerGroup): ?>
 		<section class="o-page__section" data-aos="fade-up">
 			<div class="o-section__tint"></div>
 			<div class="u-box">
@@ -56,7 +57,7 @@
 							$partnerLogo = get_field('logo');
 						?>
 						<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
-							<a href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop" data-title="<?php echo $partnerGroup->name.' Partner'; ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
+							<a data-rounded="1" href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop" data-title="<?php echo $partnerGroup->name.' Partner'; ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
 								<?php if ($partnerLogo){ ?>
 									<figure class="o-partner__logo js-defer" data-image-url="<?php echo $partnerLogo; ?>">
 										<div class="u-table">
@@ -89,6 +90,5 @@
 			</div>
 		</section>
 	<?php endforeach ?>
-?>
 </section>
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/footer','parts/shared/html-footer'));?>
