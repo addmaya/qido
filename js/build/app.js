@@ -645,6 +645,11 @@ jQuery(document).ready(function($) {
 		updateMenu();
 		loadDeferredImages($('.js-defer'));
 		getEducators();
+
+		if(!('backgroundBlendMode' in document.body.style)) {
+		  var html = document.getElementsByTagName("html")[0];
+		  html.className = html.className + " no-blendmodes";
+		}
 	}
 
 	boot();
