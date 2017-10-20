@@ -47,7 +47,7 @@
 				<ul class="u-clear c-program__partners">
 					<?php foreach ($programPartners as $post):?>
 						<?php setup_postdata($post ); $partnerLogo = get_field('logo'); ?>
-							<li class="o-partner" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+							<li class="o-partner" data-aos="slide-up" data-aos-delay="<?php echo $aosDelay; ?>">
 								<a href="<?php the_permalink(); ?>" class="o-partner__link">
 									<?php if ($partnerLogo){ ?>
 										<figure class="o-partner__logo js-defer" data-image-url="<?php echo $partnerLogo; ?>"  data-image-url="<?php echo $partnerLogo;?>">

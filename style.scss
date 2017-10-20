@@ -1281,7 +1281,7 @@ $active: #ffe992;
 }
 .c-page-cover__title{width: 340px; height: 182px; display: block; @include center; background-position: left center; @include prefix((animation: c-page-cover__title 3s 0.1s steps(42) forwards)); top:-3em; position: relative;}
 .c-page__title{overflow-x: hidden; width: 100%; top: em(620);z-index: -1; position: absolute;
-  span{font-size: 30em; @include arial; text-transform: lowercase; opacity: 0.1}
+  span{font-size: 30em; @include arial; text-transform: lowercase; opacity: 0.05}
   @include device(lg){top: 50%}
   .is-booting &{@include animate(fadeIn, 1.5, 1.4, ease);}
 }
