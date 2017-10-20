@@ -390,7 +390,7 @@ jQuery(document).ready(function($) {
             var imageURL = me.data('image-url');
 
             if(imageURL){
-                me.removeClass('js-bkg');
+                me.removeClass('js-defer');
                 me.css('background-image', 'url(' + imageURL + ')');
                 me.addClass('is-loaded');
             }
