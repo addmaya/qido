@@ -4,7 +4,7 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<?php 
-				$boardList = new WP_Query(array('post_type'=>'director','posts_per_page'=>-1));
+				$boardList = new WP_Query(array('post_type'=>'director','posts_per_page'=>-1, 'orderby' => 'menu_order'));
 				if ($boardList->have_posts()){
 					$directorIndex = 0;
 					$aosDelay = 0;
@@ -31,7 +31,7 @@
 				?>
 					<li class="o-director o-grid__item" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
 						<a href="<?php the_permalink(); ?>" class="js-showBioPop no-barba" data-title="<?php the_field('title'); ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
-							<figure data-image-url="<?php echo get_field('photo'); ?>" class="js-defer"></figure>
+							<figure data-image-url="<?php echo get_field('photo'); ?>" class="js-defer u-greyscale"></figure>
 							<span class="o-bubble s--medium"></span>
 							<span class="o-bubble s--small"></span>
 							<section class="o-director__info">
