@@ -3,7 +3,7 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<?php 
-				$programLogos = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order', 'order'=> 'ASC'));
+				$programLogos = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'rand'));
 				if ($programLogos->have_posts()){
                     $programLogoIndex = 0;
                     $aosDelay=0;

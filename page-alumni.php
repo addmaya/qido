@@ -3,13 +3,14 @@
 <section class="c-page__content">
 	<section class="o-page__section">
 		<div class="u-box">
-			<section class="a-right u-pb-m">
+			<section class="a-center u-pb-l">
 				<div class="o-select">
+					<label>Select Alumni Year</label>
 					<select name="educatorsYear" id="educatorsYear">
 						<?php 
 							$i = 2015;
 							foreach (range(date('Y'), $i) as $y) {
-							    echo '<option value="'.$y.'">'.$y.'</option>';
+							    echo '<option value="'.$y.'">#PEA '.$y.'</option>';
 							}
 						 ?>
 					</select>
@@ -19,13 +20,7 @@
 			<?php 
 				$alumni = new WP_User_Query(array(
 					'role'=>'educator',
-					'meta_query'=> array(
-						array(
-							'key'=>'year',
-							'value'=>date("Y"),
-							'compare'=> '='
-						)
-					)
+					'number' => 8
 				)
 			);
 				$educators = $alumni->get_results();

@@ -900,7 +900,7 @@ $active: #ffe992;
   .s--small{bottom: 55%; right: 5%; @include animate(levitate, 3, 0, ease-in-out); @include infinite}
   .o-bubble{@include a-paused; z-index:-2}
 
-  &.s--educators{width:percentage(1/6); font-size: 0.75em}
+  &.s--educators{width:percentage(1/5); font-size: 0.75em;}
   
   @include device(sm){
     width: percentage(1/2)
@@ -981,7 +981,7 @@ $active: #ffe992;
   .o-bubble{left: 20%; bottom: 0; top: auto;}
 }
 .o-bio__figure{width: 40%; float: left; text-align: center; 
-  figure{height: em(360); margin: 1.5em; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; @include grayscale(100%);
+  figure{height: em(360); margin: 1.5em; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative;
     &.s--radial{width: em(225); height: em(225); @include cover; @include border-radius-l; background-color: #e6e6e6; @include center; }
     &.s--color{filter: none}
     &.s--rounded{@include border-radius-l; width: em(240); height: em(240); background-size: cover}
@@ -1159,7 +1159,7 @@ $active: #ffe992;
   li{width: 50%; float: left; margin-bottom: 2em;
     &.s--fluid{width:25%}
   }
-  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative; background-position:center top;
+  figure{@include border-radius-s; padding-bottom: 80%; @include cover; margin-bottom: 1.5em; position: relative; background-position:center top; background-color: #3f51b5;
     &:after{box-shadow: 0 em(48) em(72) rgba(0,0,0,0.35); @include u-after; opacity:1; @include border-radius-s}
   }
   .o-bubble{top: 0 !important; left: -2em;}

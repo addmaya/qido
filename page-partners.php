@@ -2,7 +2,7 @@
 <?php Starkers_Utilities::get_template_parts(array('parts/shared/bio'));?>
 <section class="c-page__content">
 <?php 
-	$partnerGroups = get_terms('group', array('orderby'=>'count', 'order'=>'DESC'));
+	$partnerGroups = get_terms('group', array('orderby'=>'count'));
 	foreach ($partnerGroups as $partnerGroup): ?>
 		<section class="o-page__section" data-aos="fade-up">
 			<div class="o-section__tint"></div>
@@ -22,6 +22,7 @@
 						$partnerList = new WP_Query(array(
 							'post_type'=>'partner',
 							'posts_per_page'=>-1,
+							'orderby'=>'rand',
 							'tax_query'=>array(
 									array(
 										'taxonomy'=>'group',

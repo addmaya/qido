@@ -28,8 +28,8 @@
 					<?php if( ($postType != 'program') && ($postType != 'event') ){?>
 						<div class="u-half">
 							<section class="u-wrap">
-								<span class="o-subtitle">More for you</span>
-								<?php $postsList = new WP_Query(array('post_type'=>'story', 'orderby'=>'rand', 'posts_per_page'=>6, 'post__not_in' => array($pageID))); ?>
+								<span class="o-subtitle">More Stories</span>
+								<?php $postsList = new WP_Query(array('post_type'=>'story', 'orderby'=>'rand', 'posts_per_page'=>4, 'post__not_in' => array($pageID))); ?>
 								<?php if ( $postsList->have_posts() ) : ?>
 									<ul class="o-list u-pt-s">
 									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
@@ -50,8 +50,8 @@
 					<?php if($postType == 'program'){?>
 						<div class="u-half">
 							<section class="u-wrap">
-								<span class="o-subtitle">Explore our Programs</span>
-								<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'post__not_in'=>array(get_the_id()))); ?>
+								<span class="o-subtitle">More Programs</span>
+								<?php $postsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>4, 'post__not_in'=>array(get_the_id()))); ?>
 								<?php if ( $postsList->have_posts() ) : ?>
 									<ul class="o-list u-pt-s">
 									<?php while ( $postsList->have_posts() ) : $postsList->the_post(); ?>
@@ -72,7 +72,7 @@
 					<?php if($postType == 'event'){?>
 						<div class="u-half">
 							<section class="u-wrap">
-								<span class="o-subtitle">Explore other Events</span>
+								<span class="o-subtitle">More Events</span>
 								<?php $postsList = new WP_Query(array('posts_per_page'=>5, 'category_name' => 'events')); ?>
 								<?php if ( $postsList->have_posts() ) : ?>
 									<ul class="o-list u-pt-s">
