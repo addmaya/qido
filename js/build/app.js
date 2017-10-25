@@ -86,26 +86,13 @@ jQuery(document).ready(function($) {
 	}
 
 	function renderSwiper(){
-		var homeSwiper = new Swiper ('.o-swiper .swiper-container', {
-		    loop: true,
-		    speed: 800,
-		    autoplay: 6000,
-		    autoplayDisableOnInteraction:false,
-		    pagination: '.swiper-pagination',
-		    paginationClickable: true,
-		    nextButton: '.swiper-button-next',
-		    prevButton: '.swiper-button-prev'
-		 });
-	}
-
-	function renderSwiper(){
 		var swiperInstances = {};
 		$(".o-swiper .swiper-container").each(function(index, element){
 		    var $this = $(this);
 		    $this.addClass("instance-" + index);
-		    $this.find(".swiper-button-prev").addClass("btn-prev-" + index);
-		    $this.find(".swiper-button-next").addClass("btn-next-" + index);
-		     $this.find(".swiper-pagination").addClass("pagination-" + index);
+		    $this.parent().find(".swiper-button-prev").addClass("btn-prev-" + index);
+		    $this.parent().find(".swiper-button-next").addClass("btn-next-" + index);
+		    $this.parent().find(".swiper-pagination").addClass("pagination-" + index);
 
 		    swiperInstances[index] = new Swiper(".instance-" + index, {
 		        loop: true,
@@ -319,7 +306,6 @@ jQuery(document).ready(function($) {
 		});
 		$('.c-logo').click(function() {
 			$('.o-menu').find('.is-active').removeClass('is-active');
-			$('.o-menu a').first().addClass('is-active');
 			pageMenu.removeClass('is-hidden');
 		});
 	}
@@ -629,7 +615,7 @@ jQuery(document).ready(function($) {
 	  }
 	});
 	Barba.Pjax.getTransition = function() {return FadeTransition;};
-	
+
 	function boot(){
 		randomizeBubbleColors();
 		randomizeStatBubbles();

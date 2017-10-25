@@ -815,6 +815,7 @@ $active: #ffe992;
   }
   }
 }
+.o-card__title{color: #32408f;padding: 4em 1.5em; display: block; font-weight: bold;}
 .o-card__figure{width: 75%; height: em(360); @include cover; @include border-radius-s; position: relative; @include center; @include a-transform(0.4, $easeOutBack); 
     &:after{content:""; position: absolute; z-index: 1; width: 20%; height: 4px; @include resetPivot; @include scale2D(0,1); left: 50%; top: 50%; @include a-transform(0.4, $easeOutExpo); background-color: #fff;}
   @include device(sm){
@@ -1024,6 +1025,7 @@ $active: #ffe992;
   .o-subheading{font-weight: 300; font-size: 1.25em; padding: 1em 0}
   .c-programs__nav{padding: 0;
     li{width: percentage(1/3)}
+    
   }
 }
 .o-pop__content{position: relative; z-index: 3; overflow: hidden}
@@ -1443,6 +1445,7 @@ $cButtonNextDuration: 0.65s;
   li{width: percentage(1/6); float: left;
     &.u-third{width: percentage(1/3);}
   }
+  span{padding: 1.5em; display: block; line-height: 1.2}
   a{display: block; background-color: #fff; height:6em; margin:1em; background-size: 65%; background-repeat: no-repeat; background-position: center; border:solid 1px #e8e9eb; border-radius: 4px; @include a-transform(0.4, $easeOutBack); position: relative;
     
     &:after{border-radius:4px; @include u-after; opacity: 0; @include a-opacity(0.3); @include shadow}
@@ -1554,9 +1557,9 @@ $cButtonNextDuration: 0.65s;
   .swiper-button-prev,.swiper-button-next{top: auto; bottom: em(48); opacity: 1}
   .o-bubble{@include a-paused}
   .swiper-pagination-bullet{border-radius:0; height:3px;width:em(72); position: relative;
-    &:after{@include u-after; @include resetPivot; @include scale2D(0,1); background-color:#fff; @include a-transform(6,linear); opacity:0}
+    &:after{@include u-after; @include resetPivot; @include scale2D(1,1); background-color:#fff}
     &.swiper-pagination-bullet-active{
-      &:after{@include scale2D(1,1); opacity:1}
+      &:after{@include prefix((animation:scaleInLeft 6s linear both))}
     }
   }
   div.swiper-pagination{left:5%; bottom:5%}
@@ -1697,6 +1700,10 @@ $orbit-radius:150px;
 @keyframes slideOutUp {
   from {@include prefix((transform: translate3d(0, 0, 0)))}
   to {visibility: hidden; @include prefix((transform: translate3d(0, -100%, 0)))}
+}
+@keyframes scaleInLeft {
+  from {@include prefix((transform: scale3d(0, 1, 1)))}
+  to {@include prefix((transform: scale3d(1, 1, 1)))}
 }
 @keyframes fadeInUp {
   from {@include prefix((transform: translate3d(0, 100%, 0))); opacity: 0;}

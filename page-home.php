@@ -170,7 +170,11 @@
 					<div class="u-half" data-aos="fade-up" data-aos-delay="<?php echo $aosDelay;?>">
 						<a class="o-card <?php if(!$programContent){if(!$programWebsite){echo $programClass;}else{echo $programClass.' is-clickable';}}else{echo $programClass.' is-clickable';}; ?>" <?php if($programContent){echo 'href="'.$programLink.'"';} ?>>
 							<figure class="o-card__figure js-defer" data-image-url="<?php the_field('cover_image');?>">
-								<span class="o-card__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></span>
+								<span class="o-card__logo js-defer" data-image-url="<?php the_field('logo'); ?>">
+									<?php if (!get_field('logo')): ?>
+										<span class="o-card__title"><?php the_title() ?></span>
+									<?php endif ?>
+								</span>
 							</figure>
 							<?php if($programContent){?>
 								<section class="o-card__info">

@@ -35,7 +35,13 @@
                         break;
                 }
             ?>
-				<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>"><a href="#program-<?php echo get_the_id(); ?>" class="js-defer" data-image-url="<?php the_field('logo'); ?>"></a></li>
+				<li data-aos="fade-up" data-aos-delay="<?php echo $aosDelay; ?>">
+					<a href="#program-<?php echo get_the_id(); ?>" class="js-defer" data-image-url="<?php the_field('logo'); ?>">
+						<?php if (!get_field('logo')): ?>
+							<span><?php the_title(); ?></span>
+						<?php endif ?>
+					</a>
+				</li>
 				<?php $programLogoIndex++; endwhile; ?>
 				<?php wp_reset_postdata(); ?>
 			<?php } ?>
@@ -48,7 +54,7 @@
 		<div class="u-box">
 			<ul class="u-clear">
 				<?php 
-					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order','order'=> 'ASC'));
+					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order','order'=> 'ASC', 'meta_query'=> array(array('key'=>'logo', 'value'=>'', 'compare'=> '!='))));
 					if ($programsList->have_posts()){
 						$programIndex = 0;
 						$programClass = '';

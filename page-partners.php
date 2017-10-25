@@ -56,7 +56,7 @@
 							$partnerLogo = get_field('logo');
 						?>
 						<li class="o-partner" data-aos="slide-up" data-aos-delay="<?php echo $aosDelay; ?>">
-							<a href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop" data-title="<?php echo $partnerGroup->name.' Partner'; ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
+							<a data-rounded="1" href="<?php the_permalink(); ?>" class="o-partner__link no-barba js-showBioPop" data-title="<?php echo $partnerGroup->name.' Partner'; ?>" data-name="<?php the_title(); ?>" data-id="<?php the_id(); ?>">
 								<?php if ($partnerLogo){ ?>
 									<figure class="o-partner__logo js-defer" data-image-url="<?php echo $partnerLogo; ?>">
 										<div class="u-table">

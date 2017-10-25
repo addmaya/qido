@@ -4,11 +4,11 @@
 	<figure class="c-page-cover__image js-defer" data-image-url="<?php echo get_field('cover_image',195); ?>"></figure>
 	<div class="u-table u-align__center">
 		<div class="u-cell">
-			<h1>Events Calendar</h1>
+			<h1>Events Archive</h1>
 		</div>
 	</div>
 </section>
-<section class="c-page__content s--clear u-oh">
+<section class="c-page__content s--clear u-oh u-pb-l">
 	<div class="c-bubble-roof">
 		<span class="o-bubble s--large"></span>
 		<span class="o-bubble s--medium"></span>

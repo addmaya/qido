@@ -7,7 +7,7 @@
 			$postTypeObject = get_post_type_object($postType);
 			$postTypeTitle = $postTypeObject->labels->singular_name;
 		?>
-		<?php if(!is_front_page()){?>
+		<?php if(!is_front_page() && !is_404() && !is_category() && !is_archive()){?>
 		<section class="c-page__actions" data-aos="fade-up">
 			<div class="u-box">
 				<span class="o-line s--break"></span>
@@ -106,7 +106,7 @@
 				$nextPageID = get_option('page_on_front');
 			}
 		?>
-		<?php if (!is_tag()): ?>
+		<?php if (!is_404() && !is_tag() && !is_category() && !is_archive()): ?>
 			<?php if (!is_single()) {?>
 				<a href="<?php echo get_permalink($nextPageID); ?>" class="c-button-next">
 					<span class="o-subtitle">Next</span>
@@ -164,7 +164,11 @@
 							<?php $partnerList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post_type'=>'partner')); ?>
 							<?php if ( $partnerList->have_posts() ) : ?>
 								<?php while ( $partnerList->have_posts() ) : $partnerList->the_post(); ?>
-									<li class="u-third"><a href="<?php echo get_permalink(); ?>"><figure style="background-image:url('<?php echo get_field('logo');?>')"></figure></a></li>
+									<li class="u-third">
+										<a href="<?php echo get_permalink(); ?>">
+											<figure style="background-image:url('<?php echo get_field('logo');?>')"></figure>
+										</a>
+									</li>
 								<?php endwhile; wp_reset_postdata(); ?>
 							<?php endif; ?>
 						</ul>

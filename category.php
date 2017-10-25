@@ -8,7 +8,7 @@
 		</div>
 	</div>
 </section>
-<section class="c-page__content s--clear u-oh">
+<section class="c-page__content s--clear u-oh u-pb-l">
 	<div class="c-bubble-roof">
 		<span class="o-bubble s--large"></span>
 		<span class="o-bubble s--medium"></span>
