@@ -34,6 +34,23 @@
 		<span class="o-line s--hidden"></span>
 	</div>
 	<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
+	<?php if (true): ?>
+		<section class="o-page-section u-pbt-l">
+			<div class="u-box">
+				<div class="o-box c-opportunities" data-aos="fade-up" style="margin-top: auto">
+					<div class="u-table">
+						<div class="u-cell" class="o-button">
+							<p>See the Alumni</p>
+							<a class="o-button" href="<?php echo home_url(); ?>/category/opportunities" >
+								<i class="o-icon s--arrow-ltr"></i>
+								<span class="o-button__title">View Alumni Archive</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	<?php endif ?>
 	<?php
 		$programPartners = get_field('partners');
 		if($programPartners): 
