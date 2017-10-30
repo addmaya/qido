@@ -1266,7 +1266,7 @@ $active: #ffe992;
   }
 }
 
-.c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 100%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease)); background-color: darken($jupiter,15%);
+.c-loader{position:fixed; z-index:9; top:0; left: 0; width: 100%; display: table; height: 100%; text-align: center; @include prefix((transform: translate3d(0, 150%, 0))); @include prefix((animation-fill-mode: forwards)); @include prefix((transition: background-color 1s ease)); background-color: darken($jupiter,15%);
   span{display: inline-block; width:152px; height: 152px; background-position:left center; @include image('animation/logo-white.png'); @include prefix((animation: c-loader-logo 1.3s infinite steps(24) forwards)); background-size: cover; @include scale2D(0.4,0.4);
     &:after{content:""; position: absolute; width: 150%;  height: 150%; @include border-radius-l; border:solid 7px white; top: -25%; left:-25%;};
   }  
