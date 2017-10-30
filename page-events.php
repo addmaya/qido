@@ -126,7 +126,7 @@
 					</span>
 				</div> -->
 			</header>
-			<section class="u-wrap is-morphus">
+			<section>
 				<ul class="u-clear" id="storiesGrid">
 					<?php $eventPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>5, 'category_name' => 'events')); ?>
 					<?php if ($eventPosts->have_posts() ) : ?>

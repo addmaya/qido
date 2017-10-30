@@ -134,7 +134,10 @@
 								<figure class="o-program__figure js-defer" data-image-url="<?php the_field('cover_image');?>"></figure>
 								<section class="o-program-meta">
 									<div class="u-clear">
-										<figure class="o-program__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></figure>
+										<?php if (get_field('logo')){?>
+											<figure class="o-program__logo js-defer" data-image-url="<?php the_field('logo'); ?>"></figure>
+										<?php } ?>
+										
 									</div>
 									<section class="o-program-excerpt__wrap">
 										<span class="o-subheading"><?php the_title(); ?></span>

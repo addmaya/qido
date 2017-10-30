@@ -4,7 +4,7 @@
 	<section class="o-page__section">
 		<div class="u-box">
 			<?php 
-				$boardList = new WP_Query(array('post_type'=>'cultural','posts_per_page'=>-1));
+				$boardList = new WP_Query(array('post_type'=>'cultural','posts_per_page'=>-1,'orderby'=>'rand'));
 				if ($boardList->have_posts()){
 					$directorIndex = 0;
 					$aosDelay = 0;

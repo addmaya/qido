@@ -58,7 +58,7 @@
 				</span>
 			</div>
 		</section> -->
-		<section class="u-wrap u-pdb-clear is-morphus">
+		<section>
 			<ul class="u-clear u-relative" id="storiesGrid">
 				<?php $blogPosts = new WP_Query(array('post_type'=>'story', 'posts_per_page'=>9, 'offset'=>-1)); ?>
 				<?php if ($blogPosts->have_posts() ) : ?>
