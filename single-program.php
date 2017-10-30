@@ -34,14 +34,14 @@
 		<span class="o-line s--hidden"></span>
 	</div>
 	<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/content') ); ?>
-	<?php if (true): ?>
+	<?php if (get_the_ID() == 821): ?>
 		<section class="o-page-section u-pbt-l">
 			<div class="u-box">
-				<div class="o-box c-opportunities" data-aos="fade-up" style="margin-top: auto">
+				<div class="o-box c-opportunities" data-aos="fade-up" style="margin-top: auto; background-image: url('<?php echo get_stylesheet_directory_uri().'/images/peas.jpg'; ?>');">
 					<div class="u-table">
 						<div class="u-cell" class="o-button">
 							<p>See the Alumni</p>
-							<a class="o-button" href="<?php echo home_url(); ?>/category/opportunities" >
+							<a class="o-button" href="<?php echo home_url(); ?>/pea/alumni" >
 								<i class="o-icon s--arrow-ltr"></i>
 								<span class="o-button__title">View Alumni Archive</span>
 							</a>

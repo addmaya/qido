@@ -174,7 +174,6 @@ jQuery(document).ready(function($) {
 			   dataType: 'json',
 			   data: {action: 'getStories', offset: offset, postsPerPage: 9, tailIndex: tailIndex, category: category},
 			   success: function(data){
-			   	console.log(data.length);
 			       if(data.length){
 			       		storiesGrid.append(data);
 					}
@@ -318,13 +317,6 @@ jQuery(document).ready(function($) {
 	$('.c-page__overlay').click(function() {
 		toggleMenu();
 	});
-
-	//lazy image
-	$('.element').each(function() {
-    	var me = $(this);
-    	var thumb_url = me.data('thumb-url');
-    	me.css('background-image', 'url(' + thumb_url + ')');
-    });
 
 
     //bubbles

@@ -54,7 +54,7 @@
 		<div class="u-box">
 			<ul class="u-clear">
 				<?php 
-					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'menu_order','order'=> 'ASC', 'meta_query'=> array(array('key'=>'logo', 'value'=>'', 'compare'=> '!='))));
+					$programsList = new WP_Query(array('post_type'=>'program', 'posts_per_page'=>-1, 'orderby' => 'rand'));
 					if ($programsList->have_posts()){
 						$programIndex = 0;
 						$programClass = '';

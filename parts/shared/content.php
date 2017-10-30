@@ -188,7 +188,7 @@
 		<?php } ?>
 
 		<?php if(get_row_layout() == 'document'){?>
-			<section data-aos="fade-up" class="o-block">
+			<section data-aos="fade-up" class="o-block s--docs">
 				<div class="u-box">
 					<?php 
 						$docsTitle = get_sub_field('title');
@@ -218,7 +218,6 @@
 
 							?>
 								<li>
-									<!-- <h1><?php var_dump($docFile); ?></h1> -->
 									<a class="o-doc no-barba" href="<?php echo $docFileURL; ?>" target="_blank">
 										<div class="u-table">
 											<div class="u-cell">
