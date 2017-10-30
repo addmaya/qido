@@ -235,6 +235,7 @@ jQuery(document).ready(function($) {
 			$('#bioName').html(bioName);
 			$('#bioTitle').html(bioTitle);
 			$('#bioPhoto').css('background-image', 'url(' + imageURL + ')');
+			openPop($('#bioPop'));
 
 			$.ajax({
 			   url: ajaxURL,
@@ -243,7 +244,7 @@ jQuery(document).ready(function($) {
 			   data: {action: 'getBioContent', bioID: bioID, type: bioType},
 			   success: function(data){
 			        $('#bioContent').html(data);
-			        openPop($('#bioPop'));
+			       
 			   } 
 			});
 		});
@@ -579,7 +580,7 @@ jQuery(document).ready(function($) {
 	var FadeTransition = Barba.BaseTransition.extend({	  
 	  start: function() {
 	    pageLoader.removeClass('is-hidden');
-	    
+	    body.addClass('u-oh');
 	    Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
 	  },
 	  fadeOut: function() {
@@ -596,6 +597,7 @@ jQuery(document).ready(function($) {
 	    setTimeout(function(){
 	    	$(this.oldContainer).hide();
 	    	$('html, body').animate({ scrollTop: 0 }, 0);
+	    	body.removeClass('u-oh');
 	    	pageLoader.removeClass('is-visible').addClass('is-hidden');	    	
 	    	transition.done();
 	    	AOS.init({

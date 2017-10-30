@@ -161,7 +161,7 @@
 					<section class="u-fourth">
 						<h2>Some of our Partners <span class="o-line"></span></h2>
 						<ul class="c-partners">
-							<?php $partnerList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post_type'=>'partner')); ?>
+							<?php $partnerList = new WP_Query(array('orderby'=>'rand', 'posts_per_page'=>6, 'post_type'=>'partner', 'meta_query'=> array(array('key'=>'logo', 'value'=>'', 'compare'=> '!=')))); ?>
 							<?php if ( $partnerList->have_posts() ) : ?>
 								<?php while ( $partnerList->have_posts() ) : $partnerList->the_post(); ?>
 									<li class="u-third">
