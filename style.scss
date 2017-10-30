@@ -165,8 +165,8 @@ h2{font-size: em(20); padding-bottom: em(16); line-height: 1.3;
   .t-neptune &{color: $neptune}
 }
 a{color: inherit}
-blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative;
-  background: url('images/quote-open.svg') left top/20% 20% no-repeat, url('images/quote-close.svg') right bottom/20% 20% no-repeat;
+blockquote{font-weight: 300; font-size: em(28); line-height: 1.4; position: relative; padding-top: em(22);
+  background: url('images/quote-open.svg') left 0/20% 20% no-repeat, url('images/quote-close.svg') right bottom/20% 20% no-repeat;
   @include device(xs){
     font-size: em(22);
   }
@@ -1065,7 +1065,7 @@ $active: #ffe992;
   .o-statistic{display: inline-block; color: #000; float: none; 
     figure{height: 17em; width: 17em;}
   }
-  &.s--docs{background-color:#f4f7fa; padding-bottom: 2em}
+  &.s--docs{background-color:#f4f7fa; padding-bottom: 2em; margin-top: 2em;}
   &.s--imagelist{margin-bottom: 0}
   @include device(md){
     &.s--odd{
@@ -1482,7 +1482,7 @@ $cButtonNextDuration: 0.65s;
     .u-wrap{padding: 0}
   }
 }
-.c-splash-team{background-color:#F0F0F0; @include center; width: 90%; margin-top: 1.5em; color: #696969;
+.c-splash-team{background-color:#edeef0; @include center; width: 90%; margin-top: 1.5em; color: #696969;
   .o-bubble{z-index: 1; @include a-transform(0.4, ease)}
   .u-col{position: relative;}
   .u-60p{height: 100%; position: relative;}

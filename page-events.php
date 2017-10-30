@@ -197,7 +197,7 @@
 			'posts_per_page'=>-1,
 			'tax_query'=>array(
 					array(
-						'taxonomy'=>'kind',
+						'taxonomy'=>'class',
 						'field'=>'name',
 						'terms'=>'event'
 					)
