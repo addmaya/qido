@@ -276,6 +276,7 @@ jQuery(document).ready(function($) {
 		$('body').removeClass('u-oh');
 		$('.o-pop').hide();
 		$('.o-pop').find('.o-player').html('');
+		$('#bioContent').html('');
 	}
 
 	function showNewsletter(){
