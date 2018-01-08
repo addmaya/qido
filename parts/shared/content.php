@@ -281,6 +281,50 @@
 			</section>
 		<?php } ?>
 
+		<?php if(get_row_layout() == 'video_list'){?>
+			<section data-aos="fade-up" class="o-block s--imagelist">
+				<div class="u-box">
+					<?php 
+						$listTitle = get_sub_field('list_title');
+						$listDescription = get_sub_field('list_description');
+						$columnCount = get_sub_field('columns');
+						$columnWidth = (1/$columnCount)*100 + '%';
+					?>
+						<?php if($listTitle || $listDescription){?>
+							<header>
+								<h2><?php echo $listTitle; ?></h2>
+								<section><?php echo $listDescription; ?></section>
+							</header>
+						<?php }?>
+
+					<?php if(have_rows('list_items')): ?>
+						<ul class="o-imagelist">
+							<?php while(have_rows('list_items')):the_row();
+								$listItemVid = get_sub_field('video');
+								$listItemTitle = get_sub_field('title');
+								$listItemText = get_sub_field('description');
+								
+							?>
+								<li style="width: <?php echo $columnWidth; ?>%">
+									<section class="u-wrap">
+										<section class="o-embed">
+											<span class="o-bubble s--right <?php echo $bubbleSizes[array_rand($bubbleSizes)]; ?>"></span>
+											<section class="o-embed__content">
+												<?php echo $listItemVid; ?>
+											</section>
+										</section>
+										<section class="o-imagelistItem">
+											<h3><?php echo $listItemTitle; ?></h3>
+											<p><?php echo $listItemText; ?></p>
+										</section>
+									</section>
+								</li>
+							<?php endwhile; ?>
+						</ul>
+					<?php endif; ?></div>
+			</section>
+		<?php } ?>
+
 		<?php if(get_row_layout() == 'embed') {
 				$embedTitle = get_sub_field('title');
 				$embedDescription = get_sub_field('description');
